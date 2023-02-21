@@ -1,0 +1,20 @@
+.Product{
+  margin-top: 15px;
+  width: 100%;
+  &Filter{
+    //display: none;
+    //border:  1px solid black
+  }
+  &Wrapper{
+
+    //border:  1px solid black;
+   //width: 100%;
+   // background-color: aqua;
+  }
+  &List{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
