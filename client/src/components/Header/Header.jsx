@@ -7,7 +7,7 @@ function Header(props) {
            <NavLink to='/'>Home</NavLink>
             <NavLink to='/page1'>Page__1</NavLink>
             <NavLink to='/page2'>Page_2</NavLink>
-            <NavLink to='/page3'>Page_3</NavLink>
+            <NavLink to='/product'>Product</NavLink>
         </div>
     );
 }

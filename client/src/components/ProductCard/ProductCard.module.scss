@@ -1,0 +1,37 @@
+.Card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  list-style: none;
+  max-width: 250px;
+  padding: 0 15px 30px 15px;
+  box-sizing: border-box;
+
+  &Img {
+    width: 100%;
+  }
+
+  &Description {
+    margin-top: 20px;
+
+    &Name {
+      text-transform: capitalize;
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      color: #444444;
+      margin-bottom: 10px;;
+    }
+
+    &Price {
+      font-family: 'Red Hat Display';
+      font-weight: 400;
+      font-size: 14px;
+      color: #666;
+      line-height: 20px;
+    }
+  }
+
+
+}
