@@ -23,6 +23,7 @@ const comments = require('./routes/comments');
 const shippingMethods = require('./routes/shippingMethods');
 const paymentMethods = require('./routes/paymentMethods');
 const partners = require('./routes/partners');
+const cors = require('cors')
 // const mainRoute = require('./routes/index');
 
 const app = express();
@@ -30,7 +31,7 @@ const app = express();
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(cors())
 // DB Config
 const db = require('./config/keys').mongoURI;
 
