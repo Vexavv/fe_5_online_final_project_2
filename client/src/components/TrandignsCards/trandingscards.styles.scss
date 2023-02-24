@@ -1,0 +1,31 @@
+.trending-products-img {
+    max-width: 100%; 
+}
+
+.trandingcards-container{
+    margin-right: 30px;
+}
+.react-multi-carousel-item{
+    
+}
+.react-multiple-carousel__arrow {
+background-color: #C4C6C5;
+}
+.react-multiple-carousel__arrow::before{
+    color:#FFFFFF;
+}
+
+.react-multiple-carousel__arrow:hover {
+background-color: #947531;
+}
+.react-multiple-carousel__arrow:hover::before {
+    color:black;
+}
+.react-multiple-carousel__arrow--right {
+    right: 1px;
+    top:235px;
+}
+.react-multiple-carousel__arrow--left {
+   left: 1px;
+   top:235px;
+}

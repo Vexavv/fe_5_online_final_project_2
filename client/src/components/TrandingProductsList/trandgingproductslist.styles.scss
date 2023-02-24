@@ -1,0 +1,28 @@
+.trending-products-container {
+    max-width: 1410px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.subTitle {color: var(--vela-text-color-primary);
+    font-weight: 400;
+    font-size: var(--vela-font-size);
+    line-height: calc(var(--vela-font-size) + 5px);
+    margin: 0 auto 10px;
+    max-width: 600px;
+    text-align: center;
+}
+.trending-products-title{
+    padding: 0 0 10px;
+    margin: 0;
+    position: relative;
+    text-align: center;
+    font-weight: 700;
+    color: #1A1A1A;
+    font-family: var(--vela-font-family-secondary);
+}
+
+.react-multi-carousel-track{
+    left: 15px;
+}
