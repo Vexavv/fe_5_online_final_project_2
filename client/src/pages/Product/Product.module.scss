@@ -1,20 +1,207 @@
-.Product{
+.Product {
   margin-top: 15px;
   width: 100%;
-  &Filter{
-    //display: none;
-    //border:  1px solid black
-  }
-  &Wrapper{
 
-    //border:  1px solid black;
-   //width: 100%;
-   // background-color: aqua;
+  &Banner {
+    background-image: url("https://cdn.shopify.com/s/files/1/0376/9440/6700/files/bg-breacumb.jpg?v=1613729001");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    margin-bottom: 30px;
+
+    &Container {
+      margin: 0 auto;
+      padding: 0 15px;
+
+      &Nav {
+        padding: 15px 0;
+
+        &Title {
+          font-family: 'Red Hat Display';
+          font-weight: 700;
+          font-size: 30px;
+          line-height: 38px;
+          margin-bottom: 10px;
+          color: #1a1a1a;
+        }
+
+        &Link {
+          list-style: none;
+          display: flex;
+          flex-direction: row;
+
+          &Item {
+            font-family: 'Red Hat Display';
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 500;
+
+            a {
+              cursor: pointer;
+              color: #444444;
+            }
+
+            span {
+              color: #999999;
+            }
+
+            span::before { /* доробити стрілку*/
+              content: '>';
+              width: 14px;
+              padding: 0 5px;
+              margin-left: 2px;
+              color: #444444;
+            }
+          }
+        }
+      }
+    }
   }
-  &List{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+
+
+  &Filter {
+    display: none;
+  }
+
+  &Content {
+    &Container {
+      margin: 0 auto;
+      padding: 0 15px;
+
+      &Nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+
+        &ToggleButton {
+          display: none;
+
+        }
+
+        &Filter {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          &Icon {
+            color: #ba933e;
+            margin-right: 5px;
+          }
+
+          &Text {
+            font-size: 15px;
+            line-height: 20px;
+            color: #ba933e;
+
+          }
+        }
+
+      }
+
+      &List {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .Product {
+    &Banner {
+      &Container {
+        &Nav {
+          padding: 25px 0;
+
+          &Title {
+            font-size: 35px;
+          }
+
+          &Link {
+            &Item {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+
+    &Content {
+      &Container {
+        &List {
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+
+}
+
+@media (min-width: 900px) {
+  .Product {
+    margin-bottom: 60px;
+
+    &Banner {
+      &Container {
+        margin: 0 70px;
+
+        &Nav {
+          padding: 120px 0;
+
+          &Title {
+            font-size: 48px;
+            line-height: 56px;
+            margin-bottom: 15px;
+          }
+
+          &Link {
+            &Item {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+
+    &Filter {
+      display: block;
+    }
+
+    &Content {
+      &Container {
+        margin: 0 auto;
+        padding: 0 15px;
+
+        &Nav {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 30px;
+
+          &ToggleButton {
+            display: flex;
+          }
+
+          &Filter {
+            display: none;
+          }
+        }
+
+        &List {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+      }
+
+    }
   }
 }
