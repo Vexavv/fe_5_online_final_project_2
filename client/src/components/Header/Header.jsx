@@ -4,7 +4,7 @@ import styles from "./Header.module.scss"
 // import components
 import  NavigationMobile  from './NavigationMobile/NavigationMobile';
 import  Navigation  from './Navigation/Navigation';
-import HeaderToolbar from './HeaderToolbar/HeaderToolbar';
+import HeaderBanner from './HeaderBanner/HeaderBannerr';
 import  Logo  from './Logo/Logo'
 import ButtonIconsGroup from './ButtonIconsGroup/ButtonIconsGroup';
 import  Search  from './Search/Search'
@@ -36,7 +36,7 @@ import CloseIcon from '@mui/icons-material/Close';
 // import { Search } from '@mui/icons-material';
 
 
-
+ 
 
 const Header = (props) => {
 
@@ -49,9 +49,13 @@ const Header = (props) => {
 
   return (
     <>
-    
-    <AppBar position="fixed" sx={{ backgroundColor: 'white' }}  >
-    <HeaderToolbar/>
+    <HeaderBanner/>
+    <AppBar position="fixed" 
+    mt={3}
+    sx={{ backgroundColor: 'white', 
+    // zIndex: theme => theme.zIndex.drawer + 1,
+    boxShadow: 'none'
+    }}  >    
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
@@ -72,7 +76,7 @@ const Header = (props) => {
                 onClick={mobileMenuToggle}
                 color="black"
               >
-                {!isMobileMenuOpen && <MenuIcon />}
+                {!isMobileMenuOpen ? <MenuIcon /> : <CloseIcon/>}
               </IconButton>
               <Search/>
             </ButtonGroup>
@@ -93,7 +97,7 @@ const Header = (props) => {
                 onClick={mobileMenuToggle}
                 color="black"
               >
-                {!isMobileMenuOpen && <MenuIcon />}
+                {!isMobileMenuOpen ? <MenuIcon /> : <CloseIcon/>}
               </IconButton>
               </Box>
 
@@ -121,10 +125,9 @@ const Header = (props) => {
                 backgroundColor: "white"
               }}
             >
-              <IconButton  sx={{ mb: 2, color: "black" }} onClick={mobileMenuToggle}>
-                <CloseIcon  />
-              </IconButton>
-              <NavigationMobile/>
+            
+              <NavigationMobile onClick={()=>{mobileMenuToggle()}}/>
+              {/* <Navigation/> */}
             </Box>
           </Drawer>
 

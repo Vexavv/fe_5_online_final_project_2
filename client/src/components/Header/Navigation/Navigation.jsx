@@ -1,42 +1,44 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import Link from '@mui/material/Link';
 import styles from "./Navigation.module.scss"
-import Menu from '@mui/material/List'
+import MenuList from '@mui/material/List'
 import MenuItem from '@mui/material/ListItem';
 
-const Navigation =(props)=>{
-
-    const {mobile} = props
+const Navigation =(props)=>{   
 
 
     return(
-        <Menu sx={{ flexGrow: {md:1, lg:0}, display: { xs: 'none', sm:'none', md: 'flex' } }}
-        anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}>
-                <MenuItem >
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink }  to='/'>home</NavLink>
+        <MenuList sx={{ flexGrow: {md:1, lg:0}, display: { xs: 'flex', sm:'flex', md: 'flex' } }}       
+          >
+                <MenuItem component={Link}  to='/'
+                 sx={{color:"#1A1A1A",
+                  '&:hover, active':{color: '#BA933E'} }}>
+          
+            home
             </MenuItem>
-            <MenuItem >
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/shop'>shop</NavLink>
+            <MenuItem component={Link}  to='/product' 
+             sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
+           
+            product
             </MenuItem>
-            <MenuItem >
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/wishlist'>wishlist</NavLink>
+            <MenuItem component={Link}  to='/wishlist'
+                   sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
+            wishlist
+           
             </MenuItem>
                      
-            <MenuItem >
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/sale'>sale</NavLink>
+            <MenuItem component={Link}  to='/sale'
+                   sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
+           
+            sale
             </MenuItem>
-            <MenuItem >   
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/contacts'>contacts</NavLink>
+            <MenuItem component={Link}  to='/contacts'
+                   sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}> 
+         
+            contacts
             </MenuItem>
-            </Menu>
+            </MenuList>
     )
 }
 

@@ -1,14 +1,13 @@
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Logo =()=>{
 return(
     <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component={Link}  to='/'
             sx={{
               mr: 3,
               display: { xs: 'flex', md: 'flex' },

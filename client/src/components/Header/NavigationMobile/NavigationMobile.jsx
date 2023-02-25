@@ -1,28 +1,49 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { Link  } from "react-router-dom";
+
 import styles from "./Navigation.module.scss"
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem';
 
-const NavigationMobile =()=>{
+const NavigationMobile =(mobileMenuToggle)=>{
 
     return(
         <List>
-                <ListItem sx={{color:"#1A1A1A", TypographyClasses: styles.navLink} }>
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/'>home</NavLink>
+                <ListItem component={Link} to='/'
+                 sx={{color:"#1A1A1A", '&:hover':{
+                    color: '#BA933E'} }}
+                 onClick={mobileMenuToggle}>
+            
+            home
             </ListItem>
-            <ListItem sx={{color:"#1A1A1A"}}>
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/shop'>shop</NavLink>
+            <ListItem component={Link} to='/product'
+              sx={{color:"#1A1A1A", '&:hover':{
+                color: '#BA933E', backgroundColor: '#F5F5F5'} }}
+             onClick={mobileMenuToggle}>
+            
+            product
             </ListItem>
-            <ListItem sx={{color:"#1A1A1A"}}>
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/wishlist'>wishlist</NavLink>
+            <ListItem component={Link} to='/wishlist'
+              sx={{color:"#1A1A1A", '&:hover':{
+                color: '#BA933E', backgroundColor: '#F5F5F5'} }}
+             onClick={mobileMenuToggle}>
+           
+            wishlist
             </ListItem>
                      
-            <ListItem sx={{color:"#1A1A1A"}}>
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/sale'>sale</NavLink>
+            <ListItem component={Link} to='/sale'
+              sx={{color:"#1A1A1A", '&:hover':{
+                color: '#BA933E', backgroundColor: '#F5F5F5'} }}
+             onClick={mobileMenuToggle}>
+           
+            sale
             </ListItem>
-            <ListItem sx={{color:"#1A1A1A"}}>   
-            <NavLink className={({ isActive })=> isActive ? styles.activeLink :styles.navLink} to='/contacts'>contacts</NavLink>
+            <ListItem component={Link} to='/contacts' 
+             sx={{color:"#1A1A1A", '&:hover':{
+                color: '#BA933E', backgroundColor: '#F5F5F5'} }}
+            onClick={mobileMenuToggle}>   
+          
+            contacts
             </ListItem>
             </List>
     )

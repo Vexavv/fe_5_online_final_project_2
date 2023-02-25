@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
@@ -13,9 +14,9 @@ const ButtonIconsGroup = () => {
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={() => { }}
+                aria-haspopup="true"                
                 color="black"
+                component={Link}  to='/login'
                 sx={{
                     '&:hover': {
                         color: '#BA933E',
@@ -29,7 +30,7 @@ const ButtonIconsGroup = () => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={() => { }}
+                component={Link}  to='/cart'
                 color="black"
                 sx={{
                     '&:hover': {
