@@ -6,9 +6,11 @@ import Page1 from "./pages/Page1/Page1";
 import Page2 from "./pages/Page2/Page2";
 import Product from "./pages/Product/Product";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import Header from './components/Header/Header';
 function App() {
   return (
     <div className="App">
+        <Header/>
         <Routes>
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
