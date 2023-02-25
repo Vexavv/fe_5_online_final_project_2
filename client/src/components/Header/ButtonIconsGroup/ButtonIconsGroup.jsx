@@ -18,9 +18,7 @@ const ButtonIconsGroup = () => {
                 color="black"
                 component={Link}  to='/login'
                 sx={{
-                    '&:hover': {
-                        color: '#BA933E',
-                    }
+                    '&:hover': {color: '#BA933E'}
                 }}
             >
                 <PersonOutlineIcon />
@@ -33,16 +31,12 @@ const ButtonIconsGroup = () => {
                 component={Link}  to='/cart'
                 color="black"
                 sx={{
-                    '&:hover': {
-                        color: '#BA933E',
-                    }
+                    '&:hover': {color: '#BA933E'}
                 }}
             >
                 <Badge badgeContent={4} sx={{
                     color: "gray",
-                    '&:hover': {
-                        color: '#BA933E',
-                    }
+                    '&:hover': {color: '#BA933E'}
                 }}>
                     <AddShoppingCartIcon />
                 </Badge>
