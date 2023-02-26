@@ -1,10 +1,12 @@
 import React from 'react';
+import SubscriptionNews from "../../components/SubscriptionNews/SubscriptionNews";
 
 function Home(props) {
     return (
-        <div>
+        <main>
             <h1> Welcome to Home Page</h1>
-        </div>
+            <SubscriptionNews/>
+        </main>
     );
 }
 
