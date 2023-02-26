@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home"
 import Page_1 from "./pages/Page_1/Page_1";
 import Page_2 from "./pages/Page_2/Page_2";
 import Page_3 from "./pages/Page_3/Page_3";
+import Footer from "./pages/Footer/Footer";
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
                 <Route path="page1" element={<Page_1/>}/>
                 <Route path="page2" element={<Page_2/>}/>
                 <Route path="page3" element={<Page_3/>}/>
+                <Route path="footer" element={<Footer/>}/>
             </Route>
         </Routes>
     </div>
