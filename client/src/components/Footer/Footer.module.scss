@@ -1,7 +1,6 @@
 .box{
     padding: 80px 60px;
     background: black;
-    position: absolute;
     bottom: 0;
     width: 100%;
   
@@ -49,7 +48,7 @@
     font-weight: bold;
   }
   
-  .social-icons{
+  .social{
     display: flex;
     justify-content: space-between;
   }

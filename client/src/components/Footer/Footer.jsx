@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebookF,FaTwitter,FaInstagram,FaPinterest,FaYoutube,FaHeadphonesAlt,FaInbox,FaMapMarkerAlt } from "react-icons/fa";
-import styles from './Footer.scss'
+import styles from './Footer.module.scss'
 
 function Footer(props) {
     return (
@@ -12,7 +12,7 @@ function Footer(props) {
                         <img src="https://cdn.shopify.com/s/files/1/0376/9440/6700/files/footer_logo_180x.png?v=1629543119" alt="" srcset="" />
                     </a>                    
                     <br />
-                    <div className={styles.social-icons}>
+                    <div className={styles.social}>
                     <a href="/"><FaFacebookF/></a>                 
                     <a href="/"><FaTwitter/></a>                 
                     <a href="/"><FaInstagram/></a>                 
