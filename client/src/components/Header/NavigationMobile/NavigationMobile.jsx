@@ -11,24 +11,24 @@ const NavigationMobile =(mobileMenuToggle)=>{
         <List>
                 <ListItem component={Link} to='/'
                  sx={{color:"#1A1A1A", '&:hover':{
-                    color: '#BA933E'} }}
+                    color: '#BA933E'}, fontFamily:'Red Hat Display' }}
                  onClick={mobileMenuToggle}>
             
-            home
+            Home
             </ListItem>
             <ListItem component={Link} to='/product'
               sx={{color:"#1A1A1A", '&:hover':{
                 color: '#BA933E', backgroundColor: '#F5F5F5'} }}
              onClick={mobileMenuToggle}>
             
-            product
+            Product
             </ListItem>
-            <ListItem component={Link} to='/wishlist'
+            <ListItem component={Link} to='/collection'
               sx={{color:"#1A1A1A", '&:hover':{
                 color: '#BA933E', backgroundColor: '#F5F5F5'} }}
              onClick={mobileMenuToggle}>
            
-            wishlist
+            Collection
             </ListItem>
                      
             <ListItem component={Link} to='/sale'
@@ -36,14 +36,14 @@ const NavigationMobile =(mobileMenuToggle)=>{
                 color: '#BA933E', backgroundColor: '#F5F5F5'} }}
              onClick={mobileMenuToggle}>
            
-            sale
+            Sale
             </ListItem>
             <ListItem component={Link} to='/contacts' 
              sx={{color:"#1A1A1A", '&:hover':{
                 color: '#BA933E', backgroundColor: '#F5F5F5'} }}
             onClick={mobileMenuToggle}>   
           
-            contacts
+            Contacts
             </ListItem>
             </List>
     )

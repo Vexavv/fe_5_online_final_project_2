@@ -5,38 +5,40 @@ import styles from "./Navigation.module.scss"
 import MenuList from '@mui/material/List'
 import MenuItem from '@mui/material/ListItem';
 
+
+
 const Navigation =(props)=>{   
 
 
     return(
-        <MenuList sx={{ flexGrow: {md:1, lg:0}, display: { xs: 'flex', sm:'flex', md: 'flex' } }}       
+        <MenuList sx={{ flexGrow: {md:1, lg:0}, display: { xs: 'flex', sm:'flex', md: 'flex', fontFamily:'Red Hat Display' } }}       
           >
                 <MenuItem component={Link}  to='/'
                  sx={{color:"#1A1A1A",
                   '&:hover, active':{color: '#BA933E'} }}>
           
-            home
+            Home
             </MenuItem>
             <MenuItem component={Link}  to='/product' 
              sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
            
-            product
+            Product
             </MenuItem>
-            <MenuItem component={Link}  to='/wishlist'
+            <MenuItem component={Link}  to='/collection'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
-            wishlist
+            Collection
            
             </MenuItem>
                      
             <MenuItem component={Link}  to='/sale'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
            
-            sale
+            Sale
             </MenuItem>
             <MenuItem component={Link}  to='/contacts'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}> 
          
-            contacts
+            Contacts
             </MenuItem>
             </MenuList>
     )

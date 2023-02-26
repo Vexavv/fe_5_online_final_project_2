@@ -35,7 +35,7 @@ const Header = (props) => {
   return (
     <>
       <HeaderBanner />
-      <AppBar position="fixed"
+      <AppBar position="static"
         mt={3}
         sx={{backgroundColor: 'white',          
           boxShadow: 'none'

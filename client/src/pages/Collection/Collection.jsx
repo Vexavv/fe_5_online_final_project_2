@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import styles from './Collections.module.scss'
+import styles from './Collection.module.scss'
 
 const Collections = (props) =>{
     return (
