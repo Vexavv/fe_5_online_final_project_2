@@ -41,9 +41,15 @@ a,p,u{
       transition: 200ms ease-in;
   }
 }
+
 .head{
   font-size: 16px;
   color: #fff;
   margin-bottom: 40px;
   font-weight: bold;
+}
+
+.social-icons{
+  display: flex;
+  justify-content: space-between;
 }
