@@ -16,6 +16,7 @@ import Login from "./pages/LoginPage/Login";
 import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Header from './components/Header/Header';
+import ShopCollection from './pages/ShopCollection/ShopCollection';
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/contacts" element={<Contacts/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/cart" element={<Cart/>} />
+                <Route path="/shop-collection" element={<ShopCollection/>} />
                 <Route path="*" element={<PageNotFound/>}/>
             </Route>
         </Routes>
