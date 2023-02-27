@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // import components
-import NavigationMobile from './NavigationMobile/NavigationMobile';
+// import NavigationMobile from './NavigationMobile/NavigationMobile';
 import Navigation from './Navigation/Navigation';
 import HeaderBanner from './HeaderBanner/HeaderBannerr';
 import Logo from './Logo/Logo'
@@ -22,7 +22,28 @@ import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
-
+const navItems = [
+  {
+    title: 'Home',
+    path: '/'
+  },
+  {
+    title: 'Product',
+    path: '/product'
+  },
+  {
+    title: 'Collection',
+    path: '/collection'
+  },
+  {
+    title: 'Sale',
+    path: '/sale'
+  },
+  {
+    title: 'Contact',
+    path: '/contact'
+  },
+]
 const Header = (props) => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -124,7 +145,7 @@ const Header = (props) => {
                 </IconButton>
 
                 <Divider sx={{ mb: 2 }} />
-                <NavigationMobile onClick={() => { mobileMenuToggle() }} />
+                <Navigation onClick={() => {mobileMenuToggle()}} navItems={navItems}/>
 
               </Box>
             </Drawer>
@@ -146,7 +167,7 @@ const Header = (props) => {
 
             {/* navbar for desktop */}
             <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-              <Navigation />
+              <Navigation navItems={navItems}/>
             </Box>
             <Box sx={{
               flexGrow: 1,

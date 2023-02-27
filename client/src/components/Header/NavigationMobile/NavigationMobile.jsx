@@ -1,52 +1,31 @@
 import React, { useState } from 'react';
 import { Link  } from "react-router-dom";
 
-import styles from "./Navigation.module.scss"
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem';
+// import styles from "./Navigation.module.scss"
+// import List from '@mui/material/List'
+// import ListItem from '@mui/material/ListItem';
 
-const NavigationMobile =(mobileMenuToggle)=>{
+// const NavigationMobile =({onClick, navItems})=>{
 
-    return(
-        <List>
-                <ListItem component={Link} to='/'
-                 sx={{color:"#1A1A1A", '&:hover':{
-                    color: '#BA933E'}, fontFamily:'Red Hat Display' }}
-                 onClick={mobileMenuToggle}>
+//     return(
+        // <List >
+        //   {navItems.map(navItem=>
+        //     (
+        //       <ListItem 
+        //       key={navItem.title}
+        //       component={Link} 
+        //       to={navItem.path}
+        //       sx={{color:"#1A1A1A", '&:hover':{
+        //           color: '#BA933E'}, fontFamily:'Red Hat Display' }}
+        //       onClick={onClick}>
             
-            Home
-            </ListItem>
-            <ListItem component={Link} to='/product'
-              sx={{color:"#1A1A1A", '&:hover':{
-                color: '#BA933E', backgroundColor: '#F5F5F5'} }}
-             onClick={mobileMenuToggle}>
-            
-            Product
-            </ListItem>
-            <ListItem component={Link} to='/collection'
-              sx={{color:"#1A1A1A", '&:hover':{
-                color: '#BA933E', backgroundColor: '#F5F5F5'} }}
-             onClick={mobileMenuToggle}>
-           
-            Collection
-            </ListItem>
-                     
-            <ListItem component={Link} to='/sale'
-              sx={{color:"#1A1A1A", '&:hover':{
-                color: '#BA933E', backgroundColor: '#F5F5F5'} }}
-             onClick={mobileMenuToggle}>
-           
-            Sale
-            </ListItem>
-            <ListItem component={Link} to='/contacts' 
-             sx={{color:"#1A1A1A", '&:hover':{
-                color: '#BA933E', backgroundColor: '#F5F5F5'} }}
-            onClick={mobileMenuToggle}>   
-          
-            Contacts
-            </ListItem>
-            </List>
-    )
-}
+        //     {navItem.title}
+        //     </ListItem>
+        //     )
+        //   )}
+        
+//             </List>
+//     )
+// }
 
-export default NavigationMobile
+// export default NavigationMobile

@@ -8,7 +8,7 @@ function Layout(props) {
         <>
             <Header/>
             <Outlet/>
-            <Footer/>
+            {/* <Footer/> */}
         </>
     );
 }

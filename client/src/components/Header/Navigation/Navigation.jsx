@@ -1,45 +1,60 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-// import Link from '@mui/material/Link';
+
 import styles from "./Navigation.module.scss"
 import MenuList from '@mui/material/List'
 import MenuItem from '@mui/material/ListItem';
 
 
 
-const Navigation =(props)=>{   
+const Navigation =({onClick, navItems})=>{   
 
 
     return(
-        <MenuList sx={{ flexGrow: {md:1, lg:0}, display: { xs: 'flex', sm:'flex', md: 'flex', fontFamily:'Red Hat Display' } }}       
+        <MenuList sx={{ flexGrow: {md:1, lg:0}, display: { xs: 'block', sm:'block', md: 'flex', fontFamily:'Red Hat Display' } }}       
           >
-                <MenuItem component={Link}  to='/'
+
+{navItems.map(navItem=>
+            (
+              <MenuItem 
+              key={navItem.title}
+              component={Link} 
+              to={navItem.path}
+              sx={{color:"#1A1A1A", '&:hover':{
+                  color: '#BA933E'} }}
+                  onClick={onClick}
+              >            
+            {navItem.title}
+            </MenuItem>
+            )
+          )}
+                {/* <MenuItem component={Link}  to='/'
                  sx={{color:"#1A1A1A",
                   '&:hover, active':{color: '#BA933E'} }}>
           
             Home
-            </MenuItem>
-            <MenuItem component={Link}  to='/product' 
+            </MenuItem> */}
+            {/* <MenuItem component={Link}  to='/product' 
              sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
            
             Product
-            </MenuItem>
-            <MenuItem component={Link}  to='/collection'
+            </MenuItem> */}
+            {/* <MenuItem component={Link}  to='/collection'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
             Collection
            
-            </MenuItem>
+            </MenuItem> */}
                      
-            <MenuItem component={Link}  to='/sale'
+            {/* <MenuItem component={Link}  to='/sale'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
            
             Sale
-            </MenuItem>
-            <MenuItem component={Link}  to='/contacts'
+            </MenuItem> */}
+            {/* <MenuItem component={Link}  to='/contacts'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}> 
          
             Contacts
-            </MenuItem>
+            </MenuItem> */}
             </MenuList>
     )
 }
