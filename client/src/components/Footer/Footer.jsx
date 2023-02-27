@@ -9,7 +9,7 @@ function Footer(props) {
             <div className={styles.row}>
                 <div className={styles.column}>
                     <a href="/">
-                        <img src="https://cdn.shopify.com/s/files/1/0376/9440/6700/files/footer_logo_180x.png?v=1629543119" alt="" srcset="" />
+                        <img src="https://cdn.shopify.com/s/files/1/0376/9440/6700/files/footer_logo_180x.png?v=1629543119" alt="" srcSet="" />
                     </a>                    
                     <br />
                     <div className={styles.social}>
