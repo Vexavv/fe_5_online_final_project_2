@@ -22,23 +22,27 @@ function Footer(props) {
                 </div>
                 <div className={styles.column}>
                 <h2 className={styles.head}>Information Company</h2>
-                <a href="/account">My Account</a>
-                <a href="/order">Track Your Order</a>
-                <a href="/faqs">FAQs</a>
-                <a href="/payments">Payment Methods</a>
-                <a href="/shipping">Shipping Guide</a>
-                <a href="/support">Products Support</a>
-                <a href="/gift">Gift Card Balance</a>
+                    <div className={styles.column}>
+                        <a href="/account">My Account</a>
+                        <a href="/order">Track Your Order</a>
+                        <a href="/faqs">FAQs</a>
+                        <a href="/payments">Payment Methods</a>
+                        <a href="/shipping">Shipping Guide</a>
+                        <a href="/support">Products Support</a>
+                        <a href="/gift">Gift Card Balance</a>
+                    </div>
                 </div>
                 <div className={styles.column}>
                 <h2 className={styles.head}>More From Rubix</h2>
-                <a href="/rubix">About Rubix</a>
-                <a href="/guarantees">Our Guarantees</a>
-                <a href="/terms">Terms and Conditions</a>
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/return">Return Policy</a>
-                <a href="/delivery">Delivery & Return</a>
-                <a href="/sitemap"> Sitemap</a>
+                    <div className={styles.column}>
+                        <a href="/rubix">About Rubix</a>
+                        <a href="/guarantees">Our Guarantees</a>
+                        <a href="/terms">Terms and Conditions</a>
+                        <a href="/privacy">Privacy Policy</a>
+                        <a href="/return">Return Policy</a>
+                        <a href="/delivery">Delivery & Return</a>
+                        <a href="/sitemap"> Sitemap</a> 
+                    </div>
                 </div>
                 <div className={styles.column}>
                 <h2 className={styles.head}>Let's Talk</h2>
