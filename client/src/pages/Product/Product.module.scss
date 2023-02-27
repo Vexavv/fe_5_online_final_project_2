@@ -102,10 +102,15 @@
 
       }
 
-      &List {
+      &Row {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
+      }
+      &Column{
+        display: flex;
+        flex-direction: column;
         justify-content: center;
       }
     }
@@ -134,7 +139,7 @@
 
     &Content {
       &Container {
-        &List {
+        &Row {
           justify-content: space-between;
         }
       }
@@ -194,7 +199,7 @@
           }
         }
 
-        &List {
+        &Row {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;

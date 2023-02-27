@@ -2,7 +2,7 @@
     padding: 80px 60px;
     background: black;
     bottom: 0;
-    width: 100%;
+    //width: 100%;
   
     @media (max-width: 1000px) {
       padding: 70px 30px;
@@ -20,12 +20,14 @@
   .row{
       display: flex;
       justify-content: center;
+    //width: 100%;
   }
   
   .column{
       display: flex;
     flex-direction: column;
     text-align: left;
+
     margin-left: 120px;
   }
   

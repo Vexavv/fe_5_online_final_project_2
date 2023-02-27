@@ -60,3 +60,17 @@
     }
   }
 }
+.Row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  list-style: none;
+  justify-content: center;
+  width: 250px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+  &Img {
+    width: 100%;
+  }
+}
