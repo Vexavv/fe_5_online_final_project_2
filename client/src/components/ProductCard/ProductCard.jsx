@@ -4,6 +4,7 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import SearchIcon from '@mui/icons-material/Search';
 import {useSelector} from "react-redux";
 import Button from '../Button/Button'
+import RatingStar from "./RatingStar/RatingStar";
 
 function ProductCard({name, imageUrls, currentPrice, myCustomParam}) {
     const display = useSelector(state => state.products.display)
@@ -45,6 +46,7 @@ function ProductCard({name, imageUrls, currentPrice, myCustomParam}) {
                     <span className={styles.RowDescriptionParam}>{myCustomParam}</span>
                 </div>
                 <div className={styles.RowNav}>
+                    <RatingStar/>
                     <Button className={styles.RowNavButton} text='Select Options'/>
                     <Button className={styles.RowNavButton} text='Quick View'/>
                 </div>

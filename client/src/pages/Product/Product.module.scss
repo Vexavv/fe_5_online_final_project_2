@@ -1,6 +1,6 @@
 .Product {
-  margin-top: 15px;
-  width: 100%;
+  margin: 15px auto ;
+  width: 98.7%;
 
   &Banner {
     background-image: url("https://cdn.shopify.com/s/files/1/0376/9440/6700/files/bg-breacumb.jpg?v=1613729001");
@@ -8,6 +8,7 @@
     background-position: center center;
     background-size: cover;
     margin-bottom: 30px;
+
 
     &Container {
       margin: 0 auto;
@@ -217,8 +218,6 @@
 }
 @media (min-width: 1200px) {
   .Product {
-    margin-bottom: 60px;
-
     &Banner {
       &Container {
         margin: 0 70px;
@@ -247,7 +246,7 @@
 
       &Container {
         margin: 0 auto;
-        padding-right: 20%;
+        padding-right: 18%;
 
         &Nav {
 

@@ -71,7 +71,8 @@
 
         li img {
           width: 20px;
-          border-radius: 50%;
+          border-radius: 45%;
+          margin-left: 5px;
         }
       }
     }
@@ -229,11 +230,10 @@
 }
 @media (min-width: 1200px) {
   .Row {
-
     &Img {
      max-height: none;
-      width: 30%
+      width: 23%;
+      margin-top: 0;
     }
-
   }
 }
