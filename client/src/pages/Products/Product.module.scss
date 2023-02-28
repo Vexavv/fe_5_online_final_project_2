@@ -1,8 +1,10 @@
 .Product {
-
   &Wrapper {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
 
     &Filter {
       display: none;
@@ -12,9 +14,7 @@
       padding: 0 15px;
       width: 100%;
     }
-
   }
-
 }
 
 
@@ -35,22 +35,6 @@
 }
 
 @media (min-width: 1200px) {
-  .Product {
-
-
-    &Wrapper {
-
-      &Filter {
-
-      }
-
-      &Content {
-
-      }
-
-    }
-
-  }
 
 }
 
