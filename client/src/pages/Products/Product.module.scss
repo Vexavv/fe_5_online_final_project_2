@@ -1,283 +1,57 @@
 .Product {
-  margin: 0 auto ;
-  width: 100%;
-  &Banner {
-    background-image: url("https://cdn.shopify.com/s/files/1/0376/9440/6700/files/bg-breacumb.jpg?v=1613729001");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    margin-bottom: 30px;
 
-    &Container {
-      margin: 0 70px;
-      padding: 0 15px;
+  &Wrapper {
+    display: flex;
+    flex-direction: row;
 
-      &Nav {
-        padding: 120px 0;
-
-        &Title {
-          font-family: 'Red Hat Display';
-          font-weight: 700;
-          font-size: 48px;
-          line-height: 56px;
-          margin-bottom: 15px;
-          color: #1a1a1a;
-        }
-
-        &Link {
-          list-style: none;
-          display: flex;
-          flex-direction: row;
-
-          &Item {
-            font-family: 'Red Hat Display';
-            font-size: 18px;
-            line-height: 24px;
-            font-weight: 500;
-
-            a {
-              cursor: pointer;
-              color: #444444;
-            }
-
-            span {
-              color: #999999;
-            }
-
-            span::before { /* доробити стрілку*/
-              content: '>';
-              width: 14px;
-              padding: 0 5px;
-              margin-left: 2px;
-              color: #444444;
-            }
-          }
-        }
-      }
+    &Filter {
+      display: none;
     }
-  }
-&Wrapper{
 
-  &Filter {
-    display: block;
-  }
-&Content{
-  &Container{
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-}
-
-}
-
-  &Filter {
-    display: none;
-  }
-
-  &Content {
-    &Container {
-      margin: 0 auto;
+    &Content {
       padding: 0 15px;
-      width: 100%;//????
+      width: 100%;
+      background-color: #3b5998;
+    }
 
-      &Nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
+  }
 
-        &ToggleButton {
-          display: none;
+}
 
-        }
 
-        &Filter {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-
-          &Icon {
-            color: #ba933e;
-            margin-right: 5px;
-          }
-
-          &Text {
-            font-size: 15px;
-            line-height: 20px;
-            color: #ba933e;
-          }
-        }
-
+@media (min-width: 900px) {
+  .Product {
+    &Wrapper {
+      &Filter {
+        display: block;
+        width: 30%;
+        background-color: #444444;
       }
 
-      &Row {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      &Column{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+      &Content {
+        width: 70%;
       }
     }
   }
 }
 
-//@media (min-width: 700px) {
-//  .Product {
-//    &Banner {
-//      &Container {
-//        &Nav {
-//          padding: 25px 0;
-//
-//          &Title {
-//            font-size: 35px;
-//          }
-//
-//          &Link {
-//            &Item {
-//              font-size: 16px;
-//            }
-//          }
-//        }
-//      }
-//    }
-//
-//    &Content {
-//      &Container {
-//        &Row {
-//          justify-content: space-between;
-//        }
-//        &Column{
-//
-//        }
-//      }
-//    }
-//  }
-//
-//}
-//
-//@media (min-width: 1000px) {
-//  .Product {
-//    margin-bottom: 60px;
-//
-//    &Banner {
-//      &Container {
-//        margin: 0 70px;
-//
-//        &Nav {
-//          padding: 120px 0;
-//
-//          &Title {
-//            font-size: 48px;
-//            line-height: 56px;
-//            margin-bottom: 15px;
-//          }
-//
-//          &Link {
-//            &Item {
-//              font-size: 18px;
-//            }
-//          }
-//        }
-//      }
-//    }
-//
-//    &Filter {
-//      display: block;
-//    }
-//
-//    &Content {
-//
-//      &Container {
-//        margin: 0 auto;
-//        //padding-right: 20%;
-//
-//        &Nav {
-//          display: flex;
-//          flex-direction: row;
-//          justify-content: space-between;
-//          align-items: center;
-//          margin-bottom: 30px;
-//
-//          &ToggleButton {
-//            display: flex;
-//          }
-//
-//          &Filter {
-//            display: none;
-//          }
-//        }
-//        &Row {
-//
-//        }
-//        &Column {
-//          display: flex;
-//          flex-direction: row;
-//          flex-wrap: wrap;
-//          justify-content: space-between;
-//        }
-//      }
-//
-//    }
-//  }
-//}
-//@media (min-width: 1200px) {
-//  .Product {
-//    &Banner {
-//      &Container {
-//        margin: 0 70px;
-//
-//        &Nav {
-//          padding: 120px 0;
-//
-//          &Title {
-//
-//          }
-//
-//          &Link {
-//            &Item {
-//
-//            }
-//          }
-//        }
-//      }
-//    }
-//
-//    &Filter {
-//
-//    }
-//
-//    &Content {
-//
-//      &Container {
-//        margin: 0 auto;
-//        //padding-right: 18%;
-//
-//        &Nav {
-//
-//          &ToggleButton {
-//
-//          }
-//
-//          &Filter {
-//
-//          }
-//        }
-//        &Row {
-//        }
-//        &Column {
-//
-//        }
-//      }
-//
-//    }
-//  }
-//
-//}
+@media (min-width: 1200px) {
+  .Product {
+
+
+    &Wrapper {
+
+      &Filter {
+
+      }
+
+      &Content {
+
+      }
+
+    }
+
+  }
+
+}
 

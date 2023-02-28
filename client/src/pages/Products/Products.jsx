@@ -13,6 +13,8 @@ import SelectSort from "../../components/ProductsComponents/SelectSort/SelectSor
 import Error from '../../components/Error/Error'
 import Loader from '../../components/Loader/Loader'
 import ProductsBanner from "../../components/ProductsComponents/ProductsBaner/ProductsBanner";
+import ProductsNav from "../../components/ProductsComponents/ProductsNav/ProductsNav";
+import ProductsContent from "../../components/ProductsComponents/ProductsContent/ProductsContent";
 
 function Products(props) {
 
@@ -42,17 +44,14 @@ function Products(props) {
             return (
                 <main className={styles.Product}>
                     <section>
-                       <ProductsBanner/>
+                        <ProductsBanner/>
                     </section>
                     <section>
                         <div className={styles.ProductWrapper}>
-                            <div className={styles.ProductWrapperFilter}>
-                                <p>Filter</p>
-                            </div>
+                            <div className={styles.ProductWrapperFilter}></div>
                             <div className={styles.ProductWrapperContent}>
-                                <div className={styles.ProductWrapperContentContainer}>
-
-                                </div>
+                                <ProductsNav/>
+                                <ProductsContent products={products}/>
                             </div>
 
                         </div>
@@ -60,57 +59,57 @@ function Products(props) {
 
 
                     {/*Сторінка продуктів*/}
-                    <Box className={styles.Product} sx={{flexGrow: 1}}>
-                        <Grid container spacing={{xs: 1, md: 2}}>
-                            {/*Банер сторінки*/}
-                            <Grid className={styles.ProductBanner} xs={12}>
-                                <div className={styles.ProductBannerContainer}>
-                                    <nav className={styles.ProductBannerContainerNav}>
-                                        <h1 className={styles.ProductBannerContainerNavTitle}>Products</h1>
-                                        <ul className={styles.ProductBannerContainerNavLink}>
-                                            <li className={styles.ProductBannerContainerNavLinkItem}><Link
-                                                to='/'>Home</Link>
-                                            </li>
-                                            <li className={styles.ProductBannerContainerNavLinkItem}>
-                                                <span>  Products</span>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </Grid>
-                            {/*Фильтр товарів*/}
+                    {/*<Box className={styles.Product} sx={{flexGrow: 1}}>*/}
+                    {/*    <Grid container spacing={{xs: 1, md: 2}}>*/}
+                    {/*        /!*Банер сторінки*!/*/}
+                    {/*        <Grid className={styles.ProductBanner} xs={12}>*/}
+                    {/*            <div className={styles.ProductBannerContainer}>*/}
+                    {/*                <nav className={styles.ProductBannerContainerNav}>*/}
+                    {/*                    <h1 className={styles.ProductBannerContainerNavTitle}>Products</h1>*/}
+                    {/*                    <ul className={styles.ProductBannerContainerNavLink}>*/}
+                    {/*                        <li className={styles.ProductBannerContainerNavLinkItem}><Link*/}
+                    {/*                            to='/'>Home</Link>*/}
+                    {/*                        </li>*/}
+                    {/*                        <li className={styles.ProductBannerContainerNavLinkItem}>*/}
+                    {/*                            <span>  Products</span>*/}
+                    {/*                        </li>*/}
+                    {/*                    </ul>*/}
+                    {/*                </nav>*/}
+                    {/*            </div>*/}
+                    {/*        </Grid>*/}
+                    {/*        /!*Фильтр товарів*!/*/}
 
 
-                            <Grid className={styles.ProductFilter} md={3}>
-                                <div>Filter</div>
-                            </Grid>
+                    {/*        <Grid className={styles.ProductFilter} md={3}>*/}
+                    {/*            <div>Filter</div>*/}
+                    {/*        </Grid>*/}
 
-                            {/*Секція продуктів*/}
-                            <Grid className={styles.ProductContent} xs={12} md={9}>
-                                <div className={styles.ProductContentContainer}>
-                                    {/*Секція селекта, кнопок вибору відображення карток*/}
-                                    <nav className={styles.ProductContentContainerNav}>
-                                        <div className={styles.ProductContentContainerNavFilter}>
-                                            <TuneIcon className={styles.ProductContentContainerNavFilterIcon}/>
-                                            <span className={styles.ProductContentContainerNavFilterText}>Filter</span>
-                                        </div>
-                                        <div className={styles.ProductContentContainerNavToggleButton}>
-                                            <ToggleButtons changeDisplayList={handlerChangeDisplayList}
-                                                           changeDisplay={handlerChangeDisplay}/>
-                                        </div>
-                                        <SelectSort/>
-                                    </nav>
-                                    {/*Картки*/}
-                                    <ul className={display ? styles.ProductContentContainerRow : styles.ProductContentContainerColumn}>
-                                        {products.map(item => {
-                                            return <ProductCard{...item} key={item._id}
-                                                               item={item}/>
-                                        })}
-                                    </ul>
-                                </div>
-                            </Grid>
-                        </Grid>
-                    </Box>
+                    {/*        /!*Секція продуктів*!/*/}
+                    {/*        <Grid className={styles.ProductContent} xs={12} md={9}>*/}
+                    {/*            <div className={styles.ProductContentContainer}>*/}
+                    {/*                /!*Секція селекта, кнопок вибору відображення карток*!/*/}
+                    {/*                <nav className={styles.ProductContentContainerNav}>*/}
+                    {/*                    <div className={styles.ProductContentContainerNavFilter}>*/}
+                    {/*                        <TuneIcon className={styles.ProductContentContainerNavFilterIcon}/>*/}
+                    {/*                        <span className={styles.ProductContentContainerNavFilterText}>Filter</span>*/}
+                    {/*                    </div>*/}
+                    {/*                    <div className={styles.ProductContentContainerNavToggleButton}>*/}
+                    {/*                        <ToggleButtons changeDisplayList={handlerChangeDisplayList}*/}
+                    {/*                                       changeDisplay={handlerChangeDisplay}/>*/}
+                    {/*                    </div>*/}
+                    {/*                    <SelectSort/>*/}
+                    {/*                </nav>*/}
+                    {/*                /!*Картки*!/*/}
+                    {/*                <ul className={display ? styles.ProductContentContainerRow : styles.ProductContentContainerColumn}>*/}
+                    {/*                    {products.map(item => {*/}
+                    {/*                        return <ProductCard{...item} key={item._id}*/}
+                    {/*                                           item={item}/>*/}
+                    {/*                    })}*/}
+                    {/*                </ul>*/}
+                    {/*            </div>*/}
+                    {/*        </Grid>*/}
+                    {/*    </Grid>*/}
+                    {/*</Box>*/}
                 </main>
             );
         default:
