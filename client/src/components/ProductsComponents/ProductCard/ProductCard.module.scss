@@ -9,12 +9,11 @@
   box-sizing: border-box;
   cursor: pointer;
   position: relative;
-
+margin-left: 10px;
   &:hover &Button {
     display: flex;
     flex-direction: column;
   }
-
   &Img {
     width: 100%;
   }
@@ -73,6 +72,87 @@
           width: 20px;
           border-radius: 45%;
           margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 600px) {
+  .Card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    list-style: none;
+    justify-content:space-evenly;
+    width: 250px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    margin-left: 10px;
+    &:hover &Button {
+      display: flex;
+      flex-direction: column;
+    }
+    &Img {
+      width: 100%;
+    }
+
+    &Button {
+      display: none;
+      position: absolute;
+      top: 5%;
+      right: 10%;
+
+      &Icon:hover {
+        background-color: #ba933e;
+        color: #F5F5F5;
+        transition: all .5s ease;
+      }
+
+    }
+
+    &Description {
+      margin-top: 20px;
+
+      &Name {
+        text-transform: capitalize;
+        font-family: 'Red Hat Display';
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        color: #444444;
+        margin-bottom: 10px;
+
+        &:hover {
+          color: #ba933e;
+          transition: all .5s ease;
+        }
+      }
+
+      &Container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &Price {
+          font-family: 'Red Hat Display';
+          font-weight: 400;
+          font-size: 14px;
+          color: #666;
+          line-height: 20px;
+        }
+
+        &Label {
+          display: flex;
+          flex-direction: row;
+          list-style: none;
+
+          li img {
+            width: 20px;
+            border-radius: 45%;
+            margin-left: 5px;
+          }
         }
       }
     }
@@ -161,35 +241,31 @@
   }
 }
 
-@media (min-width: 700px) {
+@media (min-width: 600px) {
   .Row {
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
 
     &Img {
-      width: 25%;
-      margin-top: 40px;
+      min-width: 130px;
+      max-height: 170px;
+      width: 20%;
     }
-
     &Description {
       display: flex;
       flex-direction: column;
       padding: 20px 0;
       margin-left: 20px;
       width: 72%;
-      &Label{
-
-      }
     }
-
     &Nav {
       width: 100%;
     }
   }
-
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 900px) {
   .Row {
     flex-wrap: nowrap;
     list-style: none;
@@ -200,40 +276,22 @@
     }
 
     &Description {
-      &Label {
-
-      }
-
       &Name {
-
         &:hover {
           color: #ba933e;
           transition: all .5s ease;
         }
       }
-
     }
-
     &Nav {
       width: 25%;
-
       &Button {
         width: 150px;
-
         &:hover {
           background-color: #ba933e;
           transition: all .5s ease;
         }
       }
-    }
-  }
-}
-@media (min-width: 1200px) {
-  .Row {
-    &Img {
-     max-height: none;
-      width: 23%;
-      margin-top: 0;
     }
   }
 }

@@ -1,0 +1,40 @@
+.Product {
+  &Wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+
+    &Filter {
+      display: none;
+    }
+
+    &Content {
+      padding: 0 15px;
+      width: 100%;
+    }
+  }
+}
+
+
+@media (min-width: 900px) {
+  .Product {
+    &Wrapper {
+      &Filter {
+        display: block;
+        width: 30%;
+        background-color: #444444;
+      }
+
+      &Content {
+        width: 70%;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
+

@@ -16,8 +16,9 @@ function ToggleButtons({changeDisplayList, changeDisplay}) {
             value={view}
             exclusive
             onChange={handleChange}
+            sx={{display: {xs:'none', sm:'flex'},marginLeft:{sm:1,md:0}}}
         >
-            <ToggleButton sx={{border: 'none'}} onClick={changeDisplayList} value="module" aria-label="module" className={styles.P}  data-title='Module' >
+            <ToggleButton sx={{border: 'none', }}  onClick={changeDisplayList} value="module" aria-label="module" className={styles.P}  data-title='Module' >
                 <AppsIcon />
             </ToggleButton>
             <ToggleButton sx={{border: 'none'}} onClick={changeDisplay} value="list" aria-label="list"  className={styles.P}  data-title='List'>
