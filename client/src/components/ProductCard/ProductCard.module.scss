@@ -43,20 +43,197 @@
       font-size: 16px;
       line-height: 20px;
       color: #444444;
-      margin-bottom: 10px;;
+      margin-bottom: 10px;
+
+      &:hover {
+        color: #ba933e;
+        transition: all .5s ease;
+      }
     }
-    &Name:hover{
-      color:#ba933e;
-      transition: all .5s ease;
+
+    &Container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &Price {
+        font-family: 'Red Hat Display';
+        font-weight: 400;
+        font-size: 14px;
+        color: #666;
+        line-height: 20px;
+      }
+
+      &Label {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+
+        li img {
+          width: 20px;
+          border-radius: 45%;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.Row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  list-style: none;
+  justify-content: center;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+
+  &Img {
+    width: 100%;
+  }
+
+  &Description {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+
+    &Name {
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 20px;
+      color: #444444;
+      text-transform: capitalize;
+      margin-bottom: 20px;
     }
 
     &Price {
       font-family: 'Red Hat Display';
       font-weight: 400;
-      font-size: 14px;
-      color: #666;
+      font-size: 20px;
+      color: #666666;
       line-height: 20px;
+    }
+&Label{
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding-top: 15px;
+  li img {
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
 
+}
+    &Param {
+      font-family: 'Red Hat Display';
+      font-weight: 400;
+      font-size: 16px;
+      color: #868686;
+      line-height: 24px;
+      padding-top: 20px;
+    }
+  }
+
+  &Nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &Button {
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 20px;
+      background-color: #1A1A1A;
+      padding: 10px 5px;
+      margin: 10px 0;
+      color: #ffffff;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .Row {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &Img {
+      width: 25%;
+      margin-top: 40px;
+    }
+
+    &Description {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      margin-left: 20px;
+      width: 72%;
+      &Label{
+
+      }
+    }
+
+    &Nav {
+      width: 100%;
+    }
+  }
+
+}
+
+@media (min-width: 1000px) {
+  .Row {
+    flex-wrap: nowrap;
+    list-style: none;
+
+    &Img {
+      max-height: 200px;
+      width: 150px;
+    }
+
+    &Description {
+      &Label {
+
+      }
+
+      &Name {
+
+        &:hover {
+          color: #ba933e;
+          transition: all .5s ease;
+        }
+      }
+
+    }
+
+    &Nav {
+      width: 25%;
+
+      &Button {
+        width: 150px;
+
+        &:hover {
+          background-color: #ba933e;
+          transition: all .5s ease;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .Row {
+    &Img {
+     max-height: none;
+      width: 23%;
+      margin-top: 0;
     }
   }
 }

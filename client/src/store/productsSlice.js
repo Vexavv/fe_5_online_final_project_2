@@ -4,6 +4,7 @@ const initialState = {
     products: [],
     status: null,
     error: '',
+    display: true
 
 }
 export const fetchAsyncProducts = createAsyncThunk(
@@ -22,7 +23,12 @@ const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-
+        changeDisplay(state, action){
+            state.display = false
+        },
+        changeDisplayList(state, action){
+            state.display = true
+        }
     },
     extraReducers: builder => {
         builder
@@ -40,4 +46,5 @@ const productsSlice = createSlice({
 
     }
 })
+export const {changeDisplay, changeDisplayList} = productsSlice.actions
 export default productsSlice.reducer;
