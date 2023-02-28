@@ -3,17 +3,17 @@ import {useSelector, useDispatch} from "react-redux";
 import styles from './Product.module.scss'
 import {fetchAsyncProducts} from '../../store/productsSlice'
 import {changeDisplay, changeDisplayList} from "../../store/productsSlice";
-import ToggleButtons from "../../components/ToggleButtons/ToggleButtons";
+import ToggleButtons from "../../components/ProductsComponents/ToggleButtons/ToggleButtons";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../../components/ProductsComponents/ProductCard/ProductCard";
 import {Link} from "react-router-dom";
 import TuneIcon from '@mui/icons-material/Tune';
-import SelectSort from "../../components/SelectSort/SelectSort";
+import SelectSort from "../../components/ProductsComponents/SelectSort/SelectSort";
 import Error from '../../components/Error/Error'
 import Loader from '../../components/Loader/Loader'
 
-function Product(props) {
+function Products(props) {
 
     const dispatch = useDispatch()
     const products = useSelector(state => state.products.products)
@@ -39,7 +39,39 @@ function Product(props) {
             return <Loader/>;
         case 'loaded':
             return (
-                <main>
+                <main className={styles.Product}>
+                    <section>
+                        <div className={styles.ProductBanner}>
+                            <div className={styles.ProductBannerContainer}>
+                                <nav className={styles.ProductBannerContainerNav}>
+                                    <h1 className={styles.ProductBannerContainerNavTitle}>Products</h1>
+                                    <ul className={styles.ProductBannerContainerNavLink}>
+                                        <li className={styles.ProductBannerContainerNavLinkItem}><Link
+                                            to='/'>Home</Link>
+                                        </li>
+                                        <li className={styles.ProductBannerContainerNavLinkItem}>
+                                            <span>  Products</span>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div className={styles.ProductWrapper}>
+                            <div className={styles.ProductWrapperFilter}>
+                                <p>Filter</p>
+                            </div>
+                            <div className={styles.ProductWrapperContent}>
+                                <div className={styles.ProductWrapperContentContainer}>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+
                     {/*Сторінка продуктів*/}
                     <Box className={styles.Product} sx={{flexGrow: 1}}>
                         <Grid container spacing={{xs: 1, md: 2}}>
@@ -101,4 +133,4 @@ function Product(props) {
 
 }
 
-export default Product;
+export default Products;
