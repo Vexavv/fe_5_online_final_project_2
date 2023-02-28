@@ -23,16 +23,16 @@ function Products(props) {
     const status = useSelector(state => state.products.status)
 
     // Реалізація зміни відображення продуктів
-    const display = useSelector(state => state.products.display)
-
-    const handlerChangeDisplay = () => {
-        dispatch(changeDisplay())
-    }
-    const handlerChangeDisplayList = () => {
-        dispatch(changeDisplayList())
-    }
-
-
+    // const display = useSelector(state => state.products.display)
+    //
+    // const handlerChangeDisplay = () => {
+    //     dispatch(changeDisplay())
+    // }
+    // const handlerChangeDisplayList = () => {
+    //     dispatch(changeDisplayList())
+    // }
+    //
+    //
     useEffect(() => {
         dispatch(fetchAsyncProducts())
     }, [dispatch])
@@ -51,7 +51,7 @@ function Products(props) {
                             <div className={styles.ProductWrapperFilter}></div>
                             <div className={styles.ProductWrapperContent}>
                                 <ProductsNav/>
-                                <ProductsContent products={products}/>
+                                <ProductsContent products={products} />
                             </div>
 
                         </div>

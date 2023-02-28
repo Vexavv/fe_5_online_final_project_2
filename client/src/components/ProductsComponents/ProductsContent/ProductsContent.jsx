@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './ProductsContent.module.scss'
 import ProductCard from "../ProductCard/ProductCard";
-import {useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 
-function ProductsContent() {
-    const products = useSelector(state => state.products.products)
+
+function ProductsContent({products}) {
     const display = useSelector(state => state.products.display)
-
     return (
         <ul className={display ? styles.Row : styles.Column}>
             {products.map(item => {

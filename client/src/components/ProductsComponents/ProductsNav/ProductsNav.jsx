@@ -4,11 +4,10 @@ import TuneIcon from "@mui/icons-material/Tune";
 import ToggleButtons from "../ToggleButtons/ToggleButtons";
 import SelectSort from "../SelectSort/SelectSort";
 import {changeDisplay, changeDisplayList} from "../../../store/productsSlice";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 function ProductsNav(props) {
 
     const dispatch = useDispatch()
-    const display = useSelector(state => state.products.display)
     const handlerChangeDisplay = () => {
         dispatch(changeDisplay())
     }

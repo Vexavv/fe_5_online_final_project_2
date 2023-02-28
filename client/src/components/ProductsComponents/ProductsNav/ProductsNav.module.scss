@@ -1,15 +1,17 @@
-.Nav{
+.Nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  &Filter{
+
+  &Filter {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
     &Text {
       font-size: 15px;
       line-height: 20px;
@@ -20,8 +22,8 @@
 }
 
 @media (min-width: 900px) {
-  .Nav{
-    &Filter{
+  .Nav {
+    &Filter {
       &Text {
         display: none;
       }
