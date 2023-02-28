@@ -3,7 +3,7 @@ import styles from './ProductCard.module.scss'
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import SearchIcon from '@mui/icons-material/Search';
 import {useSelector} from "react-redux";
-import Button from '../Button/Button'
+import Button from '../../Button/Button'
 import RatingStar from "./RatingStar/RatingStar";
 
 function ProductCard({name, imageUrls, currentPrice, myCustomParam}) {
