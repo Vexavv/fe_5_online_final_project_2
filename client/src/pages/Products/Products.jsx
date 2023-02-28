@@ -1,4 +1,4 @@
-import React, {useEffect, useState,} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import styles from './Product.module.scss'
 import {fetchAsyncProducts} from '../../store/productsSlice'
@@ -12,6 +12,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 import SelectSort from "../../components/ProductsComponents/SelectSort/SelectSort";
 import Error from '../../components/Error/Error'
 import Loader from '../../components/Loader/Loader'
+import ProductsBanner from "../../components/ProductsComponents/ProductsBaner/ProductsBanner";
 
 function Products(props) {
 
@@ -41,21 +42,7 @@ function Products(props) {
             return (
                 <main className={styles.Product}>
                     <section>
-                        <div className={styles.ProductBanner}>
-                            <div className={styles.ProductBannerContainer}>
-                                <nav className={styles.ProductBannerContainerNav}>
-                                    <h1 className={styles.ProductBannerContainerNavTitle}>Products</h1>
-                                    <ul className={styles.ProductBannerContainerNavLink}>
-                                        <li className={styles.ProductBannerContainerNavLinkItem}><Link
-                                            to='/'>Home</Link>
-                                        </li>
-                                        <li className={styles.ProductBannerContainerNavLinkItem}>
-                                            <span>  Products</span>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
+                       <ProductsBanner/>
                     </section>
                     <section>
                         <div className={styles.ProductWrapper}>
