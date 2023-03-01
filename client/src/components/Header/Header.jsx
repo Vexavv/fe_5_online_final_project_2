@@ -22,6 +22,7 @@ import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
+// data Menu
 const navItems = [
   {
     title: 'Home',
@@ -44,6 +45,8 @@ const navItems = [
     path: '/contact'
   },
 ]
+
+
 const Header = (props) => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -167,7 +170,7 @@ const Header = (props) => {
 
             {/* navbar for desktop */}
             <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-              <Navigation navItems={navItems}/>
+              <Navigation navItems={navItems} />
             </Box>
             <Box sx={{
               flexGrow: 1,

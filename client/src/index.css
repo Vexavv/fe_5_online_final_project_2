@@ -1,3 +1,4 @@
+
 span,h1, h2, h3, h4, h5, h6, p, ol{
   margin: 0;
   padding: 0;
@@ -19,7 +20,7 @@ a {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Red Hat Display',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
