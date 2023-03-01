@@ -3,55 +3,16 @@
   flex-direction: column;
   padding: 0 15px;
 
-
-  &Title {
-    font-family: "Red Hat Display", sans-serif;
-    font-size: 18px;
-    line-height: 22px;
-    font-weight: 700;
-    color: #1A1A1A;
-    padding: 10px 0;
-
-  }
-
   &Radio {
     border-bottom: 1px solid #c2c0c0;
     padding-bottom: 30px;
 
   }
-
-  &Category {
-    padding: 50px 0 10px;
-    margin-bottom: 15px;
-  }
   &Color{
-    display: flex;
-    flex-direction: row;
     list-style: none;
     border-bottom: 1px solid #c2c0c0 ;
     padding-bottom: 30px;
-
-    li{
-      border: 1px solid #eeecec;
-      border-radius: 50%;
-      width: 22px;
-      height: 22px;
-      margin-right: 10px;
-      &:nth-child(1){
-        background-color: black;
-      }
-      &:nth-child(2){
-        background-color: blue;
-      }
-      &:nth-child(3){
-        background-color: grey;
-      }
-      &:nth-child(4){
-        background-color: white;
-      }
-      &:nth-child(5){
-        background-color: goldenrod;
-      }
-    }
+    box-sizing: border-box;
+    width: 100%;
   }
 }
