@@ -14,15 +14,11 @@ function RadioButtonColor(props) {
     const [visible, setVisible] = useState(true)
     const handleChange = (event) => {
         setValue(event.target.value);
-        console.log(value)
     };
     const offRadio = () => {
         setVisible(false)
         setValue("")
     }
-    // if(value !== ""){
-    //     setVisible(true)
-    // }
 
     return (
         <>

@@ -26,7 +26,12 @@ function ProductCheckBox(props) {
     const [visible, setVisible] = useState(true)
     const offRadio = () => {
         setVisible(false)
-        setState(false)
+        setState({
+            one: false,
+            two: false,
+            three: false,
+            four: false
+        })
     }
     return (
         <>
@@ -42,6 +47,7 @@ function ProductCheckBox(props) {
                     padding: "50px 0 10px 0"
                 }}>Price</FormLabel>
                 <FormGroup>
+
                     <FormControlLabel sx={{"&:hover": {color: "#ba933e"}}}
                                       control={<Checkbox checked={one} onChange={handleChange} name="one"
                                                          icon={<RadioButtonUncheckedIcon/>}

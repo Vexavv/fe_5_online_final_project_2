@@ -3,6 +3,7 @@ import styles from './ProductFilter.module.scss'
 import RadioButton from "../RadioButton/RadioButton";
 import RadioButtonColor from "../RadioButtonColor/RadioButtonColor";
 import ProductCheckBox from "../ProductCheckBox/ProductCheckBox";
+import FilterBestSeller from "../FilterBestSeller/FilterBestSeller";
 
 function ProductFilter(props) {
     return (
@@ -18,6 +19,11 @@ function ProductFilter(props) {
             <div className={styles.FilterColor}>
                 <ProductCheckBox/>
             </div>
+            <div className={styles.FilterBest}>
+                <h3>Best sellers</h3>
+                <FilterBestSeller/>
+            </div>
+
         </div>
     );
 }
