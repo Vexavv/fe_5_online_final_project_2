@@ -11,10 +11,15 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 function RadioButtonColor(props) {
     const [value, setValue] = useState('');
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
+
     const handleChange = (event) => {
-        setValue(event.target.value);
-    };
+            setValue(event.target.value);
+            if (event.target.value !== '') {
+                setVisible(true)
+            }
+        }
+
     const offRadio = () => {
         setVisible(false)
         setValue("")
@@ -34,7 +39,7 @@ function RadioButtonColor(props) {
                     name="controlled-radio-buttons-group"
                     value={value}
                     onChange={handleChange}>
-                    <Radio value="black" icon={<Brightness1Icon sx={{color: 'black'}}/>} checkedIcon={<CheckCircleIcon
+                    <Radio  value="black" icon={<Brightness1Icon sx={{color: 'black'}}/>} checkedIcon={<CheckCircleIcon
                         sx={{color: 'black', alignItems: "center"}}/>}/>
                     <Radio value="blue" icon={<Brightness1Icon sx={{color: 'blue'}}/>} checkedIcon={<CheckCircleIcon
                         sx={{color: 'blue'}}/>}/>

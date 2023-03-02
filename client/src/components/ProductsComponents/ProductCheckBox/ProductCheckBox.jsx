@@ -20,11 +20,12 @@ function ProductCheckBox(props) {
             ...state,
             [event.target.name]: event.target.checked,
         });
+        if(event.target.name !== ''){setVisible(true)}
     };
     const {one, two, three, four} = state;
 
-    const [visible, setVisible] = useState(true)
-    const offRadio = () => {
+    const [visible, setVisible] = useState(false)
+    const offCheck = () => {
         setVisible(false)
         setState({
             one: false,
@@ -37,7 +38,7 @@ function ProductCheckBox(props) {
         <>
             {visible && <CancelIcon
                 sx={{color: "#ba933e", cursor: "pointer", marginTop: "10px", display: "block", float: "right"}}
-                onClick={offRadio}/>}
+                onClick={offCheck}/>}
             <FormControl>
                 <FormLabel focused={false} sx={{
                     color: "#1A1A1A",
