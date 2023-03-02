@@ -45,11 +45,12 @@ function ProductsNav(props) {
                     ModalProps={{ keepMounted: true }}
                     SlideProps={{ timeout: 400 }}
                     sx={{
-
+                        display:{md: 'none'},
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: { xs: '70%', sm: '50%', md: 'none' },
                             color: "#1A1A1A",
+                            display:{md: 'none'}
                         }
                     }}>
                     <Box
