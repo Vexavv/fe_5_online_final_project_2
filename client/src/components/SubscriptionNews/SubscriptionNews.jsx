@@ -3,6 +3,7 @@ import styles from './SubscriptionNews.module.scss'
 import Button from "../Button/Button";
 
 function SubscriptionNews(props) {
+
     return (
         <div className={styles.Subscription}>
             <div className={styles.SubscriptionContainer}>
