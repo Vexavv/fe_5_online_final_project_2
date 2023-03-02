@@ -5,15 +5,15 @@ function Bestsellers(props) {
 
 //it still doesn't work
 
-    // const [cards, setCards] = useState(null) ;
+    const [cards, setCards] = useState(null) ;
 
-    // useEffect(() => {
-    //     fetch('https://localhost:3001/api/products')
-    //         .then(res => res.json())
-    //         .then(list => {
-    //             setCards(list) 
-    //         })
-    // }, [])
+    useEffect(() => {
+        fetch('https://localhost:3001/api/products')
+            .then(res => res.json())
+            .then(list => {
+                setCards(list) 
+            })
+    }, [])
 
     return( 
         <div className={styles.container}>

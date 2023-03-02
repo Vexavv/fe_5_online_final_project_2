@@ -4,15 +4,19 @@
     padding-bottom: 3%;
 
     h2{
-        font-size: 30px;
         color: #1a1a1a;
+        font-size: 30px;
+
+        @media (max-width:600px) {
+            font-size: 20px;
+        }
     }
 
     h3{
         cursor: pointer;
     }
 
-    p{
+    a,p{
         color: #666666;
     }
 }
@@ -41,9 +45,20 @@
         }
 
         img{
-            width: 322px;
-            height: 400px;
             cursor: pointer;
+
+            @media (max-width:600px) {
+                width: 150px;
+                height: 190px;
+            }
+            @media (min-width:601px) {
+                width: 250px;
+                height: 300px;
+            }
+            @media (min-width:901px) {
+                width: 322px;
+                height: 400px;
+            }
         }
 
         p{
