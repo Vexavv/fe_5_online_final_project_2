@@ -3,8 +3,8 @@ import { FaFacebookF,FaTwitter,FaInstagram,FaPinterest,FaYoutube,FaHeadphonesAlt
 import styles from './Footer.module.scss'
 
 function Footer(props) {
-    const [isOpen1, setIsOpen1] = useState(false);
-    const [isOpen2, setIsOpen2] = useState(false);
+    const [isOpen1, setIsOpen1] = useState(true);
+    const [isOpen2, setIsOpen2] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function Footer(props) {
                 </div>
                 <div className={styles.column}>
                 <h2 className={styles.head}>Information Company
-                <button className={styles.burger} onClick={toggleMenu1}>&#8595;</button>
+                <button className={styles.burger} onClick={toggleMenu1}>&#9660;</button>
                 </h2>
                     { isOpen1 && (<div className={styles.wrapper}>
                         <a href="/account">My Account</a>
@@ -66,7 +66,7 @@ function Footer(props) {
                 </div>
                 <div className={styles.column}>
                 <h2 className={styles.head}>More From Rubix
-                <button className={styles.burger} onClick={toggleMenu2}>&#8595;</button>
+                <button className={styles.burger} onClick={toggleMenu2}>&#9660;</button>
                 </h2>
                     {isOpen2 && (<div className={styles.wrapper}>
                         <a href="/rubix">About Rubix</a>
