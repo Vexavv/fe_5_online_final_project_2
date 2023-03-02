@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home"
 
 
 // import Page1 from "./pages/Wihslist/Wishlist";
+import MyAccount from './pages/MyAccount/MyAccount';
 import Collections from "./pages/Collections/Collections";
 import Contacts from "./pages/Contacts/Contacts";
 import Products from "./pages/Products/Products";
@@ -26,6 +27,7 @@ function App() {
                 {/* <Route path="page1" element={<Page_1/>}/> */}
                 {/* <Route path="page2" element={<Page_2/>}/> */}
                 {/* <Route path="page3" element={<Page_3/>}/> */}
+                <Route path="/myaccount" element={<MyAccount/>}/>
                 <Route path="/product" element={<Products/>}/>
                 <Route path="/collections" element={<Collections/>}/>
                 <Route path="/contacts" element={<Contacts/>}/>
