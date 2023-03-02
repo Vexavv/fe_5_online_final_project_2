@@ -1,8 +1,21 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
 import styles from "./Bestsellers.module.scss";
 
 function Bestsellers(props) {
-    return(
+
+//it still doesn't work
+
+    // const [cards, setCards] = useState(null) ;
+
+    // useEffect(() => {
+    //     fetch('https://localhost:3001/api/products')
+    //         .then(res => res.json())
+    //         .then(list => {
+    //             setCards(list) 
+    //         })
+    // }, [])
+
+    return( 
         <div className={styles.container}>
             <h2>Best Sellers Products</h2>
             <p>Top sale in this week</p>
@@ -14,7 +27,7 @@ function Bestsellers(props) {
                         <p>$39.00</p>
                     </a>
                 </div>
-                <div>
+                <div>  
                     <a href="/">
                         <span>Sale</span>
                         <img src="https://cdn.shopify.com/s/files/1/0376/9440/6700/products/28_360x.jpg?v=1586316960" alt="" />

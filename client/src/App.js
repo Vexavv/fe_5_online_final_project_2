@@ -22,7 +22,7 @@ function App() {
         <Header/>
         <Routes>
             <Route path='/' element={<Layout/>}>
-                <Route index element={<Home/>}/>
+                <Route index element={<Home/>}/>  
                 {/* <Route path="page1" element={<Page_1/>}/> */}
                 {/* <Route path="page2" element={<Page_2/>}/> */}
                 {/* <Route path="page3" element={<Page_3/>}/> */}
