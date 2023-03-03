@@ -21,11 +21,11 @@ const images = [
       src: 'https://cdn.shopify.com/s/files/1/0376/9440/6700/files/slide11.png?v=1613723856',
       alt: "Third Slide"
     },
-//     {
-//     id: 4,
-//     src: 'https://www.youtube.com/embed/ZFArP9yqfrA',
-//     alt: "Fourth Slide"
-//   }
+  //   {
+  //   id: 4,
+  //   src: './production ID_3770033.mp4',
+  //   alt: "Fourth Slide"
+  // }
   ]
 
  const responsive = [{

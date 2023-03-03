@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import styles from "./Navigation.module.scss"
 import MenuList from '@mui/material/List'
@@ -19,7 +19,7 @@ const Navigation =({onClick, navItems})=>{
             (
               <MenuItem 
               key={navItem.title}
-              component={Link} 
+              component={NavLink} 
               to={navItem.path}
               sx={{color:"#1A1A1A", '&:hover, active':{
                   color: '#BA933E'},
@@ -30,33 +30,7 @@ const Navigation =({onClick, navItems})=>{
             </MenuItem>
             )
           )}
-                {/* <MenuItem component={Link}  to='/'
-                 sx={{color:"#1A1A1A",
-                  '&:hover, active':{color: '#BA933E'} }}>
-          
-            Home
-            </MenuItem> */}
-            {/* <MenuItem component={Link}  to='/product' 
-             sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
-           
-            Product
-            </MenuItem> */}
-            {/* <MenuItem component={Link}  to='/collection'
-                   sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
-            Collection
-           
-            </MenuItem> */}
-                     
-            {/* <MenuItem component={Link}  to='/sale'
-                   sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
-           
-            Sale
-            </MenuItem> */}
-            {/* <MenuItem component={Link}  to='/contacts'
-                   sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}> 
-         
-            Contacts
-            </MenuItem> */}
+       
             </MenuList>
     )
 }

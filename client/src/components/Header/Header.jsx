@@ -6,7 +6,7 @@ import Navigation from './Navigation/Navigation';
 import HeaderBanner from './HeaderBanner/HeaderBannerr';
 import Logo from './Logo/Logo'
 import ButtonIconsGroup from './ButtonIconsGroup/ButtonIconsGroup';
-import Search from './Search/Search'
+import Search from '../Search/Search'
 
 //import from materialUI
 import AppBar from '@mui/material/AppBar';
@@ -62,7 +62,8 @@ const Header = (props) => {
       <AppBar position="static"
         mt={3}
         sx={{backgroundColor: 'white',          
-          boxShadow: 'none'
+          boxShadow: 'none',
+          marginTop:'4px'
         }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>

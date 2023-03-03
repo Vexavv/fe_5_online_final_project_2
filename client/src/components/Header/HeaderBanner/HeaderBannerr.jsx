@@ -5,22 +5,24 @@ import Typography from '@mui/material/Typography';
 import SvgIcon from '@mui/material/SvgIcon';
 
 
-
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Divider } from '@mui/material';
+import styles from './HeaderBanner.module.scss'
 
 const HeaderToolbar = () => {
     return (
         <Box disableGutters position="static" sx={{ backgroundColor: '#F5F5F5' }} >
             <Container maxWidth="xl" >
-                <Box sx={{
+                <Box 
+                 sx={{
                     display: "flex",
                     justifyContent: { xs: "senter", sm: "senter", md: "space-between" },
+                    
                     color: "#1A1A1A",
                     fontSize: '14px',
                     fontFamily: 'Red Hat Display',
-                    padding:"10px 0"
+                    padding:{xs:"20px 5px", sm:"5px 5px"}
                 }}>
                     <Box sx={{
                         display: { xs: 'none', sm: 'none', md: 'flex' },
@@ -53,25 +55,30 @@ const HeaderToolbar = () => {
                     </Box>
                     <Box sx={{
                         flexGrow: { xs: 1, sm: 0 },
-                        margin: 'auto',
+                        flexWrap:'wrap',
+                        textAlign: 'center',
                         maxHeight: "24px",
                         display: "flex",
                         alignItems: 'center',
                         justifyContent: "space-evenly",
                         fontSize: '14px',
-                        fontFamily: 'Red Hat Display'
+                        fontFamily: 'Red Hat Display',                        
+                        gap: '4px'
                     }}>
                         <Typography sx={{
+                            
                             fontSize: '14px',
                             fontFamily: 'Red Hat Display',
-                            marginRight: '4px'
+                            
                         }} >
                             Free shipping on all orders over <span>$79</span>
                         </Typography>
                         <Typography component={Link}
                             to="/product"
                             sx={{
-                                backgroundColor: "#BA933E", color: '#FFFFF', paddingRight: '2px',
+                                backgroundColor: "#BA933E", color: '#FFFFFF', padding: '0 4px',
+                                cursor: 'pointer',
+                                marginBottom:'16px'
                             }}>
                             shop Now!
                         </Typography>
@@ -79,19 +86,40 @@ const HeaderToolbar = () => {
                     <Box sx={{
                         display: { xs: 'none', sm: 'none', md: 'flex' },
                         justifyContent: 'space-between',
-                        gap:"10px"
+                        gap:"10px",
+                        alignItems: 'center',
                     }}>
-                        <Box width={1} height={1}>
-                            <a href="https://www.facebook.com/"><FaFacebookF /></a>
+                        <Box width={1} height={0.5}
+                        component={Link} to={'https://www.instagram.com/'} sx={{                            
+                            color:"#1A1A1A",
+                            '&:hover, active':{
+                                color: '#BA933E'}
+                        }}>
+                            <FaFacebookF />
                         </Box>
-                        <Box width={1} height={1}>
-                            <a href="https://twitter.com/"><FaTwitter /></a>
+                        <Box width={1} height={0.5}
+                        component={Link} to={'https://www.instagram.com/'} sx={{
+                            color:"#1A1A1A",
+                            '&:hover, active':{
+                                color: '#BA933E'}
+                        }}>
+                            <FaTwitter />
                         </Box>
-                        <Box width={1} height={1}>
-                            <a href="https://www.instagram.com/"><FaInstagram /></a>
+                        <Box width={1} height={0.5} component={Link} to={'https://www.instagram.com/'} sx={{
+                                color:"#1A1A1A",
+                                '&:hover, active':{
+                                    color: '#BA933E'}
+                            }}> 
+                        
+                            <FaInstagram />
                         </Box>
-                        <Box width={1} height={1}>
-                            <a href="https://www.pinterest.com/"><FaPinterest /></a>
+                        <Box width={1} height={0.5}
+                        component={Link} to={'https://www.instagram.com/'} sx={{
+                            color:"#1A1A1A",
+                            '&:hover, active':{
+                                color: '#BA933E'}
+                        }}>
+                            <FaPinterest />
                         </Box>
                     </Box>
                 </Box>

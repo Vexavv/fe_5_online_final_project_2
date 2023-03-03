@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom'
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Badge from '@mui/material/Badge';
-import IconButton from '@mui/material/IconButton';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import {Link} from 'react-router-dom';
+import Button from '../../Button/Button'
+import Login from '../../Login/Login'
+import {ButtonGroup, Badge, IconButton } from '@mui/material';
+// import  from '@mui/material/Badge';
+// import  from '@mui/material/IconButton';
+
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const ButtonIconsGroup = () => {
     return (
         <ButtonGroup variant="text" aria-label="text button group">
 
-            <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"                
-                color="black"
-                component={Link}  to='/login'
-                sx={{
-                    '&:hover': {color: '#BA933E'}
-                }}
-            >
-                <PersonOutlineIcon />
-            </IconButton>
+           <Login/>
+           
             <IconButton
                 size="large"
                 aria-label="account of current user"
