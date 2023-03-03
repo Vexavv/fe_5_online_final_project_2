@@ -3,16 +3,19 @@ import styles from "./Bestsellers.module.scss";
 
 function Bestsellers(props) {
 
-    const [cards, setCards] = useState([]) ;
+//it still doesn't work
+
+    const [state, setState] = useState([]) ;
 
     useEffect(() => {
         fetch('http://localhost:3001/api/products')
             .then(res => res.json())
             .then(list => {
-                setCards(list) 
-                console.log(list);
+                setState(list)
             })
     }, [])
+
+
 
     return( 
         <div className={styles.container}>

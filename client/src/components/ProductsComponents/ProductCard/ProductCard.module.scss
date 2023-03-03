@@ -9,11 +9,13 @@
   box-sizing: border-box;
   cursor: pointer;
   position: relative;
-margin-left: 10px;
+  margin-left: 10px;
+
   &:hover &Button {
     display: flex;
     flex-direction: column;
   }
+
   &Img {
     width: 100%;
   }
@@ -77,23 +79,26 @@ margin-left: 10px;
     }
   }
 }
+
 @media (min-width: 600px) {
   .Card {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     list-style: none;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     width: 250px;
     padding-bottom: 30px;
     box-sizing: border-box;
     cursor: pointer;
     position: relative;
     margin-left: 10px;
+
     &:hover &Button {
       display: flex;
       flex-direction: column;
     }
+
     &Img {
       width: 100%;
     }
@@ -104,11 +109,20 @@ margin-left: 10px;
       top: 5%;
       right: 10%;
 
-      &Icon:hover {
-        background-color: #ba933e;
-        color: #F5F5F5;
-        transition: all .5s ease;
+      &Icon{
+        font-size: 30px;
+        padding:10px;
+        border-radius:5px ;
+        background-color:#ffffff;
+        margin-bottom: 10px;
+        :hover {
+          background-color: #ba933e;
+          color: #ffffff;
+          transition: all .5s ease;
+        }
       }
+
+
 
     }
 
@@ -196,18 +210,21 @@ margin-left: 10px;
       color: #666666;
       line-height: 20px;
     }
-&Label{
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  padding-top: 15px;
-  li img {
-    width: 30px;
-    border-radius: 50%;
-    margin-right: 5px;
-  }
 
-}
+    &Label {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding-top: 15px;
+
+      li img {
+        width: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+
+    }
+
     &Param {
       font-family: 'Red Hat Display';
       font-weight: 400;
@@ -237,6 +254,9 @@ margin-left: 10px;
       border: none;
       cursor: pointer;
       border-radius: 4px;
+      &:nth-child(3){
+        display: none;
+      }
     }
   }
 }
@@ -252,6 +272,7 @@ margin-left: 10px;
       max-height: 170px;
       width: 20%;
     }
+
     &Description {
       display: flex;
       flex-direction: column;
@@ -259,6 +280,7 @@ margin-left: 10px;
       margin-left: 20px;
       width: 72%;
     }
+
     &Nav {
       width: 100%;
     }
@@ -283,13 +305,22 @@ margin-left: 10px;
         }
       }
     }
+
     &Nav {
       width: 25%;
+
       &Button {
         width: 150px;
+
         &:hover {
           background-color: #ba933e;
           transition: all .5s ease;
+        }
+        &:nth-child(3){
+          display: block;
+        }
+        &:nth-child(4){
+          display: none;
         }
       }
     }

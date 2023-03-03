@@ -6,12 +6,12 @@ import Bestsellers from '../../components/Bestsellers/Bestsellers';
 
 
 function Home(props) {
+
     return (
         <main>
-            <h1> Welcome to Home Page</h1>
-            <SubscriptionNews/>
             <Link to='/product'><ShopCollection/></Link>
             <Bestsellers/>
+            <SubscriptionNews/>
         </main>
     );
 }
