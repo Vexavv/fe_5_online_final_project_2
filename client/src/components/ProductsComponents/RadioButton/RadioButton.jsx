@@ -14,13 +14,14 @@ function RadioButton(props) {
     };
     return (
         <FormControl>
-            <FormLabel sx={{color: "#1A1A1A", fontSize: 18, fontWeight: 700, lineHeight: 2,}}
+            <FormLabel sx={{color: "#1A1A1A", fontSize: {xs:'17px', md:'18px'}, fontWeight: 700, lineHeight: 2,}}
                        focused={false}
                        id="demo-radio-buttons-group-label">Product Categories</FormLabel>
             <RadioGroup
                 name="controlled-radio-buttons-group"
                 value={value}
                 onChange={handleChange}>
+
                 <FormControlLabel value="all"
                                   control={<Radio icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleIcon
                                       sx={{color: 'black'}}/>}/>} label="All Categories"/>

@@ -6,6 +6,7 @@ import Bestsellers from '../../components/Bestsellers/Bestsellers';
 
 
 function Home(props) {
+
     return (
         <main>
             <Link to='/product'><ShopCollection/></Link>
