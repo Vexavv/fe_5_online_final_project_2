@@ -23,7 +23,7 @@ return(
              alt="Logo_Rubix"
              width="100%"
               height="100%" 
-             style={{ objectFit: 'contain' }}/>
+             sx={{ objectFit: 'contain' }}/>
            </Box>
 
           

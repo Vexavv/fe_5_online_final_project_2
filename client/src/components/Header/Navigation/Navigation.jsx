@@ -23,6 +23,7 @@ const Navigation =({onClick, navItems})=>{
               to={navItem.path}
               sx={{color:"#1A1A1A", '&:hover, active':{
                   color: '#BA933E'},
+                  textAlign:'center',
                }}
                   onClick={onClick}
               >            

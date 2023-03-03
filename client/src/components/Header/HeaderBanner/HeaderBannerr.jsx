@@ -16,9 +16,9 @@ const HeaderToolbar = () => {
             <Container maxWidth="xl" >
                 <Box 
                  sx={{
-                    display: "flex",
+                    display: {xs:"block", sm:"block", md:"flex",},
                     justifyContent: { xs: "senter", sm: "senter", md: "space-between" },
-                    
+                    textAlign: 'center',
                     color: "#1A1A1A",
                     fontSize: '14px',
                     fontFamily: 'Red Hat Display',
@@ -60,25 +60,26 @@ const HeaderToolbar = () => {
                         maxHeight: "24px",
                         display: "flex",
                         alignItems: 'center',
-                        justifyContent: "space-evenly",
+                        justifyContent: "center",
                         fontSize: '14px',
                         fontFamily: 'Red Hat Display',                        
                         gap: '4px'
                     }}>
                         <Typography sx={{
-                            
+                            textAlign: 'center',
                             fontSize: '14px',
                             fontFamily: 'Red Hat Display',
-                            
+                            position: 'relative',
+                            '&:after':{content:'" | "', color: '#BA933E', rotate:"90deg", position: 'absolute',right:"5px", top:"7px" }
                         }} >
-                            Free shipping on all orders over <span>$79</span>
+                            Free shipping on all orders over <span >$79</span>
                         </Typography>
                         <Typography component={Link}
                             to="/product"
                             sx={{
                                 backgroundColor: "#BA933E", color: '#FFFFFF', padding: '0 4px',
                                 cursor: 'pointer',
-                                marginBottom:'16px'
+                                
                             }}>
                             shop Now!
                         </Typography>
