@@ -1,26 +1,32 @@
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
+
 const Logo =()=>{
+  
 return(
-    <Typography
-            variant="h5"
-            noWrap
-            component={Link}  to='/'
-            sx={{
-              mr: 3,
-              display: { xs: 'flex', md: 'flex' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'black',
-              textDecoration: 'none',
-            }}
-          >
-            RUBIX
-          </Typography>
+     
+           <Box          
+           component={Link}  to='/'
+           sx={{
+             height: 22,
+             width: 130,
+             mr:4,
+             maxHeight: { xs: 20, md: 22 },
+             maxWidth: { xs: 110, md: 130 },
+             
+           }}>
+            <img src="../../img/logo_180x.png"
+             alt="Logo_Rubix"
+             width="100%"
+              height="100%" 
+             sx={{ objectFit: 'contain' }}/>
+           </Box>
+
+          
 )
 }
 
