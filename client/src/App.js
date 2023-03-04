@@ -2,15 +2,11 @@ import './App.css';
 import {Routes, Route,} from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home"
-// import Page_1 from "./pages/Page_1/Page_1";
-// import Page_2 from "./pages/Page_2/Page_2";
-// import Page_3 from "./pages/Page_3/Page_3";
-
 
 
 // import Page1 from "./pages/Wihslist/Wishlist";
 import MyAccount from './pages/MyAccount/MyAccount';
-import Collections from "./pages/Collections/Collections";
+import Collection from "./pages/Collection/Collection";
 import Contacts from "./pages/Contacts/Contacts";
 import Products from "./pages/Products/Products";
 import Login from "./pages/LoginPage/Login";
@@ -19,8 +15,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Header from './components/Header/Header';
 function App() {
   return (
-    <div className="App">
-        <Header/>
+    <div className="App">      
         <Routes>
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>  
@@ -29,7 +24,7 @@ function App() {
                 {/* <Route path="page3" element={<Page_3/>}/> */}
                 <Route path="/myaccount" element={<MyAccount/>}/>
                 <Route path="/product" element={<Products/>}/>
-                <Route path="/collections" element={<Collections/>}/>
+                <Route path="/collections" element={<Collection/>}/>
                 <Route path="/contacts" element={<Contacts/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/cart" element={<Cart/>} />
