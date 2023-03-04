@@ -1,44 +1,31 @@
 import React, {useState} from 'react';
 import styles from './ProductCard.module.scss'
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import Button from '../../Button/Button'
 import RatingStar from "./RatingStar/RatingStar";
 import {HiOutlineShoppingBag} from 'react-icons/hi';
 import {TfiSearch} from 'react-icons/tfi';
-import Modal from '../../Modal/Modal'
-// import {getElement, openModal, closeModal} from '../../../store/productsSlice'
+import ProductModal from '../ProductModal/ProductModal'
+
 function ProductCard({name, imageUrls, currentPrice, myCustomParam, item}) {
-    // const dispatch = useDispatch();
+
     const display = useSelector(state => state.products.display)
 
-    // --------------Modal------------ redux-toolkit
-    // const activeModal = useSelector(state => state.products.activeModal)
-    // const handlerOpenModal = (item) => {
-    //     dispatch(getElement(item))
-    //     dispatch(openModal())
-    //     console.log(item)
-    // }
-    //
-    // const handlerCloseModal = () => {
-    //     dispatch(closeModal())
-    // }
 
-const [activeModal, setActiveModal]= useState(false)
+    const [activeModal, setActiveModal] = useState(false)
 
-    const handlerOpenModal = () => {
-        setActiveModal(true)
+    const handlerToggleModal = () => {
+        setActiveModal(current => !current)
+        console.log(item)
     }
 
-const handlerCloseModal = () => {
-        setActiveModal(false)
-}
     return (
         <>
             {display ? (<li className={styles.Card}>
                 <img className={styles.CardImg} src={imageUrls[0]} alt="product"/>
                 <div className={styles.CardButton}>
                     <HiOutlineShoppingBag className={styles.CardButtonIcon}/>
-                    <TfiSearch onClick={()=>handlerOpenModal(item)} className={styles.CardButtonIcon}/>
+                    <TfiSearch onClick={handlerToggleModal} className={styles.CardButtonIcon}/>
                 </div>
                 <div className={styles.CardDescription}>
                     <h5 className={styles.CardDescriptionName}>{name}</h5>
@@ -63,11 +50,11 @@ const handlerCloseModal = () => {
                 <div className={styles.RowNav}>
                     <RatingStar/>
                     <Button className={styles.RowNavButton} text='Select Options'/>
-                    <Button onClick={()=>handlerOpenModal(item)} className={styles.RowNavButton} text='Quick View'/>
+                    <Button onClick={handlerToggleModal} className={styles.RowNavButton} text='Quick View'/>
                     <Button className={styles.RowNavButton} text='Add To Cart'/>
                 </div>
             </li>)}
-            <Modal active={activeModal} closeModal={handlerCloseModal}/>
+            <ProductModal active={activeModal} closeModal={handlerToggleModal} {...item}/>
         </>
     );
 }
