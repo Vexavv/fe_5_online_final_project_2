@@ -14,7 +14,7 @@ const Navigation =({onClick, navItems})=>{
     return(
         <MenuList sx={{ flexGrow: {md:1, lg:0}, display: { xs: 'block', sm:'block', md: 'flex', fontFamily:'Red Hat Display' } }}       
           >
-=======
+
 
 {navItems.map(navItem=>
             (

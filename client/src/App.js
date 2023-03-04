@@ -6,7 +6,7 @@ import Home from "./pages/Home/Home"
 
 // import Page1 from "./pages/Wihslist/Wishlist";
 import MyAccount from './pages/MyAccount/MyAccount';
-import Collections from "./pages/Collections/Collections";
+import Collection from "./pages/Collection/Collection";
 import Contacts from "./pages/Contacts/Contacts";
 import Products from "./pages/Products/Products";
 import Login from "./pages/LoginPage/Login";
@@ -15,8 +15,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Header from './components/Header/Header';
 function App() {
   return (
-    <div className="App">
-        <Header/>
+    <div className="App">      
         <Routes>
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>  
@@ -25,7 +24,7 @@ function App() {
                 {/* <Route path="page3" element={<Page_3/>}/> */}
                 <Route path="/myaccount" element={<MyAccount/>}/>
                 <Route path="/product" element={<Products/>}/>
-                <Route path="/collections" element={<Collections/>}/>
+                <Route path="/collections" element={<Collection/>}/>
                 <Route path="/contacts" element={<Contacts/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/cart" element={<Cart/>} />
