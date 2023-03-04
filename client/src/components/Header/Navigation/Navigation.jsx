@@ -15,28 +15,28 @@ const Navigation =(props)=>{
                  sx={{color:"#1A1A1A",
                   '&:hover, active':{color: '#BA933E'} }}>
           
-            home
+            Home
             </MenuItem>
             <MenuItem component={Link}  to='/product' 
              sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
            
-            product
+            Product
             </MenuItem>
             <MenuItem component={Link}  to='/wishlist'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
-            wishlist
+            Wishlist
            
             </MenuItem>
                      
             <MenuItem component={Link}  to='/sale'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}>
            
-            sale
+            Sale
             </MenuItem>
             <MenuItem component={Link}  to='/contacts'
                    sx={{color:"#1A1A1A", '&:hover, active':{color: '#BA933E'} }}> 
          
-            contacts
+            Contacts
             </MenuItem>
             </MenuList>
     )

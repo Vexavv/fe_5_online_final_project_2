@@ -1,0 +1,33 @@
+.Nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+  &Filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &Text {
+      font-size: 15px;
+      line-height: 20px;
+      color: #ba933e;
+    }
+  }
+
+}
+
+@media (min-width: 900px) {
+  .Nav {
+    &Filter {
+      &Text {
+        display: none;
+      }
+    }
+
+  }
+}
