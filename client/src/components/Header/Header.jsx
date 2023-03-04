@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import Navigation from './Navigation/Navigation';
 import HeaderBanner from './HeaderBanner/HeaderBannerr';
 import Logo from './Logo/Logo'
-import Search from '../Search/Search'
+import SearchDialog from '../SearchDialog/SearchDialog'
 import Login from '../Login/Login'
 
 //import from materialUI
@@ -46,11 +46,17 @@ const navItems = [
 const Header = (props) => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isOpenSearch, setisOpenSearch] = useState(false);
+
   
   const mobileMenuToggle = () => {
     setIsMobileMenuOpen(current => !current)
-    console.log(isMobileMenuOpen);
+    
   }  
+
+  const toggleSearch =()=>{
+    setisOpenSearch(current => !current)    
+  }
 
   return (
     <>
@@ -86,7 +92,7 @@ const Header = (props) => {
                 >
                   {!isMobileMenuOpen && <MenuIcon />}
                 </IconButton>
-                <Search />
+                <SearchDialog isOpenSearch onClick={()=>{toggleSearch()}}/>
               </ButtonGroup>
             </Box>
 
@@ -177,7 +183,7 @@ const Header = (props) => {
 
              <Login/>
              <Box sx={{display:{xs:'none', sm:'flex', md:'flex'}}}>
-             <Search />
+             <SearchDialog isOpenSearch onClick={()=>{toggleSearch()}} />
              </Box>
              
              <IconButton
