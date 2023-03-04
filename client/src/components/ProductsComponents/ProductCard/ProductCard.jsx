@@ -39,9 +39,11 @@ function ProductCard({name, imageUrls, currentPrice, myCustomParam, item}) {
                     <h5 className={styles.CardDescriptionName}>{name}</h5>
                     <div className={styles.CardDescriptionContainer}>
                         <span className={styles.CardDescriptionContainerPrice}>${currentPrice}.00</span>
-                        <ul className={styles.CardDescriptionContainerLabel}>{imageUrls.map((item, index) => {
+                        <ul className={styles.CardDescriptionContainerLabel}>
+                            {imageUrls.map((item, index) => {
                             return <li key={index}><img src={item} alt="product"/></li>
-                        })}</ul>
+                        })}
+                        </ul>
                     </div>
                 </div>
             </li>) : (<li className={styles.Row}>

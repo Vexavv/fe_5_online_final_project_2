@@ -47,11 +47,13 @@
       }
 
       &Carousel {
-        //display: flex;
-        //align-items: center;
-        //justify-content: center;
-        //max-height: 70px;
-        //width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 70px;
+        width: 100%;
+        list-style: none;
+        overflow: scroll;
 
         img {
           max-width: 70px;
