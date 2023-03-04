@@ -4,7 +4,7 @@ import styles from './ShopCollection.module.scss';
 function ShopCollection(props) {
     return (
         <div className={styles.container}>
-            <img src="https://cdn.shopify.com/s/files/1/0376/9440/6700/products/21_2_360x.jpg?v=1598253084" alt="" />
+            <img src="https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677948252/Final_project/Baners/21_2_360x_giiprc.webp" alt="" />
             <div className={styles.box}>
                 <p className='subtitle'>Quik parcel delivery, <span className='brown'>from $25</span></p>
                 <h2 className='title'>Shop The New Brands Up to 40% off now. </h2>

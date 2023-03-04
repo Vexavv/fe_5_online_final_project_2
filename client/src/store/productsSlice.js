@@ -1,10 +1,11 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk, current} from "@reduxjs/toolkit";
 
 const initialState = {
     products: [],
     status: null,
     error: '',
     display: true,
+    activeModal: false
 
 }
 export const fetchAsyncProducts = createAsyncThunk(
@@ -29,6 +30,12 @@ const productsSlice = createSlice({
         changeDisplayList(state, action){
             state.display = true
         },
+        openModal(state, action){
+            state.activeModal= true
+        },
+        closeModal(state, action){
+            state.activeModal= false
+        },
     },
     extraReducers: builder => {
         builder
@@ -46,5 +53,5 @@ const productsSlice = createSlice({
 
     }
 })
-export const {changeDisplay, changeDisplayList} = productsSlice.actions
+export const {changeDisplay, changeDisplayList,openModal,closeModal} = productsSlice.actions
 export default productsSlice.reducer;

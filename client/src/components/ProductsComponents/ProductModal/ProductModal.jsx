@@ -30,15 +30,11 @@ function ProductModal({active, closeModal, imageUrls, name, myCustomParam, color
                     <span className={styles.ModalContentDescriptionColor}>Color: {color}</span>
                     <span className={styles.ModalContentDescriptionPrice}>${currentPrice}.00</span>
                     <div className={styles.ModalContentDescriptionCount}>
-                        <div className={styles.ModalContentDescriptionCountCounter} >
-                            <BiMinus className={styles.ModalContentDescriptionCountCounterIcon}/>
-                            <span>1</span>
-                            <BiPlus className={styles.ModalContentDescriptionCountCounterIcon}/>
-                        </div>
                         <Button className={styles.ModalContentDescriptionCountBtn} text="Add To Cart"/>
                     </div>
                     <span className={styles.ModalContentDescriptionValues}>Availability: {quantity}</span>
                     <span className={styles.ModalContentDescriptionValues}>Brand: {brand}</span>
+
                 </div>
             </div>
         </div>
