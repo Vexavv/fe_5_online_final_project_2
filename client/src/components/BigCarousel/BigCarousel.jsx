@@ -8,17 +8,17 @@ import 'react-multi-carousel/lib/styles.css';
 const images = [
     {
       id: 1,
-      src: 'https://cdn.shopify.com/s/files/1/0376/9440/6700/files/slide13.png?v=1629543119',
+      src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide12_z3dd1h.webp',
       alt: "First Slide"
     },
     {
       id: 2,
-      src: 'https://cdn.shopify.com/s/files/1/0376/9440/6700/files/slide12.png?v=1613723856',
+      src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide13_bvocpv.webp',
       alt: "Second Slide"
     },
     {
       id: 3,
-      src: 'https://cdn.shopify.com/s/files/1/0376/9440/6700/files/slide11.png?v=1613723856',
+      src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide11_xc8vox.webp',
       alt: "Third Slide"
     },
   //   {
@@ -54,7 +54,7 @@ const images = [
 
 
 const BigCarousel =()=>{ 
-        
+
 return (
     <Carousel
     additionalTransfrom={0}

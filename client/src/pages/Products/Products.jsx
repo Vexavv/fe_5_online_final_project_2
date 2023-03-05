@@ -14,12 +14,6 @@ function Products(props) {
     const products = useSelector(state => state.products.products)
     const status = useSelector(state => state.products.status)
 
-
-    // open mobile filter
-
-
-
-
     useEffect(() => {
         dispatch(fetchAsyncProducts())
     }, [dispatch])

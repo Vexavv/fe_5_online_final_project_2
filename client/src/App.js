@@ -2,7 +2,7 @@ import './App.css';
 import {Routes, Route,} from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home"
-
+import OneProduct from './pages/OneProduct/OneProduct'
 
 // import Page1 from "./pages/Wihslist/Wishlist";
 import MyAccount from './pages/MyAccount/MyAccount';
@@ -20,11 +20,12 @@ function App() {
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
                 <Route path="/myaccount" element={<MyAccount/>}/>
-                <Route path="/product" element={<Products/>}/>
+                <Route path="/products" element={<Products/>}/>
                 <Route path="/collections" element={<Collection/>}/>
                 <Route path="/contacts" element={<Contacts/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/cart" element={<Cart/>} />
+                <Route path="/product" element={<OneProduct/>} />
                 <Route path="*" element={<PageNotFound/>}/>
             </Route>
         </Routes>
