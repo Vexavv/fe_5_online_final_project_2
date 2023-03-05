@@ -13,16 +13,16 @@ const responsive = {
         // the naming can be any, depends on you.
         breakpoint: {max: 4000, min: 1200},
         items: 4,
-        slidesToSlide: 4
+        slidesToSlide: 1
     },
     desktop: {
         breakpoint: {max: 1200, min: 901},
         items: 3,
-        slidesToSlide: 3
+        slidesToSlide: 1
     },
     tablet: {
         breakpoint: {max: 900, min: 601},
-        items: 2
+        items: 1
     },
     mobile: {
         breakpoint: {max: 600, min: 0},
@@ -50,6 +50,8 @@ function SmallCarousel(props) {
             })
     }, [])
     console.log(state)
+    const trending = state.filter(item => item.trendingProduct)
+    console.log(trending)
     return (
         <div className={styles.Slider}>
             <div className={styles.SliderDescription}>
@@ -66,10 +68,10 @@ function SmallCarousel(props) {
                           rewind={true}
                           keyBoardControl={true}
                           draggable
-                          infinite
+                          // infinite
                 >
 
-                    {state.map(product => {
+                    {trending.map(product => {
                         return <SmallCarouselItem {...product} key={product._id}
                                                   item={product} onClick={()=>handleProductClick(product._id)}/>
                     })}
