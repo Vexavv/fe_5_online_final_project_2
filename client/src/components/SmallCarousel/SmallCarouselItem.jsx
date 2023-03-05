@@ -8,8 +8,7 @@ import {HiOutlineShoppingBag} from 'react-icons/hi';
 import {TfiSearch} from 'react-icons/tfi';
 
 
-function SmallCarouselItem({imageUrls, name, currentPrice}) {
-
+function SmallCarouselItem({imageUrls, name, currentPrice, onClick}) {
 
     return (
             <Card sx={{width:{xs:"350px", sm: "250px", md:"335px"}, border: "none", boxShadow: 0, margin:"0 auto",cursor:"pointer" }}>
@@ -21,9 +20,8 @@ function SmallCarouselItem({imageUrls, name, currentPrice}) {
                     title="green iguana">
                     <div className={styles.WrapperIcon}>
                         <HiOutlineShoppingBag className={styles.WrapperIconBtn}/>
-                        <TfiSearch className={styles.WrapperIconBtn}/>
+                        <TfiSearch className={styles.WrapperIconBtn} onClick={onClick}/>
                     </div>
-
                 </CardMedia>
                 <CardContent sx={{padding:"20px 0"}}>
                     <Typography sx={{
@@ -47,7 +45,6 @@ function SmallCarouselItem({imageUrls, name, currentPrice}) {
                         ${currentPrice}.00
                     </Typography>
                 </CardContent>
-
             </Card>
 
     );

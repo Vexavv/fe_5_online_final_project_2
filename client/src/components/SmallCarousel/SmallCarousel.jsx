@@ -4,8 +4,8 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
 import SmallCarouselItem from "./SmallCarouselItem";
 // import ProductModal from "../ProductsComponents/ProductModal/ProductModal";
-// import {useDispatch, useSelector} from "react-redux";
-// import {openModal} from "../../store/productsSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {getElement, openModal} from "../../store/productsSlice";
 
 
 const responsive = {
@@ -33,11 +33,12 @@ const responsive = {
 
 function SmallCarousel(props) {
 
-    // const dispatch = useDispatch()
-    // const activeModal = useSelector(state => state.products.activeModal)
-    // const handlerOpenModal = ()=>{
-    //     dispatch(openModal())
-    // }
+    const dispatch = useDispatch()
+    function handleProductClick(product) {
+        dispatch(getElement(product));
+        dispatch(openModal())
+        console.log(product)
+    }
 
     const [state, setState] = useState([]) ;
 
@@ -68,9 +69,9 @@ function SmallCarousel(props) {
                           infinite
                 >
 
-                    {state.map(item => {
-                        return <SmallCarouselItem {...item} key={item._id}
-                                                  item={item}/>
+                    {state.map(product => {
+                        return <SmallCarouselItem {...product} key={product._id}
+                                                  item={product} onClick={()=>handleProductClick(product._id)}/>
                     })}
                 </Carousel>
             </div>
