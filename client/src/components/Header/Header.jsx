@@ -25,8 +25,8 @@ const navItems = [
     path: '/'
   },
   {
-    title: 'Product',
-    path: '/product'
+    title: 'Products',
+    path: '/products'
   },
   {
     title: 'Collection',
@@ -38,8 +38,8 @@ const navItems = [
   },
   {
     title: 'Contact',
-    path: '/contact'
-  },
+    path: '/contacts'
+  }
 ]
 
 

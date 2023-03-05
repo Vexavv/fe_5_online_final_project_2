@@ -12,7 +12,7 @@ import styles from './HeaderBanner.module.scss'
 
 const HeaderToolbar = () => {
     return (
-        <Box disableGutters position="static" sx={{ backgroundColor: '#F5F5F5' }} >
+        <Box  position="static" sx={{ backgroundColor: '#F5F5F5' }} >
             <Container maxWidth="xl" >
                 <Box 
                  sx={{

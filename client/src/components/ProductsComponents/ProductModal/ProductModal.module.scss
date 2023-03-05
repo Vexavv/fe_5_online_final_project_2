@@ -52,6 +52,8 @@
         justify-content: center;
         max-height: 70px;
         width: 100%;
+        list-style: none;
+        overflow: scroll;
 
         img {
           max-width: 70px;
@@ -109,32 +111,7 @@
         display: flex;
         margin-bottom: 25px;
 
-        &Counter {
-          display: flex;
-          background-color: #F5F5F5;
-          padding: 0 10px;
-          border-radius: 5px;
-          cursor: pointer;
 
-          &Icon {
-            font-size: 24px;
-            font-weight: 700;
-            padding: 10px 0;
-            &:hover{
-              color:#ba933e;
-
-            }
-          }
-
-          span {
-            font-family: 'Red Hat Display';
-            font-weight: 700;
-            font-size: 24px;
-            line-height: 20px;
-            color: #1A1A1A;
-            padding: 10px 15px;
-          }
-        }
 
         &Btn {
           font-family: 'Red Hat Display';
@@ -143,7 +120,7 @@
           line-height: 20px;
           background-color: #1A1A1A;
           padding: 10px 30px;
-          margin-left: 15px;
+
           color: #ffffff;
           border: none;
           cursor: pointer;

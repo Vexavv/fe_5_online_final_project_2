@@ -5,6 +5,8 @@ const initialState = {
     status: null,
     error: '',
     display: true,
+    activeModal: false,
+    selectedProductId: null,
 
 }
 export const fetchAsyncProducts = createAsyncThunk(
@@ -29,6 +31,15 @@ const productsSlice = createSlice({
         changeDisplayList(state, action){
             state.display = true
         },
+        openModal(state, action){
+            state.activeModal= true
+        },
+        closeModal(state, action){
+            state.activeModal= false
+        },
+        getElement(state, action) {
+            state.selectedProductId = action.payload
+        },
     },
     extraReducers: builder => {
         builder
@@ -46,5 +57,5 @@ const productsSlice = createSlice({
 
     }
 })
-export const {changeDisplay, changeDisplayList} = productsSlice.actions
+export const {changeDisplay, changeDisplayList,openModal,closeModal, getElement} = productsSlice.actions
 export default productsSlice.reducer;

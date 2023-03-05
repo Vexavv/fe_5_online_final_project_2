@@ -1,11 +1,21 @@
-
+import React from "react";
 import styles from './ProductModal.module.scss'
 import classNames from "classnames";
 import Button from "../../Button/Button";
 import {AiOutlineClose} from 'react-icons/ai';
-import {BiMinus, BiPlus} from "react-icons/bi";
+import {useSelector} from "react-redux";
 
-function ProductModal({active, closeModal, imageUrls, name, myCustomParam, color, currentPrice, quantity, brand }) {
+function ProductModal({active, closeModal}) {
+
+    //---------------------------------------------
+    const selectedProductId = useSelector((state) => state.products.selectedProductId);
+    const products = useSelector((state) => state.products.products);
+    const product = products.find((p) => p._id === selectedProductId);
+    //---------------------------------------------
+
+    if (!product) {
+        return console.log('Loading');
+    }
     return (
         <div className={active ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={closeModal}>
 
@@ -13,35 +23,28 @@ function ProductModal({active, closeModal, imageUrls, name, myCustomParam, color
                 <AiOutlineClose onClick={closeModal} className={styles.ModalContentClosed}/>
                 <div className={styles.ModalContentPicture}>
                     <img className={styles.ModalContentPictureImg}
-                         src={imageUrls[0]}
+                         src={product.imageUrls[0]}
                          alt="product"/>
-                    <div className={styles.ModalContentPictureCarousel}>
-                        <img src="https://cdn.shopify.com/s/files/1/0376/9440/6700/products/21_1.jpg?v=1598253084"
-                             alt="prop"/>
-                        <img src="https://cdn.shopify.com/s/files/1/0376/9440/6700/products/21_1.jpg?v=1598253084"
-                             alt="prop"/>
-                        <img src="https://cdn.shopify.com/s/files/1/0376/9440/6700/products/21_1.jpg?v=1598253084"
-                             alt="prop"/>
-                    </div>
+                    <ul className={styles.ModalContentPictureCarousel}>
+                        {product.imageUrls.map((img, index) => {
+                            return <li key={index}><img src={img} alt="product"/></li>
+                        })}
+                    </ul>
                 </div>
                 <div className={styles.ModalContentDescription}>
-                    <h3 className={styles.ModalContentDescriptionTitle}>{name}</h3>
-                    <span className={styles.ModalContentDescriptionText}>{myCustomParam}</span>
-                    <span className={styles.ModalContentDescriptionColor}>Color: {color}</span>
-                    <span className={styles.ModalContentDescriptionPrice}>${currentPrice}.00</span>
+                    <h3 className={styles.ModalContentDescriptionTitle}>{product.name}</h3>
+                    <span className={styles.ModalContentDescriptionText}>{product.myCustomParam}</span>
+                    <span className={styles.ModalContentDescriptionColor}>Color: {product.color}</span>
+                    <span className={styles.ModalContentDescriptionPrice}>${product.currentPrice}.00</span>
                     <div className={styles.ModalContentDescriptionCount}>
-                        <div className={styles.ModalContentDescriptionCountCounter} >
-                            <BiMinus className={styles.ModalContentDescriptionCountCounterIcon}/>
-                            <span>1</span>
-                            <BiPlus className={styles.ModalContentDescriptionCountCounterIcon}/>
-                        </div>
                         <Button className={styles.ModalContentDescriptionCountBtn} text="Add To Cart"/>
                     </div>
-                    <span className={styles.ModalContentDescriptionValues}>Availability: {quantity}</span>
-                    <span className={styles.ModalContentDescriptionValues}>Brand: {brand}</span>
+                    <span className={styles.ModalContentDescriptionValues}>Availability: {product.quantity}</span>
+                    <span className={styles.ModalContentDescriptionValues}>Brand: {product.brand}</span>
                 </div>
             </div>
         </div>
+
     )
 }
 
