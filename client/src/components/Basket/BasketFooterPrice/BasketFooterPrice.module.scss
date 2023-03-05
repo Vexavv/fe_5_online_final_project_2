@@ -1,0 +1,83 @@
+.BasketFooter {
+    padding: 20px 5px;
+    border: 1px solid #e1e1e1;
+    border-top: 0px;
+    background-color: #f7f7f7;
+    margin-bottom: 60px;
+
+    &Check {
+        color: #fff;
+        background-color: #ba933e;
+        border-radius: 4px;
+        border: #ba933e;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 9px 20px;
+        transition: all .35s ease;
+
+        &:hover {
+            background-color: #1a1a1a;
+        }
+    }
+
+    &Text {
+
+        font-size: 16px;
+        font-weight: 400;
+        color: #444444;
+        margin-bottom: 20px;
+
+    }
+
+    &Section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 0px 15px;
+
+        &Container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+
+            &Text {
+                margin-right: 10px;
+                font-size: 18px;
+                font-weight: 600;
+                color: #444444;
+                margin-bottom: 0;
+
+            }
+
+            &Price {
+                color: #ba933e;
+                font-weight: 600;
+                line-height: 24px;
+                font-size: 26px;
+                margin: 0 0 0 10px;
+                padding: 5px 0;
+            }
+        }
+    }
+
+    &Order {
+        display: inline-block;
+        padding: 8px 25px;
+        color: #444444;
+        margin-left: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border: 1px solid #e1e1e1;
+        ;
+        font-size: 14px;
+        line-height: 20px;
+        text-transform: uppercase;
+    }
+}
+
+.BasketPrice {
+    &Container {
+        display: block;
+    }
+}
