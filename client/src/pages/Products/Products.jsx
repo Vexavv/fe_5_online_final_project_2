@@ -7,11 +7,18 @@ import Loader from '../../components/Loader/Loader'
 import ProductsBanner from "../../components/ProductsComponents/ProductsBaner/ProductsBanner";
 import ProductsNav from "../../components/ProductsComponents/ProductsNav/ProductsNav";
 import ProductsContent from "../../components/ProductsComponents/ProductsContent/ProductsContent";
+import ProductFilter from "../../components/ProductsComponents/ProductsFilter/ProductFilter";
 
 function Products(props) {
     const dispatch = useDispatch()
     const products = useSelector(state => state.products.products)
     const status = useSelector(state => state.products.status)
+
+
+    // open mobile filter
+
+
+
 
     useEffect(() => {
         dispatch(fetchAsyncProducts())
@@ -28,7 +35,9 @@ function Products(props) {
                     </section>
                     <section>
                         <div className={styles.ProductWrapper}>
-                            <div className={styles.ProductWrapperFilter}></div>
+                            <div className={styles.ProductWrapperFilter}>
+                                <ProductFilter/>
+                            </div>
                             <div className={styles.ProductWrapperContent}>
                                 <ProductsNav/>
                                 <ProductsContent products={products}/>

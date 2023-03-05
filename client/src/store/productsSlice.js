@@ -4,7 +4,7 @@ const initialState = {
     products: [],
     status: null,
     error: '',
-    display: true
+    display: true,
 
 }
 export const fetchAsyncProducts = createAsyncThunk(
@@ -28,7 +28,7 @@ const productsSlice = createSlice({
         },
         changeDisplayList(state, action){
             state.display = true
-        }
+        },
     },
     extraReducers: builder => {
         builder

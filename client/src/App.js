@@ -1,14 +1,14 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import Home from "./pages/Home/Home";
-import Basket from "./components/Basket/Basket";
-// import Page_1 from "./pages/Page_1/Page_1";
-// import Page_2 from "./pages/Page_2/Page_2";
-// import Page_3 from "./pages/Page_3/Page_3";
+
+import Home from "./pages/Home/Home"
+
+
 
 // import Page1 from "./pages/Wihslist/Wishlist";
-import Collections from "./pages/Collections/Collections";
+import MyAccount from './pages/MyAccount/MyAccount';
+import Collection from "./pages/Collection/Collection";
 import Contacts from "./pages/Contacts/Contacts";
 import Products from "./pages/Products/Products";
 import Login from "./pages/LoginPage/Login";
@@ -18,23 +18,24 @@ import Header from "./components/Header/Header";
 import Account from "./components/Account/Account";
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          {/* <Route path="page1" element={<Page_1/>}/> */}
-          {/* <Route path="page2" element={<Page_2/>}/> */}
-          {/* <Route path="page3" element={<Page_3/>}/> */}
-          <Route path="/product" element={<Products />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/collections" element={<Collections />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Basket />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Route>
-      </Routes>
+
+    <div className="App">      
+        <Routes>
+            <Route path='/' element={<Layout/>}>
+                <Route index element={<Home/>}/>  
+                {/* <Route path="page1" element={<Page_1/>}/> */}
+                {/* <Route path="page2" element={<Page_2/>}/> */}
+                {/* <Route path="page3" element={<Page_3/>}/> */}
+                <Route path="/myaccount" element={<MyAccount/>}/>
+                <Route path="/product" element={<Products/>}/>
+                <Route path="/collections" element={<Collection/>}/>
+                <Route path="/contacts" element={<Contacts/>}/>
+                <Route path="/login" element={<Login />} />
+                <Route path="/cart" element={<Cart/>} />
+                <Route path="*" element={<PageNotFound/>}/>
+            </Route>
+        </Routes>
+
     </div>
   );
 }
