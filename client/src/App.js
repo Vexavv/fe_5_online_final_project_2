@@ -1,10 +1,11 @@
+import React from "react";
+
+
 import './App.css';
 import {Routes, Route,} from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Home from "./pages/Home/Home"
 import OneProduct from './pages/OneProduct/OneProduct'
-
-// import Page1 from "./pages/Wihslist/Wishlist";
 import MyAccount from './pages/MyAccount/MyAccount';
 import Collection from "./pages/Collection/Collection";
 import Contacts from "./pages/Contacts/Contacts";
@@ -12,10 +13,26 @@ import Products from "./pages/Products/Products";
 import Login from "./pages/LoginPage/Login";
 import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import Header from './components/Header/Header';
+
+
+
+import {closeModal} from "./store/productsSlice";
+import {useDispatch, useSelector} from "react-redux";
+import ProductModal from "./components/ProductsComponents/ProductModal/ProductModal";
+
 function App() {
+
+    //------------ Модальне вікно продукту----------------------------
+    const dispatch = useDispatch();
+    const activeModal = useSelector(state => state.products.activeModal)
+    const handlerCloseModal = ()=>{
+        dispatch(closeModal())
+    }
+
+//--------------------------------------------------------------------
+
   return (
-    <div className="App">      
+    <div className="App">
         <Routes>
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
@@ -29,6 +46,7 @@ function App() {
                 <Route path="*" element={<PageNotFound/>}/>
             </Route>
         </Routes>
+        <ProductModal active={activeModal} closeModal={handlerCloseModal}/>
     </div>
   );
 }
