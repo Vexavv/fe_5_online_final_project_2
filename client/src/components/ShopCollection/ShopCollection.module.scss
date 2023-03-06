@@ -1,10 +1,22 @@
 .container{
     width: 100%;
-    background-color: #f5f5f5;
     height: 447px;
     position: relative;
-    color: #312f2f;
+    color: #312f2f;    
+    background: linear-gradient(#ba933e 0 0) var(--p,0)/var(--p,0) no-repeat;
+    background-color: #f5f5f5;
+    transition: .4s,background-position 0s;
+    
+    &:hover {
+    --p: 100%;
+    color: #fff;
+
+      div span{
+        color: #fff;
+      }
+    }
 }
+
 img{
     float: left;
 }
