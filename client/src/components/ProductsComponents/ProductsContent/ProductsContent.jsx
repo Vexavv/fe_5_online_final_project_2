@@ -18,9 +18,6 @@ function ProductsContent() {
         dispatch(openModal())
         // console.log(product)
     }
-    const handlerCloseModal = ()=>{
-        dispatch(closeModal())
-    }
 //-------------------------------------------------------------
     return (
         <>
@@ -31,7 +28,6 @@ function ProductsContent() {
                 })}
             </ul>
             <ProductPagination/>
-            <ProductModal active={activeModal} closeModal={handlerCloseModal}/>
         </>
 
     );
