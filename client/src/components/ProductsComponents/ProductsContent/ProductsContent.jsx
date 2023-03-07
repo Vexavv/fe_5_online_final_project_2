@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './ProductsContent.module.scss'
 import ProductCard from "../ProductCard/ProductCard";
 import { useSelector, useDispatch} from "react-redux";
-import ProductPagination from "../ProductPagination/ProductPagination";
 import {getElement, openModal} from "../../../store/productsSlice";
 
 function ProductsContent() {

@@ -7,7 +7,7 @@ const initialState = {
     display: true, // зміна від ображення карток продуктів
     activeModal: false, // модальне вікно
     selectedProductId: null, // отримання необхідного id для від ображення продукту в модальному вікні
-    radioButtonValue: 'all'
+    radioButtonValue: 'all', //значення перемикача categories
 
 }
 export const fetchAsyncProducts = createAsyncThunk(
