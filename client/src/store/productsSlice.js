@@ -4,9 +4,10 @@ const initialState = {
     products: [],
     status: null,
     error: '',
-    display: true,
-    activeModal: false,
-    selectedProductId: null,
+    display: true, // зміна від ображення карток продуктів
+    activeModal: false, // модальне вікно
+    selectedProductId: null, // отримання необхідного id для від ображення продукту в модальному вікні
+    radioButtonValue: 'all'
 
 }
 export const fetchAsyncProducts = createAsyncThunk(
@@ -25,17 +26,20 @@ const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        changeDisplay(state, action){
+        changeRadioButton(state, action){
+            state.radioButtonValue = action.payload.target.value
+        },
+        changeDisplay(state, action) {
             state.display = false
         },
-        changeDisplayList(state, action){
+        changeDisplayList(state, action) {
             state.display = true
         },
-        openModal(state, action){
-            state.activeModal= true
+        openModal(state, action) {
+            state.activeModal = true
         },
-        closeModal(state, action){
-            state.activeModal= false
+        closeModal(state, action) {
+            state.activeModal = false
         },
         getElement(state, action) {
             state.selectedProductId = action.payload
@@ -57,5 +61,5 @@ const productsSlice = createSlice({
 
     }
 })
-export const {changeDisplay, changeDisplayList,openModal,closeModal, getElement} = productsSlice.actions
+export const {changeDisplay, changeDisplayList, openModal, closeModal, getElement,  changeRadioButton} = productsSlice.actions
 export default productsSlice.reducer;
