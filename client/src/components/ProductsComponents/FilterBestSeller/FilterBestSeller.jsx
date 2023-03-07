@@ -59,4 +59,4 @@ function FilterBestSeller(props) {
 
 
 
-// export default FilterBestSeller;
+export default FilterBestSeller;
