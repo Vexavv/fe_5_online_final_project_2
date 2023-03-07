@@ -20,7 +20,6 @@ function ProductFilter(props) {
                 <ProductCheckBox/>
             </div>
             <div className={styles.FilterBest}>
-                <h3>Best sellers</h3>
                 <FilterBestSeller/>
             </div>
 
