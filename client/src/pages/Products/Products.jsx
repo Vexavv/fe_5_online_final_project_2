@@ -21,13 +21,13 @@ function Products(props) {
                             <div className={styles.ProductWrapperContent}>
                                 <ProductsNav/>
                                 <ProductsContent />
-
                             </div>
                         </div>
+                        <div className={styles.ProductWrapperPagination}>
+                            <ProductPagination/>
+                        </div>
                     </section>
-                    <div className={styles.ProductWrapperPagination}>
-                        <ProductPagination/>
-                    </div>
+
 
                 </main>
             );

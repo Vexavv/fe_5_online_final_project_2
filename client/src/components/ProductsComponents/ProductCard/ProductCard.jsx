@@ -5,26 +5,24 @@ import Button from '../../Button/Button'
 import RatingStar from "./RatingStar/RatingStar";
 import {HiOutlineShoppingBag} from 'react-icons/hi';
 import {TfiSearch} from 'react-icons/tfi';
-// import ProductModal from '../ProductModal/ProductModal'
+
 import {Link} from "react-router-dom";
-// import {openModal, closeModal, getElement} from "../../../store/productsSlice";
+
 
 function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onClick}) {
 
     const display = useSelector(state => state.products.display)
-    // const [activeModal, setActiveModal] = useState(false)
-    // const handlerToggleModal = () => {
-    //     setActiveModal(current => !current)
-    //
-    // }
-
-    ///----------------------------------------------------
-
+    const [hovered, setHovered] = useState(null);
 
     return (
         <>
             {display ? (<li className={styles.Card}>
-                <img className={styles.CardImg} src={imageUrls[0]} alt="product"/>
+                <img className={styles.CardImg} src={hovered === product._id && product.imageUrls.length > 1
+                    ? product.imageUrls[1]
+                    : product.imageUrls[0]}
+                     onMouseLeave={() => setHovered(null)}
+                     onMouseEnter={() => setHovered(product._id)}
+                     alt={name}/>
                 <div className={styles.CardButton}>
                    <Link to="/product"><HiOutlineShoppingBag className={styles.CardButtonIcon}/></Link>
                     <TfiSearch onClick={onClick} className={styles.CardButtonIcon}/>

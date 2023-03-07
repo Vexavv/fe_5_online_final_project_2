@@ -19,6 +19,8 @@ import Loader from './components/Loader/Loader'
 
 
 function App() {
+
+    //переніс Loader та запрос products, додав модальне вікно продуктів
     const dispatch = useDispatch()
     const status = useSelector(state => state.products.status)
     const activeModal = useSelector(state => state.products.activeModal)
