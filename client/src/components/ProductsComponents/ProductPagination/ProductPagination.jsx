@@ -12,7 +12,7 @@ const theme = createTheme({
 });
 function ProductPagination(props) {
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme} sx={{marginLeft: "200px"}}>
         <Stack sx={{padding:"15px 0 50px 0"}} spacing={2}>
             <Pagination color="gold" count={4} variant="outlined" shape="rounded" />
         </Stack>
