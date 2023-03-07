@@ -3,14 +3,16 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { TfiSearch } from "react-icons/tfi";
 import styles from "./BestsellerItem.module.scss";
 
-function BestsellerItem({ item }) {
+
+
+function BestsellerItem({ item, onClick }) {
   const [hovered, setHovered] = useState(null);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.btnWrapper}>
         <HiOutlineShoppingBag className={styles.btnWrapperIcon} />
-        <TfiSearch className={styles.btnWrapperIcon} />
+        <TfiSearch className={styles.btnWrapperIcon} onClick={onClick} />
       </div>
       <a href='/page'>
         <img

@@ -31,8 +31,9 @@ const responsive = {
 
 
 function SmallCarousel(props) {
-    const products = useSelector((state) => state.products.products);
     const dispatch = useDispatch()
+    const products = useSelector((state) => state.products.products);
+
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())
