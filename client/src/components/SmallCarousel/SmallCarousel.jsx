@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styles from './SmallCarousel.module.scss'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
 import SmallCarouselItem from "./SmallCarouselItem";
-// import ProductModal from "../ProductsComponents/ProductModal/ProductModal";
 import {useDispatch, useSelector} from "react-redux";
 import {getElement, openModal} from "../../store/productsSlice";
 
@@ -32,26 +31,15 @@ const responsive = {
 
 
 function SmallCarousel(props) {
-
+    const products = useSelector((state) => state.products.products);
     const dispatch = useDispatch()
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())
-        console.log(product)
     }
 
-    const [state, setState] = useState([]) ;
+    const trending = products.filter(item => item.trendingProduct)
 
-    useEffect(() => {
-        fetch('http://localhost:3001/api/products')
-            .then(res => res.json())
-            .then(list => {
-                setState(list)
-            })
-    }, [])
-    console.log(state)
-    const trending = state.filter(item => item.trendingProduct)
-    console.log(trending)
     return (
         <div className={styles.Slider}>
             <div className={styles.SliderDescription}>
@@ -68,7 +56,6 @@ function SmallCarousel(props) {
                           rewind={true}
                           keyBoardControl={true}
                           draggable
-                          // infinite
                 >
 
                     {trending.map(product => {

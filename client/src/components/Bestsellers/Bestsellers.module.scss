@@ -30,10 +30,6 @@
         margin: 10px;
         position: relative;
 
-        &:hover{
-            zoom: 0.9;
-        }
-
         span{
             position: absolute;
             left: 20px;
@@ -58,6 +54,11 @@
             @media (min-width:901px) {
                 width: 322px;
                 height: 400px;
+            }
+
+            &:hover{
+                opacity: 0.2;
+                transition: opacity 0.25s ease-in-out;
             }
         }
 
