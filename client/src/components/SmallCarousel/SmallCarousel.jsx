@@ -21,7 +21,7 @@ const responsive = {
     },
     tablet: {
         breakpoint: {max: 900, min: 601},
-        items: 1
+        items: 2
     },
     mobile: {
         breakpoint: {max: 600, min: 0},
@@ -56,6 +56,7 @@ function SmallCarousel(props) {
                           rewind={true}
                           keyBoardControl={true}
                           draggable
+                          showDots={true}
                 >
 
                     {trending.map(product => {

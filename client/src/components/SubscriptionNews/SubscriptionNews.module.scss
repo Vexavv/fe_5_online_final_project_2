@@ -44,6 +44,7 @@
 
         &Form {
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           width: 100%;
@@ -71,7 +72,8 @@
             color: #ffffff;
             background-color: #1a1a1a;
             padding: 8px 35px;
-            margin-left: 20px;
+            //margin-left: 20px;
+            margin-top: 15px;
             border-radius: 5px;
             cursor: pointer;
             border:none;
@@ -95,4 +97,26 @@
       }
     }
   }
+}
+@media (min-width: 900px) {
+  .Subscription {
+
+    &Container {
+
+      &Wrapper {
+
+        &Content {
+
+          &Form {
+            flex-direction: row;
+            &Button {
+              margin: 0 0 0 20px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
 }
