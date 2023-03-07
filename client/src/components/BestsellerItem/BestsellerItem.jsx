@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import { TfiSearch } from "react-icons/tfi";
+import styles from "./BestsellerItem.module.scss";
 
-function Item({ item }) {
+function BestsellerItem({ item }) {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
+      <div className={styles.btnWrapper}>
+        <HiOutlineShoppingBag className={styles.btnWrapperIcon} />
+        <TfiSearch className={styles.btnWrapperIcon} />
+      </div>
       <a href='/page'>
         <img
           src={
@@ -25,4 +32,4 @@ function Item({ item }) {
   );
 }
 
-export default Item;
+export default BestsellerItem;

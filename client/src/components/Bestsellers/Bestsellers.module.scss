@@ -28,50 +28,5 @@
 .flexWrapper{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-
-    div{
-        margin: 10px;
-        position: relative;
-
-        span{
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            background-color: #ba933e;
-            color: #fff;
-            padding: 3px 7px;
-            border-radius: 5px;
-        }
-
-        img{
-            cursor: pointer;
-
-            @media (max-width:600px) {
-                width: 150px;
-                height: 190px;
-            }
-            @media (min-width:601px) {
-                width: 250px;
-                height: 300px;
-            }
-            @media (min-width:901px) {
-                width: 322px;
-                height: 400px;
-            }
-
-            &:hover{
-                opacity: 0.2;
-                transition: opacity 0.25s ease-in-out;
-            }
-        }
-
-        p{
-            color: #ba933e;
-        }
-
-        s{
-            color: #666666;
-        }
-    }
+    justify-content: center;   
 }

@@ -1,22 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import styles from "./Bestsellers.module.scss";
-import Item from "../Item/Item";
+import BestsellerItem from "../BestsellerItem/BestsellerItem";
 
 function Bestsellers(props) {
-  const [state, setState] = useState([]);
-
-  const filteredItems = useMemo(
-    () => state.filter((el) => el.bestSeller),
-    [state.length]
-  );
-
-  useEffect(() => {
-    fetch("http://localhost:3001/api/products")
-      .then((res) => res.json())
-      .then((list) => {
-        setState(list);
-      });
-  }, []);
+  const products = useSelector((state) => state.products.products);
+  const filteredItems = products.filter((el) => el.bestSeller);
 
   return (
     <div className={styles.container}>
@@ -24,7 +13,7 @@ function Bestsellers(props) {
       <p>Top sale in this week</p>
       <div className={styles.flexWrapper}>
         {filteredItems.map((item) => (
-          <Item key={item._id} item={item} />
+          <BestsellerItem key={item._id} item={item} />
         ))}
       </div>
     </div>
