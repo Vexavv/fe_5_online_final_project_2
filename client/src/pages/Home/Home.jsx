@@ -12,7 +12,7 @@ function Home(props) {
         <main>
             <BigCarousel/>
             <SmallCarousel/>
-            <Link to='/product'><ShopCollection/></Link>
+            <Link to='/products'><ShopCollection/></Link>
             <Bestsellers/>
             <SubscriptionNews/>
         </main>

@@ -5,28 +5,26 @@ import Button from '../../Button/Button'
 import RatingStar from "./RatingStar/RatingStar";
 import {HiOutlineShoppingBag} from 'react-icons/hi';
 import {TfiSearch} from 'react-icons/tfi';
-// import ProductModal from '../ProductModal/ProductModal'
+import {getElement} from "../../../store/productsSlice";
 import {Link} from "react-router-dom";
-// import {openModal, closeModal, getElement} from "../../../store/productsSlice";
 
-function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onClick}) {
 
+function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onClick, _id}) {
+    const dispatch= useDispatch()
     const display = useSelector(state => state.products.display)
-    // const [activeModal, setActiveModal] = useState(false)
-    // const handlerToggleModal = () => {
-    //     setActiveModal(current => !current)
-    //
-    // }
-
-    ///----------------------------------------------------
-
+    const [hovered, setHovered] = useState(null);
 
     return (
         <>
             {display ? (<li className={styles.Card}>
-                <img className={styles.CardImg} src={imageUrls[0]} alt="product"/>
+                <img className={styles.CardImg} src={hovered === _id && imageUrls.length > 1
+                    ? imageUrls[1]
+                    : imageUrls[0]}
+                     onMouseLeave={() => setHovered(null)}
+                     onMouseEnter={() => setHovered(_id)}
+                     alt={name}/>
                 <div className={styles.CardButton}>
-                   <Link to="/product"><HiOutlineShoppingBag className={styles.CardButtonIcon}/></Link>
+                   <Link to="/product"><HiOutlineShoppingBag className={styles.CardButtonIcon} onClick={()=>{dispatch(getElement(product._id))}}/></Link>
                     <TfiSearch onClick={onClick} className={styles.CardButtonIcon}/>
                 </div>
                 <div className={styles.CardDescription}>
@@ -41,7 +39,12 @@ function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onC
                     </div>
                 </div>
             </li>) : (<li className={styles.Row}>
-                <img className={styles.RowImg} src={imageUrls[0]} alt="product"/>
+                <img className={styles.RowImg} src={hovered === _id && imageUrls.length > 1
+                    ? imageUrls[1]
+                    : imageUrls[0]}
+                     onMouseLeave={() => setHovered(null)}
+                     onMouseEnter={() => setHovered(_id)}
+                     alt={name}/>
                 <div className={styles.RowDescription}>
                     <h5 className={styles.RowDescriptionName}>{name}</h5>
                     <span className={styles.RowDescriptionPrice}>${currentPrice}.00</span>
