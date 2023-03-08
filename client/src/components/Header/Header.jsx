@@ -1,47 +1,76 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 
 // import components
-import NavigationMobile from './NavigationMobile/NavigationMobile';
+
 import Navigation from './Navigation/Navigation';
 import HeaderBanner from './HeaderBanner/HeaderBannerr';
 import Logo from './Logo/Logo'
-import ButtonIconsGroup from './ButtonIconsGroup/ButtonIconsGroup';
-import Search from './Search/Search'
+import SearchDialog from '../SearchDialog/SearchDialog'
+import Login from '../Login/Login'
 
 //import from materialUI
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import IconButton from '@mui/material/IconButton';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
-import Container from '@mui/material/Container';
+
+import { AppBar, Box, Toolbar, ButtonGroup, IconButton, Drawer, Divider, Container, Badge,} from '@mui/material';
 
 // import icons
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
+
+// data Menu
+const navItems = [
+  {
+    title: 'Home',
+    path: '/'
+  },
+  {
+    title: 'Products',
+    path: '/products'
+  },
+  {
+    title: 'Collection',
+    path: '/collection'
+  },
+  {
+    title: 'Sale',
+    path: '/sale'
+  },
+  {
+    title: 'Contact',
+    path: '/contacts'
+  }
+]
 
 
 const Header = (props) => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isOpenSearch, setisOpenSearch] = useState(false);
+
   
   const mobileMenuToggle = () => {
     setIsMobileMenuOpen(current => !current)
-    console.log(isMobileMenuOpen);
+    
   }  
+
+  const toggleSearch =()=>{
+    setisOpenSearch(current => !current)    
+  }
 
   return (
     <>
       <HeaderBanner />
-      <AppBar position="fixed"
+      <AppBar position="static"
         mt={3}
         sx={{backgroundColor: 'white',          
-          boxShadow: 'none'
+          boxShadow: 'none',
+          
         }}>
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
+          <Toolbar disableGutters sx={{
+            justifyContent:'space-between'
+          }} >
 
             {/*burger for mobile adaptive */}
             <Box sx={{
@@ -59,10 +88,11 @@ const Header = (props) => {
                   aria-haspopup="true"
                   onClick={mobileMenuToggle}
                   color="black"
+
                 >
                   {!isMobileMenuOpen && <MenuIcon />}
                 </IconButton>
-                <Search />
+                <SearchDialog isOpenSearch onClick={()=>{toggleSearch()}}/>
               </ButtonGroup>
             </Box>
 
@@ -124,7 +154,7 @@ const Header = (props) => {
                 </IconButton>
 
                 <Divider sx={{ mb: 2 }} />
-                <NavigationMobile onClick={() => { mobileMenuToggle() }} />
+                <Navigation onClick={() => {mobileMenuToggle()}} navItems={navItems}/>
 
               </Box>
             </Drawer>
@@ -132,35 +162,55 @@ const Header = (props) => {
             {/* main logo */}
             <Logo />
 
-                {/*icons for tab */}
+                  {/* navbar for desktop */}
+            <Box sx={{ flexGrow: 1, 
+              display: { xs: 'none', sm: 'none', md: 'table' },
+              textAlign:'center',
+              justifyContent: 'space-evenly', 
+              alignItems: 'center'
+              }}>
+              <Navigation navItems={navItems} />
+            </Box>
+
+                {/*icons for tab and desc */}
             <Box sx={{
               flexGrow: 1,
-              display: { xs: 'flex', sm: 'none', md: 'none' },
-              flexDirection: 'column',
+              display: 'flex',
+              textAlign:'center',
+              justifyContent: {xs:'right', md:'space-evenly',},               
               alignItems: 'center',
             }}>
 
-              <ButtonIconsGroup />
+             <Login/>
+             <Box sx={{display:{xs:'none', sm:'flex', md:'flex'}}}>
+             <SearchDialog isOpenSearch onClick={()=>{toggleSearch()}} />
+             </Box>
+             
+             <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                component={Link}  to='/cart'
+                color="black"
+                sx={{
+                    '&:hover': {color: '#BA933E'}
+                }}
+            >
+                <Badge badgeContent={4} sx={{
+                    color: "gray",
+                    '&:hover': {color: '#BA933E'}
+                }}>
+                    <AddShoppingCartIcon />
+                </Badge>
+            </IconButton>
 
             </Box>
 
-            {/* navbar for desktop */}
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-              <Navigation />
-            </Box>
-            <Box sx={{
-              flexGrow: 1,
-              display: { xs: 'none', sm: 'flex', md: 'flex' },
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}>
-              
-              <ButtonGroup variant="text" aria-label="text button group">
-                <Search />
-                <ButtonIconsGroup />
-              </ButtonGroup>
+          
+           
 
-            </Box>
+          
           </Toolbar>
         </Container>
       </AppBar>

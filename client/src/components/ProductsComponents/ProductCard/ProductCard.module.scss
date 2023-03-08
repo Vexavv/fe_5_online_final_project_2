@@ -26,11 +26,15 @@
     top: 5%;
     right: 10%;
 
-    &Icon:hover {
-      background-color: #ba933e;
-      color: #F5F5F5;
-      transition: all .5s ease;
+    &Icon{
+      color:black;
+      &:hover {
+        background-color: #ba933e;
+        color: #F5F5F5;
+        transition: all .5s ease;
+      }
     }
+
 
   }
 
