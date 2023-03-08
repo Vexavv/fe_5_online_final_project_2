@@ -11,10 +11,7 @@ function Home(props) {
         <main>
             <BigCarousel/>
             <SmallCarousel/>
-
-
             <Link to='/products'><ShopCollection/></Link>
-
             <Bestsellers/>
             <SubscriptionNews/>
 
