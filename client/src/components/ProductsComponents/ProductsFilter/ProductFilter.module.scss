@@ -20,16 +20,10 @@
     flex-direction: column;
   }
   &Best{
+    border-bottom: 1px solid #c2c0c0 ;
+    padding-bottom: 30px;
+    box-sizing: border-box;
 
-    h3{
-      font-family: "Red Hat Display", sans-serif;
-      font-size: 18px;
-      line-height: 22px;
-      font-weight: 700;
-      color: #1A1A1A;
-      padding: 50px 0 10px 0;
-      margin-bottom: 15px;
-    }
 
   }
 }

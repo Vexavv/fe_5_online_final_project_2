@@ -14,9 +14,22 @@
       padding: 0 15px;
       width: 100%;
     }
+
+    &Pagination {
+      padding: 0 15px;
+
+    }
   }
 }
-
+@media (min-width: 600px) {
+  .Product {
+    &Wrapper {
+      &Pagination {
+        margin-left: 25%;
+      }
+    }
+  }
+}
 
 @media (min-width: 900px) {
   .Product {
