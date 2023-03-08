@@ -9,7 +9,7 @@ import {getElement} from "../../../store/productsSlice";
 import {Link} from "react-router-dom";
 
 
-function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onClick, _id}) {
+function ProductCard({name, imageUrls, currentPrice, description, product, onClick, _id}) {
     const dispatch= useDispatch()
     const display = useSelector(state => state.products.display)
     const [hovered, setHovered] = useState(null);
@@ -51,7 +51,7 @@ function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onC
                     <ul className={styles.RowDescriptionLabel}>{imageUrls.map((item, index) => {
                         return <li key={index}><img src={item} alt="product"/></li>
                     })}</ul>
-                    <span className={styles.RowDescriptionParam}>{myCustomParam}</span>
+                    <span className={styles.RowDescriptionParam}>{description}</span>
                 </div>
                 <div className={styles.RowNav}>
                     <RatingStar/>

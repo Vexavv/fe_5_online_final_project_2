@@ -89,7 +89,7 @@ export default function OneProduct() {
               </Typography>
 
               <Typography align="left" sx={{ mt: '20px' }}>
-                {product.myCustomParam}
+                {product.description}
               </Typography>
               <Typography variant="h6" color="#ba933e" align="left" m="30px 0">
                 ${product.currentPrice}.00

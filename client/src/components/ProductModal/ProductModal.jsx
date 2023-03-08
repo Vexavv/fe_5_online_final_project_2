@@ -6,7 +6,7 @@ import {AiOutlineClose} from 'react-icons/ai';
 import {useSelector, useDispatch} from "react-redux";
 import {closeModal} from "../../store/productsSlice";
 
-function ProductModal({active,}) {
+function ProductModal({active}) {
 const dispatch = useDispatch()
 
     const selectedProductId = useSelector((state) => state.products.selectedProductId);
@@ -34,7 +34,7 @@ const dispatch = useDispatch()
                 </div>
                 <div className={styles.ModalContentDescription}>
                     <h3 className={styles.ModalContentDescriptionTitle}>{product.name}</h3>
-                    <span className={styles.ModalContentDescriptionText}>{product.myCustomParam}</span>
+                    <span className={styles.ModalContentDescriptionText}>{product.description}</span>
                     <span className={styles.ModalContentDescriptionColor}>Color: {product.color}</span>
                     <span className={styles.ModalContentDescriptionPrice}>${product.currentPrice}.00</span>
                     <div className={styles.ModalContentDescriptionCount}>
