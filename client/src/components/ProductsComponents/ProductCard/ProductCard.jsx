@@ -5,12 +5,12 @@ import Button from '../../Button/Button'
 import RatingStar from "./RatingStar/RatingStar";
 import {HiOutlineShoppingBag} from 'react-icons/hi';
 import {TfiSearch} from 'react-icons/tfi';
-
+import {getElement} from "../../../store/productsSlice";
 import {Link} from "react-router-dom";
 
 
 function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onClick, _id}) {
-
+    const dispatch= useDispatch()
     const display = useSelector(state => state.products.display)
     const [hovered, setHovered] = useState(null);
 
@@ -24,7 +24,7 @@ function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onC
                      onMouseEnter={() => setHovered(_id)}
                      alt={name}/>
                 <div className={styles.CardButton}>
-                   <Link to="/product"><HiOutlineShoppingBag className={styles.CardButtonIcon}/></Link>
+                   <Link to="/product"><HiOutlineShoppingBag className={styles.CardButtonIcon} onClick={()=>{dispatch(getElement(product._id))}}/></Link>
                     <TfiSearch onClick={onClick} className={styles.CardButtonIcon}/>
                 </div>
                 <div className={styles.CardDescription}>

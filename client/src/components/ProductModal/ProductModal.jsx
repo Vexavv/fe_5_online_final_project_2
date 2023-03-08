@@ -6,7 +6,7 @@ import {AiOutlineClose} from 'react-icons/ai';
 import {useSelector, useDispatch} from "react-redux";
 import {closeModal} from "../../store/productsSlice";
 
-function ProductModal({active, }) {
+function ProductModal({active,}) {
 const dispatch = useDispatch()
 
     const selectedProductId = useSelector((state) => state.products.selectedProductId);

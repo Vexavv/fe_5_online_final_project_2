@@ -34,7 +34,7 @@ function SmallCarousel(props) {
     const dispatch = useDispatch()
     const products = useSelector((state) => state.products.products);
 
-    function handleProductClick(product) {
+    const handleProductClick = (product)=> {
         dispatch(getElement(product));
         dispatch(openModal())
     }
@@ -61,7 +61,7 @@ function SmallCarousel(props) {
                 >
 
                     {trending.map(product => {
-                        return <SmallCarouselItem {...product} key={product._id}
+                        return <SmallCarouselItem {...product} key={product._id} product={product}
                                                   onClick={()=>handleProductClick(product._id)}/>
                     })}
                 </Carousel>

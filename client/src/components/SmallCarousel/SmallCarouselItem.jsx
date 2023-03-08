@@ -6,9 +6,15 @@ import Typography from '@mui/material/Typography';
 import styles from './SmallCarousel.module.scss'
 import {HiOutlineShoppingBag} from 'react-icons/hi';
 import {TfiSearch} from 'react-icons/tfi';
+import {getElement} from "../../store/productsSlice";
+import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
+
+function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, product}) {
 
 
-function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id}) {
+
+
     const [hovered, setHovered] = useState(null);
     return (
             <Card sx={{width:{xs:"350px", sm: "250px", md:"335px"}, border: "none", boxShadow: 0, margin:"0 auto",cursor:"pointer" }}>
@@ -23,7 +29,7 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id}) {
                            onMouseEnter={() => setHovered(_id)}
                     title={name}>
                     <div className={styles.WrapperIcon}>
-                        <HiOutlineShoppingBag className={styles.WrapperIconBtn}/>
+                       <HiOutlineShoppingBag className={styles.WrapperIconBtn} />
                         <TfiSearch className={styles.WrapperIconBtn} onClick={onClick}/>
                     </div>
                 </CardMedia>
