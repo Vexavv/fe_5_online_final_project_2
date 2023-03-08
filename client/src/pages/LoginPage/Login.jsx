@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as yup from 'yup';
 import Button from '../../components/Button/Button'
+import styles from './LoginPage.module.scss'
 
-const loginLink = "true"
-function Login(loginLink) {
+// const loginLink = "true"
+function Login() {
 
- const [isLoginPage, setisLoginPage] = useState("true")
+//  const [isLoginPage, setisLoginPage] = useState("true")
 
     const initialValues= {
         firstName:'',
@@ -18,29 +19,33 @@ function Login(loginLink) {
         firstName: yup.string().required('this field is required'),
         lastName: yup.string().required('this field is required'),
         email: yup.string().email('the address is filled in with an error').required('this field is required'),
-        password: yup.string().password()
+        password: yup.string().min(8).required('password must contain at least 8 characters')
     })  
    
     return (
         
-        <div className="loginPage">
+        <div className={styles.loginPage}>
 
            <Formik
+           
           initialValues={initialValues}
           validationSchema={validationSchema}
            onSubmit={()=>{}}
            >
-            {(props)=>(
-            <Form action="">
-                <Field type="text" name ="firstName" placeholder="First Name"/>
+            {({isValid})=>(
+            <Form className={styles.loginPageForm}>
+                <h2 className={styles.loginPageFormTitle}>Login</h2>
+                <h2 className={styles.loginPageFormTitle}>Create Account</h2>
+                <Field className={styles.loginPageFormInput} type="text" name ="firstName" placeholder="First Name"/>
                 <ErrorMessage name ="firstName"/>
-                <Field type="text" name ="lastName" placeholder="Last Name"/>
+                <Field className={styles.loginPageFormInput} type="text" name ="lastName" placeholder="Last Name"/>
                 <ErrorMessage name ="lastName"/>
-                <Field type="text" name ="email" placeholder="Email"/>
+                <Field className={styles.loginPageFormInput} type="text" name ="email" placeholder="Email"/>
                 <ErrorMessage name ="email"/>
-                <Field type="password" name ="password" placeholder="Password"/>
+                <Field className={styles.loginPageFormInput} type="password" name ="password" placeholder="Password"/>
                 <ErrorMessage name ="password"/>
-                <Button type="submit" text={isLoginPage ? "Sign in":"Create an account"}/>
+                {/* <Button type="submit" text={isLoginPage ? "Sign in":"Create an account"}/> */}
+                <Button type="submit" text="submit" disabled={!isValid}/>
             </Form>
             )}
             </Formik>      

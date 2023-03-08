@@ -1,0 +1,36 @@
+.loginPage{   
+    width: 100vw;
+    height: 80vh;
+    
+
+    &Form{
+        width: 50%;
+        margin: 0 auto;      
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 4fr;
+        gap: 10px;
+        border-radius: 3px;
+        box-shadow: 0 3px 1px 2px #e1e1e1;
+        padding: 30px;
+        font-family: 'Red Hat Display';
+        font-size: 16px;
+        &Title{
+           line-height: 20px;
+           text-align: center;
+           font-family: 'Red Hat Display';
+           font-weight: bold; 
+            color:#444;
+        }
+        &Input{
+            
+            box-sizing: border-box;
+    padding: 9px 20px;
+    border-radius: 2px;
+    border: 1px solid #e1e1e1;
+    margin: 10px 0;
+    font-family: 'Red Hat Display';
+        }
+        
+    }
+}
