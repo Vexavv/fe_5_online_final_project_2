@@ -55,7 +55,7 @@ function ProductCard({name, imageUrls, currentPrice, myCustomParam, product, onC
                 </div>
                 <div className={styles.RowNav}>
                     <RatingStar/>
-                    <Button className={styles.RowNavButton} text='Select Options'/>
+                    <Link to="/product"><Button className={styles.RowNavButton} text='Select Options' onClick={()=>{dispatch(getElement(product._id))}}/></Link>
                     <Button onClick={onClick} className={styles.RowNavButton} text='Quick View'/>
                     <Button className={styles.RowNavButton} text='Add To Cart'/>
                 </div>
