@@ -12,27 +12,29 @@ import {Link} from "react-router-dom";
 
 function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, product}) {
 
-
+const dispatch = useDispatch()
 
 
     const [hovered, setHovered] = useState(null);
     return (
             <Card sx={{width:{xs:"350px", sm: "250px", md:"335px"}, border: "none", boxShadow: 0, margin:"0 auto",cursor:"pointer" }}>
-                <CardMedia className={styles.Wrapper}
-                    sx={{height:{xs: "350px", sm: "250px", md:"335px"},
-                        padding: 1,
-                        position: "relative"}}
-                    image={hovered === _id && imageUrls.length > 1
-                        ? imageUrls[1]
-                        : imageUrls[0]}
-                           onMouseLeave={() => setHovered(null)}
-                           onMouseEnter={() => setHovered(_id)}
-                    title={name}>
-                    <div className={styles.WrapperIcon}>
-                       <HiOutlineShoppingBag className={styles.WrapperIconBtn} />
-                        <TfiSearch className={styles.WrapperIconBtn} onClick={onClick}/>
-                    </div>
-                </CardMedia>
+                <Link to='/product'>
+                    <CardMedia className={styles.Wrapper} onClick={()=>{dispatch(getElement(product._id))}}
+                               sx={{height:{xs: "350px", sm: "250px", md:"335px"},
+                                   padding: 1,
+                                   position: "relative"}}
+                               image={hovered === _id && imageUrls.length > 1
+                                   ? imageUrls[1]
+                                   : imageUrls[0]}
+                               onMouseLeave={() => setHovered(null)}
+                               onMouseEnter={() => setHovered(_id)}
+                               title={name}>
+                        <div className={styles.WrapperIcon}>
+                            <HiOutlineShoppingBag className={styles.WrapperIconBtn} />
+                            <TfiSearch className={styles.WrapperIconBtn} onClick={onClick}/>
+                        </div>
+                    </CardMedia>
+                </Link>
                 <CardContent sx={{padding:"20px 0"}}>
                     <Typography sx={{
                        textTransform:"capitalize",

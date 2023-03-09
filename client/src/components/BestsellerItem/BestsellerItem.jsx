@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { TfiSearch } from "react-icons/tfi";
 import styles from "./BestsellerItem.module.scss";
-
+import {Link}from "react-router-dom";
+import {getElement} from "../../store/productsSlice";
+import {useDispatch} from "react-redux";
 
 
 function BestsellerItem({ item, onClick }) {
+    const dispatch = useDispatch()
   const [hovered, setHovered] = useState(null);
 
   return (
@@ -14,8 +17,9 @@ function BestsellerItem({ item, onClick }) {
         <HiOutlineShoppingBag className={styles.btnWrapperIcon} />
         <TfiSearch className={styles.btnWrapperIcon} onClick={onClick} />
       </div>
-      <a href='/page'>
+      <Link to='/product'>
         <img
+            onClick={()=>{dispatch(getElement(item._id))}}
           src={
             hovered === item._id && item.imageUrls.length > 1
               ? item.imageUrls[1]
@@ -29,7 +33,7 @@ function BestsellerItem({ item, onClick }) {
         <p>
           <s>${item.previousPrice}</s> ${item.currentPrice}
         </p>
-      </a>
+      </Link>
     </div>
   );
 }
