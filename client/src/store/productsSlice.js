@@ -8,9 +8,12 @@ const initialState = {
     activeModal: false, // модальне вікно
     selectedProductId: null, // отримання необхідного id для від ображення продукту в модальному вікні
     radioButtonValue: 'all', //значення перемикача categories
-
+//-------------------------------------------------------------------
+    chairs: null,
+//-------------------------------------------------------------------
 
 }
+
 export const fetchAsyncProducts = createAsyncThunk(
     'products/fetchAsyncProducts',
     async (_, {rejectWithValue}) => {
@@ -23,11 +26,23 @@ export const fetchAsyncProducts = createAsyncThunk(
         }
     }
 );
+export const fetchAsyncChairs = createAsyncThunk(
+    'products/fetchAsyncChairs',
+    async (_, {rejectWithValue}) => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/products/filter?categories=chairs`);
+            return await response.json();
+
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+);
 const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        changeRadioButton(state, action){
+        changeRadioButton(state, action) {
             state.radioButtonValue = action.payload.target.value
         },
         changeDisplay(state, action) {
@@ -59,8 +74,26 @@ const productsSlice = createSlice({
                 state.error = action.payload;
                 state.status = 'loaded';
             })
+            .addCase(fetchAsyncChairs.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchAsyncChairs.fulfilled, (state, action) => {
+                state.chairs = action.payload;
+                state.status = 'loaded';
+            })
+            .addCase(fetchAsyncChairs.rejected, (state, action) => {
+                state.error = action.payload;
+                state.status = 'loaded';
+            })
 
     }
 })
-export const {changeDisplay, changeDisplayList, openModal, closeModal, getElement,  changeRadioButton} = productsSlice.actions
+export const {
+    changeDisplay,
+    changeDisplayList,
+    openModal,
+    closeModal,
+    getElement,
+    changeRadioButton
+} = productsSlice.actions
 export default productsSlice.reducer;

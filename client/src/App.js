@@ -13,7 +13,7 @@ import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import {useDispatch, useSelector} from "react-redux";
 import ProductModal from "./components/ProductModal/ProductModal";
-import {fetchAsyncProducts} from './store/productsSlice'
+import { fetchAsyncProducts, fetchAsyncChairs} from './store/productsSlice'
 import Error from './components/Error/Error'
 import Loader from './components/Loader/Loader'
 
@@ -24,10 +24,14 @@ function App() {
     const dispatch = useDispatch()
     const status = useSelector(state => state.products.status)
     const activeModal = useSelector(state => state.products.activeModal)
+
     useEffect(() => {
         dispatch(fetchAsyncProducts())
     }, [dispatch])
 
+    useEffect(() => {
+        dispatch(fetchAsyncChairs())
+    }, [dispatch])
 
     switch (status) {
         case 'loading':
