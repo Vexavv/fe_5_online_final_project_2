@@ -91,7 +91,7 @@ const HeaderToolbar = () => {
                         alignItems: 'center',
                     }}>
                         <Box width={1} height={0.5}
-                        component={Link} to={'https://www.instagram.com/'} sx={{                            
+                        component={Link} to={'https://www.facebook.com/'} sx={{                            
                             color:"#1A1A1A",
                             '&:hover, active':{
                                 color: '#BA933E'}
@@ -99,7 +99,7 @@ const HeaderToolbar = () => {
                             <FaFacebookF />
                         </Box>
                         <Box width={1} height={0.5}
-                        component={Link} to={'https://www.instagram.com/'} sx={{
+                        component={Link} to={'https://www.twitter.com/'} sx={{
                             color:"#1A1A1A",
                             '&:hover, active':{
                                 color: '#BA933E'}
@@ -115,7 +115,7 @@ const HeaderToolbar = () => {
                             <FaInstagram />
                         </Box>
                         <Box width={1} height={0.5}
-                        component={Link} to={'https://www.instagram.com/'} sx={{
+                        component={Link} to={'https://www.pinterest.com/'} sx={{
                             color:"#1A1A1A",
                             '&:hover, active':{
                                 color: '#BA933E'}
