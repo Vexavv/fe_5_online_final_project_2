@@ -8,7 +8,7 @@ import MyAccount from './pages/MyAccount/MyAccount';
 import Collection from "./pages/Collection/Collection";
 import Contacts from "./pages/Contacts/Contacts";
 import Products from "./pages/Products/Products";
-import Login from "./pages/LoginPage/Login";
+import Login from "./pages/LoginPage/LoginPage";
 import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import {useDispatch, useSelector} from "react-redux";

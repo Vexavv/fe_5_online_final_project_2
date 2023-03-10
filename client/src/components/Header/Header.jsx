@@ -7,7 +7,7 @@ import Navigation from './Navigation/Navigation';
 import HeaderBanner from './HeaderBanner/HeaderBannerr';
 import Logo from './Logo/Logo'
 import SearchDialog from '../SearchDialog/SearchDialog'
-import Login from '../Login/Login'
+import Login from '../LoginHeaderButton/LoginHeaderButton'
 
 //import from materialUI
 
