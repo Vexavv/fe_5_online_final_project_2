@@ -13,7 +13,8 @@ import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import {useDispatch, useSelector} from "react-redux";
 import ProductModal from "./components/ProductModal/ProductModal";
-import {fetchAsyncProducts, fetchAsyncChairs, fetchAsyncLamps,fetchAsyncDecor,fetchAsyncFurniture,fetchAsyncSofas, fetchAsyncTrending} from './store/productsSlice'
+import {fetchAsyncProducts} from './store/productsSlice'
+import {fetchAsyncChairs, fetchAsyncLamps,fetchAsyncDecor,fetchAsyncFurniture,fetchAsyncSofas, fetchAsyncTrending} from './store/productsFiltersSlice'
 import Error from './components/Error/Error'
 import Loader from './components/Loader/Loader'
 
@@ -24,7 +25,7 @@ function App() {
     const dispatch = useDispatch()
     const status = useSelector(state => state.products.status)
     const activeModal = useSelector(state => state.products.activeModal)
-
+//-------------------- запит на server фільтрів------------------------------
     useEffect(() => {
         dispatch(fetchAsyncProducts())
     }, [dispatch])
@@ -40,9 +41,11 @@ function App() {
     useEffect(() => {
         dispatch(fetchAsyncDecor())
     }, [dispatch])
+
     useEffect(() => {
         dispatch(fetchAsyncFurniture())
     }, [dispatch])
+
     useEffect(() => {
         dispatch(fetchAsyncSofas())
     }, [dispatch])

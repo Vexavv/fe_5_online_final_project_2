@@ -6,22 +6,15 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import {changeRadioButton} from "../../../store/productsSlice";
+import {changeRadioButton} from "../../../store/productsFiltersSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 function RadioButton(props) {
     const dispatch = useDispatch()
-    const value = useSelector(state => state.products. radioButtonValue)
+    const value = useSelector(state => state.productsFilters. radioButtonValue)
     const handleChange = (event) => {
         dispatch(changeRadioButton(event));
     };
-
-
-    // const [value, setValue] = useState('all');
-    // const handleChange = (event) => {
-    //     setValue(event.target.value);
-    // };
-
 
     return (
         <FormControl>
