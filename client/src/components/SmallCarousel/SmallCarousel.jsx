@@ -32,15 +32,11 @@ const responsive = {
 
 function SmallCarousel(props) {
     const dispatch = useDispatch()
-    const products = useSelector((state) => state.products.products);
-
+    const trending = useSelector(state => state.products.trending)//   список товарів
     const handleProductClick = (product)=> {
         dispatch(getElement(product));
         dispatch(openModal())
     }
-
-    const trending = products.filter(item => item.trendingProduct)
-
     return (
         <div className={styles.Slider}>
             <div className={styles.SliderDescription}>
@@ -59,8 +55,7 @@ function SmallCarousel(props) {
                           draggable
                           showDots={true}
                 >
-
-                    {trending.map(product => {
+                    {trending.products.map(product => {
                         return <SmallCarouselItem {...product} key={product._id} product={product}
                                                   onClick={()=>handleProductClick(product._id)}/>
                     })}

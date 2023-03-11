@@ -186,7 +186,7 @@ export default function OneProduct() {
           <Box sx={{ padding: 2 }}>
             {tabIndex === 0 && (
               <Box>
-                <Typography>{product.myCustomParam}</Typography>
+                <Typography>{product.description}</Typography>
               </Box>
             )}
             {tabIndex === 1 && (

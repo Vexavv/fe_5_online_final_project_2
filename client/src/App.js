@@ -13,7 +13,14 @@ import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import {useDispatch, useSelector} from "react-redux";
 import ProductModal from "./components/ProductModal/ProductModal";
-import {fetchAsyncProducts} from './store/productsSlice'
+import {fetchAsyncProducts, fetchAsyncBestSellers, fetchAsyncTrending} from './store/productsSlice'
+import {
+    fetchAsyncChairs,
+    fetchAsyncLamps,
+    fetchAsyncDecor,
+    fetchAsyncFurniture,
+    fetchAsyncSofas,
+} from './store/productsFiltersSlice'
 import Error from './components/Error/Error'
 import Loader from './components/Loader/Loader'
 
@@ -24,9 +31,40 @@ function App() {
     const dispatch = useDispatch()
     const status = useSelector(state => state.products.status)
     const activeModal = useSelector(state => state.products.activeModal)
+//-------------------- запит на server фільтрів------------------------------
     useEffect(() => {
         dispatch(fetchAsyncProducts())
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(fetchAsyncTrending())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(fetchAsyncBestSellers())
+    }, [dispatch])
+
+
+    useEffect(() => {
+        dispatch(fetchAsyncChairs())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(fetchAsyncLamps())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(fetchAsyncDecor())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(fetchAsyncFurniture())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(fetchAsyncSofas())
+    }, [dispatch])
+
 
 
     switch (status) {
@@ -42,9 +80,9 @@ function App() {
                             <Route path="/products" element={<Products/>}/>
                             <Route path="/collections" element={<Collection/>}/>
                             <Route path="/contacts" element={<Contacts/>}/>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/cart" element={<Cart/>} />
-                            <Route path="/product" element={<OneProduct/>} />
+                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/cart" element={<Cart/>}/>
+                            <Route path="/product" element={<OneProduct/>}/>
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
                     </Routes>
