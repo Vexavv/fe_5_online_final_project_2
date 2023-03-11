@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './ProductsBanner.module.scss'
 import {Link} from "react-router-dom";
+
+
 function ProductsBanner(props) {
     return (
-        <div className={styles.Banner}>
+        <div  className={styles.Banner}>
             <div className={styles.BannerContainer}>
                 <nav className={styles.BannerContainerNav}>
                     <h1 className={styles.BannerContainerNavTitle}>Products</h1>

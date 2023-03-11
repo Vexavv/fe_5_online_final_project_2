@@ -43,9 +43,11 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, product
                 </div>
             </CardMedia>
 
-            <Link to='/product'><CardContent sx={{padding: "20px 0"}}>
+            <Link to='/product'><CardContent
+                onClick={() => {dispatch(getElement(product._id))}}
+                sx={{padding: "20px 0"}}>
                 <Typography
-                    onClick={() => {dispatch(getElement(product._id))}}
+
                     sx={{
                     textTransform: "capitalize",
                     color: "#444444",
