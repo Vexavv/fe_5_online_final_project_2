@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Bestsellers.module.scss";
 import BestsellerItem from "../BestsellerItem/BestsellerItem";
@@ -9,6 +9,15 @@ function Bestsellers(props) {
   const products = useSelector((state) => state.products.products);
   const filteredItems = products.filter((el) => el.bestSeller);
 
+// const [filteredItems, setFilteredItems] = useState({})
+//     useEffect(() => {
+//         fetch('http://localhost:3001/api/products/filter?trendingProduct=true')
+//             .then(res => res.json())
+//             .then(list => {
+//                 setFilteredItems(list)
+//             })
+//     }, [])
+//     console.log(filteredItems)
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())
