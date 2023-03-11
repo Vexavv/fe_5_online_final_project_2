@@ -14,7 +14,15 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import {useDispatch, useSelector} from "react-redux";
 import ProductModal from "./components/ProductModal/ProductModal";
 import {fetchAsyncProducts} from './store/productsSlice'
-import {fetchAsyncChairs, fetchAsyncLamps,fetchAsyncDecor,fetchAsyncFurniture,fetchAsyncSofas, fetchAsyncTrending} from './store/productsFiltersSlice'
+import {
+    fetchAsyncChairs,
+    fetchAsyncLamps,
+    fetchAsyncDecor,
+    fetchAsyncFurniture,
+    fetchAsyncSofas,
+    fetchAsyncTrending,
+    fetchAsyncBestSellers
+} from './store/productsFiltersSlice'
 import Error from './components/Error/Error'
 import Loader from './components/Loader/Loader'
 
@@ -50,9 +58,13 @@ function App() {
         dispatch(fetchAsyncSofas())
     }, [dispatch])
 
-    // useEffect(() => {
-    //     dispatch(fetchAsyncTrending())
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(fetchAsyncTrending())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(fetchAsyncBestSellers())
+    }, [dispatch])
 
 
     switch (status) {
@@ -68,9 +80,9 @@ function App() {
                             <Route path="/products" element={<Products/>}/>
                             <Route path="/collections" element={<Collection/>}/>
                             <Route path="/contacts" element={<Contacts/>}/>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/cart" element={<Cart/>} />
-                            <Route path="/product" element={<OneProduct/>} />
+                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/cart" element={<Cart/>}/>
+                            <Route path="/product" element={<OneProduct/>}/>
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
                     </Routes>

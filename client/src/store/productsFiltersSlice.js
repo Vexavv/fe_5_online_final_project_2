@@ -2,14 +2,20 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {fetchAsyncProducts} from "./productsSlice";
 
 const initialState = {
-    radioButtonValue: 'all', //значення перемикача categories
+    radioButtonValue: 'products', //значення перемикача categories
+    radioBestValue: '', // значення перемикача best products
+
+    visibleRadioOff: false,
+
+
 //-------------значення фільтрів категорій товарів--------------------------------
     chairs: null,
     lamps: null,
     decor: null,
     furniture: null,
     sofas: null,
-    // trending:null
+    trending: null,
+    bestSellers: null,
 //-------------------------------------------------------------------
 
 }
@@ -75,18 +81,31 @@ export const fetchAsyncSofas = createAsyncThunk(
         }
     }
 );
-// export const fetchAsyncTrending = createAsyncThunk(
-//     'products/fetchAsyncTrending',
-//     async (_, {rejectWithValue}) => {
-//         try {
-//             const response = await fetch(`http://localhost:3001/api/products/filter?trendingProduct=true`);
-//             return await response.json();
-//
-//         } catch (error) {
-//             return rejectWithValue(error.message)
-//         }
-//     }
-// );
+export const fetchAsyncTrending = createAsyncThunk(
+    'products/fetchAsyncTrending',
+    async (_, {rejectWithValue}) => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/products/filter?trendingProduct=true`);
+            return await response.json();
+
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+);
+export const fetchAsyncBestSellers = createAsyncThunk(
+    'products/fetchAsyncBestSellers',
+    async (_, {rejectWithValue}) => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/products/filter?bestSeller=true`);
+            return await response.json();
+
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+);
+
 const productsFiltersSlice = createSlice({
     name: 'productsFilters',
     initialState,
@@ -94,6 +113,17 @@ const productsFiltersSlice = createSlice({
         changeRadioButton(state, action) {
             state.radioButtonValue = action.payload.target.value
         },
+        changeRadioBest(state, action) {
+            state.radioBestValue = action.payload.target.value
+            if (action.payload.target.value !== '') {
+                state.visibleRadioOff = true
+            }
+        },
+        hideRadioOff(state, action) {
+            state.visibleRadioOff = false
+            state.radioBestValue = ''
+        },
+
     },
     extraReducers: builder => {
         builder
@@ -113,19 +143,19 @@ const productsFiltersSlice = createSlice({
                 state.sofas = action.payload;
             })
 
-        // .addCase(fetchAsyncTrending.fulfilled, (state, action) => {
-        //     state.trending = action.payload;
-        // })
+            .addCase(fetchAsyncTrending.fulfilled, (state, action) => {
+                state.trending = action.payload;
+            })
+            .addCase(fetchAsyncBestSellers.fulfilled, (state, action) => {
+                state.bestSellers = action.payload;
+            })
 
 
     }
 })
 
 
-
-
-
 export const {
-    changeRadioButton
+    changeRadioButton, changeRadioBest, hideRadioOff
 } = productsFiltersSlice.actions
 export default productsFiltersSlice.reducer;

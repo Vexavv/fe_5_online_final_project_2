@@ -9,23 +9,36 @@ import FormControl from '@mui/material/FormControl';
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from '@mui/icons-material/Cancel';
-
+import {useDispatch, useSelector} from "react-redux";
+import {changeRadioBest, hideRadioOff} from "../../../store/productsFiltersSlice";
 
 function FilterBestSeller(props) {
-    const [value, setValue] = useState('');
-    const [visible, setVisible] = useState(false);
-
+    const dispatch = useDispatch()
+    const value = useSelector(state => state.productsFilters.radioBestValue)
+    const visible = useSelector(state => state.productsFilters.visibleRadioOff)
     const handleChange = (event) => {
-        setValue(event.target.value);
-        if (event.target.value !== '') {
-            setVisible(true)
-        }
+        dispatch(changeRadioBest(event))
     };
 
     const offRadio = () => {
-        setVisible(false)
-        setValue("")
+        dispatch(hideRadioOff())
     }
+
+
+    // const [value, setValue] = useState('');
+    // const [visible, setVisible] = useState(false);
+
+    // const handleChange = (event) => {
+    //     setValue(event.target.value);
+    //     if (event.target.value !== '') {
+    //         setVisible(true)
+    //     }
+    // };
+
+    // const offRadio = () => {
+    //     setVisible(false)
+    //     setValue("")
+    // }
 
     return (
 

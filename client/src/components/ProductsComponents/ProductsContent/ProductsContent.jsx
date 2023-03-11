@@ -15,6 +15,8 @@ function ProductsContent() {
     const value = useSelector(state => state.productsFilters.radioButtonValue)
 
 
+const valueBest = useSelector(state => state.productsFilters.visibleRadioOff)
+    // const visible = useSelector(state => state.productsFilters.visibleRadioOff)
 //-----------------------redux toolkit ------------------------
     const chairs = useSelector(state => state.productsFilters.chairs)
     const lamps = useSelector(state => state.productsFilters.lamps)
@@ -22,6 +24,11 @@ function ProductsContent() {
     const furniture = useSelector(state => state.productsFilters.furniture)
     const sofas = useSelector(state => state.productsFilters.sofas)
 
+
+    const trending = useSelector(state => state.productsFilters.trending) //trending products
+    const bestSellers = useSelector(state => state.productsFilters.bestSellers) //best sellers products
+    console.log(trending)
+    console.log(bestSellers)
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())
@@ -70,15 +77,54 @@ function ProductsContent() {
                             );
 
                         default:
-                            return (products.map(product => {
-                                    return <ProductCard{...product} key={product._id}
-                                                       product={product}
-                                                       onClick={() => handleProductClick(product._id)}/>
-                                })
+                            return (
+                                    products.map(product => {
+                                        return <ProductCard{...product} key={product._id}
+                                                           product={product}
+                                                           onClick={() => handleProductClick(product._id)}/>
+                                    })
+
 
                             )
                     }
                 })()}
+
+                {/*{(() => {*/}
+                {/*    switch (valueBest) {*/}
+
+                {/*        case 'best':*/}
+                {/*            return (*/}
+                {/*                     trending.products.map(product => {*/}
+                {/*                    return <ProductCard{...product} key={product._id}*/}
+                {/*                                       product={product}*/}
+                {/*                                       onClick={() => handleProductClick(product._id)}/>*/}
+                {/*                })*/}
+                {/*            );*/}
+                {/*        case 'trending':*/}
+                {/*            return (trending.products.map(product => {*/}
+                {/*                    return <ProductCard{...product} key={product._id}*/}
+                {/*                                       product={product}*/}
+                {/*                                       onClick={() => handleProductClick(product._id)}/>*/}
+                {/*                })*/}
+                {/*            );*/}
+
+                {/*        default:*/}
+                {/*            return (products.map(product => {*/}
+                {/*                    return <ProductCard{...product} key={product._id}*/}
+                {/*                                       product={product}*/}
+                {/*                                       onClick={() => handleProductClick(product._id)}/>*/}
+                {/*                })*/}
+                {/*                console.log('hhjhjhjhjhj')*/}
+
+                {/*            )*/}
+                {/*    }*/}
+                {/*})()}*/}
+
+
+
+
+
+
             </ul>
         </>
     );

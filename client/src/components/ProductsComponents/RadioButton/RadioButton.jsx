@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 function RadioButton(props) {
     const dispatch = useDispatch()
-    const value = useSelector(state => state.productsFilters. radioButtonValue)
+    const value = useSelector(state => state.productsFilters.radioButtonValue)
     const handleChange = (event) => {
         dispatch(changeRadioButton(event));
     };
@@ -26,7 +26,7 @@ function RadioButton(props) {
                 value={value}
                 onChange={handleChange}>
 
-                <FormControlLabel value="all"
+                <FormControlLabel value="products"
                                   control={<Radio icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleIcon
                                       sx={{color: 'black'}}/>}/>} label="All Categories"/>
                 <FormControlLabel value="furniture"
