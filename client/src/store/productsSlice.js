@@ -7,6 +7,9 @@ const initialState = {
     display: true, // зміна від ображення карток продуктів
     activeModal: false, // модальне вікно
     selectedProductId: null, // отримання необхідного id для від ображення продукту в модальному вікні
+
+    bestSellers: null,
+    trending: null,
 }
 
 export const fetchAsyncProducts = createAsyncThunk(
@@ -14,6 +17,30 @@ export const fetchAsyncProducts = createAsyncThunk(
     async (_, {rejectWithValue}) => {
         try {
             const response = await fetch(`http://localhost:3001/api/products`);
+            return await response.json();
+
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+);
+export const fetchAsyncBestSellers = createAsyncThunk(
+    'products/fetchAsyncBestSellers',
+    async (_, {rejectWithValue}) => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/products/filter?bestSeller=true`);
+            return await response.json();
+
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+);
+export const fetchAsyncTrending = createAsyncThunk(
+    'products/fetchAsyncTrending',
+    async (_, {rejectWithValue}) => {
+        try {
+            const response = await fetch(`http://localhost:3001/api/products/filter?trendingProduct=true`);
             return await response.json();
 
         } catch (error) {
@@ -55,7 +82,28 @@ const productsSlice = createSlice({
                 state.error = action.payload;
                 state.status = 'loaded';
             })
-
+            .addCase(fetchAsyncBestSellers.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchAsyncBestSellers.fulfilled, (state, action) => {
+                state.bestSellers = action.payload;
+                state.status = 'loaded';
+            })
+            .addCase(fetchAsyncBestSellers.rejected, (state, action) => {
+                state.error = action.payload;
+                state.status = 'loaded';
+            })
+            .addCase(fetchAsyncTrending.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchAsyncTrending.fulfilled, (state, action) => {
+                state.trending = action.payload;
+                state.status = 'loaded';
+            })
+            .addCase(fetchAsyncTrending.rejected, (state, action) => {
+                state.error = action.payload;
+                state.status = 'loaded';
+            })
 
     }
 })

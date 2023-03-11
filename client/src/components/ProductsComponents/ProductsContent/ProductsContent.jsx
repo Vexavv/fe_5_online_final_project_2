@@ -25,10 +25,11 @@ const valueBest = useSelector(state => state.productsFilters.visibleRadioOff)
     const sofas = useSelector(state => state.productsFilters.sofas)
 
 
-    const trending = useSelector(state => state.productsFilters.trending) //trending products
-    const bestSellers = useSelector(state => state.productsFilters.bestSellers) //best sellers products
+    const trending = useSelector(state => state.products.trending) //trending products
+    const bestSellers = useSelector(state => state.products.bestSellers) //best sellers products
     console.log(trending)
     console.log(bestSellers)
+    console.log(furniture)
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())

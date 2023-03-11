@@ -14,8 +14,8 @@ const initialState = {
     decor: null,
     furniture: null,
     sofas: null,
-    trending: null,
-    bestSellers: null,
+
+
 //-------------------------------------------------------------------
 
 }
@@ -81,30 +81,7 @@ export const fetchAsyncSofas = createAsyncThunk(
         }
     }
 );
-export const fetchAsyncTrending = createAsyncThunk(
-    'products/fetchAsyncTrending',
-    async (_, {rejectWithValue}) => {
-        try {
-            const response = await fetch(`http://localhost:3001/api/products/filter?trendingProduct=true`);
-            return await response.json();
 
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-);
-export const fetchAsyncBestSellers = createAsyncThunk(
-    'products/fetchAsyncBestSellers',
-    async (_, {rejectWithValue}) => {
-        try {
-            const response = await fetch(`http://localhost:3001/api/products/filter?bestSeller=true`);
-            return await response.json();
-
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-);
 
 const productsFiltersSlice = createSlice({
     name: 'productsFilters',
@@ -143,12 +120,8 @@ const productsFiltersSlice = createSlice({
                 state.sofas = action.payload;
             })
 
-            .addCase(fetchAsyncTrending.fulfilled, (state, action) => {
-                state.trending = action.payload;
-            })
-            .addCase(fetchAsyncBestSellers.fulfilled, (state, action) => {
-                state.bestSellers = action.payload;
-            })
+
+
 
 
     }

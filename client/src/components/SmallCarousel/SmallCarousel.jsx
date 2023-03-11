@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styles from './SmallCarousel.module.scss'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
 import SmallCarouselItem from "./SmallCarouselItem";
 import {useDispatch, useSelector} from "react-redux";
 import {getElement, openModal} from "../../store/productsSlice";
-import {fetchAsyncTrending} from "../../store/productsSlice";
+
 
 const responsive = {
     superLargeDesktop: {
@@ -32,28 +32,11 @@ const responsive = {
 
 function SmallCarousel(props) {
     const dispatch = useDispatch()
-    const products = useSelector((state) => state.products.products);
-const trending = products.filter(el => el.trendingProduct)
-
-    // const trending = useSelector((state) => state.products.trending);
-
+    const trending = useSelector(state => state.products.trending)//   список товарів
     const handleProductClick = (product)=> {
         dispatch(getElement(product));
         dispatch(openModal())
     }
-
-    // const [trending, setTrending] = useState({})
-    // useEffect(() => {
-    //     fetch('http://localhost:3001/api/products/filter?trendingProduct=true')
-    //         .then(res => res.json())
-    //         .then(list => {
-    //             setTrending(list)
-    //         })
-    // }, [])
-    // console.log(trending)
-
-
-
     return (
         <div className={styles.Slider}>
             <div className={styles.SliderDescription}>
@@ -61,13 +44,6 @@ const trending = products.filter(el => el.trendingProduct)
                 <span className={styles.SliderDescriptionText}>Top view in this week</span>
             </div>
             <div className={styles.SliderContent}>
-
-                {/*<Carousel responsive={responsive}>*/}
-                {/*        {trending.products.map(product => {*/}
-                {/*            return <SmallCarouselItem {...product} key={product._id} product={product}*/}
-                {/*                                      onClick={()=>handleProductClick(product._id)}/>*/}
-                {/*        })}*/}
-                {/*</Carousel>*/}
                 <Carousel responsive={responsive}
                           swipeable={true}
                           renderArrowsWhenDisabled={true}
@@ -79,8 +55,7 @@ const trending = products.filter(el => el.trendingProduct)
                           draggable
                           showDots={true}
                 >
-
-                    {trending.map(product => {
+                    {trending.products.map(product => {
                         return <SmallCarouselItem {...product} key={product._id} product={product}
                                                   onClick={()=>handleProductClick(product._id)}/>
                     })}
