@@ -1,0 +1,217 @@
+.addresses {
+
+
+    &__form {
+        margin-top: 30px;
+
+        &__select {
+            color: #444444;
+            font-size: 15px;
+            margin-bottom: 5px;
+
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        &__title {
+            font-size: 22px;
+            text-align: center;
+            color: #1a1a1a;
+            padding: 10px 0;
+            font-weight: 600;
+        }
+
+        &__section {}
+
+        &__input {
+
+            width: 100%;
+            display: block;
+            height: 43px;
+            padding: 9px 20px;
+            font-size: 16px;
+            line-height: 1.45;
+            color: #444444;
+            background-color: #fff;
+            border: 1px solid #e1e1e1;
+            border-radius: 3px;
+
+            box-shadow: none;
+            -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+
+            &:focus {
+                outline: none;
+                border: 1px solid #e1e1e1;
+                box-shadow: 0px 0px 5px 1px #ba933e;
+
+            }
+        }
+
+
+
+
+        &__submit {
+            display: inline-block;
+            padding: 8px 30px;
+            color: #ffffff;
+            background-color: #1a1a1a;
+            border: 1px solid #1a1a1a;
+            font-size: 18px;
+            width: 100%;
+            font-weight: 700;
+            line-height: 24px;
+            border-radius: 3px;
+            -webkit-transition: all .35s ease;
+            -o-transition: all .35s ease;
+            transition: all .35s ease;
+            margin-top: 15px;
+        }
+
+        &__container {
+            margin-top: 15px;
+            text-align: center;
+
+            &__cancel {
+                display: inline-block;
+                padding: 8px 25px;
+                color: #444444;
+                background-color: transparent;
+                border: 1px solid #e1e1e1;
+                font-size: 14px;
+                line-height: 20px;
+                -webkit-transition: all .35s ease;
+                -o-transition: all .35s ease;
+                transition: all .35s ease;
+
+            }
+        }
+
+        &__checkbox {
+            margin: 0;
+            margin-right: 25px;
+            padding-left: 24px;
+            font-weight: 400;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: none;
+
+            &__label {
+                margin-bottom: 15px;
+            }
+
+            &__custum {
+                border: 1px solid #e1e1e1;
+                position: relative;
+                padding: 10px;
+                display: inline-block;
+                vertical-align: sub;
+                margin-right: 10px;
+
+                &::before {
+                    content: '';
+                    color: red;
+
+                    display: inline-block;
+                    width: 20px;
+                    height: 15px;
+
+                    background-image: url('../../../../public/img/35780-ff9800.svg');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                    left: 50%;
+                    right: 50%;
+                    transform: translate(-50%, -50%);
+                    transition: 0.2s;
+                    opacity: 0;
+                }
+
+            }
+
+            &:checked+label {
+                & .addresses__form__checkbox__custum::before {
+
+
+                    opacity: 1;
+                }
+            }
+
+        }
+
+
+
+    }
+}
+
+
+
+@media(min-width:600px) {
+    .addresses {
+        &__title {}
+
+        &__add {
+
+
+            &:hover {}
+        }
+
+        &__container {}
+
+        &__form {
+
+
+            &__select {}
+
+            &__title {}
+
+            &__section {
+                display: flex;
+            }
+
+            &__input {
+                &__padding {
+                    width: 50%;
+                    padding-right: 15px;
+
+                    &__secound {
+                        width: 50%;
+                        padding-left: 15px;
+                    }
+                }
+
+
+                &:focus {}
+
+                &__section {}
+
+            }
+
+            &__submit {}
+
+            &__container {
+
+
+                &__cancel {}
+            }
+
+            &__checkbox {
+
+
+
+                &__custum {
+
+
+                    &::before {}
+                }
+            }
+
+            &__checkbox:checked+&__checkbox__custum::before {
+                opacity: 1;
+            }
+        }
+    }
+}

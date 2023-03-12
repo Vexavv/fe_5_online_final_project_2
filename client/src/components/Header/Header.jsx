@@ -207,10 +207,6 @@ const Header = (props) => {
 
             </Box>
 
-          
-           
-
-          
           </Toolbar>
         </Container>
       </AppBar>

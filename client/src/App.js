@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import './App.css';
 import {Routes, Route,} from "react-router-dom";
 import Layout from "./components/Layout/Layout";
+
 import Home from "./pages/Home/Home"
 import OneProduct from './pages/OneProduct/OneProduct'
 import MyAccount from './pages/MyAccount/MyAccount';
@@ -23,6 +24,7 @@ import {
 } from './store/productsFiltersSlice'
 import Error from './components/Error/Error'
 import Loader from './components/Loader/Loader'
+import Account from "./components/Account/Account";
 
 
 function App() {
@@ -83,6 +85,8 @@ function App() {
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/cart" element={<Cart/>}/>
                             <Route path="/product" element={<OneProduct/>}/>
+                            <Route path="/account" element={<Account/>}/>
+
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
                     </Routes>
