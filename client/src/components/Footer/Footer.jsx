@@ -80,8 +80,8 @@ function Footer(props) {
                 </div>
                 <div className={styles.column}>
                 <h2 className={styles.head}>Let's Talk</h2>
-                <p><FaHeadphonesAlt/> +391 (0)35 2568 4593</p>
-                <u><FaInbox/> hello@domain.com</u>
+                <a href="tel:+391 (0)35 2568 4593"><FaHeadphonesAlt/> +391 (0)35 2568 4593</a>      
+                <a href="mailto:hello@domain.com"><FaInbox/> hello@domain.com</a>
                 <h2 className={styles.head}>Find Us</h2>
                 <p>502 New Design Str <br /><FaMapMarkerAlt/> Melbourne, Australia</p>
                 </div>

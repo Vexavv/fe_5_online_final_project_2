@@ -7,7 +7,7 @@ import Navigation from './Navigation/Navigation';
 import HeaderBanner from './HeaderBanner/HeaderBannerr';
 import Logo from './Logo/Logo'
 import SearchDialog from '../SearchDialog/SearchDialog'
-import Login from '../Login/Login'
+import Login from '../LoginHeaderButton/LoginHeaderButton'
 
 //import from materialUI
 
@@ -25,8 +25,8 @@ const navItems = [
     path: '/'
   },
   {
-    title: 'Product',
-    path: '/product'
+    title: 'Products',
+    path: '/products'
   },
   {
     title: 'Collection',
@@ -38,8 +38,8 @@ const navItems = [
   },
   {
     title: 'Contact',
-    path: '/contact'
-  },
+    path: '/contacts'
+  }
 ]
 
 
@@ -207,10 +207,6 @@ const Header = (props) => {
 
             </Box>
 
-          
-           
-
-          
           </Toolbar>
         </Container>
       </AppBar>

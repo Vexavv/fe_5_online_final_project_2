@@ -6,12 +6,16 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import {changeRadioButton} from "../../../store/productsFiltersSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 function RadioButton(props) {
-    const [value, setValue] = useState('all');
+    const dispatch = useDispatch()
+    const value = useSelector(state => state.productsFilters.radioButtonValue)
     const handleChange = (event) => {
-        setValue(event.target.value);
+        dispatch(changeRadioButton(event));
     };
+
     return (
         <FormControl>
             <FormLabel sx={{color: "#1A1A1A", fontSize: {xs:'17px', md:'18px'}, fontWeight: 700, lineHeight: 2,}}
@@ -22,7 +26,7 @@ function RadioButton(props) {
                 value={value}
                 onChange={handleChange}>
 
-                <FormControlLabel value="all"
+                <FormControlLabel value="products"
                                   control={<Radio icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleIcon
                                       sx={{color: 'black'}}/>}/>} label="All Categories"/>
                 <FormControlLabel value="furniture"
@@ -34,7 +38,7 @@ function RadioButton(props) {
                 <FormControlLabel value="sofas"
                                   control={<Radio icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleIcon
                                       sx={{color: 'black'}}/>}/>} label="Sofas"/>
-                <FormControlLabel value="lamp"
+                <FormControlLabel value="lamps"
                                   control={<Radio icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleIcon
                                       sx={{color: 'black'}}/>}/>} label="Lighting Lamp"/>
                 <FormControlLabel value="decor"

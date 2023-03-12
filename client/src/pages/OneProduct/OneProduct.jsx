@@ -17,6 +17,7 @@ import styles from './OneProduct.module.scss';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
+import {useSelector} from "react-redux";
 
 const theme = createTheme({
   palette: {
@@ -35,6 +36,12 @@ const buttonSX = {
 };
 
 export default function OneProduct() {
+  //--------------------------------------------
+  const selectedProductId = useSelector((state) => state.products.selectedProductId);
+  const products = useSelector((state) => state.products.products);
+  const product = products.find((p) => p._id === selectedProductId);
+
+  //----------------------------------------------
   const { tw, fb, inst, span } = styles;
 
   const [tabIndex, setTabIndex] = useState(0);
@@ -42,6 +49,9 @@ export default function OneProduct() {
   const handleTabChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
+  // if (!product) {
+  //   return console.log('Loading');
+  // }
   return (
     <>
       <DialogTitle
@@ -66,7 +76,7 @@ export default function OneProduct() {
               alt={'sss'}
               width="100%"
               height="100%"
-              src={`https://cdn.shopify.com/s/files/1/0376/9440/6700/products/14_800x.jpg`}
+              src={product.imageUrls[0]}
               style={{ objectFit: 'contain' }}
             />
           </Box>
@@ -75,17 +85,14 @@ export default function OneProduct() {
           <Box flex="1 1 50%" mb="40px">
             <Box m="5px 0 25px 0">
               <Typography align="left" variant="h4">
-                Victo pedant lamp
+                {product.name}
               </Typography>
 
               <Typography align="left" sx={{ mt: '20px' }}>
-                Most of us are familiar with the iconic design of the egg shaped
-                chair floating in the air. The Hanging Egg Chair is a critically
-                acclaimed design that has enjoyed praise worldwide ever since
-                the distinctive sculptural shape was created.
+                {product.description}
               </Typography>
               <Typography variant="h6" color="#ba933e" align="left" m="30px 0">
-                $79.00
+                ${product.currentPrice}.00
               </Typography>
             </Box>
 
@@ -119,21 +126,21 @@ export default function OneProduct() {
                 <Typography sx={{ ml: '5px' }}>ADD TO WISHLIST</Typography>
               </Box>
               <Typography m="8px 0 0 0">
-                <span className={span}>Availability: </span> In stock
+                <span className={span}>Availability: </span> {product.quantity}
               </Typography>
               <Typography m="8px 0 0 0">
                 <span className={span}>Product type: </span>
                 Demo Type
               </Typography>
               <Typography m="8px 0 0 0">
-                <span className={span}>Vendor: </span> Demo Vender
+                <span className={span}>Brand: </span> {product.brand}
               </Typography>
               <Typography m="8px 0 0 0">
                 <span className={span}>SKU: </span> N/A
               </Typography>
               <Typography align="left" m="8px 0 0 0">
                 <span className={span}>Categories: </span>
-                Chairs, Decor Art, Furniture, Home page, Lighting Lamp, Sofas
+                {product.categories}
               </Typography>
               <Box
                 sx={{
@@ -179,7 +186,7 @@ export default function OneProduct() {
           <Box sx={{ padding: 2 }}>
             {tabIndex === 0 && (
               <Box>
-                <Typography>The first tab</Typography>
+                <Typography>{product.description}</Typography>
               </Box>
             )}
             {tabIndex === 1 && (

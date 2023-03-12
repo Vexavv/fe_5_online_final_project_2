@@ -22,11 +22,13 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "sass": "^1.58.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
-    "yup": "^1.0.0"
+    "yup": "^1.0.0",
+    "yup-password": "^0.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
