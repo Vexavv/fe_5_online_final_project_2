@@ -8,7 +8,7 @@ import productsFiltersReducer from './productsFiltersSlice'
 const persistConfig = {
     key:'root',
     storage,
-    whitelist:['products']
+   blacklist:['products', 'productsFilters']
 
 }
 

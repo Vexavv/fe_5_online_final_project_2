@@ -23,9 +23,9 @@ function Products(props) {
                                 <ProductsContent />
                             </div>
                         </div>
-                        <div className={styles.ProductWrapperPagination}>
-                            <ProductPagination/>
-                        </div>
+                        {/*<div className={styles.ProductWrapperPagination}>*/}
+                        {/*    <ProductPagination/>*/}
+                        {/*</div>*/}
                     </section>
 
 
