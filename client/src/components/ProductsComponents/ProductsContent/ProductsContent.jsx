@@ -30,6 +30,7 @@ const valueBest = useSelector(state => state.productsFilters.visibleRadioOff)
     console.log(trending)
     console.log(bestSellers)
     console.log(furniture)
+    console.log(products)
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())
