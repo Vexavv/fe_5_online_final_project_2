@@ -1,15 +1,28 @@
-import React from 'react';
-import { Link  } from "react-router-dom";
+import React from "react";
+import styles from "./Cart.module.scss";
 
-const Cart =(props) =>{
-    return (
-        <div>
-            <div><Link to="/">home</Link></div>
-            <div><Link to="/product">to poducts</Link></div>
-            <h1>You cart is empty</h1>
-                     
+import BasketCard from "../../components/Basket/BasketCard/BasketCard";
+
+import BasketFooterPrice from "../../components/Basket/BasketFooterPrice/BasketFooterPrice";
+import Container from "@mui/material/Container";
+function Cart() {
+  return (
+    <Container maxWidth="xl">
+      <h3 className={styles.Title}>Shopping cart</h3>
+      <div className={styles.Description}>
+        <p className={styles.DescriptionTextLeft}>IMAGE</p>
+        <div className={styles.DescriptionContainer}>
+          <p className={styles.DescriptionContainerText}>PRODUCT</p>
+          <p className={styles.DescriptionContainerTextTotal}>TOTAL</p>
         </div>
-    );
+      </div>
+      <BasketCard></BasketCard>
+
+      <BasketCard></BasketCard>
+
+      <BasketFooterPrice></BasketFooterPrice>
+    </Container>
+  );
 }
 
 export default Cart;

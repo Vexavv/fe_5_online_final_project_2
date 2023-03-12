@@ -32,7 +32,9 @@ function App() {
                 <Route path="/contacts" element={<Contacts/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/cart" element={<Cart/>} />
+                <Route path="/account"  element={<Account/>}/>
                 <Route path="*" element={<PageNotFound/>}/>
+
             </Route>
         </Routes>
 
