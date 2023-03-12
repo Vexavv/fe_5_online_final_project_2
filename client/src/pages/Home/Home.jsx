@@ -5,18 +5,18 @@ import ShopCollection from '../../components/ShopCollection/ShopCollection';
 import Bestsellers from '../../components/Bestsellers/Bestsellers';
 import SmallCarousel from "../../components/SmallCarousel/SmallCarousel";
 import SubscriptionNews from '../../components/SubscriptionNews/SubscriptionNews';
-
 function Home(props) {
-    return (
-        <main>
-            <BigCarousel/>
-            <SmallCarousel/>
-            <Link to='/products'><ShopCollection/></Link>
-            <Bestsellers/>
-            <SubscriptionNews/>
 
-        </main>
-    );
+            return (
+                <main>
+                    <BigCarousel/>
+                    <SmallCarousel/>
+                    <Link to='/products'><ShopCollection/></Link>
+                    <Bestsellers/>
+                    <SubscriptionNews/>
+                </main>
+            );
+
 }
 
 

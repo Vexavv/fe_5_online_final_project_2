@@ -5,17 +5,15 @@ import Button from "../Button/Button";
 import {AiOutlineClose} from 'react-icons/ai';
 import {useSelector, useDispatch} from "react-redux";
 import {closeModal} from "../../store/productsSlice";
+import Loader from "../Loader/Loader";
 
 function ProductModal({active}) {
+
 const dispatch = useDispatch()
+    const selectedProduct = useSelector((state) => state.products.selectedProduct);
 
-    const selectedProductId = useSelector((state) => state.products.selectedProductId);
-    const products = useSelector((state) => state.products.products);
-    const product = products.find((p) => p._id === selectedProductId);
-
-
-    if (!product) {
-        return console.log('Loading');
+    if (!selectedProduct) {
+        return <Loader/>;
     }
     return (
         <div className={active ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={()=>{dispatch(closeModal())}}>
@@ -24,24 +22,24 @@ const dispatch = useDispatch()
                 <AiOutlineClose onClick={()=>{dispatch(closeModal())}} className={styles.ModalContentClosed}/>
                 <div className={styles.ModalContentPicture}>
                     <img className={styles.ModalContentPictureImg}
-                         src={product.imageUrls[0]}
+                         src={selectedProduct.imageUrls[0]}
                          alt="product"/>
                     <ul className={styles.ModalContentPictureCarousel}>
-                        {product.imageUrls.map((img, index) => {
+                        {selectedProduct.imageUrls.map((img, index) => {
                             return <li key={index}><img src={img} alt="product"/></li>
                         })}
                     </ul>
                 </div>
                 <div className={styles.ModalContentDescription}>
-                    <h3 className={styles.ModalContentDescriptionTitle}>{product.name}</h3>
-                    <span className={styles.ModalContentDescriptionText}>{product.description}</span>
-                    <span className={styles.ModalContentDescriptionColor}>Color: {product.color}</span>
-                    <span className={styles.ModalContentDescriptionPrice}>${product.currentPrice}.00</span>
+                    <h3 className={styles.ModalContentDescriptionTitle}>{selectedProduct.name}</h3>
+                    <span className={styles.ModalContentDescriptionText}>{selectedProduct.description}</span>
+                    <span className={styles.ModalContentDescriptionColor}>Color: {selectedProduct.color}</span>
+                    <span className={styles.ModalContentDescriptionPrice}>${selectedProduct.currentPrice}.00</span>
                     <div className={styles.ModalContentDescriptionCount}>
                         <Button className={styles.ModalContentDescriptionCountBtn} text="Add To Cart"/>
                     </div>
-                    <span className={styles.ModalContentDescriptionValues}>Availability: {product.quantity}</span>
-                    <span className={styles.ModalContentDescriptionValues}>Brand: {product.brand}</span>
+                    <span className={styles.ModalContentDescriptionValues}>Availability: {selectedProduct.quantity}</span>
+                    <span className={styles.ModalContentDescriptionValues}>Brand: {selectedProduct.brand}</span>
                 </div>
             </div>
         </div>

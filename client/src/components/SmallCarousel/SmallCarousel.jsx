@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './SmallCarousel.module.scss'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
 import SmallCarouselItem from "./SmallCarouselItem";
 import {useDispatch, useSelector} from "react-redux";
 import {getElement, openModal} from "../../store/productsSlice";
-
+import Loader from "../Loader/Loader";
+import {fetchAsyncTrending} from "../../store/topProductsSlice";
 
 const responsive = {
     superLargeDesktop: {
@@ -29,15 +30,21 @@ const responsive = {
     }
 };
 
-
 function SmallCarousel(props) {
     const dispatch = useDispatch()
-    const trending = useSelector(state => state.products.trending)//   список товарів
     const handleProductClick = (product)=> {
         dispatch(getElement(product));
         dispatch(openModal())
+        console.log(product)
     }
-    console.log(trending)
+    const trending = useSelector(state => state.topProducts.trending)
+    useEffect(() => {
+        dispatch(fetchAsyncTrending())
+    }, [dispatch])
+
+    if (!trending) {
+        return <Loader/>
+    }
     return (
         <div className={styles.Slider}>
             <div className={styles.SliderDescription}>
@@ -58,7 +65,7 @@ function SmallCarousel(props) {
                 >
                     {trending.products.map(product => {
                         return <SmallCarouselItem {...product} key={product._id} product={product}
-                                                  onClick={()=>handleProductClick(product._id)}/>
+                                                  onClick={()=>handleProductClick(product)}/>
                     })}
                 </Carousel>
             </div>

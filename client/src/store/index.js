@@ -4,17 +4,18 @@ import storage from 'redux-persist/lib/storage'
 import {persistStore, persistReducer} from "redux-persist";
 import productsReducer from './productsSlice'
 import productsFiltersReducer from './productsFiltersSlice'
-
+import topProducts from './topProductsSlice'
 const persistConfig = {
     key:'root',
     storage,
-    whitelist:['products']
+   blacklist:['products', 'productsFilters','topProducts']
 
 }
 
 const rootReducer = combineReducers({
     products: productsReducer,
     productsFilters: productsFiltersReducer,
+    topProducts:topProducts
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

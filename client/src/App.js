@@ -22,57 +22,46 @@ import {
     fetchAsyncFurniture,
     fetchAsyncSofas,
 } from './store/productsFiltersSlice'
-import Error from './components/Error/Error'
-import Loader from './components/Loader/Loader'
-import Account from "./components/Account/Account";
+
 
 
 function App() {
 
-    //переніс Loader та запрос products, додав модальне вікно продуктів
-    const dispatch = useDispatch()
-    const status = useSelector(state => state.products.status)
+
+    // const dispatch = useDispatch()
+
     const activeModal = useSelector(state => state.products.activeModal)
+
+
+
+
+
 //-------------------- запит на server фільтрів------------------------------
-    useEffect(() => {
-        dispatch(fetchAsyncProducts())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(fetchAsyncTrending())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(fetchAsyncBestSellers())
-    }, [dispatch])
-
-
-    useEffect(() => {
-        dispatch(fetchAsyncChairs())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(fetchAsyncLamps())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(fetchAsyncDecor())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(fetchAsyncFurniture())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(fetchAsyncSofas())
-    }, [dispatch])
 
 
 
-    switch (status) {
-        case 'loading':
-            return <Loader/>;
-        case 'loaded':
+    // useEffect(() => {
+    //     dispatch(fetchAsyncChairs())
+    // }, [dispatch])
+    //
+    // useEffect(() => {
+    //     dispatch(fetchAsyncLamps())
+    // }, [dispatch])
+    //
+    // useEffect(() => {
+    //     dispatch(fetchAsyncDecor())
+    // }, [dispatch])
+    //
+    // useEffect(() => {
+    //     dispatch(fetchAsyncFurniture())
+    // }, [dispatch])
+    //
+    // useEffect(() => {
+    //     dispatch(fetchAsyncSofas())
+    // }, [dispatch])
+
+
+
             return (
                 <div className="App">
                     <Routes>
@@ -93,11 +82,6 @@ function App() {
                     <ProductModal active={activeModal}/>
                 </div>
             );
-        default:
-            return <Error error={status}/>
-
-    }
-
 }
 
 export default App;

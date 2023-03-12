@@ -244,7 +244,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+a{
+  width: 100%;
+}
     &Button {
       font-family: 'Red Hat Display';
       font-weight: 700;
@@ -260,6 +262,7 @@
       border-radius: 4px;
       &:nth-child(3){
         display: none;
+
       }
     }
   }
@@ -312,7 +315,9 @@
 
     &Nav {
       width: 25%;
-
+a{
+  width: 64%;
+}
       &Button {
         width: 150px;
 
