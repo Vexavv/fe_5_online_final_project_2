@@ -16,7 +16,7 @@ function ProductPagination(props) {
 
     const dispatch = useDispatch()
     const page = useSelector(state => state.products.page)
-    const totalPages = useSelector(state => state.products.totalPages)
+
 
     const handlePageChange = (event, value) => {
       dispatch(setPage(value))

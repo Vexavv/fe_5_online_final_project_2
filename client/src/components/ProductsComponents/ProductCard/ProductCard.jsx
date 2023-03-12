@@ -24,7 +24,7 @@ function ProductCard({name, imageUrls, currentPrice, description, product, onCli
                      onMouseEnter={() => setHovered(_id)}
                      alt={name}/>
                 <div className={styles.CardButton}>
-                   <Link to="/product"><HiOutlineShoppingBag className={styles.CardButtonIcon} onClick={()=>{dispatch(getElement(product._id))}}/></Link>
+                   <Link to="/product"><HiOutlineShoppingBag className={styles.CardButtonIcon} onClick={()=>{dispatch(getElement(product))}}/></Link>
                     <TfiSearch onClick={onClick} className={styles.CardButtonIcon}/>
                 </div>
                 <div className={styles.CardDescription}>
@@ -55,7 +55,7 @@ function ProductCard({name, imageUrls, currentPrice, description, product, onCli
                 </div>
                 <div className={styles.RowNav}>
                     <RatingStar/>
-                    <Link to="/product"><Button className={styles.RowNavButton} text='Select Options' onClick={()=>{dispatch(getElement(product._id))}}/></Link>
+                    <Link to='/product'><Button className={styles.RowNavButton} text='Select Options' onClick={()=>{dispatch(getElement(product))}}/></Link>
                     <Button onClick={onClick} className={styles.RowNavButton} text='Quick View'/>
                     <Button className={styles.RowNavButton} text='Add To Cart'/>
                 </div>

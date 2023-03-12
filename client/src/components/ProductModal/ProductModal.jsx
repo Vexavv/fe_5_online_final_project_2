@@ -8,12 +8,9 @@ import {closeModal} from "../../store/productsSlice";
 import Loader from "../Loader/Loader";
 
 function ProductModal({active}) {
-const dispatch = useDispatch()
 
+const dispatch = useDispatch()
     const selectedProduct = useSelector((state) => state.products.selectedProduct);
-    // const products = useSelector((state) => state.products.products);
-    // const product = products.find((p) => p._id === selectedProductId);
-    console.log(selectedProduct)
 
     if (!selectedProduct) {
         return <Loader/>;

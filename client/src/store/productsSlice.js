@@ -2,7 +2,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import productsService from "../services/productsServices";
 // функція запиту продуктів
 
-const PAGE_SIZE = 5; // кількість продуктів на сторінці
+const PAGE_SIZE = 12; // кількість продуктів на сторінці
 
 const initialState = {
     products: [],
@@ -12,8 +12,6 @@ const initialState = {
     activeModal: false, // модальне вікно
     selectedProduct: null, // отримання необхідного id для від ображення продукту в модальному вікні
 
-
-    totalPages: 4,// кількість сторінок
     page: 1,
 }
 

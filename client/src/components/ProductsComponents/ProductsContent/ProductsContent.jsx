@@ -34,16 +34,17 @@ const valueBest = useSelector(state => state.productsFilters.visibleRadioOff)
 //     const sofas = useSelector(state => state.productsFilters.sofas)
 const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFilters)
 
-    const trending = useSelector(state => state.products.trending) //trending products
-    const bestSellers = useSelector(state => state.products.bestSellers) //best sellers products
-    console.log(trending)
-    console.log(bestSellers)
+    // const trending = useSelector(state => state.topProducts.trending) //trending products
+    // const bestSellers = useSelector(state => state.topProducts.bestSellers) //best sellers products
+    // console.log(trending)
+    // console.log(bestSellers)
     console.log(furniture)
     console.log(lamps)
     console.log(products)
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())
+        console.log(product)
     }
     const page = useSelector(state => state.products.page)
     const status = useSelector(state => state.products.status)
@@ -71,13 +72,13 @@ const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFi
                                 case 'chairs':
                                     return (chairs.products.map(product => {
                                         return <ProductCard{...product} key={product._id}
-                                                           product={product} onClick={() => handleProductClick(product._id)}/>
+                                                           product={product} onClick={() => handleProductClick(product)}/>
                                     }));
                                 case 'lamps':
                                     return (lamps.products.map(product => {
                                             return <ProductCard{...product} key={product._id}
                                                                product={product}
-                                                               onClick={() => handleProductClick(product._id)}/>
+                                                               onClick={() => handleProductClick(product)}/>
                                         })
 
                                     );
@@ -85,7 +86,7 @@ const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFi
                                     return (decor.products.map(product => {
                                             return <ProductCard{...product} key={product._id}
                                                                product={product}
-                                                               onClick={() => handleProductClick(product._id)}/>
+                                                               onClick={() => handleProductClick(product)}/>
                                         })
                                     );
                                 case 'furniture':
@@ -93,14 +94,14 @@ const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFi
                                         furniture.products.map(product => {
                                             return <ProductCard{...product} key={product._id}
                                                                product={product}
-                                                               onClick={() => handleProductClick(product._id)}/>
+                                                               onClick={() => handleProductClick(product)}/>
                                         })
                                     );
                                 case 'sofas':
                                     return (sofas.products.map(product => {
                                             return <ProductCard{...product} key={product._id}
                                                                product={product}
-                                                               onClick={() => handleProductClick(product._id)}/>
+                                                               onClick={() => handleProductClick(product)}/>
                                         })
                                     );
 
@@ -109,7 +110,7 @@ const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFi
                                         products.map(product => {
                                             return <ProductCard{...product} key={product._id}
                                                                product={product}
-                                                               onClick={() => handleProductClick(product._id)}/>
+                                                               onClick={() => handleProductClick(product)}/>
                                         })
 
 
