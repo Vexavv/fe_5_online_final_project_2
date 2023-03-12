@@ -19,7 +19,7 @@ function BestsellerItem({ item, onClick }) {
       </div>
       <Link to='/product'>
         <img
-            onClick={()=>{dispatch(getElement(item._id))}}
+            onClick={()=>{dispatch(getElement(item))}}
           src={
             hovered === item._id && item.imageUrls.length > 1
               ? item.imageUrls[1]

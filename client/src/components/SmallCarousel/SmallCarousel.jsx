@@ -69,7 +69,7 @@ function SmallCarousel(props) {
                           showDots={true}
                 >
                     {trending.products.map(product => {
-                        return <SmallCarouselItem {...product} key={product._id}
+                        return <SmallCarouselItem {...product} key={product._id} product={product}
                                                   onClick={()=>handleProductClick(product)}/>
                     })}
                 </Carousel>

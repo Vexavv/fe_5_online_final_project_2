@@ -44,7 +44,7 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, product
             </CardMedia>
 
             <Link to='/product'><CardContent
-                onClick={() => {dispatch(getElement(product._id))}}
+                onClick={() => {dispatch(getElement(product))}}
                 sx={{padding: "20px 0"}}>
                 <Typography
 

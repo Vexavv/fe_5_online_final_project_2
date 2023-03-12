@@ -37,10 +37,8 @@ const buttonSX = {
 
 export default function OneProduct() {
   //--------------------------------------------
-  const selectedProductId = useSelector((state) => state.products.selectedProductId);
-  const products = useSelector((state) => state.products.products);
-  const product = products.find((p) => p._id === selectedProductId);
-
+  const selectedProduct = useSelector((state) => state.products.selectedProduct);
+  console.log(selectedProduct)
   //----------------------------------------------
   const { tw, fb, inst, span } = styles;
 
@@ -76,7 +74,7 @@ export default function OneProduct() {
               alt={'sss'}
               width="100%"
               height="100%"
-              src={product.imageUrls[0]}
+              src={selectedProduct.imageUrls[0]}
               style={{ objectFit: 'contain' }}
             />
           </Box>
@@ -85,14 +83,14 @@ export default function OneProduct() {
           <Box flex="1 1 50%" mb="40px">
             <Box m="5px 0 25px 0">
               <Typography align="left" variant="h4">
-                {product.name}
+                {selectedProduct.name}
               </Typography>
 
               <Typography align="left" sx={{ mt: '20px' }}>
-                {product.description}
+                {selectedProduct.description}
               </Typography>
               <Typography variant="h6" color="#ba933e" align="left" m="30px 0">
-                ${product.currentPrice}.00
+                ${selectedProduct.currentPrice}.00
               </Typography>
             </Box>
 
@@ -126,21 +124,21 @@ export default function OneProduct() {
                 <Typography sx={{ ml: '5px' }}>ADD TO WISHLIST</Typography>
               </Box>
               <Typography m="8px 0 0 0">
-                <span className={span}>Availability: </span> {product.quantity}
+                <span className={span}>Availability: </span> {selectedProduct.quantity}
               </Typography>
               <Typography m="8px 0 0 0">
                 <span className={span}>Product type: </span>
                 Demo Type
               </Typography>
               <Typography m="8px 0 0 0">
-                <span className={span}>Brand: </span> {product.brand}
+                <span className={span}>Brand: </span> {selectedProduct.brand}
               </Typography>
               <Typography m="8px 0 0 0">
                 <span className={span}>SKU: </span> N/A
               </Typography>
               <Typography align="left" m="8px 0 0 0">
                 <span className={span}>Categories: </span>
-                {product.categories}
+                {selectedProduct.categories}
               </Typography>
               <Box
                 sx={{
@@ -186,7 +184,7 @@ export default function OneProduct() {
           <Box sx={{ padding: 2 }}>
             {tabIndex === 0 && (
               <Box>
-                <Typography>{product.description}</Typography>
+                <Typography>{selectedProduct.description}</Typography>
               </Box>
             )}
             {tabIndex === 1 && (
