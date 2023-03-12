@@ -37,6 +37,7 @@ function SmallCarousel(props) {
         dispatch(getElement(product));
         dispatch(openModal())
     }
+    console.log(trending)
     return (
         <div className={styles.Slider}>
             <div className={styles.SliderDescription}>
