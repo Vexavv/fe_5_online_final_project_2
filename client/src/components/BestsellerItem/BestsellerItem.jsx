@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { TfiSearch } from "react-icons/tfi";
 import styles from "./BestsellerItem.module.scss";
-import {Link}from "react-router-dom";
-import {getElement} from "../../store/productsSlice";
-import {useDispatch} from "react-redux";
-
+import { Link } from "react-router-dom";
+import { getElement } from "../../store/productsSlice";
+import { useDispatch } from "react-redux";
 
 function BestsellerItem({ item, onClick }) {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [hovered, setHovered] = useState(null);
-
+  console.log(item);
   return (
     <div className={styles.wrapper}>
       <div className={styles.btnWrapper}>
@@ -19,7 +18,9 @@ function BestsellerItem({ item, onClick }) {
       </div>
       <Link to='/product'>
         <img
-            onClick={()=>{dispatch(getElement(item))}}
+          onClick={() => {
+            dispatch(getElement(item));
+          }}
           src={
             hovered === item._id && item.imageUrls.length > 1
               ? item.imageUrls[1]

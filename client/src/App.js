@@ -21,7 +21,8 @@ import {
     fetchAsyncDecor,
     fetchAsyncFurniture,
     fetchAsyncSofas,
-} from './store/productsFiltersSlice'
+} from './store/productsFiltersSlice';
+import Favorites from "./pages/Favorites/Favorites";
 
 
 
@@ -74,8 +75,8 @@ function App() {
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/cart" element={<Cart/>}/>
                             <Route path="/product" element={<OneProduct/>}/>
-                            {/*<Route path="/account" element={<Account/>}/>*/}
-
+                            {/* <Route path="/account" element={<Account/>}/> */}
+                            <Route path='/favorites' element={<Favorites/>}/>
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
                     </Routes>
