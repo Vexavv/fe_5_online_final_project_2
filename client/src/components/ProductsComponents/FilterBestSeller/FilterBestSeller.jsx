@@ -15,7 +15,7 @@ import {changeRadioBest, hideRadioOffBest} from "../../../store/productsFiltersS
 function FilterBestSeller(props) {
     const dispatch = useDispatch()
     const value = useSelector(state => state.productsFilters.radioBestValue)
-    const visible = useSelector(state => state.productsFilters.visibleRadioOff)
+    const visible = useSelector(state => state.productsFilters.visibleRadioOffBest)
     const handleChange = (event) => {
         dispatch(changeRadioBest(event))
     };
@@ -23,22 +23,6 @@ function FilterBestSeller(props) {
     const offRadio = () => {
         dispatch(hideRadioOffBest())
     }
-
-
-    // const [value, setValue] = useState('');
-    // const [visible, setVisible] = useState(false);
-
-    // const handleChange = (event) => {
-    //     setValue(event.target.value);
-    //     if (event.target.value !== '') {
-    //         setVisible(true)
-    //     }
-    // };
-
-    // const offRadio = () => {
-    //     setVisible(false)
-    //     setValue("")
-    // }
 
     return (
 

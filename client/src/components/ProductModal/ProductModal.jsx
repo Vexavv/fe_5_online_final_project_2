@@ -13,7 +13,7 @@ const dispatch = useDispatch()
     const selectedProduct = useSelector((state) => state.products.selectedProduct);
 
     if (!selectedProduct) {
-        return console.log('Loading');
+        return null;
     }
     return (
         <div className={active ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={()=>{dispatch(closeModal())}}>

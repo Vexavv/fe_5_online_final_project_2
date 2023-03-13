@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -7,33 +7,23 @@ import FormControl from '@mui/material/FormControl';
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from '@mui/icons-material/Cancel';
+import {useSelector, useDispatch} from "react-redux";
+import {hideCheckBoxPrice, selectCheckBoxPrice} from "../../../store/productsFiltersSlice";
 
 function ProductCheckBox(props) {
-    const [state, setState] = useState({
-        one: false,
-        two: false,
-        three: false,
-        four: false
-    });
+const dispatch = useDispatch()
+    const visible = useSelector(state => state.productsFilters.visibleCheckBoxOff)
+    const state = useSelector(state => state.productsFilters.checkBoxPriceValue)
+
+    const offCheck = () => {
+        dispatch(hideCheckBoxPrice())
+    }
+
     const handleChange = (event) => {
-        setState({
-            ...state,
-            [event.target.name]: event.target.checked,
-        });
-        if(event.target.name !== ''){setVisible(true)}
+       dispatch(selectCheckBoxPrice(event))
     };
     const {one, two, three, four} = state;
 
-    const [visible, setVisible] = useState(false)
-    const offCheck = () => {
-        setVisible(false)
-        setState({
-            one: false,
-            two: false,
-            three: false,
-            four: false
-        })
-    }
     return (
         <>
             {visible && <CancelIcon

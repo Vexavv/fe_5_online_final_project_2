@@ -2,13 +2,19 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {fetchAsyncProducts} from "./productsSlice";
 
 const initialState = {
-    radioButtonValue: 'products', //значення перемикача categories
-    radioBestValue: '', // значення перемикача best products
-    radioColorValue: '',// значення перемикача color products
-    visibleRadioOff: false,
-    visibleRadioOffColor: false,
-
-//-------------значення фільтрів категорій товарів--------------------------------
+    radioButtonValue: 'products', //categories selector value
+    radioBestValue: '', //best products selector value
+    radioColorValue: '',// color products selector value
+    checkBoxPriceValue:{
+        one: false,
+        two: false,
+        three: false,
+        four: false
+    }, // check box filter price value
+    visibleRadioOffBest: false,// switch on/off best products
+    visibleRadioOffColor: false,// switch on/off color
+    visibleCheckBoxOff: false,//switch on/off check box
+//-------------categories filters value--------------------------------
     chairs: null,
     lamps: null,
     decor: null,
@@ -87,16 +93,19 @@ const productsFiltersSlice = createSlice({
     name: 'productsFilters',
     initialState,
     reducers: {
+        // categories changer
         changeRadioButton(state, action) {
             state.radioButtonValue = action.payload.target.value
         },
+        //best filter changer
         changeRadioBest(state, action) {
             state.radioBestValue = action.payload.target.value
             if (action.payload.target.value !== '') {
-                state.visibleRadioOff = true
+                state.visibleRadioOffBest = true
 
             }
         },
+        //color filters changer
         changeRadioColor(state, action) {
             state.radioColorValue = action.payload.target.value
             if (action.payload.target.value !== '') {
@@ -104,14 +113,33 @@ const productsFiltersSlice = createSlice({
 
             }
         },
+        // check box price select
+        selectCheckBoxPrice(state, action) {
+            state.checkBoxPriceValue = {...state.checkBoxPriceValue,[action.payload.target.name] : action.payload.target.checked}
+            if (action.payload.target.name !== '') {
+                state.visibleCheckBoxOff = true
+            }
+        },
+        // hidden switch on/off best products
         hideRadioOffBest(state, action) {
-            state.visibleRadioOff = false
+            state.visibleRadioOffBest = false
             state.radioBestValue = ''
         },
-        hideRadioOffColor(state){
+        //hidden switch on/off color
+        hideRadioOffColor(state) {
             state.visibleRadioOffColor = false
             state.radioColorValue = ''
-        }
+        },
+        //hidden switch on/off check box price
+        hideCheckBoxPrice(state, action) {
+            state.visibleCheckBoxOff = false
+            state.checkBoxPriceValue={
+                    one: false,
+                    two: false,
+                    three: false,
+                    four: false
+            }
+        },
 
     },
     extraReducers: builder => {
@@ -133,14 +161,11 @@ const productsFiltersSlice = createSlice({
             })
 
 
-
-
-
     }
 })
 
 
 export const {
-    changeRadioButton, changeRadioBest,changeRadioColor , hideRadioOffColor,hideRadioOffBest,
+    changeRadioButton, changeRadioBest, changeRadioColor, hideRadioOffColor, hideRadioOffBest,hideCheckBoxPrice, selectCheckBoxPrice
 } = productsFiltersSlice.actions
 export default productsFiltersSlice.reducer;

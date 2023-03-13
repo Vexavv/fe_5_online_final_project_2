@@ -14,7 +14,7 @@ import {changeRadioColor, hideRadioOffColor} from "../../../store/productsFilter
 function RadioButtonColor(props) {
     const dispatch= useDispatch()
     const value = useSelector(state => state.productsFilters.radioColorValue)
-    const visibleColor = useSelector(state => state.productsFilters.visibleRadioOffColor)
+    const visible = useSelector(state => state.productsFilters.visibleRadioOffColor)
     const handleChange = (event) => {
         dispatch(changeRadioColor(event))
     };
@@ -23,26 +23,9 @@ function RadioButtonColor(props) {
         dispatch(hideRadioOffColor())
     }
 
-
-
-    // const [value, setValue] = useState('');
-    // const [visible, setVisible] = useState(false)
-
-    // const handleChange = (event) => {
-    //         setValue(event.target.value);
-    //         if (event.target.value !== '') {
-    //             setVisible(true)
-    //         }
-    //     }
-    //
-    // const offRadio = () => {
-    //     setVisible(false)
-    //     setValue("")
-    // }
-
     return (
         <>
-            {visibleColor && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right"}} onClick={offRadio}/>}
+            {visible && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right"}} onClick={offRadio}/>}
             <FormControl  >
                 <FormLabel
                     sx={{color: "#1A1A1A", fontSize: 18, fontWeight: 700, lineHeight: 2, padding: "50px 0 10px 0"}}

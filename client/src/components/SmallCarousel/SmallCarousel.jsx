@@ -35,7 +35,6 @@ function SmallCarousel(props) {
     const handleProductClick = (product)=> {
         dispatch(getElement(product));
         dispatch(openModal())
-        console.log(product)
     }
     const trending = useSelector(state => state.topProducts.trending)
     useEffect(() => {
