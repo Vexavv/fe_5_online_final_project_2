@@ -8,26 +8,41 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Brightness1Icon from '@mui/icons-material/Brightness1';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CancelIcon from '@mui/icons-material/Cancel';
+import {useDispatch, useSelector} from "react-redux";
+import {changeRadioColor, hideRadioOffColor} from "../../../store/productsFiltersSlice";
 
 function RadioButtonColor(props) {
-    const [value, setValue] = useState('');
-    const [visible, setVisible] = useState(false)
-
+    const dispatch= useDispatch()
+    const value = useSelector(state => state.productsFilters.radioColorValue)
+    const visibleColor = useSelector(state => state.productsFilters.visibleRadioOffColor)
     const handleChange = (event) => {
-            setValue(event.target.value);
-            if (event.target.value !== '') {
-                setVisible(true)
-            }
-        }
+        dispatch(changeRadioColor(event))
+    };
 
     const offRadio = () => {
-        setVisible(false)
-        setValue("")
+        dispatch(hideRadioOffColor())
     }
+
+
+
+    // const [value, setValue] = useState('');
+    // const [visible, setVisible] = useState(false)
+
+    // const handleChange = (event) => {
+    //         setValue(event.target.value);
+    //         if (event.target.value !== '') {
+    //             setVisible(true)
+    //         }
+    //     }
+    //
+    // const offRadio = () => {
+    //     setVisible(false)
+    //     setValue("")
+    // }
 
     return (
         <>
-            {visible && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right"}} onClick={offRadio}/>}
+            {visibleColor && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right"}} onClick={offRadio}/>}
             <FormControl  >
                 <FormLabel
                     sx={{color: "#1A1A1A", fontSize: 18, fontWeight: 700, lineHeight: 2, padding: "50px 0 10px 0"}}

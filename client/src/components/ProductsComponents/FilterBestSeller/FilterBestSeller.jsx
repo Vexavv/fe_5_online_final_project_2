@@ -10,7 +10,7 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useDispatch, useSelector} from "react-redux";
-import {changeRadioBest, hideRadioOff} from "../../../store/productsFiltersSlice";
+import {changeRadioBest, hideRadioOffBest} from "../../../store/productsFiltersSlice";
 
 function FilterBestSeller(props) {
     const dispatch = useDispatch()
@@ -21,7 +21,7 @@ function FilterBestSeller(props) {
     };
 
     const offRadio = () => {
-        dispatch(hideRadioOff())
+        dispatch(hideRadioOffBest())
     }
 
 

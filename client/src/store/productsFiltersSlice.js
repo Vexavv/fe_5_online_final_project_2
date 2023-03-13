@@ -4,9 +4,9 @@ import {fetchAsyncProducts} from "./productsSlice";
 const initialState = {
     radioButtonValue: 'products', //значення перемикача categories
     radioBestValue: '', // значення перемикача best products
-
+    radioColorValue: '',// значення перемикача color products
     visibleRadioOff: false,
-
+    visibleRadioOffColor: false,
 
 //-------------значення фільтрів категорій товарів--------------------------------
     chairs: null,
@@ -94,12 +94,24 @@ const productsFiltersSlice = createSlice({
             state.radioBestValue = action.payload.target.value
             if (action.payload.target.value !== '') {
                 state.visibleRadioOff = true
+
             }
         },
-        hideRadioOff(state, action) {
+        changeRadioColor(state, action) {
+            state.radioColorValue = action.payload.target.value
+            if (action.payload.target.value !== '') {
+                state.visibleRadioOffColor = true
+
+            }
+        },
+        hideRadioOffBest(state, action) {
             state.visibleRadioOff = false
             state.radioBestValue = ''
         },
+        hideRadioOffColor(state){
+            state.visibleRadioOffColor = false
+            state.radioColorValue = ''
+        }
 
     },
     extraReducers: builder => {
@@ -129,6 +141,6 @@ const productsFiltersSlice = createSlice({
 
 
 export const {
-    changeRadioButton, changeRadioBest, hideRadioOff
+    changeRadioButton, changeRadioBest,changeRadioColor , hideRadioOffColor,hideRadioOffBest,
 } = productsFiltersSlice.actions
 export default productsFiltersSlice.reducer;
