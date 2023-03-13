@@ -29,7 +29,7 @@ import Favorites from "./pages/Favorites/Favorites";
 function App() {
 
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const activeModal = useSelector(state => state.products.activeModal)
 

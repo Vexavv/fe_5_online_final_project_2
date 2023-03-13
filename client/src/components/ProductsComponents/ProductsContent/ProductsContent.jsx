@@ -16,8 +16,15 @@ import Error from "../../Error/Error";
 
 function ProductsContent() {
     const dispatch = useDispatch();
-    const display = useSelector(state => state.products.display)
-    const products = useSelector(state => state.products.products)
+    const {display, products, page, status} = useSelector(state => state.products)
+    const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFilters)
+
+
+
+
+
+    // const display = useSelector(state => state.products.display)
+    // const products = useSelector(state => state.products.products)
 
 
     //------------------------------------------------
@@ -30,9 +37,8 @@ const valueBest = useSelector(state => state.productsFilters.visibleRadioOff)
 //     const chairs = useSelector(state => state.productsFilters.chairs)
 //     const lamps = useSelector(state => state.productsFilters.lamps)
 //     const decor = useSelector(state => state.productsFilters.decor)
-//     const furniture = useSelector(state => state.productsFilters.furniture)
 //     const sofas = useSelector(state => state.productsFilters.sofas)
-const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFilters)
+
 
     // const trending = useSelector(state => state.topProducts.trending) //trending products
     // const bestSellers = useSelector(state => state.topProducts.bestSellers) //best sellers products
@@ -46,8 +52,8 @@ const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFi
         dispatch(openModal())
         console.log(product)
     }
-    const page = useSelector(state => state.products.page)
-    const status = useSelector(state => state.products.status)
+    // const page = useSelector(state => state.products.page)
+    // const status = useSelector(state => state.products.status)
     useEffect(() => {
         dispatch(fetchAsyncProducts(page))
     }, [page])
