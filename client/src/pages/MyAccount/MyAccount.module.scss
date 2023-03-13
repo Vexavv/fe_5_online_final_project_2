@@ -37,6 +37,7 @@
         border: none;
         padding: 5px;
         margin-top: 10px;
+        margin-right: 5px;
         cursor: pointer;
 
         &:hover {
@@ -44,4 +45,8 @@
             transition: all .35s ease;
           }
     }
+}
+
+.link:hover{
+    color:#1a1a1a;
 }
