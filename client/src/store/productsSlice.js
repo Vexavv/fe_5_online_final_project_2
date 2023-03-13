@@ -11,8 +11,7 @@ const initialState = {
     display: true, // зміна від ображення карток продуктів
     activeModal: false, // модальне вікно
     selectedProduct: null, // отримання необхідного id для від ображення продукту в модальному вікні
-
-    page: 1,
+    page: 1,//яка сторінка відображається
 }
 
 export const fetchAsyncProducts = createAsyncThunk(
