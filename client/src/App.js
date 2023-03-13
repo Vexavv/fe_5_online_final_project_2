@@ -74,7 +74,7 @@ function App() {
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/cart" element={<Cart/>}/>
                             <Route path="/product" element={<OneProduct/>}/>
-                            <Route path="/account" element={<Account/>}/>
+                            {/*<Route path="/account" element={<Account/>}/>*/}
 
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
