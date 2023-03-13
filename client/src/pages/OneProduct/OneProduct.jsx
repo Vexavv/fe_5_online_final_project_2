@@ -18,6 +18,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const theme = createTheme({
   palette: {
@@ -48,6 +49,28 @@ export default function OneProduct() {
 
   const handleTabChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
+  };
+
+  // ---------add product to wishlist and set in localStorage:
+  const [isChecked, setIsChecked] = useState(false);
+  const [favorites, setFav] = useState(
+    JSON.parse(localStorage.getItem("favoriteList")) || []
+  );
+
+  const addToFav = () => {
+    let resultArr;
+    if (favorites.includes(selectedProduct._id)) {
+      resultArr = favorites.filter((el) => el !== selectedProduct._id);
+    } else {
+      resultArr = [...favorites, selectedProduct._id];
+    }
+    setFav(resultArr);
+    localStorage.setItem("favoriteList", JSON.stringify(resultArr));
+  };
+  // --------------------------------------------------------------
+
+  const handleClick = () => {
+    setIsChecked(!isChecked);
   };
   // if (!product) {
   //   return console.log('Loading');
@@ -119,7 +142,13 @@ export default function OneProduct() {
             </Box>
             <Box display='flex' flexDirection='column' alignItems='flex-start'>
               <Box m='20px 0 5px 0' display='flex'>
-                <FavoriteBorderOutlinedIcon />
+                <div onClick={handleClick}>
+                  {isChecked ? (
+                    <AiFillHeart onClick={addToFav} />
+                  ) : (
+                    <AiOutlineHeart onClick={addToFav} />
+                  )}
+                </div>
                 <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
               </Box>
               <Typography m='8px 0 0 0'>
