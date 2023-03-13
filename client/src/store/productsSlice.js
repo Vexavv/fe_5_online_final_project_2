@@ -1,8 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import productsService from "../services/productsServices";
-// функція запиту продуктів
-
-const PAGE_SIZE = 12; // кількість продуктів на сторінці
+import productsService from "../services/productsServices";// функція запиту продуктів
+import PAGE_SIZE from '../constants/constants'
+// const PAGE_SIZE = 12; // кількість продуктів на сторінці
 
 const initialState = {
     products: [],

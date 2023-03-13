@@ -113,7 +113,7 @@ const valueBest = useSelector(state => state.productsFilters.visibleRadioOff)
 
                                 default:
                                     return (
-                                        products.map(product => {
+                                        products.products.map(product => {
                                             return <ProductCard{...product} key={product._id}
                                                                product={product}
                                                                onClick={() => handleProductClick(product)}/>

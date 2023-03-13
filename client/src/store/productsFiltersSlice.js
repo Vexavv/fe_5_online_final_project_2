@@ -1,6 +1,8 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {fetchAsyncProducts} from "./productsSlice";
 
+import filtersService from "../services/filtersServices";
+import PAGE_SIZE from '../constants/constants'
+// const PAGE_SIZE = 5
 const initialState = {
     radioButtonValue: 'products', //categories selector value
     radioBestValue: '', //best products selector value
@@ -25,6 +27,21 @@ const initialState = {
 //-------------------------------------------------------------------
 
 }
+
+export const fetchAsyncFilters = createAsyncThunk(
+    'productsFilters/fetchAsyncFilters',
+    async (page,categories, {rejectWithValue}) => {
+        try {
+            const response = await filtersService.getProducts(page, PAGE_SIZE, categories);
+            return response.data;
+
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+);
+
+
 export const fetchAsyncChairs = createAsyncThunk(
     'productsFilters/fetchAsyncChairs',
     async (_, {rejectWithValue}) => {
