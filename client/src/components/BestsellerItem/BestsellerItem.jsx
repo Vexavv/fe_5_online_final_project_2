@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 function BestsellerItem({ item, onClick }) {
   const dispatch = useDispatch();
   const [hovered, setHovered] = useState(null);
-  console.log(item);
   return (
     <div className={styles.wrapper}>
       <div className={styles.btnWrapper}>

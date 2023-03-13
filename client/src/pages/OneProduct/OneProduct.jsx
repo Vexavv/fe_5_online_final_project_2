@@ -37,11 +37,10 @@ const buttonSX = {
 };
 
 export default function OneProduct() {
-  //--------------------------------------------
+  //--------------------------------------------отримання продукта для рендерінгу---------------------
   const selectedProduct = useSelector(
     (state) => state.products.selectedProduct
   );
-  console.log(selectedProduct);
   //----------------------------------------------
   const { tw, fb, inst, span } = styles;
 
