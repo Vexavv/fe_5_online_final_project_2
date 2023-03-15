@@ -3,12 +3,11 @@ import styles from './ProductsContent.module.scss'
 import ProductCard from "../ProductCard/ProductCard";
 import {useSelector, useDispatch} from "react-redux";
 import {
-    fetchAsyncBestSellers,
     fetchAsyncProducts,
-    fetchAsyncTrending,
     getElement,
     openModal
 } from "../../../store/productsSlice";
+import { fetchAsyncFilters} from "../../../store/productsFiltersSlice";
 import ProductPagination from "../ProductPagination/ProductPagination";
 import Loader from "../../Loader/Loader";
 import Error from "../../Error/Error";
@@ -16,113 +15,141 @@ import Error from "../../Error/Error";
 
 function ProductsContent() {
     const dispatch = useDispatch();
-    const {display, products, page, status} = useSelector(state => state.products)
-    const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFilters)
-
-
-
-
-
-    // const display = useSelector(state => state.products.display)
-    // const products = useSelector(state => state.products.products)
+    const {display, products, page, status } = useSelector(state => state.products)
+    const {radioButtonValue,categories } = useSelector(state => state.productsFilters)
 
 
     //------------------------------------------------
-    const value = useSelector(state => state.productsFilters.radioButtonValue)
-
-
-const valueBest = useSelector(state => state.productsFilters.visibleRadioOff)
-    // const visible = useSelector(state => state.productsFilters.visibleRadioOff)
-//-----------------------redux toolkit ------------------------
-//     const chairs = useSelector(state => state.productsFilters.chairs)
-//     const lamps = useSelector(state => state.productsFilters.lamps)
-//     const decor = useSelector(state => state.productsFilters.decor)
-//     const sofas = useSelector(state => state.productsFilters.sofas)
-
-
-    // const trending = useSelector(state => state.topProducts.trending) //trending products
-    // const bestSellers = useSelector(state => state.topProducts.bestSellers) //best sellers products
-    // console.log(trending)
-    // console.log(bestSellers)
-    console.log(furniture)
-    console.log(lamps)
-    console.log(products)
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())
-        console.log(product)
     }
-    // const page = useSelector(state => state.products.page)
-    // const status = useSelector(state => state.products.status)
+
     useEffect(() => {
         dispatch(fetchAsyncProducts(page))
     }, [page])
 
-    // useEffect(() => {
-    //     dispatch(fetchAsyncTrending())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncBestSellers())
-    // }, [dispatch])
 
-    switch (status) {
-        case 'loading':
-            return <Loader/>;
-        case 'loaded':
+
+//попытка вызова
+    useEffect(() => {
+if(radioButtonValue){
+    dispatch(fetchAsyncFilters({radioButtonValue:radioButtonValue, page:page}))
+}
+    }, [page, radioButtonValue])
+
+    console.log('categories>>>>',categories)
+
+    // console.log('value >>>>', radioButtonValue)
+
+
+///--------------------------
+
+
+
+if(!products){
+    return <Loader/>;
+}
+
+
+    // switch (status) {
+    //     case 'loading':
+    //         return <Loader/>;
+    //     case 'loaded':
             return (
                 <>
                     <ul className={display ? styles.Row : styles.Column}>
-                        {(() => {
-                            switch (value) {
-                                case 'chairs':
-                                    return (chairs.products.map(product => {
-                                        return <ProductCard{...product} key={product._id}
-                                                           product={product} onClick={() => handleProductClick(product)}/>
-                                    }));
-                                case 'lamps':
-                                    return (lamps.products.map(product => {
-                                            return <ProductCard{...product} key={product._id}
-                                                               product={product}
-                                                               onClick={() => handleProductClick(product)}/>
-                                        })
-
-                                    );
-                                case 'decor':
-                                    return (decor.products.map(product => {
-                                            return <ProductCard{...product} key={product._id}
-                                                               product={product}
-                                                               onClick={() => handleProductClick(product)}/>
-                                        })
-                                    );
-                                case 'furniture':
-                                    return (
-                                        furniture.products.map(product => {
-                                            return <ProductCard{...product} key={product._id}
-                                                               product={product}
-                                                               onClick={() => handleProductClick(product)}/>
-                                        })
-                                    );
-                                case 'sofas':
-                                    return (sofas.products.map(product => {
-                                            return <ProductCard{...product} key={product._id}
-                                                               product={product}
-                                                               onClick={() => handleProductClick(product)}/>
-                                        })
-                                    );
-
-                                default:
-                                    return (
-                                        products.products.map(product => {
-                                            return <ProductCard{...product} key={product._id}
-                                                               product={product}
-                                                               onClick={() => handleProductClick(product)}/>
-                                        })
+                        {radioButtonValue === 'products' ? (products.products.map(product => {
+                            return <ProductCard{...product} key={product._id}
+                                               product={product}
+                                               onClick={() => handleProductClick(product)}/>
+                        })) :  (
+                            categories.products.map(product => {
+                                return <ProductCard{...product} key={product._id}
+                                                   product={product}
+                                                   onClick={() => handleProductClick(product)}/>
+                            }))}
 
 
-                                    )
-                            }
-                        })()}
+                        {/*{chairs.products.map(product => {*/}
+                        {/*    return <ProductCard{...product} key={product._id}*/}
+                        {/*                       product={product}*/}
+                        {/*                       onClick={() => handleProductClick(product)}/>*/}
+                        {/*})}*/}
+
+                        {/*{(() => {*/}
+                        {/*    switch (radioButtonValue) {*/}
+
+                        {/*    case `${!radioButtonValue ==='products'?radioButtonValue:null}`:*/}
+                        {/*            return (*/}
+                        {/*                chairs.products.map(product => {*/}
+                        {/*                    return <ProductCard{...product} key={product._id}*/}
+                        {/*                                       product={product}*/}
+                        {/*                                       onClick={() => handleProductClick(product)}/>*/}
+                        {/*                })*/}
+                        {/*            );*/}
+                        {/*        default:*/}
+                        {/*            return (*/}
+                        {/*                products.products.map(product => {*/}
+                        {/*                    return <ProductCard{...product} key={product._id}*/}
+                        {/*                                       product={product}*/}
+                        {/*                                       onClick={() => handleProductClick(product)}/>*/}
+                        {/*                })*/}
+                        {/*            )*/}
+                        {/*    }*/}
+                        {/*})()}*/}
+
+
+                        {/*{(() => {*/}
+                        {/*    switch (value) {*/}
+                        {/*        case 'chairs':*/}
+                        {/*            return (chairs.products.map(product => {*/}
+                        {/*                return <ProductCard{...product} key={product._id}*/}
+                        {/*                                   product={product} onClick={() => handleProductClick(product)}/>*/}
+                        {/*            }));*/}
+                        {/*        case 'lamps':*/}
+                        {/*            return (lamps.products.map(product => {*/}
+                        {/*                    return <ProductCard{...product} key={product._id}*/}
+                        {/*                                       product={product}*/}
+                        {/*                                       onClick={() => handleProductClick(product)}/>*/}
+                        {/*                })*/}
+
+                        {/*            );*/}
+                        {/*        case 'decor':*/}
+                        {/*            return (decor.products.map(product => {*/}
+                        {/*                    return <ProductCard{...product} key={product._id}*/}
+                        {/*                                       product={product}*/}
+                        {/*                                       onClick={() => handleProductClick(product)}/>*/}
+                        {/*                })*/}
+                        {/*            );*/}
+                        {/*        case 'furniture':*/}
+                        {/*            return (*/}
+                        {/*                furniture.products.map(product => {*/}
+                        {/*                    return <ProductCard{...product} key={product._id}*/}
+                        {/*                                       product={product}*/}
+                        {/*                                       onClick={() => handleProductClick(product)}/>*/}
+                        {/*                })*/}
+                        {/*            );*/}
+                        {/*        case 'sofas':*/}
+                        {/*            return (sofas.products.map(product => {*/}
+                        {/*                    return <ProductCard{...product} key={product._id}*/}
+                        {/*                                       product={product}*/}
+                        {/*                                       onClick={() => handleProductClick(product)}/>*/}
+                        {/*                })*/}
+                        {/*            );*/}
+
+                        {/*        default:*/}
+                        {/*            return (*/}
+                        {/*                products.products.map(product => {*/}
+                        {/*                    return <ProductCard{...product} key={product._id}*/}
+                        {/*                                       product={product}*/}
+                        {/*                                       onClick={() => handleProductClick(product)}/>*/}
+                        {/*                })*/}
+
+
+                        {/*            )*/}
+                        {/*    }*/}
+                        {/*})()}*/}
 
                         {/*{(() => {*/}
                         {/*    switch (valueBest) {*/}
@@ -160,9 +187,9 @@ const valueBest = useSelector(state => state.productsFilters.visibleRadioOff)
                     <ProductPagination/>
                 </>
             );
-        default:
-            return <Error error={status}/>
-    }
+    //     default:
+    //         return <Error error={status}/>
+    // }
 
 
 }

@@ -12,56 +12,13 @@ import Products from "./pages/Products/Products";
 import Login from "./pages/LoginPage/LoginPage";
 import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import ProductModal from "./components/ProductModal/ProductModal";
-import {fetchAsyncProducts, fetchAsyncBestSellers, fetchAsyncTrending} from './store/productsSlice'
-import {
-    fetchAsyncChairs,
-    fetchAsyncLamps,
-    fetchAsyncDecor,
-    fetchAsyncFurniture,
-    fetchAsyncSofas,
-} from './store/productsFiltersSlice';
 import Favorites from "./pages/Favorites/Favorites";
-
-
 
 function App() {
 
-
-    const dispatch = useDispatch()
-
     const activeModal = useSelector(state => state.products.activeModal)
-
-
-
-
-
-//-------------------- запит на server фільтрів------------------------------
-
-
-
-    // useEffect(() => {
-    //     dispatch(fetchAsyncChairs())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncLamps())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncDecor())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncFurniture())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncSofas())
-    // }, [dispatch])
-
-
 
             return (
                 <div className="App">

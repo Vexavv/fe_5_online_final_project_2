@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 function ProductsBanner(props) {
     const value = useSelector(state => state.productsFilters.radioButtonValue)
-    console.log(value)
+    // console.log(value)
     return (
         <div  className={styles.Banner}>
             <div className={styles.BannerContainer}>

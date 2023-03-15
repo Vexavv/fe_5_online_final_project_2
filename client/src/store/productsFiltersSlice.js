@@ -1,13 +1,15 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import axios  from "axios";
 
-import filtersService from "../services/filtersServices";
-import PAGE_SIZE from '../constants/constants'
-// const PAGE_SIZE = 5
+import {PAGE_SIZE} from '../constants/constants'
+import {BASE_URL} from "../constants/api";
+
+
 const initialState = {
     radioButtonValue: 'products', //categories selector value
     radioBestValue: '', //best products selector value
     radioColorValue: '',// color products selector value
-    checkBoxPriceValue:{
+    checkBoxPriceValue: {
         one: false,
         two: false,
         three: false,
@@ -17,22 +19,23 @@ const initialState = {
     visibleRadioOffColor: false,// switch on/off color
     visibleCheckBoxOff: false,//switch on/off check box
 //-------------categories filters value--------------------------------
-    chairs: null,
-    lamps: null,
-    decor: null,
-    furniture: null,
-    sofas: null,
+    categories: null,
 
 
 //-------------------------------------------------------------------
+//     status: null,
+//     error: '',
+
 
 }
 
 export const fetchAsyncFilters = createAsyncThunk(
     'productsFilters/fetchAsyncFilters',
-    async (page,categories, {rejectWithValue}) => {
+    async ( arg, {rejectWithValue}) => {
+        const { radioButtonValue, page } = arg;// для пагинации второй арг
         try {
-            const response = await filtersService.getProducts(page, PAGE_SIZE, categories);
+
+            const response = await axios.get(`${BASE_URL}/products/filter?categories=${radioButtonValue}&startPage=${page}&perPage=${PAGE_SIZE}`)
             return response.data;
 
         } catch (error) {
@@ -44,21 +47,9 @@ export const fetchAsyncFilters = createAsyncThunk(
 
 export const fetchAsyncChairs = createAsyncThunk(
     'productsFilters/fetchAsyncChairs',
-    async (_, {rejectWithValue}) => {
+    async (page, {rejectWithValue}) => {
         try {
-            const response = await fetch(`http://localhost:3001/api/products/filter?categories=chairs`);
-            return await response.json();
-
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-);
-export const fetchAsyncLamps = createAsyncThunk(
-    'productsFilters/fetchAsyncLamps',
-    async (_, {rejectWithValue}) => {
-        try {
-            const response = await fetch(`http://localhost:3001/api/products/filter?categories=lamps`);
+            const response = await fetch(`http://localhost:3001/api/products/filter?categories=chairs&startPage=${page}&perPage=${PAGE_SIZE}`);
             return await response.json();
 
         } catch (error) {
@@ -67,49 +58,14 @@ export const fetchAsyncLamps = createAsyncThunk(
     }
 );
 
-export const fetchAsyncDecor = createAsyncThunk(
-    'productsFilters/fetchAsyncDecor',
-    async (_, {rejectWithValue}) => {
-        try {
-            const response = await fetch(`http://localhost:3001/api/products/filter?categories=decor`);
-            return await response.json();
 
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-);
-
-export const fetchAsyncFurniture = createAsyncThunk(
-    'productsFilters/fetchAsyncFurniture',
-    async (_, {rejectWithValue}) => {
-        try {
-            const response = await fetch(`http://localhost:3001/api/products/filter?categories=furniture`);
-            return await response.json();
-
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-);
-export const fetchAsyncSofas = createAsyncThunk(
-    'productsFilters/fetchAsyncSofas',
-    async (_, {rejectWithValue}) => {
-        try {
-            const response = await fetch(`http://localhost:3001/api/products/filter?categories=sofas`);
-            return await response.json();
-
-        } catch (error) {
-            return rejectWithValue(error.message)
-        }
-    }
-);
 
 
 const productsFiltersSlice = createSlice({
     name: 'productsFilters',
     initialState,
     reducers: {
+
         // categories changer
         changeRadioButton(state, action) {
             state.radioButtonValue = action.payload.target.value
@@ -132,7 +88,10 @@ const productsFiltersSlice = createSlice({
         },
         // check box price select
         selectCheckBoxPrice(state, action) {
-            state.checkBoxPriceValue = {...state.checkBoxPriceValue,[action.payload.target.name] : action.payload.target.checked}
+            state.checkBoxPriceValue = {
+                ...state.checkBoxPriceValue,
+                [action.payload.target.name]: action.payload.target.checked
+            }
             if (action.payload.target.name !== '') {
                 state.visibleCheckBoxOff = true
             }
@@ -150,32 +109,27 @@ const productsFiltersSlice = createSlice({
         //hidden switch on/off check box price
         hideCheckBoxPrice(state, action) {
             state.visibleCheckBoxOff = false
-            state.checkBoxPriceValue={
-                    one: false,
-                    two: false,
-                    three: false,
-                    four: false
+            state.checkBoxPriceValue = {
+                one: false,
+                two: false,
+                three: false,
+                four: false
             }
         },
 
     },
     extraReducers: builder => {
         builder
+
+            .addCase(fetchAsyncFilters.fulfilled, (state, action) => {
+                state.categories = action.payload;
+            })
+
+
             .addCase(fetchAsyncChairs.fulfilled, (state, action) => {
                 state.chairs = action.payload;
             })
-            .addCase(fetchAsyncLamps.fulfilled, (state, action) => {
-                state.lamps = action.payload;
-            })
-            .addCase(fetchAsyncDecor.fulfilled, (state, action) => {
-                state.decor = action.payload;
-            })
-            .addCase(fetchAsyncFurniture.fulfilled, (state, action) => {
-                state.furniture = action.payload;
-            })
-            .addCase(fetchAsyncSofas.fulfilled, (state, action) => {
-                state.sofas = action.payload;
-            })
+
 
 
     }
@@ -183,6 +137,12 @@ const productsFiltersSlice = createSlice({
 
 
 export const {
-    changeRadioButton, changeRadioBest, changeRadioColor, hideRadioOffColor, hideRadioOffBest,hideCheckBoxPrice, selectCheckBoxPrice
+    changeRadioButton,
+    changeRadioBest,
+    changeRadioColor,
+    hideRadioOffColor,
+    hideRadioOffBest,
+    hideCheckBoxPrice,
+    selectCheckBoxPrice
 } = productsFiltersSlice.actions
 export default productsFiltersSlice.reducer;
