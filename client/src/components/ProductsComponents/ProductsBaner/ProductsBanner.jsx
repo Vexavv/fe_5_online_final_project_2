@@ -5,19 +5,19 @@ import {useSelector} from "react-redux";
 
 
 function ProductsBanner(props) {
-    const value = useSelector(state => state.productsFilters.radioButtonValue)
+    const category = useSelector(state => state.products.filterBy.category)
     // console.log(value)
     return (
         <div  className={styles.Banner}>
             <div className={styles.BannerContainer}>
                 <nav className={styles.BannerContainerNav}>
-                    <h1 className={styles.BannerContainerNavTitle}>{value}</h1>
+                    <h1 className={styles.BannerContainerNavTitle}>{category}</h1>
                     <ul className={styles.BannerContainerNavLink}>
                         <li className={styles.BannerContainerNavLinkItem}><Link
                             to='/'>Home</Link>
                         </li>
                         <li className={styles.BannerContainerNavLinkItem}>
-                            <span>{value}</span>
+                            <span>{category}</span>
                         </li>
                     </ul>
                 </nav>

@@ -6,29 +6,16 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import {changeRadioButton, fetchAsyncFilters, fetchAsyncChairs} from "../../../store/productsFiltersSlice";
+import { changeCategory} from "../../../store/productsSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 
 function RadioButton(props) {
     const dispatch = useDispatch()
-    const radioButtonValue = useSelector(state => state.productsFilters.radioButtonValue)
-    // const page = useSelector(state => state.products.page)
-
-    // console.log('получил>>>>', radioButtonValue)
-
-
+    const category = useSelector(state => state.products.filterBy.category)
     const handleChange = (event) => {
-
-        dispatch(changeRadioButton(event));
-        // dispatch(fetchAsyncFilters(radioButtonValue))
-
-        // dispatch(fetchAsyncChairs(page))
-
-        // console.log('значение в функции>>>>>', radioButtonValue)
-        // console.log('нажал>>>>>', event.target.value)
+        dispatch(changeCategory({category: event.target.value}));
     };
-
     return (
         <FormControl>
             <FormLabel sx={{color: "#1A1A1A", fontSize: {xs: '17px', md: '18px'}, fontWeight: 700, lineHeight: 2,}}
@@ -36,10 +23,10 @@ function RadioButton(props) {
                        id="demo-radio-buttons-group-label">Product Categories</FormLabel>
             <RadioGroup
                 name="controlled-radio-buttons-group"
-                value={radioButtonValue}
+                value={category}
                 onChange={handleChange}>
 
-                <FormControlLabel value="products"
+                <FormControlLabel value="all"
                                   control={<Radio icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleIcon
                                       sx={{color: 'black'}}/>}/>} label="All Categories"/>
                 <FormControlLabel value="furniture"

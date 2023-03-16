@@ -16,13 +16,12 @@ const theme = createTheme({
 
 function ProductPagination(props) {
     const dispatch = useDispatch()
-    const {products, page} = useSelector(state => state.products)
-    // const {categories} = useSelector(state => state.productsFilters)
+    const {data, page} = useSelector(state => state.products)
     const handlePageChange = (event, value) => {
         dispatch(setPage(value))
     };
 
-    const count = Math.ceil(products.productsQuantity / PAGE_SIZE)
+    const count = Math.ceil(data.productsQuantity / PAGE_SIZE)
 
     return (
         <ThemeProvider theme={theme}>

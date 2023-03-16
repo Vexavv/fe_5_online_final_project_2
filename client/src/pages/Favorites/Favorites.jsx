@@ -5,7 +5,7 @@ import Bestsellers from "../../components/Bestsellers/Bestsellers";
 import ProductCard from "../../components/ProductsComponents/ProductCard/ProductCard";
 import ProductsContent from "../../components/ProductsComponents/ProductsContent/ProductsContent";
 import styles from "./Favorites.module.scss";
-import { fetchAsyncBestSellers } from "../../store/topProductsSlice";
+
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import Loader from "../../components/Loader/Loader";
 

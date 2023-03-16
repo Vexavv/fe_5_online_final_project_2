@@ -4,7 +4,23 @@ import axios  from "axios";
 import {BASE_URL} from "../constants/api";
 
 const initialState = {
-    products: null,
+    data:[],
+    filterBy: {
+        category: 'all',//categories selector value
+        color: '' ,// color products selector value
+        minPrice: 0,
+        maxPrice: 100,
+        topProducts: '',//best products selector value
+    },
+
+    // questions for Rostislav
+    // visibleRadioColor: false,
+
+
+
+
+
+
     status: null,
     error: '',
     display: true, // changing the type of product cards
@@ -32,6 +48,22 @@ const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
+        // change category
+        changeCategory(state, action){
+            state.filterBy.category = action.payload.category
+        },
+        // change color
+        changeColor(state, action){
+            state.filterBy.color = action.payload.color
+        },
+        // change topProducts
+        changeTopProducts(state, action){
+            state.filterBy.topProducts = action.payload.topProducts
+        },
+
+
+
+
 
         //set page for pagination
         setPage(state, action) {
@@ -59,34 +91,32 @@ const productsSlice = createSlice({
     },
     extraReducers: builder => {
         builder
+            // .addCase(fetchAsyncProducts.fulfilled, (state, action) => {
+            //     state.data = action.payload;
+            //
+            // })
             .addCase(fetchAsyncProducts.pending, (state) => {
                 state.status = 'loading';
             })
             .addCase(fetchAsyncProducts.fulfilled, (state, action) => {
-                state.products = action.payload;
+                state.data = action.payload;
                 state.status = 'loaded';
             })
             .addCase(fetchAsyncProducts.rejected, (state, action) => {
                 state.error = action.payload;
                 state.status = 'loaded';
             })
-
-
-
-            // .addCase(fetchAsyncFilters.pending, (state) => {
-            //     state.status = 'loading';
-            // })
-            // .addCase(fetchAsyncFilters.fulfilled, (state, action) => {
-            //     state.categories = action.payload;
-            //     state.status = 'loaded';
-            // })
-            // .addCase(fetchAsyncFilters.rejected, (state, action) => {
-            //     state.error = action.payload;
-            //     state.status = 'loaded';
-            // })
     }
 })
 export const {
+    changeCategory,
+    changeColor,
+    changeTopProducts,
+
+
+
+
+
     changeDisplay,
     changeDisplayList,
     openModal,

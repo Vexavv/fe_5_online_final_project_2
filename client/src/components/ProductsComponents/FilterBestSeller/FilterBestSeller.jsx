@@ -11,23 +11,24 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useDispatch, useSelector} from "react-redux";
 import {changeRadioBest, hideRadioOffBest} from "../../../store/productsFiltersSlice";
-
+import {changeTopProducts} from '../../../store/productsSlice'
 function FilterBestSeller(props) {
     const dispatch = useDispatch()
-    const value = useSelector(state => state.productsFilters.radioBestValue)
-    const visible = useSelector(state => state.productsFilters.visibleRadioOffBest)
+    const topProducts = useSelector(state => state.products.topProducts)
+    // const visible = useSelector(state => state.productsFilters.visibleRadioOffBest)
+    const [visible, setVisible] =useState(false)
     const handleChange = (event) => {
-        dispatch(changeRadioBest(event))
+        dispatch(changeTopProducts({topProducts: event.target.value}))
     };
 
-    const offRadio = () => {
-        dispatch(hideRadioOffBest())
-    }
+    // const offRadio = () => {
+    //     dispatch(hideRadioOffBest())
+    // }
 
     return (
 
         <>
-            {visible && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right"}} onClick={offRadio}/>}
+            {visible && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right"}} />}
             <FormControl>
                 <FormLabel sx={{color: "#1A1A1A", fontSize: {xs:'17px', md:'18px'}, fontWeight: 700, lineHeight: 2,padding: "50px 0 10px 0"}}
                            focused={false}
@@ -35,7 +36,7 @@ function FilterBestSeller(props) {
                 <RadioGroup
 
                     name="controlled-radio-buttons-group"
-                    value={value}
+                    value={topProducts}
                     onChange={handleChange}>
 
                     <FormControlLabel value="best"

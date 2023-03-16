@@ -3,10 +3,9 @@ import styles from './SmallCarousel.module.scss'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
 import SmallCarouselItem from "./SmallCarouselItem";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {getElement, openModal} from "../../store/productsSlice";
 import Loader from "../Loader/Loader";
-import {fetchAsyncTrending} from "../../store/topProductsSlice";
 
 const responsive = {
     superLargeDesktop: {
@@ -32,15 +31,17 @@ const responsive = {
 
 function SmallCarousel(props) {
     const dispatch = useDispatch()
+
     const handleProductClick = (product)=> {
         dispatch(getElement(product));
         dispatch(openModal())
     }
-    const trending = useSelector(state => state.topProducts.trending)
-    useEffect(() => {
-        dispatch(fetchAsyncTrending())
-    }, [dispatch])
-
+    const [trending, setTrending] = useState(null)
+    useEffect(()=>{
+        fetch(`http://localhost:3001/api/products/filter?trendingProduct=true`)
+            .then(response => response.json())
+            .then(json => setTrending(json))
+    },[])
     if (!trending) {
         return <Loader/>
     }
