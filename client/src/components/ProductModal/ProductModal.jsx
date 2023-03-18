@@ -11,12 +11,12 @@ function ProductModal({active}) {
 
 const dispatch = useDispatch()
     const selectedProduct = useSelector((state) => state.products.selectedProduct);
-
+    const isOpen = useSelector(state => state.products.isOpen)
     if (!selectedProduct) {
         return null;
     }
     return (
-        <div className={active ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={()=>{dispatch(toggleModal(false))}}>
+        <div className={isOpen ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={()=>{dispatch(toggleModal(false))}}>
 
             <div className={styles.ModalContent} onClick={e => e.stopPropagation()}>
                 <AiOutlineClose onClick={()=>{dispatch(toggleModal(false))}} className={styles.ModalContentClosed}/>

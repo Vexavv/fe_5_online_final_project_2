@@ -45,7 +45,7 @@ function ProductCheckBox(props) {
         })
 
     }
-    // console.log(price)
+    // console.log('PRICE >>>>',price)
     return (
         <>
             {visible && <CancelIcon

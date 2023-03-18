@@ -24,7 +24,6 @@ function ProductsNav() {
                 <TuneIcon onClick={mobileFilterToggle}  sx={{display:{xs:'flex', sm:'flex', md:'none'}, color: '#ba933e', marginRight:1}}/>
                 <span className={styles.NavFilterText}>Filter</span>
                 <ToggleButtons />
-
                 <Drawer
                     anchor="left"
                     component="div"

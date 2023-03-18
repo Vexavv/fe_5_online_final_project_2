@@ -5,19 +5,19 @@ import {useSelector} from "react-redux";
 
 
 function ProductsBanner(props) {
-    const category = useSelector(state => state.products.filterBy.category)
+    const categories = useSelector(state => state.products.filterBy.categories)
     // console.log(value)
     return (
         <div  className={styles.Banner}>
             <div className={styles.BannerContainer}>
                 <nav className={styles.BannerContainerNav}>
-                    <h1 className={styles.BannerContainerNavTitle}>{category}</h1>
+                    <h1 className={styles.BannerContainerNavTitle}>{categories}</h1>
                     <ul className={styles.BannerContainerNavLink}>
                         <li className={styles.BannerContainerNavLinkItem}><Link
                             to='/'>Home</Link>
                         </li>
                         <li className={styles.BannerContainerNavLinkItem}>
-                            <span>{category}</span>
+                            <span>{categories}</span>
                         </li>
                     </ul>
                 </nav>

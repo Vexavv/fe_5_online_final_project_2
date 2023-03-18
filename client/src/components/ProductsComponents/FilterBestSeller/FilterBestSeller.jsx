@@ -27,7 +27,7 @@ function FilterBestSeller(props) {
     setVisible(false)
     dispatch(changeTopProducts({topProducts:''}));
 }
-    // console.log(topProducts)
+    // console.log('TOP PRODUCTS>>>>',topProducts)
     return (
 
         <>

@@ -18,7 +18,6 @@ import Favorites from "./pages/Favorites/Favorites";
 
 function App() {
 
-    const isOpen = useSelector(state => state.products.isOpen)
             return (
                 <div className="App">
                     <Routes>
@@ -36,7 +35,7 @@ function App() {
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
                     </Routes>
-                    <ProductModal active={isOpen}/>
+                    <ProductModal/>
                 </div>
             );
 }

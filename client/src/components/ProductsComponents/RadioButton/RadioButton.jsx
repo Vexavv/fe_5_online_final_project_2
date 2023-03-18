@@ -12,11 +12,11 @@ import {useDispatch, useSelector} from "react-redux";
 
 function RadioButton(props) {
     const dispatch = useDispatch()
-    const category = useSelector(state => state.products.filterBy.category)
+    const categories = useSelector(state => state.products.filterBy.categories)
     const handleChange = (event) => {
-        dispatch(changeCategory({category: event.target.value}));
+        dispatch(changeCategory({categories: event.target.value}));
     };
-    // console.log(category)
+    // console.log('CATEGORY >>>',category)
     return (
         <FormControl>
             <FormLabel sx={{color: "#1A1A1A", fontSize: {xs: '17px', md: '18px'}, fontWeight: 700, lineHeight: 2,}}
@@ -24,7 +24,7 @@ function RadioButton(props) {
                        id="demo-radio-buttons-group-label">Product Categories</FormLabel>
             <RadioGroup
                 name="controlled-radio-buttons-group"
-                value={category}
+                value={categories}
                 onChange={handleChange}>
 
                 <FormControlLabel value="all"

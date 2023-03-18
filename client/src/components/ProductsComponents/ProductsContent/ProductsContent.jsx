@@ -15,25 +15,20 @@ import Error from "../../Error/Error";
 
 function ProductsContent() {
     const dispatch = useDispatch();
-    const {display,page, status, data, error} = useSelector(state => state.products)
+    const {display,page, status, data, error,} = useSelector(state => state.products)
+    const {categories, color} = useSelector(state => state.products.filterBy)
 
-
-
-    //--------------------------- display--------
-    // const [display1, setDisplay1] = useState(true)
-    // console.log('STATE >>>>',display1)
-    //------------------------------------------------
-    console.log('REDUX >>>>', display)
+    // console.log('REDUX >>>>', display)
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(toggleModal(true))
     }
 
     useEffect(() => {
-        dispatch(fetchAsyncProducts(page))
-    }, [page])
-    // console.log(data)
-
+        dispatch(fetchAsyncProducts({page,categories, color}))
+    }, [page, categories, color])
+    // console.log('DATA >>>',data)
+    console.log(color)
 
 
 

@@ -6,29 +6,34 @@ import {BASE_URL} from "../constants/api";
 const initialState = {
     data: [],
     filterBy: {
-        category: 'all',//categories selector value
+        categories: 'all',//categories selector value
         color: '',// color products selector value
         price: null,// check box filter price value
-        topProducts: '',//best products selector value  questions for Rostislav
+        topProducts: '',//best products selector value
     },
-
     status: null,
     error: '',
     page: 1,//witch page is displayed
-
     display: true, // changing the type of product cards
     selectedProduct: null, //  the right element
     isOpen: false,// modal window
-
 }
 
+function getQueryParams(params) {
+    const esc = encodeURIComponent;
+    return Object.keys(params)
+        .filter((key) => params[key] !== undefined)
+        .map((key) => esc(key) + '=' + esc(params[key]))
+        .join('&');
+}
 
-//request products
 export const fetchAsyncProducts = createAsyncThunk(
     'products/fetchAsyncProducts',
-    async (page, {rejectWithValue}) => {
+    async ({categories,page,color}, {rejectWithValue}) => {
         try {
-            const response = await axios.get(`${BASE_URL}/products/filter?startPage=${page}&perPage=${PAGE_SIZE}`)
+            const queryParams = getQueryParams({ ...(categories !== "all"  && { categories }), ...(color && { color }), startPage: page, perPage: PAGE_SIZE })
+            console.log(queryParams)
+            const response = await axios.get(`${BASE_URL}/products/filter?${queryParams}`)
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data)
@@ -36,13 +41,27 @@ export const fetchAsyncProducts = createAsyncThunk(
     }
 );
 
+
+
+// export const fetchAsyncProducts = createAsyncThunk(
+//     'products/fetchAsyncProducts',
+//     async (page, {rejectWithValue}) => {
+//         try {
+//             const response = await axios.get(`${BASE_URL}/products/filter?startPage=${page}&perPage=${PAGE_SIZE}`)
+//             return response.data;
+//         } catch (error) {
+//             return rejectWithValue(error.response.data)
+//         }
+//     }
+// );
+
 const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
         // change category
         changeCategory(state, action) {
-            state.filterBy.category = action.payload.category
+            state.filterBy.categories = action.payload.categories
         },
         // change color
         changeColor(state, action) {

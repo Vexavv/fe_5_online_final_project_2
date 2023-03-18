@@ -21,7 +21,7 @@ function RadioButtonColor(props) {
             setVisible(true);
         }
     };
-    // console.log(color)
+    // console.log('COLOR >>>>',color)
     const offRadio = () => {
        setVisible(false)
         dispatch(changeColor({color:''}));
