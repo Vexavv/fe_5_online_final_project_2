@@ -1,32 +1,24 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {PAGE_SIZE} from '../constants/constants'
-import axios  from "axios";
+import axios from "axios";
 import {BASE_URL} from "../constants/api";
 
 const initialState = {
-    data:[],
+    data: [],
     filterBy: {
         category: 'all',//categories selector value
-        color: '' ,// color products selector value
-        minPrice: 0,
-        maxPrice: 100,
-        topProducts: '',//best products selector value
+        color: '',// color products selector value
+        price: null,// check box filter price value
+        topProducts: '',//best products selector value  questions for Rostislav
     },
-
-    // questions for Rostislav
-    // visibleRadioColor: false,
-
-
-
-
-
 
     status: null,
     error: '',
-    display: true, // changing the type of product cards
-    activeModal: false, // modal window
-    selectedProduct: null, //  the right element
     page: 1,//witch page is displayed
+
+    display: true, // changing the type of product cards
+    selectedProduct: null, //  the right element
+    isOpen: false,// modal window
 
 }
 
@@ -49,52 +41,46 @@ const productsSlice = createSlice({
     initialState,
     reducers: {
         // change category
-        changeCategory(state, action){
+        changeCategory(state, action) {
             state.filterBy.category = action.payload.category
         },
         // change color
-        changeColor(state, action){
+        changeColor(state, action) {
             state.filterBy.color = action.payload.color
         },
         // change topProducts
-        changeTopProducts(state, action){
+        changeTopProducts(state, action) {
             state.filterBy.topProducts = action.payload.topProducts
+        },
+        // change Price         questions for Rostislav
+        changePrice(state, action) {
+            state.filterBy.price = action.payload.price  /*{...state.filterBy.price,[action.payload.price]: action.payload.price}*/
         },
 
 
 
-
+        //switch modal windows
+        toggleModal(state, action) {
+            state.isOpen = action.payload
+        },
 
         //set page for pagination
         setPage(state, action) {
             state.page = action.payload
         },
-        changeDisplay(state, action) {
-            state.display = false
-        },
-        // changing card
-        changeDisplayList(state, action) {
-            state.display = true
-        },
-        //open modal window
-        openModal(state, action) {
-            state.activeModal = true
-        },
-        //close modal window
-        closeModal(state, action) {
-            state.activeModal = false
-        },
         //getting the right element
         getElement(state, action) {
             state.selectedProduct = action.payload
         },
+        // switch display card
+        toggleDisplay(state, action ){
+             state.display = action.payload
+        },
+
     },
     extraReducers: builder => {
         builder
-            // .addCase(fetchAsyncProducts.fulfilled, (state, action) => {
-            //     state.data = action.payload;
-            //
-            // })
+
             .addCase(fetchAsyncProducts.pending, (state) => {
                 state.status = 'loading';
             })
@@ -112,23 +98,12 @@ export const {
     changeCategory,
     changeColor,
     changeTopProducts,
+    changePrice,
 
-
-
-
-
-    changeDisplay,
-    changeDisplayList,
-    openModal,
-    closeModal,
+    toggleDisplay,
+    toggleModal,
     getElement,
     setPage,
-
-
-
-    changeRadioButton
-
-
 
 } = productsSlice.actions
 export default productsSlice.reducer;

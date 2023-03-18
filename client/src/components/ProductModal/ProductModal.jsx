@@ -4,8 +4,8 @@ import classNames from "classnames";
 import Button from "../Button/Button";
 import {AiOutlineClose} from 'react-icons/ai';
 import {useSelector, useDispatch} from "react-redux";
-import {closeModal} from "../../store/productsSlice";
-import Loader from "../Loader/Loader";
+import {toggleModal} from "../../store/productsSlice";
+
 
 function ProductModal({active}) {
 
@@ -16,10 +16,10 @@ const dispatch = useDispatch()
         return null;
     }
     return (
-        <div className={active ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={()=>{dispatch(closeModal())}}>
+        <div className={active ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={()=>{dispatch(toggleModal(false))}}>
 
             <div className={styles.ModalContent} onClick={e => e.stopPropagation()}>
-                <AiOutlineClose onClick={()=>{dispatch(closeModal())}} className={styles.ModalContentClosed}/>
+                <AiOutlineClose onClick={()=>{dispatch(toggleModal(false))}} className={styles.ModalContentClosed}/>
                 <div className={styles.ModalContentPicture}>
                     <img className={styles.ModalContentPictureImg}
                          src={selectedProduct.imageUrls[0]}

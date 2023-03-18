@@ -16,6 +16,7 @@ function RadioButton(props) {
     const handleChange = (event) => {
         dispatch(changeCategory({category: event.target.value}));
     };
+    // console.log(category)
     return (
         <FormControl>
             <FormLabel sx={{color: "#1A1A1A", fontSize: {xs: '17px', md: '18px'}, fontWeight: 700, lineHeight: 2,}}

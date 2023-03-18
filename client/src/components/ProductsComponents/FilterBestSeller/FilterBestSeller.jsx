@@ -1,5 +1,4 @@
 
-
 import React, {useState} from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -10,25 +9,29 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useDispatch, useSelector} from "react-redux";
-import {changeRadioBest, hideRadioOffBest} from "../../../store/productsFiltersSlice";
 import {changeTopProducts} from '../../../store/productsSlice'
+
 function FilterBestSeller(props) {
     const dispatch = useDispatch()
-    const topProducts = useSelector(state => state.products.topProducts)
-    // const visible = useSelector(state => state.productsFilters.visibleRadioOffBest)
+    const topProducts = useSelector(state => state.products.filterBy.topProducts)
+
     const [visible, setVisible] =useState(false)
     const handleChange = (event) => {
         dispatch(changeTopProducts({topProducts: event.target.value}))
+        if (event.target.value !== '') {
+            setVisible(true);
+        }
     };
 
-    // const offRadio = () => {
-    //     dispatch(hideRadioOffBest())
-    // }
-
+    const offRadio = () => {
+    setVisible(false)
+    dispatch(changeTopProducts({topProducts:''}));
+}
+    // console.log(topProducts)
     return (
 
         <>
-            {visible && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right"}} />}
+            {visible && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right"}} onClick={offRadio} />}
             <FormControl>
                 <FormLabel sx={{color: "#1A1A1A", fontSize: {xs:'17px', md:'18px'}, fontWeight: 700, lineHeight: 2,padding: "50px 0 10px 0"}}
                            focused={false}

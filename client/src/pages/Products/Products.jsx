@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './Product.module.scss'
 import ProductsBanner from "../../components/ProductsComponents/ProductsBaner/ProductsBanner";
 import ProductsNav from "../../components/ProductsComponents/ProductsNav/ProductsNav";
@@ -20,7 +20,7 @@ function Products(props) {
                             </div>
                             <div className={styles.ProductWrapperContent}>
                                 <ProductsNav/>
-                                <ProductsContent />
+                                <ProductsContent/>
                             </div>
                         </div>
                         {/*<div className={styles.ProductWrapperPagination}>*/}

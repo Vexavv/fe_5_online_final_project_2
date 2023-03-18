@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -8,22 +8,44 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useSelector, useDispatch} from "react-redux";
-import {hideCheckBoxPrice, selectCheckBoxPrice} from "../../../store/productsFiltersSlice";
+import {changePrice} from '../../../store/productsSlice'
 
 function ProductCheckBox(props) {
-const dispatch = useDispatch()
-    const visible = useSelector(state => state.productsFilters.visibleCheckBoxOff)
-    const state = useSelector(state => state.productsFilters.checkBoxPriceValue)
+    const dispatch = useDispatch()
+    const price = useSelector(state => state.products.filterBy.price)
 
-    const offCheck = () => {
-        dispatch(hideCheckBoxPrice())
-    }
+    const [visible, setVisible] = useState(false)
+    const [checked, setChecked] = useState({
+        one: false,
+        two: false,
+        three: false,
+        four: false
+    })
+    const {one, two, three, four} = checked;
 
     const handleChange = (event) => {
-       dispatch(selectCheckBoxPrice(event))
+        dispatch(changePrice({price: event.target.name}))
+        setChecked({
+            ...checked,
+            [event.target.name]: event.target.checked,
+        });
+        if (event.target.name !== null) {
+            setVisible(true);
+        }
     };
-    const {one, two, three, four} = state;
 
+    const offCheck = () => {
+        setVisible(false)
+        dispatch(changePrice({price: null}));
+        setChecked({
+            one: false,
+            two: false,
+            three: false,
+            four: false
+        })
+
+    }
+    // console.log(price)
     return (
         <>
             {visible && <CancelIcon
@@ -48,17 +70,17 @@ const dispatch = useDispatch()
                                       control={<Checkbox checked={two} onChange={handleChange} name="two"
                                                          icon={<RadioButtonUncheckedIcon/>}
                                                          checkedIcon={<CheckCircleIcon sx={{color: "#ba933e"}}/>}/>}
-                                      label="50$-100$"/>
+                                      label="51$-100$"/>
                     <FormControlLabel sx={{"&:hover": {color: "#ba933e"}}}
                                       control={<Checkbox checked={three} onChange={handleChange} name="three"
                                                          icon={<RadioButtonUncheckedIcon/>}
                                                          checkedIcon={<CheckCircleIcon sx={{color: "#ba933e"}}/>}/>}
-                                      label="100$-150$"/>
+                                      label="101$-150$"/>
                     <FormControlLabel sx={{"&:hover": {color: "#ba933e"}}}
                                       control={<Checkbox checked={four} onChange={handleChange} name="four"
                                                          icon={<RadioButtonUncheckedIcon/>}
                                                          checkedIcon={<CheckCircleIcon sx={{color: "#ba933e"}}/>}/>}
-                                      label="150$-250$"/>
+                                      label="151$-250$"/>
                 </FormGroup>
             </FormControl>
         </>

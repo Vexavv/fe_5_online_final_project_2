@@ -14,7 +14,6 @@ import {changeColor} from "../../../store/productsSlice";
 function RadioButtonColor(props) {
     const dispatch= useDispatch()
     const color = useSelector(state => state.products.filterBy.color)
-    // const visibleRadioColor = useSelector(state => state.products.visibleRadioColor)
     const [visible, setVisible] =useState(false)
     const handleChange = (event) => {
         dispatch(changeColor({color: event.target.value}));
@@ -22,13 +21,7 @@ function RadioButtonColor(props) {
             setVisible(true);
         }
     };
-    // useEffect(() => {
-    //     setVisible(true)
-    // }, [color])
-
-
-
-
+    // console.log(color)
     const offRadio = () => {
        setVisible(false)
         dispatch(changeColor({color:''}));

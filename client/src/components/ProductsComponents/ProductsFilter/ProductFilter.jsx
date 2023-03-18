@@ -17,7 +17,7 @@ function ProductFilter(props) {
                 <RadioButtonColor/>
             </div>
             <div className={styles.FilterColor}>
-                {/*<ProductCheckBox/>*/}
+                <ProductCheckBox/>
             </div>
             <div className={styles.FilterBest}>
                 <FilterBestSeller/>

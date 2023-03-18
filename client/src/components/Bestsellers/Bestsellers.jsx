@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
 import styles from "./Bestsellers.module.scss";
 import BestsellerItem from "../BestsellerItem/BestsellerItem";
-import { getElement, openModal } from "../../store/productsSlice";
+import { getElement, toggleModal} from "../../store/productsSlice";
 import Loader from "../Loader/Loader";
 
 
@@ -11,7 +11,7 @@ function Bestsellers(props) {
 
   function handleProductClick(product) {
     dispatch(getElement(product));
-    dispatch(openModal());
+    dispatch(toggleModal(true));
   }
   const [bestSellers, setBestSellers] = useState(null)
     useEffect(()=>{

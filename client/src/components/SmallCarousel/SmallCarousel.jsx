@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
 import SmallCarouselItem from "./SmallCarouselItem";
 import {useDispatch} from "react-redux";
-import {getElement, openModal} from "../../store/productsSlice";
+import {getElement, toggleModal} from "../../store/productsSlice";
 import Loader from "../Loader/Loader";
 
 const responsive = {
@@ -34,7 +34,7 @@ function SmallCarousel(props) {
 
     const handleProductClick = (product)=> {
         dispatch(getElement(product));
-        dispatch(openModal())
+        dispatch(toggleModal(true))
     }
     const [trending, setTrending] = useState(null)
     useEffect(()=>{
