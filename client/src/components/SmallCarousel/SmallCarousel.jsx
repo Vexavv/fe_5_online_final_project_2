@@ -38,7 +38,7 @@ function SmallCarousel(props) {
     }
     const [trending, setTrending] = useState(null)
     useEffect(()=>{
-        fetch(`http://localhost:3001/api/products/filter?trendingProduct=true`)
+        fetch(`http://localhost:3001/api/products/filter?trendingProduct=trueTrending`)
             .then(response => response.json())
             .then(json => setTrending(json))
     },[])

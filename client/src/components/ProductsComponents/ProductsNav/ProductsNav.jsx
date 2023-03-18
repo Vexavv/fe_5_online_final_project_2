@@ -13,11 +13,9 @@ function ProductsNav() {
 
     // Toggle Filter
     const [mobileFilterOpen, setMobileFilterOpen] = useState(false)
-
     const mobileFilterToggle = () => {
         setMobileFilterOpen(current => !current)
     }
-
     return (
         <nav className={styles.Nav}>
             <div className={styles.NavFilter}>

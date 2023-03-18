@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormLabel from '@mui/material/FormLabel';
@@ -43,8 +43,8 @@ function RadioButtonColor(props) {
                     onChange={handleChange}>
                     <Radio  value="black" icon={<Brightness1Icon sx={{color: 'black'}}/>} checkedIcon={<CheckCircleIcon
                         sx={{color: 'black', alignItems: "center"}}/>}/>
-                    <Radio value="blue" icon={<Brightness1Icon sx={{color: 'blue'}}/>} checkedIcon={<CheckCircleIcon
-                        sx={{color: 'blue'}}/>}/>
+                    <Radio value="brown" icon={<Brightness1Icon sx={{color: 'brown'}}/>} checkedIcon={<CheckCircleIcon
+                        sx={{color: 'brown'}}/>}/>
                     <Radio value="grey" icon={<Brightness1Icon sx={{color: 'grey'}}/>} checkedIcon={<CheckCircleIcon
                         sx={{color: 'grey'}}/>}/>
                     <Radio value="white" icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleOutlineIcon

@@ -9,7 +9,8 @@ const initialState = {
         categories: 'all',//categories selector value
         color: '',// color products selector value
         price: null,// check box filter price value
-        topProducts: '',//best products selector value
+        bestSeller: '',//best products selector value
+        trendingProduct: '',// trend products selector value
     },
     status: null,
     error: '',
@@ -29,9 +30,9 @@ function getQueryParams(params) {
 
 export const fetchAsyncProducts = createAsyncThunk(
     'products/fetchAsyncProducts',
-    async ({categories,page,color}, {rejectWithValue}) => {
+    async ({categories,page,color,bestSeller, trendingProduct}, {rejectWithValue}) => {
         try {
-            const queryParams = getQueryParams({ ...(categories !== "all"  && { categories }), ...(color && { color }), startPage: page, perPage: PAGE_SIZE })
+            const queryParams = getQueryParams({ ...(categories !== "all"  && { categories }),...(bestSeller && { bestSeller }),...(trendingProduct && { trendingProduct }), ...(color && { color }),  startPage: page, perPage: PAGE_SIZE })
             console.log(queryParams)
             const response = await axios.get(`${BASE_URL}/products/filter?${queryParams}`)
             return response.data;
@@ -43,17 +44,6 @@ export const fetchAsyncProducts = createAsyncThunk(
 
 
 
-// export const fetchAsyncProducts = createAsyncThunk(
-//     'products/fetchAsyncProducts',
-//     async (page, {rejectWithValue}) => {
-//         try {
-//             const response = await axios.get(`${BASE_URL}/products/filter?startPage=${page}&perPage=${PAGE_SIZE}`)
-//             return response.data;
-//         } catch (error) {
-//             return rejectWithValue(error.response.data)
-//         }
-//     }
-// );
 
 const productsSlice = createSlice({
     name: 'products',
@@ -67,10 +57,16 @@ const productsSlice = createSlice({
         changeColor(state, action) {
             state.filterBy.color = action.payload.color
         },
-        // change topProducts
-        changeTopProducts(state, action) {
-            state.filterBy.topProducts = action.payload.topProducts
+        // change Best products
+        changeBestSeller(state, action) {
+            state.filterBy.bestSeller = action.payload.bestSeller;
         },
+        //change Trending products
+        changeTrending(state, action) {
+            state.filterBy.trendingProduct = action.payload.trendingProduct;
+        },
+
+
         // change Price         questions for Rostislav
         changePrice(state, action) {
             state.filterBy.price = action.payload.price  /*{...state.filterBy.price,[action.payload.price]: action.payload.price}*/
@@ -116,9 +112,11 @@ const productsSlice = createSlice({
 export const {
     changeCategory,
     changeColor,
-    changeTopProducts,
+
     changePrice,
 
+    changeBestSeller,
+    changeTrending,
     toggleDisplay,
     toggleModal,
     getElement,

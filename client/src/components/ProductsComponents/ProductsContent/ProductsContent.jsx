@@ -16,7 +16,7 @@ import Error from "../../Error/Error";
 function ProductsContent() {
     const dispatch = useDispatch();
     const {display,page, status, data, error,} = useSelector(state => state.products)
-    const {categories, color} = useSelector(state => state.products.filterBy)
+    const {categories, color, bestSeller, trendingProduct} = useSelector(state => state.products.filterBy)
 
     // console.log('REDUX >>>>', display)
     function handleProductClick(product) {
@@ -25,10 +25,10 @@ function ProductsContent() {
     }
 
     useEffect(() => {
-        dispatch(fetchAsyncProducts({page,categories, color}))
-    }, [page, categories, color])
+        dispatch(fetchAsyncProducts({page,categories, color, bestSeller, trendingProduct}))
+    }, [page, categories, color, bestSeller, trendingProduct])
     // console.log('DATA >>>',data)
-    console.log(color)
+
 
 
 

@@ -9,25 +9,39 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useDispatch, useSelector} from "react-redux";
-import {changeTopProducts} from '../../../store/productsSlice'
+import {changeBestSeller, changeTrending} from '../../../store/productsSlice'
 
 function FilterBestSeller(props) {
     const dispatch = useDispatch()
-    const topProducts = useSelector(state => state.products.filterBy.topProducts)
+    const {bestSeller, trendingProduct} = useSelector(state => state.products.filterBy)
 
     const [visible, setVisible] =useState(false)
+    const [selectedValue, setSelectedValue] = useState('');
     const handleChange = (event) => {
-        dispatch(changeTopProducts({topProducts: event.target.value}))
-        if (event.target.value !== '') {
+        const { value } = event.target;
+        setSelectedValue(value);
+        if (value === "trueBest") {
+            dispatch(changeBestSeller({bestSeller: event.target.value}));
+            dispatch(changeTrending({ trendingProduct: '' }));
+        }
+        if(value === "trueTrending"){
+            dispatch(changeTrending({trendingProduct: event.target.value}));
+            dispatch(changeBestSeller({ bestSeller: '' }));
+        }
+
+        if (value !== '') {
             setVisible(true);
         }
     };
 
     const offRadio = () => {
     setVisible(false)
-    dispatch(changeTopProducts({topProducts:''}));
+        setSelectedValue('')
+        dispatch(changeBestSeller({bestSeller: ''}));
+        dispatch(changeTrending({trendingProduct:''}));
 }
-    // console.log('TOP PRODUCTS>>>>',topProducts)
+    console.log('TOP PRODUCTS>>>>',trendingProduct)
+    console.log('TOP PRODUCTS>>>>',bestSeller)
     return (
 
         <>
@@ -39,14 +53,14 @@ function FilterBestSeller(props) {
                 <RadioGroup
 
                     name="controlled-radio-buttons-group"
-                    value={topProducts}
+                    value={selectedValue}
                     onChange={handleChange}>
 
-                    <FormControlLabel value="best"
+                    <FormControlLabel value="trueBest"
                                       sx={{"&:hover": {color: "#ba933e"}}}
                                       control={<Radio  icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleIcon
                                           sx={{color: 'black'}}/>}/>} label="Best Sellers"/>
-                    <FormControlLabel value="trending"
+                    <FormControlLabel value="trueTrending"
                                       sx={{"&:hover": {color: "#ba933e"}}}
                                       control={<Radio   icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleIcon
                                           sx={{color: 'black'}}/>}/>} label="Trending Products"/>
@@ -61,3 +75,5 @@ function FilterBestSeller(props) {
 
 
 export default FilterBestSeller;
+
+

@@ -15,7 +15,7 @@ function Bestsellers(props) {
   }
   const [bestSellers, setBestSellers] = useState(null)
     useEffect(()=>{
-        fetch(`http://localhost:3001/api/products/filter?bestSeller=true`)
+        fetch(`http://localhost:3001/api/products/filter?bestSeller=trueBest`)
             .then(response => response.json())
             .then(json => setBestSellers(json))
     },[])
