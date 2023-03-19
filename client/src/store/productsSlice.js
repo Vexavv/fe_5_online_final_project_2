@@ -11,6 +11,7 @@ const initialState = {
         price: null,// check box filter price value
         bestSeller: '',//best products selector value
         trendingProduct: '',// trend products selector value
+        sort:'',//sorting products
     },
     status: null,
     error: '',
@@ -24,15 +25,20 @@ function getQueryParams(params) {
     const esc = encodeURIComponent;
     return Object.keys(params)
         .filter((key) => params[key] !== undefined)
-        .map((key) => esc(key) + '=' + esc(params[key]))
+        .map((key) => {
+            if (key === 'sort' && ['+name', '-name', '+currentPrice', '-currentPrice'].includes(params[key])) {
+                return `${key}=${params[key]}`;
+            }
+            return `${esc(key)}=${esc(params[key])}`;
+        })
         .join('&');
 }
 
 export const fetchAsyncProducts = createAsyncThunk(
     'products/fetchAsyncProducts',
-    async ({categories,page,color,bestSeller, trendingProduct}, {rejectWithValue}) => {
+    async ({categories,page,color,bestSeller, trendingProduct, sort}, {rejectWithValue}) => {
         try {
-            const queryParams = getQueryParams({ ...(categories !== "all"  && { categories }),...(bestSeller && { bestSeller }),...(trendingProduct && { trendingProduct }), ...(color && { color }),  startPage: page, perPage: PAGE_SIZE })
+            const queryParams = getQueryParams({ ...(categories !== "all"  && { categories }),...(bestSeller && { bestSeller }),...(trendingProduct && { trendingProduct }), ...(color && { color }),  startPage: page, perPage: PAGE_SIZE, ...(sort && { sort }) })
             console.log(queryParams)
             const response = await axios.get(`${BASE_URL}/products/filter?${queryParams}`)
             return response.data;
@@ -65,7 +71,9 @@ const productsSlice = createSlice({
         changeTrending(state, action) {
             state.filterBy.trendingProduct = action.payload.trendingProduct;
         },
-
+        sortingProducts(state, action) {
+            state.filterBy.sort = action.payload.sort
+        },
 
         // change Price         questions for Rostislav
         changePrice(state, action) {
@@ -114,7 +122,7 @@ export const {
     changeColor,
 
     changePrice,
-
+    sortingProducts,
     changeBestSeller,
     changeTrending,
     toggleDisplay,

@@ -40,8 +40,8 @@ function FilterBestSeller(props) {
         dispatch(changeBestSeller({bestSeller: ''}));
         dispatch(changeTrending({trendingProduct:''}));
 }
-    console.log('TOP PRODUCTS>>>>',trendingProduct)
-    console.log('TOP PRODUCTS>>>>',bestSeller)
+    // console.log('TOP PRODUCTS>>>>',trendingProduct)
+    // console.log('TOP PRODUCTS>>>>',bestSeller)
     return (
 
         <>
