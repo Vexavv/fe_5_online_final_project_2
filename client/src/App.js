@@ -1,10 +1,9 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from 'react';
 import './App.css';
-import {Routes, Route,} from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-
-import Home from "./pages/Home/Home"
-import OneProduct from './pages/OneProduct/OneProduct'
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import Home from './pages/Home/Home';
+import OneProduct from './pages/OneProduct/OneProduct';
 import MyAccount from './pages/MyAccount/MyAccount';
 import Collection from "./pages/Collection/Collection";
 import Contacts from "./pages/Contacts/Contacts";
@@ -38,6 +37,7 @@ function App() {
                     <ProductModal/>
                 </div>
             );
+
 }
 
 export default App;
