@@ -1,21 +1,24 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch} from "react-redux";
 import styles from "./Bestsellers.module.scss";
 import BestsellerItem from "../BestsellerItem/BestsellerItem";
-import { getElement, openModal } from "../../store/productsSlice";
+import { getElement, toggleModal} from "../../store/productsSlice";
 import Loader from "../Loader/Loader";
-import { fetchAsyncBestSellers } from "../../store/topProductsSlice";
+
 
 function Bestsellers(props) {
   const dispatch = useDispatch();
-  const bestSellers = useSelector((state) => state.topProducts.bestSellers);
+
   function handleProductClick(product) {
     dispatch(getElement(product));
-    dispatch(openModal());
+    dispatch(toggleModal(true));
   }
-  useEffect(() => {
-    dispatch(fetchAsyncBestSellers());
-  }, [dispatch]);
+  const [bestSellers, setBestSellers] = useState(null)
+    useEffect(()=>{
+        fetch(`http://localhost:3001/api/products/filter?bestSeller=trueBest`)
+            .then(response => response.json())
+            .then(json => setBestSellers(json))
+    },[])
 
   if (!bestSellers) {
     return <Loader />;
