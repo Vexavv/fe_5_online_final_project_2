@@ -21,7 +21,6 @@ function RadioButtonColor(props) {
             setVisible(true);
         }
     };
-    // console.log('COLOR >>>>',color)
     const offRadio = () => {
        setVisible(false)
         dispatch(changeColor({color:''}));
@@ -54,7 +53,6 @@ function RadioButtonColor(props) {
                 </RadioGroup>
             </FormControl>
         </>
-
     );
 }
 

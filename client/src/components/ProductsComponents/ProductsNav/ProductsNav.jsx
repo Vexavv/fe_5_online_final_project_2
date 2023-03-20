@@ -10,8 +10,6 @@ import Drawer from "@mui/material/Drawer";
 import ProductFilter from "../ProductsFilter/ProductFilter";
 
 function ProductsNav() {
-
-    // Toggle Filter
     const [mobileFilterOpen, setMobileFilterOpen] = useState(false)
     const mobileFilterToggle = () => {
         setMobileFilterOpen(current => !current)

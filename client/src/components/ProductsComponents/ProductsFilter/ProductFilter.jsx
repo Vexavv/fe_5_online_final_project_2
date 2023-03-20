@@ -22,7 +22,6 @@ function ProductFilter(props) {
             <div className={styles.FilterBest}>
                 <FilterBestSeller/>
             </div>
-
         </div>
     );
 }

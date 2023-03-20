@@ -11,12 +11,12 @@ import {Link} from "react-router-dom";
 
 function ProductCard({name, imageUrls, currentPrice, description, product, onClick, _id}) {
     const dispatch= useDispatch()
-    const display = useSelector(state => state.products.display)
+    const displayType = useSelector(state => state.products.displayType)
     const [hovered, setHovered] = useState(null);
 
     return (
         <>
-            {display ? (<li className={styles.Card}>
+            {displayType ? (<li className={styles.Card}>
                 <img className={styles.CardImg} src={hovered === _id && imageUrls.length > 1
                     ? imageUrls[1]
                     : imageUrls[0]}

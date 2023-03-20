@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -9,14 +9,12 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { changeCategory} from "../../../store/productsSlice";
 import {useDispatch, useSelector} from "react-redux";
 
-
 function RadioButton(props) {
     const dispatch = useDispatch()
     const categories = useSelector(state => state.products.filterBy.categories)
     const handleChange = (event) => {
         dispatch(changeCategory({categories: event.target.value}));
     };
-    // console.log('CATEGORY >>>',category)
     return (
         <FormControl>
             <FormLabel sx={{color: "#1A1A1A", fontSize: {xs: '17px', md: '18px'}, fontWeight: 700, lineHeight: 2,}}

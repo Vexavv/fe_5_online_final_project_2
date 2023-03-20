@@ -6,7 +6,6 @@ import {useDispatch, useSelector} from "react-redux";
 function SelectSort(props) {
     const dispatch = useDispatch()
     const sort =useSelector(state =>state.products.filterBy.sort)
-    console.log('SORTING >>>>',sort)
     const handleChange = (event) => {
         dispatch(sortingProducts({sort: event.target.value}));
     };
@@ -19,7 +18,6 @@ function SelectSort(props) {
             <option value={'+currentPrice'}>Price, low to high</option>
             <option value={'-currentPrice'}>Price, high to low</option>
         </select>
-
     );
 }
 
