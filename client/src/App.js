@@ -1,10 +1,9 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from 'react';
 import './App.css';
-import {Routes, Route,} from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-
-import Home from "./pages/Home/Home"
-import OneProduct from './pages/OneProduct/OneProduct'
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import Home from './pages/Home/Home';
+import OneProduct from './pages/OneProduct/OneProduct';
 import MyAccount from './pages/MyAccount/MyAccount';
 import Collection from "./pages/Collection/Collection";
 import Contacts from "./pages/Contacts/Contacts";
@@ -12,56 +11,11 @@ import Products from "./pages/Products/Products";
 import Login from "./pages/LoginPage/LoginPage";
 import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 import ProductModal from "./components/ProductModal/ProductModal";
-import {fetchAsyncProducts, fetchAsyncBestSellers, fetchAsyncTrending} from './store/productsSlice'
-import {
-    fetchAsyncChairs,
-    fetchAsyncLamps,
-    fetchAsyncDecor,
-    fetchAsyncFurniture,
-    fetchAsyncSofas,
-} from './store/productsFiltersSlice';
 import Favorites from "./pages/Favorites/Favorites";
 
-
-
 function App() {
-
-
-    // const dispatch = useDispatch()
-
-    const activeModal = useSelector(state => state.products.activeModal)
-
-
-
-
-
-//-------------------- запит на server фільтрів------------------------------
-
-
-
-    // useEffect(() => {
-    //     dispatch(fetchAsyncChairs())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncLamps())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncDecor())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncFurniture())
-    // }, [dispatch])
-    //
-    // useEffect(() => {
-    //     dispatch(fetchAsyncSofas())
-    // }, [dispatch])
-
-
 
             return (
                 <div className="App">
@@ -80,9 +34,14 @@ function App() {
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
                     </Routes>
+<<<<<<< HEAD
                     {/* <ProductModal active={activeModal}/> */}
+=======
+                    <ProductModal/>
+>>>>>>> 730609261ca61b92fd855af5eab833da64c512d1
                 </div>
             );
+
 }
 
 export default App;

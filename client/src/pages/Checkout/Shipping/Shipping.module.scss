@@ -1,0 +1,10 @@
+.btn {
+  cursor: pointer;
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.cardForm {
+  flex: 60%;
+}
