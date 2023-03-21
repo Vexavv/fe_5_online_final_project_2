@@ -9,22 +9,61 @@ import { fetchAsyncBestSellers } from "../../store/topProductsSlice";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import Loader from "../../components/Loader/Loader";
 
+class Persistor {
+  constructor(storageKey) {
+    this.storageKey = storageKey;
+  }
+
+  get() {
+    const persistedData = localStorage.getItem(this.storageKey);
+    return persistedData ? JSON.parse(persistedData) : null;
+  }
+
+  set(data) {
+    localStorage.setItem(this.storageKey, JSON.stringify(data));
+  }
+
+  clear() {
+    localStorage.removeItem(this.storageKey);
+  }
+}
+
 function Favorites({ item }) {
   const [isChecked, setIsChecked] = useState(false);
-  const [favorites, setFav] = useState(
-    JSON.parse(localStorage.getItem("favoriteList")) || []
-  );
+  const [favorites, setFavorites] = useState([]);
+  const persistor = new Persistor();
+
+  useEffect(() => {
+    const persistedFavorites = persistor.get("favoriteList");
+    if (persistedFavorites) {
+      setFavorites(persistedFavorites);
+    }
+  }, []);
 
   const addToFav = (item) => {
-    let resultArr;
+    let updatedFavorites;
     if (favorites.includes(item.id)) {
-      resultArr = favorites.filter((el) => el !== item.id);
+      updatedFavorites = favorites.filter((id) => id !== item.id);
     } else {
-      resultArr = [...favorites, item.id];
+      updatedFavorites = [...favorites, item.id];
     }
-    setFav(resultArr);
-    localStorage.setItem("favoriteList", JSON.stringify(resultArr));
+    setFavorites(updatedFavorites);
+    persistor.set("favoriteList", updatedFavorites);
   };
+
+  // const [favorites, setFav] = useState(
+  //   JSON.parse(localStorage.getItem("favoriteList")) || []
+  // );
+  // const addToFav = (item) => {
+  //   let resultArr;
+  //   if (favorites.includes(item.id)) {
+  //     resultArr = favorites.filter((el) => el !== item.id);
+  //   } else {
+  //     resultArr = [...favorites, item.id];
+  //   }
+  //   setFav(resultArr);
+  //   localStorage.setItem("favoriteList", JSON.stringify(resultArr));
+  // };
 
   const handleClick = () => {
     setIsChecked(!isChecked);

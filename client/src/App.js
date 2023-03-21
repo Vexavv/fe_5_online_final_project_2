@@ -80,7 +80,7 @@ function App() {
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
                     </Routes>
-                    <ProductModal active={activeModal}/>
+                    {/* <ProductModal active={activeModal}/> */}
                 </div>
             );
 }
