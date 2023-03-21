@@ -40,6 +40,7 @@ export const fetchAsyncProducts = createAsyncThunk(
         } catch (error) {
             return rejectWithValue(error.response.data)
         }
+
     }
 );
 
