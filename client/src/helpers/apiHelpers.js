@@ -9,4 +9,5 @@ export function getQueryParams(params) {
             return `${esc(key)}=${esc(params[key])}`;
         })
         .join('&');
+
 }
