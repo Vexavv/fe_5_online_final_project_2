@@ -16,9 +16,10 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./OneProduct.module.scss";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useSelector } from "react-redux";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { FavoritesContext } from "../Favorites/FavoritesContext";
 
 const theme = createTheme({
   palette: {
@@ -50,29 +51,26 @@ export default function OneProduct() {
     setTabIndex(newTabIndex);
   };
 
-  // ---------add product to wishlist and set in localStorage:
-  const [isChecked, setIsChecked] = useState(false);
-  const [favorites, setFav] = useState(
-    JSON.parse(localStorage.getItem("favoriteList")) || []
+  // ---------add product to wishlist:
+  const { favorites, addFavorite, removeFavorite } =
+    useContext(FavoritesContext);
+
+  const isFavorite = [...favorites].some(
+    (el) => selectedProduct._id === el._id
   );
 
-  const addToFav = () => {
-    let resultArr;
-    if (favorites.includes(selectedProduct._id)) {
-      resultArr = favorites.filter((el) => el !== selectedProduct._id);
+  const handleClick = () => {
+    if (isFavorite) {
+      removeFavorite(selectedProduct._id);
+      console.log("added to wishlist");
     } else {
-      resultArr = [...favorites, selectedProduct._id];
+      addFavorite(selectedProduct);
+      console.log("removed from wishlist");
     }
-    setFav(resultArr);
-    localStorage.setItem("favoriteList", JSON.stringify(resultArr));
   };
   // --------------------------------------------------------------
-
-  const handleClick = () => {
-    setIsChecked(!isChecked);
-  };
   // if (!product) {
-  //   return console.log('Loading');
+  //   return console.log("Loading");
   // }
   return (
     <>
@@ -142,11 +140,7 @@ export default function OneProduct() {
             <Box display='flex' flexDirection='column' alignItems='flex-start'>
               <Box m='20px 0 5px 0' display='flex'>
                 <div onClick={handleClick}>
-                  {isChecked ? (
-                    <AiFillHeart onClick={addToFav} />
-                  ) : (
-                    <AiOutlineHeart onClick={addToFav} />
-                  )}
+                  {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
                 </div>
                 <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
               </Box>

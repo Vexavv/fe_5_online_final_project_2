@@ -34,11 +34,7 @@ function App() {
                             <Route path="*" element={<PageNotFound/>}/>
                         </Route>
                     </Routes>
-<<<<<<< HEAD
-                    {/* <ProductModal active={activeModal}/> */}
-=======
                     <ProductModal/>
->>>>>>> 730609261ca61b92fd855af5eab833da64c512d1
                 </div>
             );
 
