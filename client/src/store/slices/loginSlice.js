@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk  } from '@reduxjs/toolkit'
 import {autorisation} from './localStorageSlice'
+
 //  fetches
 export const createAccountFetch = createAsyncThunk (
     'login/fetchLogin',
@@ -48,12 +49,13 @@ export const loginCustomerFetch = createAsyncThunk (
                 .then(response => {
                  const  loggedCustomer =  response.json()
                  dispatch(autorisation(loggedCustomer.token))
-                 return loggedCustomer
+                console.log(loggedCustomer);
+                 return loggedCustomer.token
                 
                 })
                 
               })
-
+              console.log(loggedIn);
               return  loggedIn
         }catch(error){
             return rejectWithValue(error.message)
@@ -87,7 +89,7 @@ const loginSlice = createSlice({
       })
       .addCase(loginCustomerFetch.fulfilled, (state, action) => {
         state.isLogged = true
-        state.customer = action.payload.user
+        state.customer = action.payload.token
       })
       .addCase(loginCustomerFetch.rejected, (state, action) => {
         state.isLogged = false

@@ -3,12 +3,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {isLogin, loginCustomerFetch,
     createAccountFetch
   } from '../../store/slices/loginSlice'
+
 import { Formik, Form, FastField, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
 import Button from '../../components/Button/Button'
 import styles from './LoginPage.module.scss'
 import { functions } from 'lodash';
+import { spacing } from '@mui/system';
 // додати: show password, span show/hide, 
 
 YupPassword(yup)
@@ -16,20 +18,21 @@ YupPassword(yup)
 const Login =() =>{
 
   const dispatch = useDispatch()
+  
 const isLogged = useSelector(state => state.isLogged)
 const user = useSelector(state => state.customer)
 const token = useSelector(state => state.token)
 
   // local state
-  const [isLoginPage, setIsLoginPage] = useState(false)
+  const [isLoginPage, setIsLoginPage] = useState(true)
   const [isError, setIsError] = useState(false)
   const [isShowPassword, setIsShowPassword] = useState(false)
 
   //useEffect
 
  useEffect(()=>{
-if(isLogged || token){
-
+if(isLogged){
+  // history.push('/') 
 }
  }, [isLogged])
 
@@ -39,6 +42,13 @@ if(isLogged || token){
     console.log(isLoginPage);
   }
 
+  const TolggleShowPassword = () => {
+    setIsShowPassword(prev => !prev)
+  }
+
+  const handleMouseDownPassword = event => {
+    event.preventDefault()
+  }
   // submitting functions
 
 const HandleLoginSubmit=(loginData) => {
@@ -65,12 +75,7 @@ const initialValuesSignIn = {
   password: ''
 }
 
-  // const initialValues = {
-  //   firstName: '',
-  //   lastName: '',
-  //   email: '',
-  //   password: ''
-  // }
+ 
   const validationSchemaLogin= yup.object().shape({
     email: yup.string()
     .email('the email is filled in with an error')
@@ -122,15 +127,18 @@ const initialValuesSignIn = {
         <Formik
         initialValues={initialValuesLogin}
         validationSchema={validationSchemaLogin}
-        onSubmit={HandleLoginSubmit}
+        onSubmit={(loginData,{resetForm})=>{
+          HandleLoginSubmit(loginData)
+          resetForm()
+        }}
         >
               {({ isValid}) => (
             <Form className={styles.loginPageForm}>
             <FastField className={styles.loginPageFormInput} type="text" name="email" placeholder="Email" />
             <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
             <FastField className={styles.loginPageFormInput}
-              name="password" type ='password'
-              // type={isShowPassword ? 'text' : 'password'}
+              name="password" 
+              type={isShowPassword ? 'text' : 'password'}
               placeholder="Password"
             />
             <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
@@ -144,7 +152,10 @@ const initialValuesSignIn = {
           <Formik
           initialValues={initialValuesSignIn}
           validationSchema={validationSchemaRegister}
-          onSubmit={HandleRegiserSubmit}
+          onSubmit={(newCustomer,{resetForm})=>{
+            HandleRegiserSubmit(newCustomer)
+            resetForm()
+          }}
           >
           {({ isValid}) => (
             <Form className={styles.loginPageForm}>
@@ -156,6 +167,7 @@ const initialValuesSignIn = {
               <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
               <FastField className={styles.loginPageFormInput}
                 name="password"
+                // component ={isShowPassword ? <span>'fa fa-eye'</span> : <span>'fa fa-eye-slash'</span>}
                 type={isShowPassword ? 'text' : 'password'}
                 placeholder="Password"
               />
