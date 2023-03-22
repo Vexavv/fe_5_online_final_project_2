@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from './ProductsContent.module.scss'
 import ProductCard from "../ProductCard/ProductCard";
 import {useSelector, useDispatch} from "react-redux";
@@ -22,7 +22,7 @@ function ProductsContent() {
         maxPrice,
         sort
     } = useSelector(state => state.products.filterBy)
-//-----------------------------------------------------------
+
     useEffect(() => {
         const queryParams = {
             page,
@@ -47,20 +47,6 @@ function ProductsContent() {
         setSearchParams(new URLSearchParams(queryParams));
     }, [page, categories, color, bestSeller, trendingProduct, minPrice, maxPrice, sort, setSearchParams, dispatch]);
 
-
-
-
-
-
-
-//--------------------------------------------------------------------------
-
-
-
-
-
-
-
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(toggleModal(true))
@@ -68,8 +54,6 @@ function ProductsContent() {
     useEffect(() => {
         dispatch(fetchAsyncProducts({page, categories, color, bestSeller, trendingProduct, minPrice, maxPrice, sort}))
     }, [page, categories, color, bestSeller, trendingProduct, minPrice, maxPrice, sort])
-
-
 
     switch (status) {
         case 'loading':
