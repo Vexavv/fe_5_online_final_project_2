@@ -27,6 +27,7 @@ function ProductPriceFilter(props) {
                     valueLabelDisplay="auto"
                     getAriaValueText={valuetext}
                     max={500}
+                    min={1}
             />
         </Box>
     );

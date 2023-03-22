@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 import OneProduct from './pages/OneProduct/OneProduct';
@@ -11,12 +11,11 @@ import Products from "./pages/Products/Products";
 import Login from "./pages/LoginPage/LoginPage";
 import Cart from "./pages/Cart/Cart";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import { useSelector} from "react-redux";
 import ProductModal from "./components/ProductModal/ProductModal";
 import Favorites from "./pages/Favorites/Favorites";
 
-function App() {
 
+function App() {
             return (
                 <div className="App">
                     <Routes>
