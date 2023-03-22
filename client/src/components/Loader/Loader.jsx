@@ -13,6 +13,7 @@ function Loader(props) {
             outerCircleColor=""
             innerCircleColor=""
             middleCircleColor=""
+
         />
     );
 }
