@@ -14,21 +14,22 @@ import {changeColor} from "../../../store/productsSlice";
 function RadioButtonColor(props) {
     const dispatch= useDispatch()
     const color = useSelector(state => state.products.filterBy.color)
-    const [visible, setVisible] =useState(false)
+    const [visibleColor, setVisibleColor] =useState(JSON.parse(localStorage.getItem("visibleColor")) || false)
     const handleChange = (event) => {
         dispatch(changeColor({color: event.target.value}));
         if (event.target.value !== '') {
-            setVisible(true);
+            setVisibleColor(true);
+            localStorage.setItem('visibleColor', JSON.stringify(true))
         }
     };
     const offRadio = () => {
-       setVisible(false)
+       setVisibleColor(false)
+        localStorage.setItem('visibleColor', JSON.stringify(false))
         dispatch(changeColor({color:''}));
     }
-
     return (
         <>
-            {visible && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right" }} onClick={offRadio}/>}
+            {visibleColor && <CancelIcon sx={{color: "#ba933e", cursor: "pointer", marginTop:"10px", display:"block", float:"right" }} onClick={offRadio}/>}
             <FormControl  >
                 <FormLabel
                     sx={{color: "#1A1A1A", fontSize: 18, fontWeight: 700, lineHeight: 2, padding: "50px 0 10px 0"}}

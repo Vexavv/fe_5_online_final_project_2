@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './ProductModal.module.scss'
 import classNames from "classnames";
 import Button from "../Button/Button";
@@ -7,26 +7,33 @@ import {useSelector, useDispatch} from "react-redux";
 import {toggleModal} from "../../store/productsSlice";
 
 
-function ProductModal({active}) {
-
-const dispatch = useDispatch()
+function ProductModal() {
+    const dispatch = useDispatch()
     const selectedProduct = useSelector((state) => state.products.selectedProduct);
     const isOpen = useSelector(state => state.products.isOpen)
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const handleClose = () => {
+        setSelectedImage(null)
+        dispatch(toggleModal(false))
+    }
+
     if (!selectedProduct) {
         return null;
     }
     return (
-        <div className={isOpen ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={()=>{dispatch(toggleModal(false))}}>
+        <div className={isOpen ? classNames(styles.Modal, styles.Active) : styles.Modal} onClick={handleClose}>
 
             <div className={styles.ModalContent} onClick={e => e.stopPropagation()}>
-                <AiOutlineClose onClick={()=>{dispatch(toggleModal(false))}} className={styles.ModalContentClosed}/>
+                <AiOutlineClose onClick={handleClose} className={styles.ModalContentClosed}/>
                 <div className={styles.ModalContentPicture}>
                     <img className={styles.ModalContentPictureImg}
-                         src={selectedProduct.imageUrls[0]}
+                         src={selectedImage || selectedProduct.imageUrls[0]}
                          alt="product"/>
                     <ul className={styles.ModalContentPictureCarousel}>
                         {selectedProduct.imageUrls.map((img, index) => {
-                            return <li key={index}><img src={img} alt="product"/></li>
+                            return <li key={index}><img src={img} alt="product" onClick={() => setSelectedImage(img)}/>
+                            </li>
                         })}
                     </ul>
                 </div>
@@ -38,7 +45,8 @@ const dispatch = useDispatch()
                     <div className={styles.ModalContentDescriptionCount}>
                         <Button className={styles.ModalContentDescriptionCountBtn} text="Add To Cart"/>
                     </div>
-                    <span className={styles.ModalContentDescriptionValues}>Availability: {selectedProduct.quantity}</span>
+                    <span
+                        className={styles.ModalContentDescriptionValues}>Availability: {selectedProduct.quantity}</span>
                     <span className={styles.ModalContentDescriptionValues}>Brand: {selectedProduct.brand}</span>
                 </div>
             </div>
