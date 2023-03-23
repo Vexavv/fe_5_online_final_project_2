@@ -15,8 +15,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     products: productsReducer,
-    isLogin :  isLoginReducer,
-    getToken : storageSlice,
+    isLogged :  isLoginReducer,
+    token : storageSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

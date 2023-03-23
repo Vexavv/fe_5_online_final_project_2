@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {isLogin, loginCustomerFetch,
+import { loginCustomerFetch,
     createAccountFetch
   } from '../../store/slices/loginSlice'
-
+import {useNavigate} from 'react-router-dom'
 import { Formik, Form, FastField, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
@@ -13,15 +13,61 @@ import { functions } from 'lodash';
 import { spacing } from '@mui/system';
 // додати: show password, span show/hide, 
 
+// initialValues
+const initialValuesLogin ={
+  email: '',
+    password: ''
+}
+const initialValuesSignIn = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: ''
+}
+
+// validations
 YupPassword(yup)
+const validationSchemaLogin= yup.object().shape({
+  email: yup.string()
+  .email('the email is filled in with an error')
+  .required('this field is required'),
+password: yup.string()
+  .minSymbols(0)
+  .min(7, 'Password must be between 7 and 30 characters')
+  .max(30, 'Password must be between 7 and 30 characters')
+  .minLowercase(5)
+  .required('Password is required field'),
+})
+const validationSchemaRegister = yup.object().shape({
+  firstName: yup.string()
+    .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for First Name is a-z, A-Z, а-я, А-Я.')
+    .min(2, 'First Name must be between 2 and 25 characters.')
+    .max(25, 'First Name must be between 2 and 25 characters.')
+    .required('First Name is required'),
+  lastName: yup.string()
+    .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for Last Name is a-z, A-Z, а-я, А-Я.')
+    .min(2, 'Last Name must be between 2 and 25 characters.')
+    .max(25, 'Last Name must be between 2 and 25 characters.')
+    .required('Last Name is required.'),
+  email: yup.string()
+    .email('the email is filled in with an error')
+    .required('this field is required'),
+  password: yup.string()
+    .minSymbols(0)
+    .min(7, 'Password must be between 7 and 30 characters')
+    .max(30, 'Password must be between 7 and 30 characters')
+    .minLowercase(5)
+    .required('Password is required field'),
+})
+
 
 const Login =() =>{
 
   const dispatch = useDispatch()
   
 const isLogged = useSelector(state => state.isLogged)
-const user = useSelector(state => state.customer)
-const token = useSelector(state => state.token)
+const customer = useSelector(state => state.customer)
+const goTo = useNavigate()
 
   // local state
   const [isLoginPage, setIsLoginPage] = useState(true)
@@ -30,11 +76,11 @@ const token = useSelector(state => state.token)
 
   //useEffect
 
- useEffect(()=>{
-if(isLogged){
-  // history.push('/') 
-}
- }, [isLogged])
+//  useEffect(()=>{
+// if(isLogged){
+//   goTo('/myaccount') 
+// }
+//  }, [isLogged])
 
 
   const ToggleLoginPage = () => {
@@ -53,62 +99,22 @@ if(isLogged){
 
 const HandleLoginSubmit=(loginData) => {
  dispatch(loginCustomerFetch(loginData)) 
- console.log(loginData);
+ 
 
 }
 
 const HandleRegiserSubmit=(newCustomer) => {
   dispatch(createAccountFetch(newCustomer))
-  console.log(newCustomer);
+  
  
 }
 
-const initialValuesLogin ={
-  email: '',
-    password: ''
-}
 
-const initialValuesSignIn = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: ''
-}
 
  
-  const validationSchemaLogin= yup.object().shape({
-    email: yup.string()
-    .email('the email is filled in with an error')
-    .required('this field is required'),
-  password: yup.string()
-    .minSymbols(0)
-    .min(7, 'Password must be between 7 and 30 characters')
-    .max(30, 'Password must be between 7 and 30 characters')
-    .minLowercase(5)
-    .required('Password is required field'),
-})
 
-  const validationSchemaRegister = yup.object().shape({
-    firstName: yup.string()
-      .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for First Name is a-z, A-Z, а-я, А-Я.')
-      .min(2, 'First Name must be between 2 and 25 characters.')
-      .max(25, 'First Name must be between 2 and 25 characters.')
-      .required('First Name is required'),
-    lastName: yup.string()
-      .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for Last Name is a-z, A-Z, а-я, А-Я.')
-      .min(2, 'Last Name must be between 2 and 25 characters.')
-      .max(25, 'Last Name must be between 2 and 25 characters.')
-      .required('Last Name is required.'),
-    email: yup.string()
-      .email('the email is filled in with an error')
-      .required('this field is required'),
-    password: yup.string()
-      .minSymbols(0)
-      .min(7, 'Password must be between 7 and 30 characters')
-      .max(30, 'Password must be between 7 and 30 characters')
-      .minLowercase(5)
-      .required('Password is required field'),
-  })
+
+ 
 
   return (
 
@@ -120,9 +126,7 @@ const initialValuesSignIn = {
           <li className={!isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive} onClick={ToggleLoginPage}>Create Account</li>
 
         </ul>
-        {isLogged && 
-        <h3>Hi, {user.firstName}</h3>
-        }
+       
         {isLoginPage &&
         <Formik
         initialValues={initialValuesLogin}

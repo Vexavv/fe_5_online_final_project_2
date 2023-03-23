@@ -3,8 +3,8 @@ import {autorisation} from './localStorageSlice'
 
 //  fetches
 export const createAccountFetch = createAsyncThunk (
-    'login/fetchLogin',
-    async function (value, { rejectWithValue, dispatch }) {
+    'login/createAccountFetch',
+    async (value, { rejectWithValue, dispatch })=> {
       try {
         const respons = await fetch("http://localhost:3001/api/customers", {
           method: 'POST',
@@ -33,8 +33,8 @@ export const createAccountFetch = createAsyncThunk (
     
 
 export const loginCustomerFetch = createAsyncThunk (
-    'signIn/fetchSignIn',
-    async  (value, { rejectWithValue}, dispatch)=>{
+    'login/loginCustomerFetch ',
+    async  (value, {rejectWithValue}, dispatch)=>{
         try{
           const loggedIn = await fetch('http://localhost:3001/api/customers/login',
              {
@@ -45,23 +45,19 @@ export const loginCustomerFetch = createAsyncThunk (
                 body: JSON.stringify({
                   loginOrEmail: value.email,
                   password: value.password,
-                })
-                .then(response => {
-                 const  loggedCustomer =  response.json()
-                 dispatch(autorisation(loggedCustomer.token))
-                console.log(loggedCustomer);
-                 return loggedCustomer.token
-                
-                })
+                })              
                 
               })
-              console.log(loggedIn);
-              return  loggedIn
+              const  loggedCustomer = await loggedIn.json()
+              // console.log(loggedCustomer.token);
+              // dispatch(autorisation(loggedCustomer.token))
+              return  loggedCustomer
         }catch(error){
             return rejectWithValue(error.message)
         }
     }
 )
+
 
 // slice function
 
@@ -70,16 +66,19 @@ const loginSlice = createSlice({
     
     initialState:{
         isLogged: false,
-        customer: {}      
+        customer: {
+          success:false,
+          token:''
+        }      
     },
-  reducers:{
-    isLogin:(state, action)=>{
-      state.isLogged = action.payload
-    }
-  },
-  
-
-    extraReducers: builder => {
+    reducers:{
+       loguotCustomer: (state, action) => {
+        state.isLogged = false
+        state.customer.token = ''
+        state.customer.success = false
+       }
+    },
+     extraReducers: builder => {
       builder
       .addCase( createAccountFetch.fulfilled, (state, action) => {
         state.isLogged = false
@@ -89,23 +88,17 @@ const loginSlice = createSlice({
       })
       .addCase(loginCustomerFetch.fulfilled, (state, action) => {
         state.isLogged = true
-        state.customer = action.payload.token
+        state.customer.token = action.payload.token
+        state.customer.success = action.payload.success
       })
       .addCase(loginCustomerFetch.rejected, (state, action) => {
         state.isLogged = false
         state.customer = null
-      })
-      // .addCase(loguotCustomerFetch.fulfilled, (state, action) => {
-      //   state.isLogged = false
-      //   state.customer = null
-      // })
+      })      
     }
     
 })
 
 
 
-export const {isLogin,
- 
-   isLogged} = loginSlice.actions
 export default loginSlice.reducer

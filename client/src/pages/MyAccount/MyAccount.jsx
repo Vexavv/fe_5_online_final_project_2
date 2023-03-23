@@ -6,7 +6,7 @@ import styles from "./MyAccount.module.scss";
 
 function MyAccount(props) {
   const dispatch = useDispatch();
-  const selectedProduct = useSelector((state) => state.topProducts.bestSellers);
+  // const selectedProduct = useSelector((state) => state.topProducts.bestSellers);
 
   return (
     <div className={styles.container}>

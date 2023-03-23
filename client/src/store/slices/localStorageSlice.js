@@ -2,20 +2,20 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const storageSlice = createSlice({
 
-name: 'getToken',
+name: 'token',
 
 initialState: {
-    token : null,
-    customer : {}
+    token : null,    
 },
 
 reducer: {
     autorisation : (state, action) => {
       state.token = action.payload
-      localStorage.setItem('token', JSON.stringify({
-        token: action.payload
-      })
-    )}
+    //   localStorage.setItem('token', JSON.stringify({
+    //     token: action.payload
+    //   })
+    // )
+  }
   },
     // logOut: state => {
     //   state.token = ''
