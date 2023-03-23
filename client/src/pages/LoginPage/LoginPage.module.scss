@@ -50,14 +50,18 @@
             box-sizing: border-box;
            padding-top: 9px;
            padding-bottom: 9px;
-            border-radius: 2px;
-            border: 1px solid #e1e1e1;            
+            border-radius: 5px;
+            border: 2px solid #e1e1e1;            
             font-family: 'Red Hat Display';
+            font-size: 16px;
+            color: #444444;
+            outline: none;
+            &:focus {
+                box-shadow: 0 -1px 10px 3px #ba933e; 
+                           
+            }
         }
-        &Input:target {
-            border: 1px solid #BA933E; 
-            // box-shadow:  4px #000;
-        }
+      
     }
 
     @media (min-width: 600px){
