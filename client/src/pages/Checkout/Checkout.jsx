@@ -45,7 +45,7 @@ const Checkout = () => {
         <header>
           <div className={s.img}>
             <img
-              src="https://cdn.shopify.com/s/files/1/0376/9440/6700/files/logo_x320.png"
+              src="https://res.cloudinary.com/dj9e1wjcg/image/upload/v1679346683/Final_project/Logo/logo_x320_vn0uu5.png"
               alt="rubix"
             />
           </div>

@@ -9,7 +9,7 @@ import storageSlice from './slices/localStorageSlice'
 const persistConfig = {
     key:'root',
     storage,
-   blacklist:['products', 'productsFilters']
+   whitelist:['products']
 
 }
 

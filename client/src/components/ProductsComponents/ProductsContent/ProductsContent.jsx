@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import styles from './ProductsContent.module.scss'
 import ProductCard from "../ProductCard/ProductCard";
 import {useSelector, useDispatch} from "react-redux";
@@ -7,9 +7,11 @@ import {fetchAsyncProducts} from "../../../store/productsSlice";
 import ProductPagination from "../ProductPagination/ProductPagination";
 import Loader from "../../Loader/Loader";
 import Error from "../../Error/Error";
+import {useSearchParams} from "react-router-dom";
 
 function ProductsContent() {
     const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams();
     const {displayType, page, status, data, error,} = useSelector(state => state.products)
     const {
         categories,
@@ -20,6 +22,30 @@ function ProductsContent() {
         maxPrice,
         sort
     } = useSelector(state => state.products.filterBy)
+
+    useEffect(() => {
+        const queryParams = {
+            page,
+            categories,
+            color,
+            bestSeller,
+            trendingProduct,
+            minPrice,
+            maxPrice,
+            sort
+        };
+
+        Object.keys(queryParams).forEach(key => {
+            if (!queryParams[key]) {
+                delete queryParams[key];
+            }
+            if (key === 'categories' && queryParams[key] === 'all') {
+                delete queryParams[key];
+            }
+        });
+
+        setSearchParams(new URLSearchParams(queryParams));
+    }, [page, categories, color, bestSeller, trendingProduct, minPrice, maxPrice, sort, setSearchParams, dispatch]);
 
     function handleProductClick(product) {
         dispatch(getElement(product));
