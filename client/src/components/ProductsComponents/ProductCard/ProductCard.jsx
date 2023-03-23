@@ -86,15 +86,6 @@ function ProductCard({name, imageUrls, currentPrice, description, product, onCli
           </div>
           <div className={styles.RowNav}>
             <RatingStar />
-            <Link to="/product">
-              <Button
-                className={styles.RowNavButton}
-                text="Select Options"
-                onClick={() => {
-                  dispatch(getElement(product));
-                }}
-              />
-            </Link>
             <Button
               onClick={onClick}
               className={styles.RowNavButton}

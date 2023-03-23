@@ -37,14 +37,14 @@
     }
 
     &Picture {
-      width: 35%;
+      width: 30%;
       margin-right: 10px;
       cursor: pointer;
 
       &Img {
-        max-width: 300px;
+        max-width: 170px;
         padding-bottom: 20px;
-        cursor:pointer;
+        cursor: pointer;
       }
 
       &Carousel {
@@ -57,8 +57,8 @@
         overflow: scroll;
 
         img {
-          max-width: 70px;
-          padding: 10px;
+          max-width: 50px;
+          padding: 5px;
         }
       }
     }
@@ -66,14 +66,15 @@
     &Description {
       display: flex;
       flex-direction: column;
-      padding-left: 20px;
+      padding-left: 10px;
       text-transform: capitalize;
+      width: 70%;
 
       &Title {
         font-family: "Red Hat Display", sans-serif;
-        font-size: 28px;
-        line-height: 20px;
-        margin-bottom: 20px;
+        font-size: 18px;
+        line-height: 15px;
+        margin-bottom: 10px;
 
         &:hover {
           color: #ba933e;
@@ -83,11 +84,11 @@
 
       &Text {
         font-family: "Red Hat Display", sans-serif;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 400;
-        line-height: 24px;
+        line-height: 15px;
         color: #868686;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
       }
 
       &Color {
@@ -100,12 +101,12 @@
 
       &Price {
         font-family: "Red Hat Display", sans-serif;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
         line-height: 20px;
         color: #ba933e;
         padding: 10px 0;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
 
       &Count {
@@ -113,36 +114,99 @@
         margin-bottom: 25px;
 
 
-
         &Btn {
           font-family: 'Red Hat Display';
-          font-weight: 700;
-          font-size: 16px;
-          line-height: 20px;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 15px;
           background-color: #1A1A1A;
-          padding: 10px 30px;
-
+          padding: 10px 20px;
           color: #ffffff;
           border: none;
           cursor: pointer;
           border-radius: 4px;
-          &:hover{
+
+          &:hover {
             background-color: #ba933e;
             transition: all .35s ease;
           }
         }
       }
-      &Values{
+
+      &Values {
         font-family: 'Red Hat Display';
         font-weight: 700;
         font-size: 14px;
-        line-height: 20px;
+        line-height: 15px;
         color: #1A1A1A;
-        padding: 10px 0;
+        padding: 5px 0;
         margin-right: 10px;
       }
     }
 
 
   }
+}
+
+@media (min-width: 1200px) {
+  .Modal {
+    &Content {
+
+      &Picture {
+        width: 35%;
+
+        &Img {
+          max-width: 270px;
+        }
+
+        &Carousel {
+          img {
+            max-width: 70px;
+            padding: 10px;
+          }
+        }
+      }
+
+      &Description {
+        padding-left: 20px;
+        width: 65%;
+
+        &Title {
+          font-size: 28px;
+          line-height: 20px;
+          margin-bottom: 20px;
+
+        }
+
+        &Text {
+          font-size: 16px;
+          line-height: 24px;
+          margin-bottom: 25px;
+        }
+
+        &Price {
+          font-size: 20px;
+          margin-bottom: 20px;
+        }
+
+        &Count {
+
+          &Btn {
+            font-family: 'Red Hat Display';
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+            padding: 10px 30px;
+          }
+        }
+
+        &Values {
+          line-height: 20px;
+          padding: 10px 0;
+        }
+      }
+
+    }
+  }
+
 }
