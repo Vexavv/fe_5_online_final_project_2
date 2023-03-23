@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { HiOutlineShoppingBag } from "react-icons/hi";
-import { TfiSearch } from "react-icons/tfi";
-import styles from "./BestsellerItem.module.scss";
-import { Link } from "react-router-dom";
-import { getElement } from "../../store/productsSlice";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { TfiSearch } from 'react-icons/tfi';
+import styles from './BestsellerItem.module.scss';
+import { Link } from 'react-router-dom';
+import { getElement } from '../../store/productsSlice';
+import { useDispatch } from 'react-redux';
 
-function BestsellerItem({ item, onClick, itemNo }) {
+function BestsellerItem({ item, onClick }) {
   const dispatch = useDispatch();
   const [hovered, setHovered] = useState(null);
   return (
