@@ -105,8 +105,6 @@ const Login = () => {
 
   const HandleRegiserSubmit = (newCustomer) => {
     dispatch(createAccountFetch(newCustomer))
-
-
   }
 
 

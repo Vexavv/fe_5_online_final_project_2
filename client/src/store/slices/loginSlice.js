@@ -34,7 +34,7 @@ export const createAccountFetch = createAsyncThunk (
 
 export const loginCustomerFetch = createAsyncThunk (
     'login/loginCustomerFetch ',
-    async  (value, {rejectWithValue}, dispatch)=>{
+    async  (value, {rejectWithValue})=>{
         try{
           const loggedIn = await fetch('http://localhost:3001/api/customers/login',
              {
@@ -49,8 +49,7 @@ export const loginCustomerFetch = createAsyncThunk (
                 
               })
               const  loggedCustomer = await loggedIn.json()
-              // console.log(loggedCustomer.token);
-              // dispatch(autorisation(loggedCustomer.token))
+          
               return  loggedCustomer
         }catch(error){
             return rejectWithValue(error.message)
@@ -99,6 +98,6 @@ const loginSlice = createSlice({
     
 })
 
-export const{loguotCustomer}= loginSlice.actions
+export const {loguotCustomer} = loginSlice.actions
 
 export default loginSlice.reducer
