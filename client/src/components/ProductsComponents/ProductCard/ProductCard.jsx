@@ -32,14 +32,7 @@ function ProductCard({name, imageUrls, currentPrice, description, product, onCli
             />
           </Link>
           <div className={styles.CardButton}>
-            <Link to="/product">
-              <HiOutlineShoppingBag
-                className={styles.CardButtonIcon}
-                onClick={() => {
-                  dispatch(getElement(product));
-                }}
-              />
-            </Link>
+              <HiOutlineShoppingBag className={styles.CardButtonIcon}/>
             <TfiSearch onClick={onClick} className={styles.CardButtonIcon} />
           </div>
           <div className={styles.CardDescription}>
