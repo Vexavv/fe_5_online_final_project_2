@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import {useDispatch, useSelector} from "react-redux";
 import { IconButton, Box, Typography } from '@mui/material';
 import PersonOutline from '@mui/icons-material/PersonOutline';
 
 
 
 const Login = () => {
+    const isLogged = useSelector(state => state.isLogged.isLogged)
+console.log(isLogged);
     return (
         <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'flex' } }}>
             <IconButton
@@ -15,13 +17,24 @@ const Login = () => {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="black"
-                component={Link} to='/login'
+                // component={Link} to='/login'
                 sx={{
                     '&:hover': { color: '#BA933E' },
                     
                 }}
             >
+                {isLogged &&
+                <Link to={'/myaccount'}
+                color="black"
+                >
                 <PersonOutline />
+                </Link> }
+                {!isLogged &&                
+                <Link to={'/login'}
+                color="black">
+                 <PersonOutline color="black" />
+                 </Link> }                 
+                
             </IconButton>
             <Typography
             component={Link} to='/login'

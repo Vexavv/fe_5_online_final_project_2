@@ -2,11 +2,13 @@ import Button from "../../components/Button/Button";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import {loguotCustomer} from '../../store/slices/loginSlice'
 import styles from "./MyAccount.module.scss";
 
 function MyAccount(props) {
   const dispatch = useDispatch();
   // const selectedProduct = useSelector((state) => state.topProducts.bestSellers);
+const LogOutAccount = () => dispatch(loguotCustomer())
 
   return (
     <div className={styles.container}>
@@ -39,7 +41,7 @@ function MyAccount(props) {
         </li>
       </ul>
       <Link to='/login'>
-        <Button text='Logout' />
+        <Button text='Logout' onClick={LogOutAccount}/>
       </Link>
     </div>
   );

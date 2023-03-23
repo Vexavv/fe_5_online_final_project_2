@@ -99,6 +99,6 @@ const loginSlice = createSlice({
     
 })
 
-
+export const{loguotCustomer}= loginSlice.actions
 
 export default loginSlice.reducer
