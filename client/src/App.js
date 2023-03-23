@@ -10,8 +10,8 @@ import Contacts from './pages/Contacts/Contacts';
 import Products from './pages/Products/Products';
 import Login from './pages/LoginPage/LoginPage';
 import Cart from './pages/Cart/Cart';
+import Checkout from './pages/Checkout/Checkout'
 import PageNotFound from './pages/PageNotFound/PageNotFound';
-import { useSelector } from 'react-redux';
 import ProductModal from './components/ProductModal/ProductModal';
 import Favorites from './pages/Favorites/Favorites';
 
@@ -28,6 +28,7 @@ function App() {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           {/* <Route path="/account" element={<Account/>}/> */}
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<PageNotFound />} />
