@@ -1,0 +1,96 @@
+[
+    {
+      "name": "Ноутбук Lenovo IdeaPad 1 15ADA7",
+      "price": 21999,
+      "id": 1,
+      "url": "https://content2.rozetka.com.ua/goods/images/big/280538070.jpg",
+      "color": "Cloud Grey",
+      "count":1,
+      "totalPrice":21999
+    },
+    {
+      "name": "Ноутбук игровой Lenovo IdeaPad",
+      "price": 29999,
+      "id": 2,
+      "url": "https://stylus.ua/thumbs/390x390/2c/94/2456149.jpeg",
+      "color": "Shadow Black",
+      "count":4,
+      "totalPrice":29999
+    },
+    {
+      "name": "Ноутбук Acer Aspire 3",
+      "price": 17900,
+      "id": 3,
+      "url": "https://img.ktc.ua/img/base/1/9/283689.jpg",
+      "color": "Shale Black",
+      "count":231231,
+      "totalPrice":17900
+    }
+    ,
+    {
+      "name": "Ноутбук Asus X515JA-BR3853W",
+      "price": 18999,
+      "id": 4,
+      "url": "https://scdn.comfy.ua/89fc351a-22e7-41ee-8321-f8a9356ca351/https://cdn.comfy.ua/media/catalog/product/8/6/864e26b27_204693_b.jpg/w_600",
+      "color": "Grey",
+      "count":123,
+      "totalPrice":18999
+    }
+    ,
+    {
+      "name": "Ноутбук игровой Acer Nitro 5",
+      "price": 31999,
+      "id": 5,
+      "url": "https://cdn.comfy.ua/media/catalog/product/a/c/acer-nitro-5_an515-55_wp-logo_01_backlit.jpg",
+      "color": "Black",
+      "count":1,
+      "totalPrice":31999
+    }
+    ,
+    {
+      "name": "Ноутбук игровой Lenovo Gaming 3",
+      "price": 34999,
+      "id": 6,
+      "url": "https://scdn.comfy.ua/89fc351a-22e7-41ee-8321-f8a9356ca351/https://cdn.comfy.ua/media/catalog/product/i/d/ideapad_gaming_15inch_hero_front_facing_black_2.jpg/w_600",
+      "color": " Shadow Black",
+      "count":1,
+      "totalPrice":34999
+    },
+    {
+      "name": "Ноутбук игровой Asus TUF",
+      "price": 34999,
+      "id": 7,
+      "url": "https://cdn.27.ua/799/b8/cb/6797515_4.jpeg",
+      "color": "Bonfire Black",
+      "count":1,
+      "totalPrice":34999
+    },
+    {
+      "name": "Ноутбук игровой Lenovo Gaming 3",
+      "price": 40999,
+      "id": 8,
+      "url": "https://img.moyo.ua/img/gallery/5266/46/1437517_middle.jpg?1666093489",
+      "color": "Shadow Black",
+      "count":1,
+      "totalPrice":40999
+    },
+    {
+      "name": "Ноутбук игровой Acer Nitro 5",
+      "price": 35499,
+      "id": 9,
+      "url": "https://blog.allo.ua/wp-content/uploads/Acer-Nitro-5-01.jpg",
+      "color": "Shale Black",
+      "count":1,
+      "totalPrice":35499
+    },
+    {
+      "name": "Ноутбук Apple New MacBook Air",
+      "price": 42999,
+      "id": 10,
+      "url": "https://cdn.comfy.ua/media/x/img/1687264/02.jpg",
+      "color": "Space Grey",
+      "count":1,
+      "totalPrice":42999
+    }
+
+  ]

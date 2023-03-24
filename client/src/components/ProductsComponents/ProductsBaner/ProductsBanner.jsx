@@ -5,7 +5,9 @@ import {useSelector} from "react-redux";
 
 
 function ProductsBanner(props) {
+
     const categories = useSelector(state => state.products.filterBy.categories)
+
     return (
         <div  className={styles.Banner}>
             <div className={styles.BannerContainer}>
