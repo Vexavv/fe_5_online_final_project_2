@@ -124,7 +124,7 @@ export default function OneProduct() {
           {/* ACTIONS */}
           <Box flex="1 1 50%" mb="40px">
             <Box m="5px 0 25px 0">
-              <Typography align="left" variant="h4">
+              <Typography align="left" variant="h4" sx={{textTransform: 'capitalize'}}>
                 {product.name}
               </Typography>
 
