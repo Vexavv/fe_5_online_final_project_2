@@ -11,15 +11,15 @@ import { FavoritesProvider } from './pages/Favorites/FavoritesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <FavoritesProvider>
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
             <BrowserRouter>
-                <App />
+                <FavoritesProvider>
+                    <App />
+                </FavoritesProvider>
             </BrowserRouter>
         </PersistGate>
     </Provider>
-    </FavoritesProvider>
 
 );
 
