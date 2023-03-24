@@ -3,20 +3,20 @@ import React, { createContext, useState, useEffect } from "react";
 const FavoritesContext = createContext();
 
 const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/products/`)
-      .then((response) => response.json())
-      .then((json) => setFavorites(json));
-  }, []);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const addFavorite = (product) => {
-    setFavorites([...favorites, product]);
+    setFavorites((prevState) => [...prevState, product]);
   };
 
-  const removeFavorite = (productId) => {
-    setFavorites([...favorites].filter((product) => product._id !== productId));
+  const removeFavorite = (product) => {
+    setFavorites(favorites.filter((id) => id !== product));
   };
 
   return (

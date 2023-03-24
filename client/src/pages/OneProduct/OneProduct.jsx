@@ -55,17 +55,13 @@ export default function OneProduct() {
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext);
 
-  const isFavorite = [...favorites].some(
-    (el) => selectedProduct._id === el._id
-  );
+  const isFavorite = favorites.some((el) => selectedProduct === el);
 
   const handleClick = () => {
     if (isFavorite) {
-      removeFavorite(selectedProduct._id);
-      console.log("added to wishlist");
+      removeFavorite(selectedProduct);
     } else {
       addFavorite(selectedProduct);
-      console.log("removed from wishlist");
     }
   };
   // --------------------------------------------------------------

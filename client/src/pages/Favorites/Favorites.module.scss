@@ -1,0 +1,35 @@
+.wrapper{
+    text-align: center;
+    span{
+        font-weight: 400;
+        font-size: 40px;
+        color: #ba933e; 
+    }
+}
+
+.favList{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    list-style-type: none;
+    .favItems{
+        margin-right: 20px;
+        text-align: center;
+    }
+    img{
+        cursor: pointer;
+    }
+    h2{
+        color: #666666;
+        text-transform: uppercase;
+    }
+    p{
+        color: #ba933e;
+        font-size: 20px;
+    }
+    .btn{
+        cursor: pointer;
+    }
+}
