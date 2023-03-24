@@ -151,7 +151,7 @@ const Login = () => {
               resetForm()
             }}
           >
-            {({ isValid }) => (
+            {({ isValid}) => (
               <Form className={styles.loginPageForm}>
                 <FastField className={styles.loginPageFormInput} type="text" name="firstName" placeholder="First Name" />
                 <ErrorMessage style={{ color: 'red' }} component="span" name="firstName" />
