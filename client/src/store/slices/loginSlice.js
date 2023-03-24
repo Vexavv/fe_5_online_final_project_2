@@ -36,7 +36,6 @@ export const createAccountFetch = createAsyncThunk(
       return rejectWithValue(error.message)
     }
   })
-
 // login fetch
 export const loginCustomerFetch = createAsyncThunk(
   'login/loginCustomerFetch ',

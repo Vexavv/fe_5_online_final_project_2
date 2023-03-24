@@ -46,14 +46,9 @@ const buttonSX = {
 
 export default function OneProduct() {
   const dispatch = useDispatch();
-  //--------------------------------------------отримання продукта для рендерінгу---------------------
-
   const selectedProduct = useSelector(
     (state) => state.products.selectedProduct
   );
- 
-
-
 
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -161,14 +156,9 @@ export default function OneProduct() {
           </Box>
 
           {/* ACTIONS */}
-
-
-
           <Box flex="1 1 50%" mb="40px">
             <Box m="5px 0 25px 0">
               <Typography align="left" variant="h4" sx={{textTransform: 'capitalize'}}>
-
-
                 {product.name}
               </Typography>
 
