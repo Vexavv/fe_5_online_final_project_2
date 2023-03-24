@@ -111,12 +111,20 @@ export default function OneProduct() {
           </Box>
 
           {/* ACTIONS */}
+<<<<<<< HEAD
           <Box flex='1 1 50%' mb='40px'>
             <Box m='5px 0 25px 0'>
               <Typography
                 align='left'
                 variant='h4'
                 sx={{ textTransform: "capitalize" }}>
+=======
+
+          <Box flex="1 1 50%" mb="40px">
+            <Box m="5px 0 25px 0">
+              <Typography align="left" variant="h4" sx={{textTransform: 'capitalize'}}>
+
+>>>>>>> 75211ed22acefc9856af0c8edaf5f47dea3a0f71
                 {product.name}
               </Typography>
 
