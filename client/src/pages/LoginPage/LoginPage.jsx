@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginCustomerFetch,
@@ -12,9 +12,6 @@ import Button from '../../components/Button/Button'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import styles from './LoginPage.module.scss'
-
-
-// додати: show password, span show/hide, 
 
 // initialValues
 const initialValuesLogin = {
@@ -69,14 +66,14 @@ const Login = () => {
   const dispatch = useDispatch()
 
   const isLogged = useSelector(state => state.isLogged.success)
-  // const customer = useSelector(state => state.customer)
+
   const goTo = useNavigate()
 
-  // local state
-  const [isLoginPage, setIsLoginPage] = useState(true)
-  const [isError, setIsError] = useState(false)
+  // local states
+  const [isLoginPage, setIsLoginPage] = useState(true) 
   const [isShowPassword, setIsShowPassword] = useState(false)
 
+  // switch login/account forms
   const ToggleLoginPage = () => {
     setIsLoginPage(prev => !prev)
   }
@@ -91,6 +88,7 @@ const Login = () => {
   // need add dispatch getUser, wishlist after login
   const HandleLoginSubmit = ({ email, password }) => {
     dispatch(loginCustomerFetch({ email, password }))
+    
   }
 
   const HandleRegiserSubmit = ({ firstName, lastName, email, password }) => {
