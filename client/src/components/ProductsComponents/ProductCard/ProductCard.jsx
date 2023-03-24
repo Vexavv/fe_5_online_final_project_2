@@ -1,15 +1,22 @@
-import React, {useState} from 'react';
-import styles from './ProductCard.module.scss'
-import {useDispatch, useSelector} from "react-redux";
-import Button from '../../Button/Button'
-import RatingStar from "./RatingStar/RatingStar";
-import {HiOutlineShoppingBag} from 'react-icons/hi';
-import {TfiSearch} from 'react-icons/tfi';
-import {getElement} from "../../../store/productsSlice";
-import {Link} from "react-router-dom";
+import React, { useState } from 'react';
+import styles from './ProductCard.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../../Button/Button';
+import RatingStar from './RatingStar/RatingStar';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { TfiSearch } from 'react-icons/tfi';
+import { getElement } from '../../../store/productsSlice';
+import { Link } from 'react-router-dom';
 
-
-function ProductCard({name, imageUrls, currentPrice, description, product, onClick, _id}) {
+function ProductCard({
+  name,
+  imageUrls,
+  currentPrice,
+  description,
+  product,
+  onClick,
+  _id,
+}) {
   const dispatch = useDispatch();
   const displayType = useSelector((state) => state.products.displayType);
   const [hovered, setHovered] = useState(null);
@@ -32,7 +39,7 @@ function ProductCard({name, imageUrls, currentPrice, description, product, onCli
             />
           </Link>
           <div className={styles.CardButton}>
-              <HiOutlineShoppingBag className={styles.CardButtonIcon}/>
+            <HiOutlineShoppingBag className={styles.CardButtonIcon} />
             <TfiSearch onClick={onClick} className={styles.CardButtonIcon} />
           </div>
           <div className={styles.CardDescription}>
@@ -57,19 +64,23 @@ function ProductCard({name, imageUrls, currentPrice, description, product, onCli
         </li>
       ) : (
         <li className={styles.Row}>
-          <img
-            className={styles.RowImg}
-            src={
-              hovered === _id && imageUrls.length > 1
-                ? imageUrls[1]
-                : imageUrls[0]
-            }
-            onMouseLeave={() => setHovered(null)}
-            onMouseEnter={() => setHovered(_id)}
-            alt={name}
-          />
+          <Link to={`/products/${product.itemNo}`}>
+            <img
+              className={styles.RowImg}
+              src={
+                hovered === _id && imageUrls.length > 1
+                  ? imageUrls[1]
+                  : imageUrls[0]
+              }
+              onMouseLeave={() => setHovered(null)}
+              onMouseEnter={() => setHovered(_id)}
+              alt={name}
+            />
+          </Link>
           <div className={styles.RowDescription}>
-            <h5 className={styles.RowDescriptionName}>{name}</h5>
+            <Link to={`/products/${product.itemNo}`}>
+              <h5 className={styles.RowDescriptionName}>{name}</h5>
+            </Link>
             <span className={styles.RowDescriptionPrice}>
               ${currentPrice}.00
             </span>
