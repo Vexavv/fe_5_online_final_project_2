@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { HiOutlineShoppingBag } from "react-icons/hi";
-import { TfiSearch } from "react-icons/tfi";
-import styles from "./BestsellerItem.module.scss";
-import { Link } from "react-router-dom";
-import { getElement } from "../../store/productsSlice";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { TfiSearch } from 'react-icons/tfi';
+import styles from './BestsellerItem.module.scss';
+import { Link } from 'react-router-dom';
+import { getElement } from '../../store/productsSlice';
+import { useDispatch } from 'react-redux';
 
 function BestsellerItem({ item, onClick }) {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ function BestsellerItem({ item, onClick }) {
         <HiOutlineShoppingBag className={styles.btnWrapperIcon} />
         <TfiSearch className={styles.btnWrapperIcon} onClick={onClick} />
       </div>
-      <Link to='/product'>
+      <Link to={`/products/${item.itemNo}`}>
         <img
           onClick={() => {
             dispatch(getElement(item));
@@ -27,7 +27,7 @@ function BestsellerItem({ item, onClick }) {
           }
           onMouseLeave={() => setHovered(null)}
           onMouseEnter={() => setHovered(item._id)}
-          alt=''
+          alt=""
         />
         <h3>{item.name}</h3>
         <p>

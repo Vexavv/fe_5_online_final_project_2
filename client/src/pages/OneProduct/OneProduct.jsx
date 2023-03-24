@@ -7,7 +7,6 @@ import {
 } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -16,10 +15,11 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./OneProduct.module.scss";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
-import { useState, useContext } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState, useContext } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FavoritesContext } from "../Favorites/FavoritesContext";
+import { useParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 const theme = createTheme({
   palette: {
@@ -39,9 +39,23 @@ const buttonSX = {
 
 export default function OneProduct() {
   //--------------------------------------------отримання продукта для рендерінгу---------------------
-  const selectedProduct = useSelector(
-    (state) => state.products.selectedProduct
-  );
+
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    async function getProduct() {
+      const res = await fetch("http://localhost:3001/api/products/" + id);
+      const data = await res.json();
+      setProduct(data);
+    }
+    getProduct();
+  }, [id]);
+
+  // const selectedProduct = useSelector(
+  //   (state) => state.products.selectedProduct
+  // );
+
   //----------------------------------------------
   const { tw, fb, inst, span } = styles;
 
@@ -55,19 +69,20 @@ export default function OneProduct() {
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext);
 
-  const isFavorite = favorites.some((el) => selectedProduct === el);
+  const isFavorite = favorites.some((el) => product === el);
 
   const handleClick = () => {
     if (isFavorite) {
-      removeFavorite(selectedProduct);
+      removeFavorite(product);
     } else {
-      addFavorite(selectedProduct);
+      addFavorite(product);
     }
   };
-  // --------------------------------------------------------------
-  // if (!product) {
-  //   return console.log("Loading");
-  // }
+
+  if (!product) {
+    return <Loader />;
+  }
+
   return (
     <>
       <DialogTitle
@@ -78,7 +93,7 @@ export default function OneProduct() {
           display='flex'
           alignItems='center'
           justifyContent={"space-between"}>
-          Product title
+          {product.name}
         </Box>
       </DialogTitle>
 
@@ -90,7 +105,7 @@ export default function OneProduct() {
               alt={"sss"}
               width='100%'
               height='100%'
-              src={selectedProduct.imageUrls[0]}
+              src={product.imageUrls[0]}
               style={{ objectFit: "contain" }}
             />
           </Box>
@@ -99,14 +114,14 @@ export default function OneProduct() {
           <Box flex='1 1 50%' mb='40px'>
             <Box m='5px 0 25px 0'>
               <Typography align='left' variant='h4'>
-                {selectedProduct.name}
+                {product.name}
               </Typography>
 
               <Typography align='left' sx={{ mt: "20px" }}>
-                {selectedProduct.description}
+                {product.description}
               </Typography>
               <Typography variant='h6' color='#ba933e' align='left' m='30px 0'>
-                ${selectedProduct.currentPrice}.00
+                ${product.currentPrice}.00
               </Typography>
             </Box>
 
@@ -141,22 +156,22 @@ export default function OneProduct() {
                 <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
               </Box>
               <Typography m='8px 0 0 0'>
-                <span className={span}>Availability: </span>{" "}
-                {selectedProduct.quantity}
+                <span className={span}>Availability: </span> {product.quantity}
               </Typography>
               <Typography m='8px 0 0 0'>
                 <span className={span}>Product type: </span>
                 Demo Type
               </Typography>
               <Typography m='8px 0 0 0'>
-                <span className={span}>Brand: </span> {selectedProduct.brand}
+                <span className={span}>Brand: </span>
+                {product.brand}
               </Typography>
               <Typography m='8px 0 0 0'>
                 <span className={span}>SKU: </span> N/A
               </Typography>
               <Typography align='left' m='8px 0 0 0'>
                 <span className={span}>Categories: </span>
-                {selectedProduct.categories}
+                {product.categories}
               </Typography>
               <Box
                 sx={{
@@ -200,7 +215,7 @@ export default function OneProduct() {
           <Box sx={{ padding: 2 }}>
             {tabIndex === 0 && (
               <Box>
-                <Typography>{selectedProduct.description}</Typography>
+                <Typography>{product.description}</Typography>
               </Box>
             )}
             {tabIndex === 1 && (

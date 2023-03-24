@@ -12,11 +12,12 @@ import {changeBestSeller, changeTrending} from '../../../store/productsSlice'
 
 function FilterBestSeller(props) {
     const dispatch = useDispatch()
-    const [visible, setVisible] = useState(false)
-    const [selectedValue, setSelectedValue] = useState('');
+    const [visible, setVisible] = useState(JSON.parse(localStorage.getItem("visible")) || false)
+    const [selectedValue, setSelectedValue] = useState(JSON.parse(localStorage.getItem("selectedValue")) ||'');
     const handleChange = (event) => {
         const {value} = event.target;
         setSelectedValue(value);
+        localStorage.setItem('selectedValue', JSON.stringify(value))
         if (value === "trueBest") {
             dispatch(changeBestSeller({bestSeller: event.target.value}));
             dispatch(changeTrending({trendingProduct: ''}));
@@ -25,15 +26,16 @@ function FilterBestSeller(props) {
             dispatch(changeTrending({trendingProduct: event.target.value}));
             dispatch(changeBestSeller({bestSeller: ''}));
         }
-
         if (value !== '') {
             setVisible(true);
+            localStorage.setItem('visible', JSON.stringify(true));
         }
     };
-
     const offRadio = () => {
         setVisible(false)
+        localStorage.setItem('visible', JSON.stringify(false));
         setSelectedValue('')
+        localStorage.setItem('selectedValue', JSON.stringify(''))
         dispatch(changeBestSeller({bestSeller: ''}));
         dispatch(changeTrending({trendingProduct: ''}));
     }

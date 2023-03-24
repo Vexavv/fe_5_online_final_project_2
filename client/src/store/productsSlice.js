@@ -13,7 +13,7 @@ const initialState = {
         bestSeller: '',//best products selector value
         trendingProduct: '',// trend products selector value
         sort: '',//sorting products
-        minPrice: 0,// mim price products
+        minPrice: 1,// mim price products
         maxPrice: 500,// max price products
     },
     status: null,
@@ -40,6 +40,7 @@ export const fetchAsyncProducts = createAsyncThunk(
         } catch (error) {
             return rejectWithValue(error.response.data)
         }
+
     }
 );
 

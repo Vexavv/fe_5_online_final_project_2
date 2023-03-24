@@ -1,12 +1,13 @@
 export function getQueryParams(params) {
     const esc = encodeURIComponent;
-    return Object.keys(params)
-        .filter((key) => params[key] !== undefined)
-        .map((key) => {
-            if (key === 'sort' && ['+name', '-name', '+currentPrice', '-currentPrice'].includes(params[key])) {
-                return `${key}=${params[key]}`;
+    return Object.entries(params)
+        .filter(([key, value]) => value !== undefined)
+        .map(([key, value]) => {
+            if (key === 'sort' && /^(\+name|\+currentPrice)$/.test(value)) {
+                return `${key}=${value}`;
             }
-            return `${esc(key)}=${esc(params[key])}`;
+            return [esc(key), esc(value)].join('=');
         })
         .join('&');
+
 }
