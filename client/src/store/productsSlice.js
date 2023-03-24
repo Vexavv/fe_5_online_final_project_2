@@ -1,4 +1,3 @@
-
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {PAGE_SIZE} from '../constants/constants'
 import axios from "axios";
@@ -42,13 +41,10 @@ export const fetchAsyncProducts = createAsyncThunk(
             return rejectWithValue(error.response.data)
         }
 
-
     }
-  }
 );
 
 const productsSlice = createSlice({
-
     name: 'products',
     initialState,
     reducers: {
@@ -126,5 +122,4 @@ export const {
     getElement,
     setPage,
 } = productsSlice.actions
-
 export default productsSlice.reducer;
