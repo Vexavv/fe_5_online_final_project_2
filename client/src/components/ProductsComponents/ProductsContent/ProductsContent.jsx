@@ -47,6 +47,7 @@ function ProductsContent() {
         setSearchParams(new URLSearchParams(queryParams));
     }, [page, categories, color, bestSeller, trendingProduct, minPrice, maxPrice, sort, setSearchParams, dispatch]);
 
+
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(toggleModal(true))

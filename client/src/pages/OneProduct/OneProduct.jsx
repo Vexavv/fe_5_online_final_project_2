@@ -15,11 +15,18 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./OneProduct.module.scss";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
+
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { addCard } from "../../store/cardSlice";
+
 import { useEffect, useState, useContext } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FavoritesContext } from "../Favorites/FavoritesContext";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+
 
 const theme = createTheme({
   palette: {
@@ -38,7 +45,15 @@ const buttonSX = {
 };
 
 export default function OneProduct() {
+  const dispatch = useDispatch();
   //--------------------------------------------отримання продукта для рендерінгу---------------------
+
+  const selectedProduct = useSelector(
+    (state) => state.products.selectedProduct
+  );
+ 
+
+
 
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -56,6 +71,7 @@ export default function OneProduct() {
   //   (state) => state.products.selectedProduct
   // );
 
+
   //----------------------------------------------
   const { tw, fb, inst, span } = styles;
 
@@ -65,9 +81,36 @@ export default function OneProduct() {
     setTabIndex(newTabIndex);
   };
 
-  // ---------add product to wishlist:
+
+  
+  // -------------------------------добавка в корзину -------------------
+  const products = useSelector((state) => state.card.products);
+  console.log(products);
+
+  const isInBasket = products.find(
+    (product) => product._id === selectedProduct._id
+  );
+  const addProductBascet = () => {
+    if (isInBasket) {
+      console.log("remove");
+    } else {
+      dispatch(
+        addCard({
+          ...selectedProduct,
+          amount: 1,
+          totalPrice: selectedProduct.currentPrice,
+        })
+      );
+      // localStorage.setItem("card", JSON.stringify(selectedProduct));
+    }
+  };
+
+  // ---------------------------------
+
+  
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext);
+
 
   const isFavorite = favorites.some((el) => product === el);
 
@@ -79,52 +122,53 @@ export default function OneProduct() {
     }
   };
 
+
   if (!product) {
     return <Loader />;
   }
+
 
   return (
     <>
       <DialogTitle
         sx={{
           background: "#eaebef",
-        }}>
+        }}
+      >
         <Box
+
           display='flex'
           alignItems='center'
           justifyContent={"space-between"}>
           {product.name}
+
         </Box>
       </DialogTitle>
 
-      <Box width='80%' m='80px auto'>
-        <Box display='flex' flexWrap='wrap' columnGap='40px'>
+      <Box width="80%" m="80px auto">
+        <Box display="flex" flexWrap="wrap" columnGap="40px">
           {/* IMAGES */}
-          <Box flex='1 1 40%' mb='40px'>
+          <Box flex="1 1 40%" mb="40px">
             <img
               alt={"sss"}
+
               width='100%'
               height='100%'
               src={product.imageUrls[0]}
+
               style={{ objectFit: "contain" }}
             />
           </Box>
 
           {/* ACTIONS */}
-<<<<<<< HEAD
-          <Box flex='1 1 50%' mb='40px'>
-            <Box m='5px 0 25px 0'>
-              <Typography
-                align='left'
-                variant='h4'
-                sx={{ textTransform: "capitalize" }}>
-=======
+
+
 
           <Box flex="1 1 50%" mb="40px">
             <Box m="5px 0 25px 0">
               <Typography align="left" variant="h4" sx={{textTransform: 'capitalize'}}>
 
->>>>>>> 75211ed22acefc9856af0c8edaf5f47dea3a0f71
+
                 {product.name}
               </Typography>
 
@@ -133,18 +177,20 @@ export default function OneProduct() {
               </Typography>
               <Typography variant='h6' color='#ba933e' align='left' m='30px 0'>
                 ${product.currentPrice}.00
+
               </Typography>
             </Box>
 
-            <Box display='flex' alignItems='center' minHeight='50px'>
+            <Box display="flex" alignItems="center" minHeight="50px">
               <Box
-                display='flex'
-                alignItems='center'
-                backgroundColor='#f5f5f5'
-                border='1px solid #f5f5f5'
-                borderRadius='5px'
-                mr='20px'
-                p='2px 5px'>
+                display="flex"
+                alignItems="center"
+                backgroundColor="#f5f5f5"
+                border="1px solid #f5f5f5"
+                borderRadius="5px"
+                mr="20px"
+                p="2px 5px"
+              >
                 <IconButton>
                   <RemoveIcon />
                 </IconButton>
@@ -154,33 +200,42 @@ export default function OneProduct() {
                 </IconButton>
               </Box>
               <ThemeProvider theme={theme}>
-                <Button sx={buttonSX} variant='contained' color='secondary'>
-                  ADD TO CART
+                <Button
+                  onClick={addProductBascet}
+                  sx={buttonSX}
+                  variant="contained"
+                  color="secondary"
+                >
+                  {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
                 </Button>
               </ThemeProvider>
             </Box>
-            <Box display='flex' flexDirection='column' alignItems='flex-start'>
-              <Box m='20px 0 5px 0' display='flex'>
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <Box m="20px 0 5px 0" display="flex">
                 <div onClick={handleClick}>
                   {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
                 </div>
                 <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
               </Box>
+
               <Typography m='8px 0 0 0'>
                 <span className={span}>Availability: </span> {product.quantity}
+
               </Typography>
-              <Typography m='8px 0 0 0'>
+              <Typography m="8px 0 0 0">
                 <span className={span}>Product type: </span>
                 Demo Type
               </Typography>
+
               <Typography m='8px 0 0 0'>
                 <span className={span}>Brand: </span>
                 {product.brand}
+
               </Typography>
-              <Typography m='8px 0 0 0'>
+              <Typography m="8px 0 0 0">
                 <span className={span}>SKU: </span> N/A
               </Typography>
-              <Typography align='left' m='8px 0 0 0'>
+              <Typography align="left" m="8px 0 0 0">
                 <span className={span}>Categories: </span>
                 {product.categories}
               </Typography>
@@ -188,7 +243,8 @@ export default function OneProduct() {
                 sx={{
                   mt: 4,
                   color: "gray",
-                }}>
+                }}
+              >
                 <IconButton>
                   <TwitterIcon className={tw} sx={{ pl: 2 }} />
                   <FacebookIcon className={fb} sx={{ pl: 2 }} />
@@ -208,18 +264,19 @@ export default function OneProduct() {
           </Tabs>
         </Box> */}
 
-        <Box m='20px 0'>
+        <Box m="20px 0">
           <Box sx={{ borderBottom: 2, borderColor: "divider" }}>
             <ThemeProvider theme={theme}>
               <Tabs
                 value={tabIndex}
                 onChange={handleTabChange}
                 centered
-                textColor='secondary'
-                indicatorColor='secondary'>
-                <Tab label='Details' />
-                <Tab label='Shipping & Return' />
-                <Tab label='Reviews' />
+                textColor="secondary"
+                indicatorColor="secondary"
+              >
+                <Tab label="Details" />
+                <Tab label="Shipping & Return" />
+                <Tab label="Reviews" />
               </Tabs>
             </ThemeProvider>
           </Box>
