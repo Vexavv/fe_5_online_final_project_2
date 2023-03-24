@@ -20,7 +20,7 @@ function Products(props) {
                             </div>
                             <div className={styles.ProductWrapperContent}>
                                 <ProductsNav/>
-                                <ProductsContent />
+                                <ProductsContent />s
                             </div>
                         </div>
                         {/*<div className={styles.ProductWrapperPagination}>*/}

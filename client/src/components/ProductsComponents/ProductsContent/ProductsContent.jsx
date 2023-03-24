@@ -38,9 +38,9 @@ const {chairs,lamps,decor,furniture,sofas}=useSelector(state => state.productsFi
     // const bestSellers = useSelector(state => state.topProducts.bestSellers) //best sellers products
     // console.log(trending)
     // console.log(bestSellers)
-    console.log(furniture)
-    console.log(lamps)
-    console.log(products)
+    // console.log(furniture)
+    // console.log(lamps)
+    // console.log(products)
     function handleProductClick(product) {
         dispatch(getElement(product));
         dispatch(openModal())
