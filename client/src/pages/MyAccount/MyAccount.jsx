@@ -4,13 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {loguotCustomer} from '../../store/slices/loginSlice'
 import styles from "./MyAccount.module.scss";
+import { Navigate } from "react-router-dom";
 
 function MyAccount(props) {
   const dispatch = useDispatch();
+  // if logout, we go home
+  const isLogged = useSelector(state => state.isLogged.isLogged.success)
   // const selectedProduct = useSelector((state) => state.topProducts.bestSellers);
 const LogOutAccount = () => dispatch(loguotCustomer())
 
-  return (
+  return isLogged ? (
     <div className={styles.container}>
       <h1>My Account</h1>
       <p>Welcome, {props.username || "Stranger"}</p>
@@ -44,6 +47,8 @@ const LogOutAccount = () => dispatch(loguotCustomer())
         <Button text='Logout' onClick={LogOutAccount}/>
       </Link>
     </div>
+  ):(
+      <Navigate to="/" replace />
   );
 }
 
