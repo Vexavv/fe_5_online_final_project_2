@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginCustomerFetch,
@@ -9,9 +9,9 @@ import { Formik, Form, FastField, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
 import Button from '../../components/Button/Button'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import styles from './LoginPage.module.scss'
-
-// додати: show password, span show/hide, 
 
 // initialValues
 const initialValuesLogin = {
@@ -65,56 +65,35 @@ const Login = () => {
 
   const dispatch = useDispatch()
 
-  const isLogged = useSelector(state => state.isLogged)
-  const customer = useSelector(state => state.customer)
+  const isLogged = useSelector(state => state.isLogged.success)
+
   const goTo = useNavigate()
 
-  // local state
-  const [isLoginPage, setIsLoginPage] = useState(true)
-  const [isError, setIsError] = useState(false)
+  // local states
+  const [isLoginPage, setIsLoginPage] = useState(true) 
   const [isShowPassword, setIsShowPassword] = useState(false)
 
-  // useEffect
-
-  //  useEffect(()=>{
-  // if(isLogged){
-  //   goTo('/myaccount') 
-  // }
-  //  }, [isLogged])
-
-
+  // switch login/account forms
   const ToggleLoginPage = () => {
     setIsLoginPage(prev => !prev)
-    console.log(isLoginPage);
   }
 
+  // toggle visible password
   const TolggleShowPassword = () => {
     setIsShowPassword(prev => !prev)
   }
 
-  const handleMouseDownPassword = event => {
-    event.preventDefault()
-  }
-  // submitting functions
 
-  const HandleLoginSubmit = (loginData) => {
-    dispatch(loginCustomerFetch(loginData))
-
-
+  // submitting functions 
+  // need add dispatch getUser, wishlist after login
+  const HandleLoginSubmit = ({ email, password }) => {
+    dispatch(loginCustomerFetch({ email, password }))
+    
   }
 
-  const HandleRegiserSubmit = (newCustomer) => {
-    dispatch(createAccountFetch(newCustomer))
-
-
+  const HandleRegiserSubmit = ({ firstName, lastName, email, password }) => {
+    dispatch(createAccountFetch({ firstName, lastName, email, password }))
   }
-
-
-
-
-
-
-
 
   return (
 
@@ -127,6 +106,7 @@ const Login = () => {
 
         </ul>
 
+        {/* form for login */}
         {isLoginPage &&
           <Formik
             initialValues={initialValuesLogin}
@@ -140,11 +120,17 @@ const Login = () => {
               <Form className={styles.loginPageForm}>
                 <FastField className={styles.loginPageFormInput} type="text" name="email" placeholder="Email" />
                 <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
-                <FastField className={styles.loginPageFormInput}
-                  name="password"
-                  type={isShowPassword ? 'text' : 'password'}
-                  placeholder="Password"
-                />
+                <div className={styles.loginPageFieldWrapper}>
+                  <FastField className={styles.loginPageFormInputPass}
+                    name="password"
+                    type={isShowPassword ? 'text' : 'password'}
+                    placeholder="Password"
+                  />
+                  <span className={styles.loginPageSpan}
+                    onClick={TolggleShowPassword}>
+                    {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                  </span>
+                </div>
                 <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
                 <Button type="submit" className={styles.LoginButton} disabled={!isValid} text="Sign in" />
                 <Button type="button" className={styles.RecoveryButton} text='Fogot password?' />
@@ -152,6 +138,8 @@ const Login = () => {
             )}
           </Formik>
         }
+
+        {/* form for new customer */}
         {!isLoginPage &&
           <Formik
             initialValues={initialValuesSignIn}
@@ -161,7 +149,7 @@ const Login = () => {
               resetForm()
             }}
           >
-            {({ isValid }) => (
+            {({ isValid}) => (
               <Form className={styles.loginPageForm}>
                 <FastField className={styles.loginPageFormInput} type="text" name="firstName" placeholder="First Name" />
                 <ErrorMessage style={{ color: 'red' }} component="span" name="firstName" />
@@ -169,12 +157,17 @@ const Login = () => {
                 <ErrorMessage style={{ color: 'red' }} component="span" name="lastName" />
                 <FastField className={styles.loginPageFormInput} type="text" name="email" placeholder="Email" />
                 <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
-                <FastField className={styles.loginPageFormInput}
-                  name="password"
-                  // component ={isShowPassword ? <span>'fa fa-eye'</span> : <span>'fa fa-eye-slash'</span>}
-                  type={isShowPassword ? 'text' : 'password'}
-                  placeholder="Password"
-                />
+                <div className={styles.loginPageFieldWrapper}>
+                  <FastField className={styles.loginPageFormInputPass}
+                    name="password"
+                    type={isShowPassword ? 'text' : 'password'}
+                    placeholder="Password"
+                  />
+                  <span className={styles.loginPageSpan}
+                    onClick={TolggleShowPassword}>
+                    {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                  </span>
+                </div>
                 <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
                 <Button type="submit" className={styles.LoginButton} disabled={!isValid} text="Create an account" />
               </Form>
