@@ -46,30 +46,12 @@
         font-size: 16px;
        
        
-        &Input{  
-            width: 100%;     
+        &Input{            
             box-sizing: border-box;
            padding-top: 9px;
            padding-bottom: 9px;
             border-radius: 5px;
             border: 2px solid #e1e1e1;            
-            font-family: 'Red Hat Display';
-            font-size: 16px;
-            color: #444444;
-            outline: none;
-            &:focus {
-                box-shadow: 0 -1px 10px 3px #ba933e; 
-                           
-            }
-          
-        }
-        &InputPass{
-            width: 100%;     
-            box-sizing: border-box;
-           padding-top: 9px;
-           padding-bottom: 9px;
-            border-radius: 5px;
-            border: none;            
             font-family: 'Red Hat Display';
             font-size: 16px;
             color: #444444;
@@ -115,20 +97,4 @@
     margin: 0 auto;
     padding-top: 9px;
     padding-bottom: 9px;
-}
-.loginPageFieldWrapper{
-    display:flex;
-    justify-content: space-between;
-    gap: 4px;
-    border: 2px solid #e1e1e1; 
-     
-}
-
-.loginPageSpan{
-text-align: center;
-display: inline-block;
-width: fit-content;
-margin-right: 10px;
-color:  #444;
-padding-top: 8px;
 }
