@@ -3,39 +3,23 @@ import styles from './ProductsNav.module.scss'
 import TuneIcon from "@mui/icons-material/Tune";
 import ToggleButtons from "../ToggleButtons/ToggleButtons";
 import SelectSort from "../SelectSort/SelectSort";
-import {changeDisplay, changeDisplayList} from "../../../store/productsSlice";
-import {useDispatch} from "react-redux";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Drawer from "@mui/material/Drawer";
 import ProductFilter from "../ProductsFilter/ProductFilter";
-function ProductsNav(props) {
 
-    const dispatch = useDispatch()
-    const handlerChangeDisplay = () => {
-        dispatch(changeDisplay())
-    }
-    const handlerChangeDisplayList = () => {
-        dispatch(changeDisplayList())
-    }
-    // Toggle Filter
+function ProductsNav() {
     const [mobileFilterOpen, setMobileFilterOpen] = useState(false)
-
     const mobileFilterToggle = () => {
         setMobileFilterOpen(current => !current)
     }
-
-
-
     return (
         <nav className={styles.Nav}>
             <div className={styles.NavFilter}>
                 <TuneIcon onClick={mobileFilterToggle}  sx={{display:{xs:'flex', sm:'flex', md:'none'}, color: '#ba933e', marginRight:1}}/>
                 <span className={styles.NavFilterText}>Filter</span>
-                <ToggleButtons changeDisplayList={handlerChangeDisplayList}
-                               changeDisplay={handlerChangeDisplay}/>
-
+                <ToggleButtons />
                 <Drawer
                     anchor="left"
                     component="div"

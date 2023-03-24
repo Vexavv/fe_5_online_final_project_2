@@ -1,0 +1,96 @@
+
+.cardPrice {
+  flex: 40%;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productImg {
+  width: 64px;
+}
+.productTitle {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+}
+
+.discaunt {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.discauntInpt {
+  input {
+    padding: 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+}
+
+.discauntBtn {
+  button {
+    padding: 18px;
+    color: white;
+    font-size: 16px;
+    background-color: gray;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+.sub {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+}
+
+.subtotal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.shipping {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+@media (min-width: 991px) {
+  .containerForm {
+    display: flex;
+    flex-direction: row;
+  }
+}

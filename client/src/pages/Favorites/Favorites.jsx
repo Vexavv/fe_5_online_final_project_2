@@ -1,42 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import BestsellerItem from "../../components/BestsellerItem/BestsellerItem";
-import Bestsellers from "../../components/Bestsellers/Bestsellers";
-import ProductCard from "../../components/ProductsComponents/ProductCard/ProductCard";
-import ProductsContent from "../../components/ProductsComponents/ProductsContent/ProductsContent";
+import React, { useContext, useState } from "react";
 import styles from "./Favorites.module.scss";
-import { fetchAsyncBestSellers } from "../../store/topProductsSlice";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import Loader from "../../components/Loader/Loader";
+import { FavoritesContext } from "./FavoritesContext";
 
-function Favorites({ item }) {
-  const [isChecked, setIsChecked] = useState(false);
-  const [favorites, setFav] = useState(
-    JSON.parse(localStorage.getItem("favoriteList")) || []
-  );
-
-  const addToFav = (item) => {
-    let resultArr;
-    if (favorites.includes(item.id)) {
-      resultArr = favorites.filter((el) => el !== item.id);
-    } else {
-      resultArr = [...favorites, item.id];
-    }
-    setFav(resultArr);
-    localStorage.setItem("favoriteList", JSON.stringify(resultArr));
-  };
-
-  const handleClick = () => {
-    setIsChecked(!isChecked);
-  };
+function Favorites() {
+  const { favorites, removeFavorite } = useContext(FavoritesContext);
+  const [hovered, setHovered] = useState(null);
 
   return (
-    <div onClick={handleClick}>
-      {isChecked ? (
-        <AiFillHeart onClick={addToFav} />
-      ) : (
-        <AiOutlineHeart onClick={addToFav} />
-      )}
+    <div className={styles.wrapper}>
+      <span>Your wishlist:</span>
+      <ul className={styles.favList}>
+        {favorites.length > 0 ? (
+          favorites.map((product) => (
+            <li className={styles.favItems} key={product._id}>
+              <img
+                width='200'
+                height='250'
+                src={
+                  hovered === product._id && product.imageUrls.length > 1
+                    ? product.imageUrls[1]
+                    : product.imageUrls[0]
+                }
+                onMouseLeave={() => setHovered(null)}
+                onMouseEnter={() => setHovered(product._id)}
+                alt=''
+              />
+              <h2>{product.name}</h2>
+              <p>${product.currentPrice}</p>
+              <div
+                className={styles.btn}
+                onClick={() => removeFavorite(product)}>
+                {favorites ? <AiFillHeart /> : <AiOutlineHeart />}
+              </div>
+            </li>
+          ))
+        ) : (
+          <span>Your wishlist is still empty :(</span>
+        )}
+      </ul>
     </div>
   );
 }

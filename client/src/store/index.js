@@ -1,23 +1,25 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import thunk from "redux-thunk";
-import storage from "redux-persist/lib/storage";
-import { persistStore, persistReducer } from "redux-persist";
-import productsReducer from "./productsSlice";
-import productsFiltersReducer from "./productsFiltersSlice";
-import topProducts from "./topProductsSlice";
+
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import thunk from 'redux-thunk';
+import storage from 'redux-persist/lib/storage'
+import {persistStore, persistReducer} from "redux-persist";
+import productsReducer from './productsSlice'
+import isLoginReducer from './slices/loginSlice'
 import cardReducer from "./cardSlice";
+
 const persistConfig = {
-  key: "root",
-  storage,
-  blacklist: ["products", "productsFilters", "topProducts"],
-};
+    key:'root',
+    storage,
+   whitelist:['products', 'isLogged']
+
+}
 
 const rootReducer = combineReducers({
-  products: productsReducer,
-  productsFilters: productsFiltersReducer,
-  topProducts: topProducts,
+    products: productsReducer,
+    isLogged :  isLoginReducer,
   card: cardReducer,
-});
+})
+
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

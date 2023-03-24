@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ProductFilter.module.scss'
 import RadioButton from "../RadioButton/RadioButton";
 import RadioButtonColor from "../RadioButtonColor/RadioButtonColor";
-import ProductCheckBox from "../ProductCheckBox/ProductCheckBox";
+import ProductPriceFilter from "../ProductPriceFilter/ProductPriceFilter";
 import FilterBestSeller from "../FilterBestSeller/FilterBestSeller";
 
 function ProductFilter(props) {
@@ -17,12 +17,11 @@ function ProductFilter(props) {
                 <RadioButtonColor/>
             </div>
             <div className={styles.FilterColor}>
-                <ProductCheckBox/>
+                <ProductPriceFilter/>
             </div>
             <div className={styles.FilterBest}>
                 <FilterBestSeller/>
             </div>
-
         </div>
     );
 }

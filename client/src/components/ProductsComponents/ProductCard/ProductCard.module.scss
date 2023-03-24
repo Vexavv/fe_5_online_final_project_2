@@ -4,12 +4,11 @@
   flex-wrap: nowrap;
   list-style: none;
   justify-content: center;
-  width: 250px;
+  align-items: center;
   padding-bottom: 30px;
   box-sizing: border-box;
   cursor: pointer;
   position: relative;
-  margin-left: 10px;
 
   &:hover &Button {
     display: flex;
@@ -17,7 +16,7 @@
   }
 
   &Img {
-    width: 100%;
+    width: 80%;
   }
 
   &Button {
@@ -26,20 +25,20 @@
     top: 5%;
     right: 10%;
 
-    &Icon{
-      color:black;
+    &Icon {
+      color: black;
+
       &:hover {
         background-color: #ba933e;
         color: #F5F5F5;
         transition: all .5s ease;
       }
     }
-
-
   }
 
   &Description {
     margin-top: 20px;
+    width: 80%;
 
     &Name {
       text-transform: capitalize;
@@ -86,93 +85,26 @@
 
 @media (min-width: 600px) {
   .Card {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    list-style: none;
     justify-content: space-evenly;
     width: 250px;
-    padding-bottom: 30px;
-    box-sizing: border-box;
-    cursor: pointer;
-    position: relative;
     margin-left: 10px;
 
-    &:hover &Button {
-      display: flex;
-      flex-direction: column;
-    }
 
     &Img {
       width: 100%;
     }
 
     &Button {
-      display: none;
-      position: absolute;
-      top: 5%;
-      right: 10%;
 
-      &Icon{
+
+      &Icon {
         font-size: 30px;
-        padding:10px;
-        border-radius:5px ;
-        background-color:#ffffff;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #ffffff;
         margin-bottom: 10px;
-        :hover {
-          background-color: #ba933e;
-          color: #ffffff;
-          transition: all .5s ease;
-        }
       }
 
-
-
-    }
-
-    &Description {
-      margin-top: 20px;
-
-      &Name {
-        text-transform: capitalize;
-        font-family: 'Red Hat Display';
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 20px;
-        color: #444444;
-        margin-bottom: 10px;
-
-        &:hover {
-          color: #ba933e;
-          transition: all .5s ease;
-        }
-      }
-
-      &Container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        &Price {
-          font-family: 'Red Hat Display';
-          font-weight: 400;
-          font-size: 14px;
-          color: #666;
-          line-height: 20px;
-        }
-
-        &Label {
-          display: flex;
-          flex-direction: row;
-          list-style: none;
-
-          li img {
-            width: 20px;
-            border-radius: 45%;
-            margin-left: 5px;
-          }
-        }
-      }
     }
   }
 }
@@ -244,9 +176,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-a{
-  width: 100%;
-}
+
+    a {
+      width: 100%;
+    }
+
     &Button {
       font-family: 'Red Hat Display';
       font-weight: 700;
@@ -260,7 +194,8 @@ a{
       border: none;
       cursor: pointer;
       border-radius: 4px;
-      &:nth-child(3){
+
+      &:nth-child(2) {
         display: none;
 
       }
@@ -287,9 +222,8 @@ a{
       margin-left: 20px;
       width: 72%;
     }
-    a{
-      width: 64%;
-    }
+
+
     &Nav {
       width: 100%;
     }
@@ -317,9 +251,11 @@ a{
 
     &Nav {
       width: 25%;
-a{
-  width: 64%;
-}
+
+      a {
+        width: 150px;
+      }
+
       &Button {
         width: 150px;
 
@@ -327,11 +263,9 @@ a{
           background-color: #ba933e;
           transition: all .5s ease;
         }
-        &:nth-child(3){
+
+        &:nth-child(2) {
           display: block;
-        }
-        &:nth-child(4){
-          display: none;
         }
       }
     }
