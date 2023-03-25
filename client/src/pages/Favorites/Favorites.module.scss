@@ -5,6 +5,22 @@
         font-size: 40px;
         color: #ba933e; 
     }
+    .link{
+        text-transform: uppercase;
+        border-radius: 5px;
+        width: 150px;
+        color: #fff;
+        background-color: #ba933e;
+        margin-left: 20px;
+        margin-top: 20px;
+        &:hover{
+            color:#1a1a1a;
+        }
+    }
+    .empty{
+        padding-top: 100px;
+        padding-bottom: 300px;
+    }
 }
 
 .favList{
@@ -23,6 +39,7 @@
     }
     h2{
         color: #666666;
+        font-size: 16px;
         text-transform: uppercase;
     }
     p{
@@ -31,5 +48,16 @@
     }
     .btn{
         cursor: pointer;
+    }
+    .flexbox{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        div{
+            font-size: 20px;
+            display: flex;
+            margin-right: 10px;
+        }
     }
 }

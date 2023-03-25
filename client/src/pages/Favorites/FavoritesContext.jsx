@@ -13,10 +13,11 @@ const FavoritesProvider = ({ children }) => {
 
   const addFavorite = (product) => {
     setFavorites((prevState) => [...prevState, product]);
+    // localStorage.setItem("favorites", JSON.stringify(product));
   };
 
   const removeFavorite = (product) => {
-    setFavorites(favorites.filter((id) => id !== product));
+    setFavorites(favorites.filter((el) => el !== product));
   };
 
   return (

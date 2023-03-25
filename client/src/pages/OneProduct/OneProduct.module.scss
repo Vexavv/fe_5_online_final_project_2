@@ -18,3 +18,14 @@
 .span {
   font-weight: bold;
 }
+
+.favorites{
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  &:hover{
+    background-color: #f0bf57;
+    color: #504b4b;
+    border-radius: 10px;
+  }
+}
