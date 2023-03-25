@@ -16,7 +16,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     products: productsReducer,
-    isLogged :  isLoginReducer,
+    isLogged : isLoginReducer,
   card: cardReducer,
 })
 

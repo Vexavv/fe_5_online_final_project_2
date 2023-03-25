@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {
-  loginCustomerFetch,
-  createAccountFetch
+    loginCustomerFetch,
+    createAccountFetch
 } from '../../store/slices/loginSlice'
-import { useNavigate } from 'react-router-dom'
-import { Formik, Form, FastField, ErrorMessage } from 'formik';
+import {useNavigate, Navigate} from 'react-router-dom'
+import {Formik, Form, FastField, ErrorMessage} from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
 import Button from '../../components/Button/Button'
@@ -15,169 +15,179 @@ import styles from './LoginPage.module.scss'
 
 // initialValues
 const initialValuesLogin = {
-  email: '',
-  password: ''
+    email: '',
+    password: ''
 }
 const initialValuesSignIn = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: ''
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
 }
 
 // validations
 YupPassword(yup)
 const validationSchemaLogin = yup.object().shape({
-  email: yup.string()
-    .email('the email is filled in with an error')
-    .required('this field is required'),
-  password: yup.string()
-    .minSymbols(0)
-    .min(7, 'Password must be between 7 and 30 characters')
-    .max(30, 'Password must be between 7 and 30 characters')
-    .minLowercase(5)
-    .required('Password is required field'),
+    email: yup.string()
+        .email('the email is filled in with an error')
+        .required('this field is required'),
+    password: yup.string()
+        .minSymbols(0)
+        .min(7, 'Password must be between 7 and 30 characters')
+        .max(30, 'Password must be between 7 and 30 characters')
+        .minLowercase(5)
+        .required('Password is required field'),
 })
 const validationSchemaRegister = yup.object().shape({
-  firstName: yup.string()
-    .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for First Name is a-z, A-Z, а-я, А-Я.')
-    .min(2, 'First Name must be between 2 and 25 characters.')
-    .max(25, 'First Name must be between 2 and 25 characters.')
-    .required('First Name is required'),
-  lastName: yup.string()
-    .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for Last Name is a-z, A-Z, а-я, А-Я.')
-    .min(2, 'Last Name must be between 2 and 25 characters.')
-    .max(25, 'Last Name must be between 2 and 25 characters.')
-    .required('Last Name is required.'),
-  email: yup.string()
-    .email('the email is filled in with an error')
-    .required('this field is required'),
-  password: yup.string()
-    .minSymbols(0)
-    .min(7, 'Password must be between 7 and 30 characters')
-    .max(30, 'Password must be between 7 and 30 characters')
-    .minLowercase(5)
-    .required('Password is required field'),
+    firstName: yup.string()
+        .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for First Name is a-z, A-Z, а-я, А-Я.')
+        .min(2, 'First Name must be between 2 and 25 characters.')
+        .max(25, 'First Name must be between 2 and 25 characters.')
+        .required('First Name is required'),
+    lastName: yup.string()
+        .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for Last Name is a-z, A-Z, а-я, А-Я.')
+        .min(2, 'Last Name must be between 2 and 25 characters.')
+        .max(25, 'Last Name must be between 2 and 25 characters.')
+        .required('Last Name is required.'),
+    email: yup.string()
+        .email('the email is filled in with an error')
+        .required('this field is required'),
+    password: yup.string()
+        .minSymbols(0)
+        .min(7, 'Password must be between 7 and 30 characters')
+        .max(30, 'Password must be between 7 and 30 characters')
+        .minLowercase(5)
+        .required('Password is required field'),
 })
 
 
 const Login = () => {
 
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const isLogged = useSelector(state => state.isLogged.success)
+    const isLogged = useSelector(state => state.isLogged.isLogged.success)
 
-  const goTo = useNavigate()
+    // const goTo = useNavigate()
 
-  // local states
-  const [isLoginPage, setIsLoginPage] = useState(true) 
-  const [isShowPassword, setIsShowPassword] = useState(false)
+    // local states
+    const [isLoginPage, setIsLoginPage] = useState(true)
+    const [isShowPassword, setIsShowPassword] = useState(false)
 
-  // switch login/account forms
-  const ToggleLoginPage = () => {
-    setIsLoginPage(prev => !prev)
-  }
+    // switch login/account forms
+    const ToggleLoginPage = () => {
+        setIsLoginPage(prev => !prev)
+    }
 
-  // toggle visible password
-  const TolggleShowPassword = () => {
-    setIsShowPassword(prev => !prev)
-  }
+    // toggle visible password
+    const TolggleShowPassword = () => {
+        setIsShowPassword(prev => !prev)
+    }
 
 
-  // submitting functions 
-  // need add dispatch getUser, wishlist after login
-  const HandleLoginSubmit = ({ email, password }) => {
-    dispatch(loginCustomerFetch({ email, password }))
-    
-  }
+    // submitting functions
+    // need add dispatch getUser, wishlist after login
+    const HandleLoginSubmit = ({email, password}) => {
+        dispatch(loginCustomerFetch({email, password}))
 
-  const HandleRegiserSubmit = ({ firstName, lastName, email, password }) => {
-    dispatch(createAccountFetch({ firstName, lastName, email, password }))
-  }
+    }
 
-  return (
+    const HandleRegiserSubmit = ({firstName, lastName, email, password}) => {
+        dispatch(createAccountFetch({firstName, lastName, email, password}))
+    }
 
-    <div className={styles.loginPage}>
-      <div className={styles.loginPageContentWrapper}>
-        <ul className={styles.loginPageNav} >
+    return isLogged ?
+        (<Navigate to="/myaccount" replace/>)
+        : (<div className={styles.loginPage}>
+            <div className={styles.loginPageContentWrapper}>
+                <ul className={styles.loginPageNav}>
 
-          <li className={isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive} onClick={ToggleLoginPage}>Login</li>
-          <li className={!isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive} onClick={ToggleLoginPage}>Create Account</li>
+                    <li className={isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive}
+                        onClick={ToggleLoginPage}>Login
+                    </li>
+                    <li className={!isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive}
+                        onClick={ToggleLoginPage}>Create Account
+                    </li>
 
-        </ul>
+                </ul>
 
-        {/* form for login */}
-        {isLoginPage &&
-          <Formik
-            initialValues={initialValuesLogin}
-            validationSchema={validationSchemaLogin}
-            onSubmit={(loginData, { resetForm }) => {
-              HandleLoginSubmit(loginData)
-              resetForm()
-            }}
-          >
-            {({ isValid }) => (
-              <Form className={styles.loginPageForm}>
-                <FastField className={styles.loginPageFormInput} type="text" name="email" placeholder="Email" />
-                <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
-                <div className={styles.loginPageFieldWrapper}>
-                  <FastField className={styles.loginPageFormInputPass}
-                    name="password"
-                    type={isShowPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                  />
-                  <span className={styles.loginPageSpan}
-                    onClick={TolggleShowPassword}>
-                    {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                {/* form for login */}
+                {isLoginPage &&
+                    <Formik
+                        initialValues={initialValuesLogin}
+                        validationSchema={validationSchemaLogin}
+                        onSubmit={(loginData, {resetForm}) => {
+                            HandleLoginSubmit(loginData)
+                            resetForm()
+                        }}
+                    >
+                        {({isValid}) => (
+                            <Form className={styles.loginPageForm}>
+                                <FastField className={styles.loginPageFormInput} type="text" name="email"
+                                           placeholder="Email"/>
+                                <ErrorMessage style={{color: 'red'}} component="span" name="email"/>
+                                <div className={styles.loginPageFieldWrapper}>
+                                    <FastField className={styles.loginPageFormInputPass}
+                                               name="password"
+                                               type={isShowPassword ? 'text' : 'password'}
+                                               placeholder="Password"
+                                    />
+                                    <span className={styles.loginPageSpan}
+                                          onClick={TolggleShowPassword}>
+                    {isShowPassword ? <Visibility/> : <VisibilityOff/>}
                   </span>
-                </div>
-                <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
-                <Button type="submit" className={styles.LoginButton} disabled={!isValid} text="Sign in" />
-                <Button type="button" className={styles.RecoveryButton} text='Fogot password?' />
-              </Form>
-            )}
-          </Formik>
-        }
+                                </div>
+                                <ErrorMessage style={{color: 'red'}} component="span" name="password"/>
+                                <Button type="submit" className={styles.LoginButton} disabled={!isValid}
+                                        text="Sign in"/>
+                                <Button type="button" className={styles.RecoveryButton} text='Fogot password?'/>
+                            </Form>
+                        )}
+                    </Formik>
+                }
 
-        {/* form for new customer */}
-        {!isLoginPage &&
-          <Formik
-            initialValues={initialValuesSignIn}
-            validationSchema={validationSchemaRegister}
-            onSubmit={(newCustomer, { resetForm }) => {
-              HandleRegiserSubmit(newCustomer)
-              resetForm()
-            }}
-          >
-            {({ isValid}) => (
-              <Form className={styles.loginPageForm}>
-                <FastField className={styles.loginPageFormInput} type="text" name="firstName" placeholder="First Name" />
-                <ErrorMessage style={{ color: 'red' }} component="span" name="firstName" />
-                <FastField className={styles.loginPageFormInput} type="text" name="lastName" placeholder="Last Name" />
-                <ErrorMessage style={{ color: 'red' }} component="span" name="lastName" />
-                <FastField className={styles.loginPageFormInput} type="text" name="email" placeholder="Email" />
-                <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
-                <div className={styles.loginPageFieldWrapper}>
-                  <FastField className={styles.loginPageFormInputPass}
-                    name="password"
-                    type={isShowPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                  />
-                  <span className={styles.loginPageSpan}
-                    onClick={TolggleShowPassword}>
-                    {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                {/* form for new customer */}
+                {!isLoginPage &&
+                    <Formik
+                        initialValues={initialValuesSignIn}
+                        validationSchema={validationSchemaRegister}
+                        onSubmit={(newCustomer, {resetForm}) => {
+                            HandleRegiserSubmit(newCustomer)
+                            resetForm()
+                        }}
+                    >
+                        {({isValid}) => (
+                            <Form className={styles.loginPageForm}>
+                                <FastField className={styles.loginPageFormInput} type="text" name="firstName"
+                                           placeholder="First Name"/>
+                                <ErrorMessage style={{color: 'red'}} component="span" name="firstName"/>
+                                <FastField className={styles.loginPageFormInput} type="text" name="lastName"
+                                           placeholder="Last Name"/>
+                                <ErrorMessage style={{color: 'red'}} component="span" name="lastName"/>
+                                <FastField className={styles.loginPageFormInput} type="text" name="email"
+                                           placeholder="Email"/>
+                                <ErrorMessage style={{color: 'red'}} component="span" name="email"/>
+                                <div className={styles.loginPageFieldWrapper}>
+                                    <FastField className={styles.loginPageFormInputPass}
+                                               name="password"
+                                               type={isShowPassword ? 'text' : 'password'}
+                                               placeholder="Password"
+                                    />
+                                    <span className={styles.loginPageSpan}
+                                          onClick={TolggleShowPassword}>
+                    {isShowPassword ? <Visibility/> : <VisibilityOff/>}
                   </span>
-                </div>
-                <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
-                <Button type="submit" className={styles.LoginButton} disabled={!isValid} text="Create an account" />
-              </Form>
-            )}
-          </Formik>
-        }
+                                </div>
+                                <ErrorMessage style={{color: 'red'}} component="span" name="password"/>
+                                <Button type="submit" className={styles.LoginButton} disabled={!isValid}
+                                        text="Create an account"/>
+                            </Form>
+                        )}
+                    </Formik>
+                }
 
-      </div>
-    </div>
-  );
+            </div>
+        </div>
+    );
 }
 
 export default Login;
