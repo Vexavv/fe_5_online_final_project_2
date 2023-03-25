@@ -22,7 +22,7 @@ const initialState = {
     displayType: true, // changing the type of product cards
     selectedProduct: null, //  the right element
     isOpen: false,// modal window
-}
+}  
 
 export const fetchAsyncProducts = createAsyncThunk(
     'products/fetchAsyncProducts',

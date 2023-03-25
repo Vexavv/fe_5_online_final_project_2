@@ -1,6 +1,11 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Favorites.module.scss";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
 import { FavoritesContext } from "./FavoritesContext";
 
 function Favorites() {
@@ -9,6 +14,9 @@ function Favorites() {
 
   return (
     <div className={styles.wrapper}>
+      <Link to='/products'>
+        <h2 className={styles.link}>Go to Products!</h2>
+      </Link>
       <span>Your wishlist:</span>
       <ul className={styles.favList}>
         {favorites.length > 0 ? (
@@ -26,17 +34,23 @@ function Favorites() {
                 onMouseEnter={() => setHovered(product._id)}
                 alt=''
               />
-              <h2>{product.name}</h2>
-              <p>${product.currentPrice}</p>
-              <div
-                className={styles.btn}
-                onClick={() => removeFavorite(product)}>
-                {favorites ? <AiFillHeart /> : <AiOutlineHeart />}
+              <div className={styles.flexbox}>
+                <h2>{product.name}</h2>
+                <p>${product.currentPrice}</p>
+              </div>
+              <div className={styles.flexbox}>
+                <div
+                  className={styles.btn}
+                  onClick={() => removeFavorite(product)}>
+                  {favorites ? <AiFillHeart /> : <AiOutlineHeart />}
+                </div>
+                <AiOutlineShoppingCart
+                  className={styles.btn}></AiOutlineShoppingCart>
               </div>
             </li>
           ))
         ) : (
-          <span>Your wishlist is still empty :(</span>
+          <span className={styles.empty}>Your wishlist is still empty :(</span>
         )}
       </ul>
     </div>
