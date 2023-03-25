@@ -7,7 +7,6 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { FavoritesContext } from "./FavoritesContext";
-import { flexbox } from "@mui/system";
 
 function Favorites() {
   const { favorites, removeFavorite } = useContext(FavoritesContext);
