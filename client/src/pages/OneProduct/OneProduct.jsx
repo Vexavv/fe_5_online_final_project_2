@@ -69,7 +69,7 @@ export default function OneProduct() {
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext);
 
-  const isFavorite = favorites.some((el) => product === el);
+  const isFavorite = favorites.some((el) => product._id === el._id);
 
   const handleClick = () => {
     if (isFavorite) {
@@ -111,20 +111,12 @@ export default function OneProduct() {
           </Box>
 
           {/* ACTIONS */}
-<<<<<<< HEAD
           <Box flex='1 1 50%' mb='40px'>
             <Box m='5px 0 25px 0'>
               <Typography
                 align='left'
                 variant='h4'
                 sx={{ textTransform: "capitalize" }}>
-=======
-
-          <Box flex="1 1 50%" mb="40px">
-            <Box m="5px 0 25px 0">
-              <Typography align="left" variant="h4" sx={{textTransform: 'capitalize'}}>
-
->>>>>>> 75211ed22acefc9856af0c8edaf5f47dea3a0f71
                 {product.name}
               </Typography>
 
@@ -161,10 +153,10 @@ export default function OneProduct() {
             </Box>
             <Box display='flex' flexDirection='column' alignItems='flex-start'>
               <Box m='20px 0 5px 0' display='flex'>
-                <div onClick={handleClick}>
+                <div onClick={handleClick} className={styles.favorites}>
                   {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
+                  <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
                 </div>
-                <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
               </Box>
               <Typography m='8px 0 0 0'>
                 <span className={span}>Availability: </span> {product.quantity}
