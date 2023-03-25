@@ -8,12 +8,14 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { FavoritesContext } from "./FavoritesContext";
+import {Navigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 function Favorites() {
   const { favorites, removeFavorite } = useContext(FavoritesContext);
   const [hovered, setHovered] = useState(null);
-
-  return (
+    const isLogged = useSelector(state => state.isLogged.isLogged.success)
+  return isLogged ? (
     <div className={styles.wrapper}>
       <Link to='/products'>
         <h2 className={styles.link}>Go to Products!</h2>
@@ -55,7 +57,7 @@ function Favorites() {
         )}
       </ul>
     </div>
-  );
+  ): (<Navigate to="/" replace/>);
 }
 
 export default Favorites;
