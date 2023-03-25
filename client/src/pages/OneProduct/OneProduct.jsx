@@ -15,6 +15,10 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./OneProduct.module.scss";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addCard } from "../../store/cardSlice";
+
 import { useEffect, useState, useContext } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FavoritesContext } from "../Favorites/FavoritesContext";
@@ -38,7 +42,11 @@ const buttonSX = {
 };
 
 export default function OneProduct() {
+  const dispatch = useDispatch();
   //--------------------------------------------отримання продукта для рендерінгу---------------------
+  // const selectedProduct = useSelector(
+  //   (state) => state.products.selectedProduct
+  // );
 
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -52,9 +60,9 @@ export default function OneProduct() {
     getProduct();
   }, [id]);
 
-  // const selectedProduct = useSelector(
-  //   (state) => state.products.selectedProduct
-  // );
+  const selectedProduct = useSelector(
+    (state) => state.products.selectedProduct
+  );
 
   //----------------------------------------------
   const { tw, fb, inst, span } = styles;
@@ -65,11 +73,33 @@ export default function OneProduct() {
     setTabIndex(newTabIndex);
   };
 
-  // ---------add product to wishlist:
+  // -------------------------------добавка в корзину -------------------
+  const products = useSelector((state) => state.card.products);
+  console.log(products);
+
+  const isInBasket = products.find(
+    (product) => product._id === selectedProduct._id
+  );
+  const addProductBascet = () => {
+    if (isInBasket) {
+      console.log("remove");
+    } else {
+      dispatch(
+        addCard({
+          ...selectedProduct,
+          amount: 1,
+          totalPrice: selectedProduct.currentPrice,
+        })
+      );
+      // localStorage.setItem("card", JSON.stringify(selectedProduct));
+    }
+  };
+  // ---------------------------------
+
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext);
 
-  const isFavorite = favorites.some((el) => product._id === el._id);
+  const isFavorite = favorites.some((el) => product === el);
 
   const handleClick = () => {
     if (isFavorite) {
@@ -146,18 +176,26 @@ export default function OneProduct() {
                 </IconButton>
               </Box>
               <ThemeProvider theme={theme}>
-                <Button sx={buttonSX} variant='contained' color='secondary'>
-                  ADD TO CART
+                <Button
+                  onClick={addProductBascet}
+                  sx={buttonSX}
+                  variant='contained'
+                  color='secondary'>
+                  {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
                 </Button>
               </ThemeProvider>
             </Box>
             <Box display='flex' flexDirection='column' alignItems='flex-start'>
               <Box m='20px 0 5px 0' display='flex'>
                 <div onClick={handleClick} className={styles.favorites}>
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <Box m="20px 0 5px 0" display="flex">
+                <div onClick={handleClick}>
                   {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
                   <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
                 </div>
               </Box>
+
               <Typography m='8px 0 0 0'>
                 <span className={span}>Availability: </span> {product.quantity}
               </Typography>
@@ -165,6 +203,7 @@ export default function OneProduct() {
                 <span className={span}>Product type: </span>
                 Demo Type
               </Typography>
+
               <Typography m='8px 0 0 0'>
                 <span className={span}>Brand: </span>
                 {product.brand}
