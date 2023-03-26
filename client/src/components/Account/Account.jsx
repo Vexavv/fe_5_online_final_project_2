@@ -22,7 +22,6 @@ function Account() {
         {openAddres && <AddForm />}
       </div>
       <EditForm/>
-      
     </Container>
   );
 }
