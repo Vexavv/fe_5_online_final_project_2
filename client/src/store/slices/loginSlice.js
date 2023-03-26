@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
+
 // registration fetch
 export const createAccountFetch = createAsyncThunk(
   'login/createAccountFetch',
@@ -96,11 +97,11 @@ const loginSlice = createSlice({
         state.isLogged.success = false
       })
       .addCase(createAccountFetch.rejected, (state, action) => {        
-        state.token = false
+        state.token = null
         state.success = false
       })
       .addCase(loginCustomerFetch.pending, (state, action) => {       
-        state.isLogged.token = false
+        state.isLogged.token = null
         state.isLogged.success = false
       })
       .addCase(loginCustomerFetch.fulfilled, (state, action) => {        
@@ -111,6 +112,7 @@ const loginSlice = createSlice({
         state.isLogged.token = null
         state.isLogged.success = false
       })
+      
   }
 })
 

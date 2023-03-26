@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import { Link } from 'react-router-dom';
 import {
     loginCustomerFetch,
     createAccountFetch
 } from '../../store/slices/loginSlice'
-import {useNavigate, Navigate} from 'react-router-dom'
-import {Formik, Form, FastField, ErrorMessage} from 'formik';
+import {Collapse, IconButton, Alert } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import {fetchGetCustomer} from '../../store/slices/customerSlice'
+import {Formik, Form, FastField, Field, ErrorMessage} from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
 import Button from '../../components/Button/Button'
@@ -66,29 +69,23 @@ const Login = () => {
     const dispatch = useDispatch()
 
     const isLogged = useSelector(state => state.isLogged.isLogged.success)
-
-    // const goTo = useNavigate()
+   
 
     // local states
     const [isLoginPage, setIsLoginPage] = useState(true)
     const [isShowPassword, setIsShowPassword] = useState(false)
+    const [openAlert, setOpenAlert] = useState(true);
 
     // switch login/account forms
-    const ToggleLoginPage = () => {
-        setIsLoginPage(prev => !prev)
+    const HandleToggle = (data) => {
+        data(prev => !prev)
     }
-
-    // toggle visible password
-    const TolggleShowPassword = () => {
-        setIsShowPassword(prev => !prev)
-    }
-
 
     // submitting functions
     // need add dispatch getUser, wishlist after login
     const HandleLoginSubmit = ({email, password}) => {
         dispatch(loginCustomerFetch({email, password}))
-
+       
     }
 
     const HandleRegiserSubmit = ({firstName, lastName, email, password}) => {
@@ -96,16 +93,40 @@ const Login = () => {
     }
 
     return isLogged ?
-        (<Navigate to="/myaccount" replace/>)
+    <>
+    <Collapse in={openAlert}>
+        <Alert
+         action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={()=>{setOpenAlert(false)}}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }               
+          >You are alredy logged in</Alert>
+</Collapse>
+<div className={styles.customerLinkWrapper}>
+         <Link to='/products'>
+         <p className={styles.customerLink}>to shopping</p>
+       </Link>
+       
+       <Link to='/favorites'>
+         <p className={styles.customerLink}>to wishlist</p>
+       </Link>
+       </div>
+       </>   
         : (<div className={styles.loginPage}>
             <div className={styles.loginPageContentWrapper}>
                 <ul className={styles.loginPageNav}>
 
                     <li className={isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive}
-                        onClick={ToggleLoginPage}>Login
+                        onClick={()=>{HandleToggle(setIsLoginPage)}}>Login
                     </li>
                     <li className={!isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive}
-                        onClick={ToggleLoginPage}>Create Account
+                         onClick={()=>{HandleToggle(setIsLoginPage)}}>Create Account
                     </li>
 
                 </ul>
@@ -126,13 +147,13 @@ const Login = () => {
                                            placeholder="Email"/>
                                 <ErrorMessage style={{color: 'red'}} component="span" name="email"/>
                                 <div className={styles.loginPageFieldWrapper}>
-                                    <FastField className={styles.loginPageFormInputPass}
+                                    <Field className={styles.loginPageFormInputPass}
                                                name="password"
                                                type={isShowPassword ? 'text' : 'password'}
                                                placeholder="Password"
                                     />
                                     <span className={styles.loginPageSpan}
-                                          onClick={TolggleShowPassword}>
+                                           onClick={()=>{HandleToggle(setIsShowPassword)}}>
                     {isShowPassword ? <Visibility/> : <VisibilityOff/>}
                   </span>
                                 </div>
@@ -167,13 +188,13 @@ const Login = () => {
                                            placeholder="Email"/>
                                 <ErrorMessage style={{color: 'red'}} component="span" name="email"/>
                                 <div className={styles.loginPageFieldWrapper}>
-                                    <FastField className={styles.loginPageFormInputPass}
+                                    <Field className={styles.loginPageFormInputPass}
                                                name="password"
                                                type={isShowPassword ? 'text' : 'password'}
                                                placeholder="Password"
                                     />
                                     <span className={styles.loginPageSpan}
-                                          onClick={TolggleShowPassword}>
+                                           onClick={()=>{HandleToggle(setIsShowPassword)}}>
                     {isShowPassword ? <Visibility/> : <VisibilityOff/>}
                   </span>
                                 </div>
@@ -184,6 +205,7 @@ const Login = () => {
                         )}
                     </Formik>
                 }
+ 
 
             </div>
         </div>

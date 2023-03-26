@@ -110,12 +110,21 @@
     }
 }
 
+.alertButton{
+    color: #fff;
+    background-color: #444;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: 1px solid #444;
+    border-radius: 6px;
+}
 .RecoveryButton{
     width: 50%;
     margin: 0 auto;
     padding-top: 9px;
     padding-bottom: 9px;
 }
+
 .loginPageFieldWrapper{
     display:flex;
     justify-content: space-between;
@@ -131,4 +140,26 @@ width: fit-content;
 margin-right: 10px;
 color:  #444;
 padding-top: 8px;
+}
+.customerLinkWrapper{
+    display:flex;
+    width: 80%;
+    margin: 20px auto;
+    justify-content: space-between;
+}
+.customerLink{
+    font-family: 'Red Hat Display';
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    background-color: #BA933E;
+    border-radius: 5px;
+    &:hover,:active{
+        background-color: #ffff; 
+        color:#BA933E;
+        border: 1px solid #BA933E;
+        margin: 10px auto;
+    }
 }
