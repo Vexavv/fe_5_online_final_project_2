@@ -166,7 +166,9 @@
 
       &Picture {
         width: 35%;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         &Img {
           max-width: 270px;
         }

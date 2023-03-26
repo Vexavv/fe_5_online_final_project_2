@@ -24,6 +24,8 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { FavoritesContext } from '../Favorites/FavoritesContext';
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
+import {BASE_URL} from "../../constants/api";
+
 
 const theme = createTheme({
   palette: {
@@ -52,9 +54,10 @@ export default function OneProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
+  // added constant from fetch request
   useEffect(() => {
     async function getProduct() {
-      const res = await fetch('http://localhost:3001/api/products/' + id);
+      const res = await fetch(`${BASE_URL}/products/` + id);
       const data = await res.json();
       setProduct(data);
     }

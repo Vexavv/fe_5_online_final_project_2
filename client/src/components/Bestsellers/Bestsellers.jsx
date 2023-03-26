@@ -4,7 +4,8 @@ import styles from "./Bestsellers.module.scss";
 import BestsellerItem from "../BestsellerItem/BestsellerItem";
 import { getElement, toggleModal} from "../../store/productsSlice";
 import Loader from "../Loader/Loader";
-
+import {BASE_URL} from "../../constants/api";
+import axios from 'axios'
 
 function Bestsellers(props) {
   const dispatch = useDispatch();
@@ -14,13 +15,14 @@ function Bestsellers(props) {
     dispatch(toggleModal(true));
   }
   const [bestSellers, setBestSellers] = useState(null)
-    useEffect(()=>{
-        fetch(`http://localhost:3001/api/products/filter?bestSeller=trueBest`)
-            .then(response => response.json())
-            .then(json => setBestSellers(json))
-    },[])
+    useEffect(() => {
+        axios.get(`${BASE_URL}/products/filter?bestSeller=trueBest`)
+            .then(response => setBestSellers(response.data))
+            .catch(error => console.error(error));
+    }, []);
 
-  if (!bestSellers) {
+
+    if (!bestSellers) {
     return <Loader />;
   }
   return (
