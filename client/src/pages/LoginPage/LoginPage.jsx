@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import {
     loginCustomerFetch,
     createAccountFetch
 } from '../../store/slices/loginSlice'
-import {Collapse, IconButton, Alert } from '@mui/material';
+import { Collapse, IconButton, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import {fetchGetCustomer} from '../../store/slices/customerSlice'
-import {Formik, Form, FastField, Field, ErrorMessage} from 'formik';
+import { fetchGetCustomer } from '../../store/slices/customerSlice'
+import { Formik, Form, FastField, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
 import Button from '../../components/Button/Button'
@@ -69,7 +69,7 @@ const Login = () => {
     const dispatch = useDispatch()
 
     const isLogged = useSelector(state => state.isLogged.isLogged.success)
-   
+
 
     // local states
     const [isLoginPage, setIsLoginPage] = useState(true)
@@ -83,50 +83,50 @@ const Login = () => {
 
     // submitting functions
     // need add dispatch getUser, wishlist after login
-    const HandleLoginSubmit = ({email, password}) => {
-        dispatch(loginCustomerFetch({email, password}))
-       
+    const HandleLoginSubmit = ({ email, password }) => {
+        dispatch(loginCustomerFetch({ email, password }))
+        dispatch(fetchGetCustomer())
     }
 
-    const HandleRegiserSubmit = ({firstName, lastName, email, password}) => {
-        dispatch(createAccountFetch({firstName, lastName, email, password}))
+    const HandleRegiserSubmit = ({ firstName, lastName, email, password }) => {
+        dispatch(createAccountFetch({ firstName, lastName, email, password }))
     }
 
     return isLogged ?
-    <>
-    <Collapse in={openAlert}>
-        <Alert
-         action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={()=>{setOpenAlert(false)}}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }               
-          >You are alredy logged in</Alert>
-</Collapse>
-<div className={styles.customerLinkWrapper}>
-         <Link to='/products'>
-         <p className={styles.customerLink}>to shopping</p>
-       </Link>
-       
-       <Link to='/favorites'>
-         <p className={styles.customerLink}>to wishlist</p>
-       </Link>
-       </div>
-       </>   
+        <>
+            <Collapse in={openAlert}>
+                <Alert
+                    action={
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => { setOpenAlert(false) }}
+                        >
+                            <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                    }
+                >You are alredy logged in</Alert>
+            </Collapse>
+            <div className={styles.customerLinkWrapper}>
+                <Link to='/products'>
+                    <p className={styles.customerLink}>to shopping</p>
+                </Link>
+
+                <Link to='/favorites'>
+                    <p className={styles.customerLink}>to wishlist</p>
+                </Link>
+            </div>
+        </>
         : (<div className={styles.loginPage}>
             <div className={styles.loginPageContentWrapper}>
                 <ul className={styles.loginPageNav}>
 
                     <li className={isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive}
-                        onClick={()=>{HandleToggle(setIsLoginPage)}}>Login
+                        onClick={() => { HandleToggle(setIsLoginPage) }}>Login
                     </li>
                     <li className={!isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive}
-                         onClick={()=>{HandleToggle(setIsLoginPage)}}>Create Account
+                        onClick={() => { HandleToggle(setIsLoginPage) }}>Create Account
                     </li>
 
                 </ul>
@@ -136,31 +136,31 @@ const Login = () => {
                     <Formik
                         initialValues={initialValuesLogin}
                         validationSchema={validationSchemaLogin}
-                        onSubmit={(loginData, {resetForm}) => {
+                        onSubmit={(loginData, { resetForm }) => {
                             HandleLoginSubmit(loginData)
                             resetForm()
                         }}
                     >
-                        {({isValid}) => (
+                        {({ isValid }) => (
                             <Form className={styles.loginPageForm}>
                                 <FastField className={styles.loginPageFormInput} type="text" name="email"
-                                           placeholder="Email"/>
-                                <ErrorMessage style={{color: 'red'}} component="span" name="email"/>
+                                    placeholder="Email" />
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
                                 <div className={styles.loginPageFieldWrapper}>
                                     <Field className={styles.loginPageFormInputPass}
-                                               name="password"
-                                               type={isShowPassword ? 'text' : 'password'}
-                                               placeholder="Password"
+                                        name="password"
+                                        type={isShowPassword ? 'text' : 'password'}
+                                        placeholder="Password"
                                     />
                                     <span className={styles.loginPageSpan}
-                                           onClick={()=>{HandleToggle(setIsShowPassword)}}>
-                    {isShowPassword ? <Visibility/> : <VisibilityOff/>}
-                  </span>
+                                        onClick={() => { HandleToggle(setIsShowPassword) }}>
+                                        {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                                    </span>
                                 </div>
-                                <ErrorMessage style={{color: 'red'}} component="span" name="password"/>
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
                                 <Button type="submit" className={styles.LoginButton} disabled={!isValid}
-                                        text="Sign in"/>
-                                <Button type="button" className={styles.RecoveryButton} text='Fogot password?'/>
+                                    text="Sign in" />
+                                <Button type="button" className={styles.RecoveryButton} text='Fogot password?' />
                             </Form>
                         )}
                     </Formik>
@@ -171,45 +171,45 @@ const Login = () => {
                     <Formik
                         initialValues={initialValuesSignIn}
                         validationSchema={validationSchemaRegister}
-                        onSubmit={(newCustomer, {resetForm}) => {
+                        onSubmit={(newCustomer, { resetForm }) => {
                             HandleRegiserSubmit(newCustomer)
                             resetForm()
                         }}
                     >
-                        {({isValid}) => (
+                        {({ isValid }) => (
                             <Form className={styles.loginPageForm}>
                                 <FastField className={styles.loginPageFormInput} type="text" name="firstName"
-                                           placeholder="First Name"/>
-                                <ErrorMessage style={{color: 'red'}} component="span" name="firstName"/>
+                                    placeholder="First Name" />
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="firstName" />
                                 <FastField className={styles.loginPageFormInput} type="text" name="lastName"
-                                           placeholder="Last Name"/>
-                                <ErrorMessage style={{color: 'red'}} component="span" name="lastName"/>
+                                    placeholder="Last Name" />
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="lastName" />
                                 <FastField className={styles.loginPageFormInput} type="text" name="email"
-                                           placeholder="Email"/>
-                                <ErrorMessage style={{color: 'red'}} component="span" name="email"/>
+                                    placeholder="Email" />
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
                                 <div className={styles.loginPageFieldWrapper}>
                                     <Field className={styles.loginPageFormInputPass}
-                                               name="password"
-                                               type={isShowPassword ? 'text' : 'password'}
-                                               placeholder="Password"
+                                        name="password"
+                                        type={isShowPassword ? 'text' : 'password'}
+                                        placeholder="Password"
                                     />
                                     <span className={styles.loginPageSpan}
-                                           onClick={()=>{HandleToggle(setIsShowPassword)}}>
-                    {isShowPassword ? <Visibility/> : <VisibilityOff/>}
-                  </span>
+                                        onClick={() => { HandleToggle(setIsShowPassword) }}>
+                                        {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                                    </span>
                                 </div>
-                                <ErrorMessage style={{color: 'red'}} component="span" name="password"/>
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
                                 <Button type="submit" className={styles.LoginButton} disabled={!isValid}
-                                        text="Create an account"/>
+                                    text="Create an account" />
                             </Form>
                         )}
                     </Formik>
                 }
- 
+
 
             </div>
         </div>
-    );
+        );
 }
 
 export default Login;
