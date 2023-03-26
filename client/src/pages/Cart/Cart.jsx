@@ -21,6 +21,7 @@ function Cart() {
           <p className={styles.DescriptionContainerText}>PRODUCT</p>
           <p className={styles.DescriptionContainerTextTotal}>TOTAL</p>
         </div>
+
       </div>
       {cards.map((item) => (
         <BasketCard
