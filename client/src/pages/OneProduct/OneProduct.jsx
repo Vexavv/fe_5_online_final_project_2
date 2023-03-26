@@ -77,42 +77,42 @@ export default function OneProduct() {
   // -------------------------------добавка в корзину -------------------
   const products = useSelector((state) => state.card.products);
 
-  function getProduct(id) {
-    const pr = products.find((product) => id === product.itemNo);
+  // function getProduct(id) {
+  //   const pr = products.find((product) => id === product.itemNo);
 
-    if (pr == undefined) {
-      return 1;
-    } else return pr;
-  }
+  //   if (pr == undefined) {
+  //     return 1;
+  //   } else return pr;
+  // }
 
-  const oneProd = getProduct(id);
+  // const oneProd = getProduct(id);
 
   const isInBasket = products.find(
     (product) => product._id === selectedProduct._id
   );
 
-  const handleAddCard = () => {
-    dispatch(addCard(product));
-  };
-
-  const handleRemoveCard = () => {
-    dispatch(removeCard(oneProd._id));
-  };
-
-  // const handleAddToCart = () => {
-  //   if (isInBasket) {
-  //     console.log('remove');
-  //   } else {
-  //     dispatch(
-  //       addCard({
-  //         ...selectedProduct,
-  //         amount: 1,
-  //         totalPrice: selectedProduct.currentPrice,
-  //       })
-  //     );
-  //     // localStorage.setItem("card", JSON.stringify(selectedProduct));
-  //   }
+  // const handleAddCard = () => {
+  //   dispatch(addCard(product));
   // };
+
+  // const handleRemoveCard = () => {
+  //   dispatch(removeCard(oneProd._id));
+  // };
+
+  const addProductBascet = () => {
+    if (isInBasket) {
+      console.log('remove');
+    } else {
+      dispatch(
+        addCard({
+          ...selectedProduct,
+          amount: 1,
+          totalPrice: selectedProduct.currentPrice,
+        })
+      );
+      // localStorage.setItem("card", JSON.stringify(selectedProduct));
+    }
+  };
   // ---------------------------------
 
   const { favorites, addFavorite, removeFavorite } =
@@ -192,19 +192,22 @@ export default function OneProduct() {
                 p="2px 5px"
               >
                 <IconButton>
-                  <RemoveIcon onClick={handleRemoveCard} />
+                  {/* <RemoveIcon onClick={handleRemoveCard} /> */}
+                  <RemoveIcon />
                 </IconButton>
                 <Typography sx={{ p: '0 5px' }}>
-                  {oneProd.quantity || 1}
+                  {/* {oneProd.quantity || 1} */}
+                  {1}
                 </Typography>
                 <IconButton>
-                  <AddIcon onClick={handleAddCard} />
+                  <AddIcon />
+                  {/* <AddIcon onClick={handleAddCard} /> */}
                 </IconButton>
               </Box>
               <ThemeProvider theme={theme}>
                 <Button
-                  // onClick={addProductBascet}
-                  onClick={handleAddCard}
+                  onClick={addProductBascet}
+                  // onClick={handleAddCard}
                   sx={buttonSX}
                   variant="contained"
                   color="secondary"

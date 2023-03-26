@@ -4,9 +4,6 @@ import {
   decreaseCard,
   increaseCard,
   removeItemBasket,
-  addCard,
-  removeCard,
-  clearCard,
 } from '../../../store/cardSlice';
 import styles from './BsketCard.module.scss';
 
@@ -18,39 +15,19 @@ function BasketCard({
   name,
   id,
   amount,
-  quantity,
-  item,
+  totalPrice,
 }) {
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.card.products);
-
-  console.log(quantity);
-  // console.log('totalPrice', totalPrice);
-  // const itemCount = cartItems.length;
-
-  const handleAddCard = () => {
-    dispatch(addCard(item));
+  const removeItem = (id) => {
+    dispatch(removeItemBasket({ id }));
   };
-
-  const handleRemoveCard = () => {
-    dispatch(removeCard(id));
+  const handleIncrease = (id) => {
+    dispatch(increaseCard({ id }));
   };
-
-  const handleClearCard = () => {
-    dispatch(clearCard());
+  const handleDecrease = (id) => {
+    dispatch(decreaseCard({ id }));
   };
-
-  // const removeItem = (id) => {
-  //   dispatch(removeItemBasket({ id }));
-  // };
-  // const handleIncrease = (id) => {
-  //   dispatch(increaseCard({ id }));
-  // };
-  // const handleDecrease = (id) => {
-  //   dispatch(decreaseCard({ id }));
-  // };
-
   return (
     <div className={styles.Container}>
       <div className={styles.Card} key={id}>
@@ -62,9 +39,7 @@ function BasketCard({
             <a className={styles.CardOptionName} href=".">
               {name}
             </a>
-            <p className={styles.CardOptionTotalPrice}>
-              ${currentPrice * quantity}
-            </p>
+            <p className={styles.CardOptionTotalPrice}>${totalPrice}</p>
           </div>
           <p className={styles.CardOptionColor}>{color}</p>
           <p className={styles.CardOptionDesription}>{brand}</p>
@@ -73,7 +48,7 @@ function BasketCard({
             <div className={styles.CardOptionContainerCount}>
               <button
                 className={styles.CardOptionContainerCountMinus}
-                onClick={() => handleRemoveCard()}
+                onClick={() => handleDecrease(id)}
               >
                 <span className={styles.CardOptionContainerCountMinusText}>
                   -
@@ -82,12 +57,12 @@ function BasketCard({
               <input
                 // onChange={}
                 type="text"
-                value={quantity}
+                value={amount}
                 className={styles.CardOptionContainerCountValue}
               ></input>
               <button
                 className={styles.CardOptionContainerCountPlus}
-                onClick={() => handleAddCard()}
+                onClick={() => handleIncrease(id)}
               >
                 <span className={styles.CardOptionContainerCountMinusText}>
                   +
@@ -96,7 +71,7 @@ function BasketCard({
             </div>
             <button
               className={styles.CardOptionContainerRemove}
-              onClick={() => handleClearCard()}
+              onClick={() => removeItem(id)}
             >
               Remove
             </button>
