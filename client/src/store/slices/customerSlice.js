@@ -1,22 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import {BASE_URL } from '../../constants/api'
 
+//get data from logged customer
 export const fetchGetCustomer= createAsyncThunk(
     'customer/fetchGetCustomer',
-    async function ( { rejectWithValue, getState }) {
-      const stateToken = getState().login.isLogged.token
+    async  ( _,{ rejectWithValue, getState }) =>{    
+      const stateToken = getState().isLogged.isLogged.token  
+      
       try {
-        const response = await fetch('/api/customers/customer', {
+        const response = await fetch(`${BASE_URL}/customers/customer`, {
           method: 'GET',
           headers: {
             Authorization : stateToken
-
           }
         })       
-       
-          const customer = await response.data
-          console.log(customer);
+          const customer = await response.json()
+         
           return customer
         } catch (error) {
+          console.log(error);
           return rejectWithValue(error.message)
         }
       }
@@ -31,13 +33,13 @@ const customerSlice = createSlice({
         getCustomer: (state, action) =>{
     state.customer= action.payload.customer;
         }
-    }, extraReducers: buulder=> {
-        buulder
+    }, extraReducers: builder=> {
+        builder
        .addCase( fetchGetCustomer.pending, (state, action) => {        
           state.customer= null
         })
         .addCase(fetchGetCustomer.fulfilled, (state, action) => {       
-          state.customer = action.payload.customer         
+          state.customer = action.payload        
         })
         .addCase(fetchGetCustomer.rejected, (state, action) => {
           state.customer = 'rejected'

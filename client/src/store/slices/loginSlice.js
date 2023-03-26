@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
+import {BASE_URL } from '../../constants/api'
 
 // registration fetch
 export const createAccountFetch = createAsyncThunk(
@@ -7,7 +7,7 @@ export const createAccountFetch = createAsyncThunk(
   async ({ firstName, lastName, email, password }, { rejectWithValue, dispatch }) => {
 
     try {
-      const response = await fetch("http://localhost:3001/api/customers", {
+      const response = await fetch(`${BASE_URL}/customers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ export const loginCustomerFetch = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
 
     try {
-      const loggedIn = await fetch("http://localhost:3001/api/customers/login",
+      const loggedIn = await fetch(`${BASE_URL}/customers/login`,
         {
           method: 'POST',
           headers: {

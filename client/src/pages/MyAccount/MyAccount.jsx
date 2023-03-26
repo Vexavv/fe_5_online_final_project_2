@@ -1,29 +1,32 @@
 import Button from "../../components/Button/Button";
 import React from "react";
-import {useSelector, useDispatch} from "react-redux";
-import {Link} from "react-router-dom";
-import {loguotCustomer} from '../../store/slices/loginSlice'
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { loguotCustomer } from '../../store/slices/loginSlice'
 import styles from "./MyAccount.module.scss";
-import {Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-function MyAccount(props) {
+//miss order history
+const MyAccount = () => {
     const dispatch = useDispatch();
-    // if logout, we go home
+   
     const isLogged = useSelector(state => state.isLogged.isLogged.success)
-    const customer = useSelector(state => state.customer)
-    // const selectedProduct = useSelector((state) => state.topProducts.bestSellers);
+    const customer = useSelector(state => state.customer.customer)
+
     const LogOutAccount = () => dispatch(loguotCustomer())
 
     return isLogged ? (
         <div className={styles.container}>
             <h1>My Account</h1>
-            <p>Welcome, {customer.firstName || "Stranger"}</p>
+            <p>Welcome, {customer.firstName || "Guest"}</p>
             <ul>
                 <li>
                     <h2>Account Details</h2>
-                    <p>last name: {customer.lastName|| "Stranger"}</p>
+                    <p>last name: {customer.lastName || "Guest"}</p>
                     <p>Email: {customer.email || "fdgsgs@gmail.com"}</p>
-                    <Button text='Reset your password'/>
+                    <Button text='Reset your password' onClick={() => {
+                       
+                    }} />
                 </li>
                 <li>
                     <Link to='/favorites'>
@@ -41,18 +44,18 @@ function MyAccount(props) {
                     <p>LastName: {customer.lastName || "Stranger"}</p>
                     <span>Address 1:</span>
                     <p>Country: United States</p>
-                    <Button text='View all addresses'/>
-                    <Button text='Change your address'/>
+                    <Button text='View all addresses' />
+                    <Button text='Change your address' />
                 </li>
-               
-              
+
+
             </ul>
             <Link to='/login'>
-                <Button text='Logout' onClick={LogOutAccount}/>
+                <Button text='Logout' onClick={LogOutAccount} />
             </Link>
         </div>
     ) : (
-        <Navigate to="/" replace/>
+        <Navigate to="/" replace />
     );
 }
 
