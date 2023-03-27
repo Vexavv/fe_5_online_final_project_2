@@ -43,12 +43,12 @@ const Checkout = () => {
     <>
       <Container sx={{ bgcolor: '#white', paddingY: 3, marginTop: 4 }}>
         <header>
-          <div className={s.img}>
+          {/* <div className={s.img}>
             <img
               src="https://res.cloudinary.com/dj9e1wjcg/image/upload/v1679346683/Final_project/Logo/logo_x320_vn0uu5.png"
               alt="rubix"
             />
-          </div>
+          </div> */}
         </header>
         <div className={s.containerForm}>
           {step[curentStep]}
