@@ -1,11 +1,11 @@
-import React from 'react';
-import styles from './Cart.module.scss';
+import React from "react";
+import styles from "./Cart.module.scss";
 
-import BasketCard from '../../components/Basket/BasketCard/BasketCard';
+import BasketCard from "../../components/Basket/BasketCard/BasketCard";
 
-import BasketFooterPrice from '../../components/Basket/BasketFooterPrice/BasketFooterPrice';
-import Container from '@mui/material/Container';
-import { useSelector } from 'react-redux';
+import BasketFooterPrice from "../../components/Basket/BasketFooterPrice/BasketFooterPrice";
+import Container from "@mui/material/Container";
+import { useSelector } from "react-redux";
 
 function Cart() {
   const cards = useSelector((state) => state.card.products);
@@ -21,10 +21,11 @@ function Cart() {
           <p className={styles.DescriptionContainerText}>PRODUCT</p>
           <p className={styles.DescriptionContainerTextTotal}>TOTAL</p>
         </div>
-
       </div>
       {cards.map((item) => (
         <BasketCard
+          key={item._id}
+          className={styles.basketCard}
           item={item}
           currentPrice={item.currentPrice}
           brand={item.brand}

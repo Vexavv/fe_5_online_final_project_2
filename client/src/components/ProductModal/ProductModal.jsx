@@ -7,12 +7,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleModal } from "../../store/productsSlice";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FavoritesContext } from "../../pages/Favorites/FavoritesContext";
+import { addCard } from "../../store/cardSlice";
 
 function ProductModal() {
   const dispatch = useDispatch();
   const selectedProduct = useSelector(
     (state) => state.products.selectedProduct
   );
+  const products = useSelector((state) => state.card.products);
   const isOpen = useSelector((state) => state.products.isOpen);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -37,12 +39,32 @@ function ProductModal() {
   if (!selectedProduct) {
     return null;
   }
+  // -------------------------addBasket---------------------------
+
+  const isInBasket = products.find(
+    (productItem) => productItem._id === selectedProduct?._id
+  );
+  const addProductBascet = () => {
+    if (isInBasket) {
+      console.log("remove");
+    } else {
+      dispatch(
+        addCard({
+          ...selectedProduct,
+          amount: 1,
+          totalPrice: selectedProduct.currentPrice,
+        })
+      );
+    }
+  };
+
   return (
     <div
       className={
         isOpen ? classNames(styles.Modal, styles.Active) : styles.Modal
       }
-      onClick={handleClose}>
+      onClick={handleClose}
+    >
       <div className={styles.ModalContent} onClick={(e) => e.stopPropagation()}>
         <AiOutlineClose
           onClick={handleClose}
@@ -52,7 +74,7 @@ function ProductModal() {
           <img
             className={styles.ModalContentPictureImg}
             src={selectedImage || selectedProduct.imageUrls[0]}
-            alt='product'
+            alt="product"
           />
           <ul className={styles.ModalContentPictureCarousel}>
             {selectedProduct.imageUrls.map((img, index) => {
@@ -60,7 +82,7 @@ function ProductModal() {
                 <li key={index}>
                   <img
                     src={img}
-                    alt='product'
+                    alt="product"
                     onClick={() => setSelectedImage(img)}
                   />
                 </li>
@@ -84,7 +106,8 @@ function ProductModal() {
           <div className={styles.ModalContentDescriptionCount}>
             <Button
               className={styles.ModalContentDescriptionCountBtn}
-              text='Add To Cart'
+              text={isInBasket ? "PRODUCT IN BASKET" : "Add To Cart"}
+              onClick={addProductBascet}
             />
           </div>
           <div onClick={handleClick} className={styles.Favorites}>

@@ -1,18 +1,40 @@
-import React, { useState } from 'react';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
-import { TfiSearch } from 'react-icons/tfi';
-import styles from './BestsellerItem.module.scss';
-import { Link } from 'react-router-dom';
-import { getElement } from '../../store/productsSlice';
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import { TfiSearch } from "react-icons/tfi";
+import styles from "./BestsellerItem.module.scss";
+import { Link } from "react-router-dom";
+import { getElement } from "../../store/productsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addCard } from "../../store/cardSlice";
 
 function BestsellerItem({ item, onClick }) {
   const dispatch = useDispatch();
   const [hovered, setHovered] = useState(null);
+  const products = useSelector((state) => state.card.products);
+ 
+  const isInBasket = products.find(
+    (productItem) => productItem._id === item?._id
+  );
+  const addProductBascet = () => {
+    if (isInBasket) {
+      console.log("remove");
+    } else {
+      dispatch(
+        addCard({
+          ...item,
+          amount: 1,
+          totalPrice: item.currentPrice,
+        })
+      );
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <div className={styles.btnWrapper}>
-        <HiOutlineShoppingBag className={styles.btnWrapperIcon} />
+        <HiOutlineShoppingBag
+          className={styles.btnWrapperIcon}
+          onClick={addProductBascet}
+        />
         <TfiSearch className={styles.btnWrapperIcon} onClick={onClick} />
       </div>
       <Link to={`/products/${item.itemNo}`}>
