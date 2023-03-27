@@ -19,10 +19,7 @@ import Favorites from './pages/Favorites/Favorites';
 
 function App() {
 
-  const dispatch = useDispatch();
-  useEffect(()=>{
-dispatch(fetchGetCustomer())
-  },[dispatch])
+
 
   return (
     <div className="App">
