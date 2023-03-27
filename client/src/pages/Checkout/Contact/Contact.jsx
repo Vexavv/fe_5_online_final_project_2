@@ -70,7 +70,7 @@ export const Contact = ({ next, data }) => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Typography variant="subtitle2" align="right">
-                    Already have an account? Log in
+                    Already have an account? <Link to={'/login'}>Log in</Link>
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>

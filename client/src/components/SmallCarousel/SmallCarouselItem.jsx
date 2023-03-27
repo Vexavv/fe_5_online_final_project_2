@@ -55,9 +55,13 @@ function SmallCarouselItem({
       <CardMedia
         className={styles.Wrapper}
         sx={{
-          height: { xs: "350px", sm: "250px", md: "335px" },
-          padding: 1,
-          position: "relative",
+
+            width: { xs: '350px', sm: '250px', md: '270px', xl: '335px' },
+          border: 'none',
+          boxShadow: 0,
+          margin: '0 auto',
+          cursor: 'pointer',
+
         }}
         image={
           hovered === _id && imageUrls.length > 1 ? imageUrls[1] : imageUrls[0]

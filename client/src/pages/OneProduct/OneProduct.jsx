@@ -4,26 +4,30 @@ import {
   Button,
   IconButton,
   Typography,
-} from "@mui/material";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import AddIcon from "@mui/icons-material/Add";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import RemoveIcon from "@mui/icons-material/Remove";
-import styles from "./OneProduct.module.scss";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { styled } from "@mui/material/styles";
 
-import { useDispatch, useSelector } from "react-redux";
-import { addCard, removeCard } from "../../store/cardSlice";
+} from '@mui/material';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import AddIcon from '@mui/icons-material/Add';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import RemoveIcon from '@mui/icons-material/Remove';
+import styles from './OneProduct.module.scss';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
-import { useEffect, useState, useContext } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FavoritesContext } from "../Favorites/FavoritesContext";
-import { useParams } from "react-router-dom";
-import Loader from "../../components/Loader/Loader";
+import { useDispatch, useSelector } from 'react-redux';
+import { addCard, removeCard } from '../../store/cardSlice';
+
+import { useEffect, useState, useContext } from 'react';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { FavoritesContext } from '../Favorites/FavoritesContext';
+import { useParams } from 'react-router-dom';
+import Loader from '../../components/Loader/Loader';
+import {BASE_URL} from "../../constants/api";
+
+
 
 const theme = createTheme({
   palette: {
@@ -52,9 +56,12 @@ export default function OneProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
+  // added constant from fetch request
   useEffect(() => {
     async function getProduct() {
-      const res = await fetch("http://localhost:3001/api/products/" + id);
+
+      const res = await fetch(`${BASE_URL}/products/` + id);
+
       const data = await res.json();
       setProduct(data);
     }
