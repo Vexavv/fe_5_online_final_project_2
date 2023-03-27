@@ -8,28 +8,7 @@ export const cardsSlice = createSlice({
   name: 'card',
   initialState,
   reducers: {
-    // addCard: (state, action) => {
-    //   const item = action.payload;
-    //   const existingItem = state.products.find((i) => i._id === item._id);
-    //   if (existingItem) {
-    //     existingItem.quantity++;
-    //   } else {
-    //     state.products.push({ ...item, quantity: 1 });
-    //   }
-    // },
 
-    // removeCard: (state, action) => {
-    //   const _id = action.payload;
-    //   const existingItem = state.products.find((i) => i._id === _id);
-    //   if (existingItem.quantity === 1) {
-    //     state.products = state.products.filter((i) => i._id !== _id);
-    //   } else {
-    //     existingItem.quantity--;
-    //   }
-    // },
-    // clearCard: (state) => {
-    //   state.products = [];
-    // },
 
     addCard(state, action) {
       state.products = [...state.products, action.payload];

@@ -4,46 +4,46 @@ import {
   Button,
   IconButton,
   Typography,
-} from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import AddIcon from '@mui/icons-material/Add';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import RemoveIcon from '@mui/icons-material/Remove';
-import styles from './OneProduct.module.scss';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
+} from "@mui/material";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import AddIcon from "@mui/icons-material/Add";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import RemoveIcon from "@mui/icons-material/Remove";
+import styles from "./OneProduct.module.scss";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { addCard, removeCard } from '../../store/cardSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { addCard, removeCard } from "../../store/cardSlice";
 
-import { useEffect, useState, useContext } from 'react';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { FavoritesContext } from '../Favorites/FavoritesContext';
-import { useParams } from 'react-router-dom';
-import Loader from '../../components/Loader/Loader';
+import { useEffect, useState, useContext } from "react";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { FavoritesContext } from "../Favorites/FavoritesContext";
+import { useParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 const theme = createTheme({
   palette: {
     secondary: {
-      main: '#ba933e',
+      main: "#ba933e",
     },
   },
 });
 
 const buttonSX = {
-  backgroundColor: '#222222',
-  color: 'white',
+  backgroundColor: "#222222",
+  color: "white",
   borderRadius: 0,
-  minWidth: '150px',
-  padding: '10px 40px',
+  minWidth: "150px",
+  padding: "10px 40px",
 };
 
 export default function OneProduct() {
   const dispatch = useDispatch();
-
+ 
   //--------------------------------------------отримання продукта для рендерінгу---------------------
   // const selectedProduct = useSelector(
   //   (state) => state.products.selectedProduct
@@ -54,16 +54,12 @@ export default function OneProduct() {
 
   useEffect(() => {
     async function getProduct() {
-      const res = await fetch('http://localhost:3001/api/products/' + id);
+      const res = await fetch("http://localhost:3001/api/products/" + id);
       const data = await res.json();
       setProduct(data);
     }
     getProduct();
   }, [id]);
-
-  const selectedProduct = useSelector(
-    (state) => state.products.selectedProduct
-  );
 
   //----------------------------------------------
   const { tw, fb, inst, span } = styles;
@@ -77,40 +73,21 @@ export default function OneProduct() {
   // -------------------------------добавка в корзину -------------------
   const products = useSelector((state) => state.card.products);
 
-  // function getProduct(id) {
-  //   const pr = products.find((product) => id === product.itemNo);
-
-  //   if (pr == undefined) {
-  //     return 1;
-  //   } else return pr;
-  // }
-
-  // const oneProd = getProduct(id);
-
   const isInBasket = products.find(
-    (product) => product._id === selectedProduct._id
+    (productItem) => productItem._id === product?._id
   );
-
-  // const handleAddCard = () => {
-  //   dispatch(addCard(product));
-  // };
-
-  // const handleRemoveCard = () => {
-  //   dispatch(removeCard(oneProd._id));
-  // };
 
   const addProductBascet = () => {
     if (isInBasket) {
-      console.log('remove');
+      console.log("remove");
     } else {
       dispatch(
         addCard({
-          ...selectedProduct,
+          ...product,
           amount: 1,
-          totalPrice: selectedProduct.currentPrice,
+          totalPrice: product.currentPrice,
         })
       );
-      // localStorage.setItem("card", JSON.stringify(selectedProduct));
     }
   };
   // ---------------------------------
@@ -136,13 +113,13 @@ export default function OneProduct() {
     <>
       <DialogTitle
         sx={{
-          background: '#eaebef',
+          background: "#eaebef",
         }}
       >
         <Box
           display="flex"
           alignItems="center"
-          justifyContent={'space-between'}
+          justifyContent={"space-between"}
         >
           {product.name}
         </Box>
@@ -153,11 +130,11 @@ export default function OneProduct() {
           {/* IMAGES */}
           <Box flex="1 1 40%" mb="40px">
             <img
-              alt={'sss'}
+              alt={"sss"}
               width="100%"
               height="100%"
               src={product.imageUrls[0]}
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: "contain" }}
             />
           </Box>
 
@@ -168,12 +145,12 @@ export default function OneProduct() {
               <Typography
                 align="left"
                 variant="h4"
-                sx={{ textTransform: 'capitalize' }}
+                sx={{ textTransform: "capitalize" }}
               >
                 {product.name}
               </Typography>
 
-              <Typography align="left" sx={{ mt: '20px' }}>
+              <Typography align="left" sx={{ mt: "20px" }}>
                 {product.description}
               </Typography>
               <Typography variant="h6" color="#ba933e" align="left" m="30px 0">
@@ -182,7 +159,7 @@ export default function OneProduct() {
             </Box>
 
             <Box display="flex" alignItems="center" minHeight="50px">
-              <Box
+              {/* <Box
                 display="flex"
                 alignItems="center"
                 backgroundColor="#f5f5f5"
@@ -193,17 +170,17 @@ export default function OneProduct() {
               >
                 <IconButton>
                   {/* <RemoveIcon onClick={handleRemoveCard} /> */}
-                  <RemoveIcon />
+                  {/* <RemoveIcon />
                 </IconButton>
-                <Typography sx={{ p: '0 5px' }}>
+                <Typography sx={{ p: "0 5px" }}>
                   {/* {oneProd.quantity || 1} */}
-                  {1}
-                </Typography>
+                  {/* {1} */}
+                {/* </Typography>
                 <IconButton>
                   <AddIcon />
                   {/* <AddIcon onClick={handleAddCard} /> */}
-                </IconButton>
-              </Box>
+                {/* </IconButton> */}
+              {/* </Box>  */} 
               <ThemeProvider theme={theme}>
                 <Button
                   onClick={addProductBascet}
@@ -212,7 +189,7 @@ export default function OneProduct() {
                   variant="contained"
                   color="secondary"
                 >
-                  {isInBasket ? 'PRODUCT IN BASKET' : 'ADD TO CART'}
+                  {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
                 </Button>
               </ThemeProvider>
             </Box>
@@ -220,7 +197,7 @@ export default function OneProduct() {
               <Box m="20px 0 5px 0" display="flex">
                 <div onClick={handleClick} className={styles.favorites}>
                   {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
-                  <Typography sx={{ ml: '5px' }}>ADD TO WISHLIST</Typography>
+                  <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
                 </div>
               </Box>
 
@@ -246,7 +223,7 @@ export default function OneProduct() {
               <Box
                 sx={{
                   mt: 4,
-                  color: 'gray',
+                  color: "gray",
                 }}
               >
                 <IconButton>
@@ -269,7 +246,7 @@ export default function OneProduct() {
         </Box> */}
 
         <Box m="20px 0">
-          <Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
+          <Box sx={{ borderBottom: 2, borderColor: "divider" }}>
             <ThemeProvider theme={theme}>
               <Tabs
                 value={tabIndex}
