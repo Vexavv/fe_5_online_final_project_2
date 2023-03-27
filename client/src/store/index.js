@@ -10,14 +10,14 @@ import messageReducer from './slices/messageSlice'
 
 import cardReducer from "./cardSlice";
 import customerReducer from "./slices/customerSlice"
-
+import wishlistReducer from "./slices/wishlistSlice"
 
 const persistConfig = {
 
   key: 'root',
   storage,
 
-  whitelist: ['products',"card"]
+  whitelist: ['products',"card",'isLogged']
 
 }
 const userPersistConfig = {
@@ -32,6 +32,7 @@ const rootReducer = combineReducers({
   card: cardReducer,
   customer: customerReducer,
   message: messageReducer,
+  wishlist: wishlistReducer,
 })
 
 
