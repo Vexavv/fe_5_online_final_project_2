@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './BasketFooterPrice.module.scss';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function BasketFooterPrice() {
   const cards = useSelector((state) => state.card.products);
@@ -20,7 +21,10 @@ function BasketFooterPrice() {
         <p className={styles.BasketFooterText}>
           Shipping, taxes, and discounts will be calculated at checkout.
         </p>
-        <button className={styles.BasketFooterCheck}>Check Out</button>
+        <Link to={'/checkout'}>
+          <button className={styles.BasketFooterCheck}>Check Out</button>
+        </Link>
+        {/* <button className={styles.BasketFooterCheck}>Check Out</button> */}
       </div>
     </div>
   );
