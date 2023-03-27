@@ -19,7 +19,7 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo,
     return (
       <Card
         sx={{
-          width: { xs: '350px', sm: '250px', md: '335px' },
+            width: { xs: '350px', sm: '250px', md: '270px', xl: '335px' },
           border: 'none',
           boxShadow: 0,
           margin: '0 auto',
