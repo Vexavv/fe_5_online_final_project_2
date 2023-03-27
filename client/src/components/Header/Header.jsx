@@ -6,28 +6,24 @@ import { Link } from "react-router-dom";
 import Navigation from "./Navigation/Navigation";
 import HeaderBanner from "./HeaderBanner/HeaderBannerr";
 import Logo from "./Logo/Logo";
-import SearchDialog from "../SearchDialog/SearchDialog";
 import Login from "../LoginHeaderButton/LoginHeaderButton";
+import SearchDialog from "../SearchDialog/SearchDialog";
 
 //import from materialUI
 
 import {
-  AppBar,
-  Box,
-  Toolbar,
-  ButtonGroup,
-  IconButton,
-  Drawer,
-  Divider,
-  Container,
-  Badge,
+  AppBar, Box, Toolbar, ButtonGroup, IconButton, Drawer, Divider, Container, Badge,
 } from "@mui/material";
+
+
 
 // import icons
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+
 import { useSelector } from "react-redux";
+
 
 // data Menu
 const navItems = [
@@ -39,10 +35,7 @@ const navItems = [
     title: "Products",
     path: "/products",
   },
-  {
-    title: "Collection",
-    path: "/collection",
-  },
+
   {
     title: "Sale",
     path: "/sale",
@@ -57,14 +50,10 @@ const Header = (props) => {
   const cards = useSelector((state) => state.card.products);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isOpenSearch, setisOpenSearch] = useState(false);
+
 
   const mobileMenuToggle = () => {
     setIsMobileMenuOpen((current) => !current);
-  };
-
-  const toggleSearch = () => {
-    setisOpenSearch((current) => !current);
   };
 
   return (
@@ -102,12 +91,8 @@ const Header = (props) => {
                 >
                   {!isMobileMenuOpen && <MenuIcon />}
                 </IconButton>
-                <SearchDialog
-                  isOpenSearch
-                  onClick={() => {
-                    toggleSearch();
-                  }}
-                />
+                <SearchDialog />
+
               </ButtonGroup>
             </Box>
 
@@ -208,12 +193,7 @@ const Header = (props) => {
             >
               <Login />
               <Box sx={{ display: { xs: "none", sm: "flex", md: "flex" } }}>
-                <SearchDialog
-                  isOpenSearch
-                  onClick={() => {
-                    toggleSearch();
-                  }}
-                />
+                <SearchDialog />
               </Box>
 
               <IconButton
