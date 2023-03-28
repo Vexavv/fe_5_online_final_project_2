@@ -188,9 +188,6 @@ export default function OneProduct() {
             <Box display='flex' flexDirection='column' alignItems='flex-start'>
               <Box m='20px 0 5px 0' display='flex'>
                 <div onClick={handleClick} className={styles.favorites}>
-            <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Box m="20px 0 5px 0" display="flex">
-                <div onClick={handleClick}>
                   {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
                   <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
                 </div>

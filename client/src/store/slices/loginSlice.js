@@ -87,30 +87,30 @@ const loginSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(createAccountFetch.pending, (state, action) => {        
-        state.isLogged.token = null
-        state.isLogged.success = false
-      })
+      // .addCase(createAccountFetch.pending, (state, action) => {        
+      //   state.isLogged.token = null
+      //   state.isLogged.success = false
+      // })
       .addCase(createAccountFetch.fulfilled, (state, action) => {       
         state.isLogged.token = null
         state.isLogged.success = false
       })
-      .addCase(createAccountFetch.rejected, (state, action) => {        
-        state.token = false
-        state.success = false
-      })
-      .addCase(loginCustomerFetch.pending, (state, action) => {       
-        state.isLogged.token = false
-        state.isLogged.success = false
-      })
+      // .addCase(createAccountFetch.rejected, (state, action) => {        
+      //   state.token = false
+      //   state.success = false
+      // })
+      // .addCase(loginCustomerFetch.pending, (state, action) => {       
+      //   state.isLogged.token = false
+      //   state.isLogged.success = false
+      // })
       .addCase(loginCustomerFetch.fulfilled, (state, action) => {        
         state.isLogged.token = action.payload.token
         state.isLogged.success = action.payload.success
       })
-      .addCase(loginCustomerFetch.rejected, (state, action) => {        
-        state.isLogged.token = null
-        state.isLogged.success = false
-      })
+      // .addCase(loginCustomerFetch.rejected, (state, action) => {        
+      //   state.isLogged.token = null
+      //   state.isLogged.success = false
+      // })
   }
 })
 
