@@ -1,11 +1,11 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   decreaseCard,
   increaseCard,
   removeItemBasket,
-} from '../../../store/cardSlice';
-import styles from './BsketCard.module.scss';
+} from "../../../store/cardSlice";
+import styles from "./BsketCard.module.scss";
 
 function BasketCard({
   currentPrice,
@@ -34,7 +34,7 @@ function BasketCard({
         <div className="img">
           <img className={styles.CardImg} src={img} alt="cardCatalog" />
         </div>
-        <div className={styles.Option}>
+        <div className={styles.CardOption}>
           <div className={styles.CardOptionSection}>
             <a className={styles.CardOptionName} href=".">
               {name}
@@ -59,6 +59,7 @@ function BasketCard({
                 type="text"
                 value={amount}
                 className={styles.CardOptionContainerCountValue}
+                readOnly
               ></input>
               <button
                 className={styles.CardOptionContainerCountPlus}

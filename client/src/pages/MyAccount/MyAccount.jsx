@@ -1,10 +1,11 @@
 import Button from "../../components/Button/Button";
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { loguotCustomer } from '../../store/slices/loginSlice'
 import styles from "./MyAccount.module.scss";
 import { Navigate } from "react-router-dom";
+import {fetchGetCustomer} from "../../store/slices/customerSlice";
 
 //miss order history
 const MyAccount = () => {
@@ -15,6 +16,11 @@ const MyAccount = () => {
 
     const LogOutAccount = () => dispatch(loguotCustomer())
 
+    // переніс з App
+    useEffect(()=>{
+        dispatch(fetchGetCustomer())
+    },[dispatch])
+    //-----------------------
     return isLogged ? (
         <div className={styles.container}>
             <h1>My Account</h1>

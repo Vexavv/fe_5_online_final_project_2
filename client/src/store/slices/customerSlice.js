@@ -35,16 +35,16 @@ const customerSlice = createSlice({
         }
     }, extraReducers: builder=> {
         builder
-       .addCase( fetchGetCustomer.pending, (state, action) => {        
-          state.customer= null
-        })
+       // .addCase( fetchGetCustomer.pending, (state, action) => {
+       //    state.customer= null
+       //  })
         .addCase(fetchGetCustomer.fulfilled, (state, action) => {       
           state.customer = action.payload        
         })
-        .addCase(fetchGetCustomer.rejected, (state, action) => {
-          state.customer = 'rejected'
-          
-        })
+        // .addCase(fetchGetCustomer.rejected, (state, action) => {
+        //   state.customer = 'rejected'
+        //
+        // })
     }
 
 })

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import {
     loginCustomerFetch,
     createAccountFetch
@@ -92,32 +92,32 @@ const Login = () => {
         dispatch(createAccountFetch({ firstName, lastName, email, password }))
     }
 
-    return isLogged ?
-        <>
-            <Collapse in={openAlert}>
-                <Alert
-                    action={
-                        <IconButton
-                            aria-label="close"
-                            color="inherit"
-                            size="small"
-                            onClick={() => { setOpenAlert(false) }}
-                        >
-                            <CloseIcon fontSize="inherit" />
-                        </IconButton>
-                    }
-                >You are alredy logged in</Alert>
-            </Collapse>
-            <div className={styles.customerLinkWrapper}>
-                <Link to='/products'>
-                    <p className={styles.customerLink}>to shopping</p>
-                </Link>
-
-                <Link to='/favorites'>
-                    <p className={styles.customerLink}>to wishlist</p>
-                </Link>
-            </div>
-        </>
+    return isLogged ?(<Navigate to="/myaccount" replace/>)
+        // <>
+        //     <Collapse in={openAlert}>
+        //         <Alert
+        //             action={
+        //                 <IconButton
+        //                     aria-label="close"
+        //                     color="inherit"
+        //                     size="small"
+        //                     onClick={() => { setOpenAlert(false) }}
+        //                 >
+        //                     <CloseIcon fontSize="inherit" />
+        //                 </IconButton>
+        //             }
+        //         >You are alredy logged in</Alert>
+        //     </Collapse>
+        //     <div className={styles.customerLinkWrapper}>
+        //         <Link to='/products'>
+        //             <p className={styles.customerLink}>to shopping</p>
+        //         </Link>
+        //
+        //         <Link to='/favorites'>
+        //             <p className={styles.customerLink}>to wishlist</p>
+        //         </Link>
+        //     </div>
+        // </>
         : (<div className={styles.loginPage}>
             <div className={styles.loginPageContentWrapper}>
                 <ul className={styles.loginPageNav}>

@@ -1,4 +1,5 @@
 
+
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import thunk from 'redux-thunk';
 import storage from 'redux-persist/lib/storage'
@@ -6,15 +7,17 @@ import { persistStore, persistReducer } from "redux-persist";
 import productsReducer from './productsSlice'
 import isLoginReducer from './slices/loginSlice'
 import messageReducer from './slices/messageSlice'
+
 import cardReducer from "./cardSlice";
 import customerReducer from "./slices/customerSlice"
 
 
 const persistConfig = {
+
   key: 'root',
   storage,
 
-  whitelist: ['products',]
+  whitelist: ['products',"card"]
 
 }
 const userPersistConfig = {
