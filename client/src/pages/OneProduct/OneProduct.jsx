@@ -26,6 +26,9 @@ import { FavoritesContext } from '../Favorites/FavoritesContext';
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import {BASE_URL} from "../../constants/api";
+import {addProductToWishlist} from "../../store/slices/wishlistSlice";
+
+//------------
 
 
 
@@ -202,12 +205,12 @@ export default function OneProduct() {
             </Box>
             <Box display="flex" flexDirection="column" alignItems="flex-start">
               <Box m="20px 0 5px 0" display="flex">
-                <div onClick={handleClick} className={styles.favorites}>
+                {/*------------------------- add to wishlist*/}
+                <div onClick={()=>{dispatch(addProductToWishlist(product._id))}} className={styles.favorites}>
                   {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
                   <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
                 </div>
               </Box>
-
               <Typography m="8px 0 0 0">
                 <span className={span}>Availability: </span> {product.quantity}
               </Typography>

@@ -16,19 +16,26 @@ import Error from "../../components/Error/Error";
 function Favorites() {
     const dispatch = useDispatch();
     const {wishlist} = useSelector(state => state.wishlist);
+    console.log(wishlist)
     const [hovered, setHovered] = useState(null);
     const isLogged = useSelector(state => state.isLogged.isLogged.success);
 
     useEffect(() => {
         dispatch(fetchAsyncWishlist({ method: 'GET' }));
     }, [dispatch]);
-
+const deleteALLProduct = ()=>{
+    dispatch(fetchAsyncWishlist({ method: 'DELETE' })).then(() => {
+        window.location.reload();
+    });
+}
     let content;
     if (!wishlist || !wishlist.products) {
         content = <span className={styles.empty}>Your wishlist is still empty :(</span>;
     } else {
         content = wishlist.products.length > 0 ? (
-            wishlist.products.map((product) => (
+          <ul className={styles.favList}>
+              <button  onClick={deleteALLProduct}>delete all wishlist</button>
+              {wishlist.products.map((product) => (
                 <li className={styles.favItems} key={product._id}>
                     <img
                         width='200'
@@ -53,8 +60,8 @@ function Favorites() {
                         <AiOutlineShoppingCart className={styles.btn}/>
                     </div>
                 </li>
-            ))
-        ) : null
+            ))}
+            </ul>) : null
     }
 
     return isLogged ? (
@@ -63,11 +70,9 @@ function Favorites() {
                 <h2 className={styles.link}>Go to Products!</h2>
             </Link>
             <span>Your wishlist:</span>
-            <button onClick={()=>{dispatch(fetchAsyncWishlist({ method: 'DELETE' }))}}>delete oll wishlist</button>
-            <ul className={styles.favList}>
-
+            <div >
                 {content}
-            </ul>
+            </div>
         </div>
     ) : (<Navigate to="/" replace/>);
 }
