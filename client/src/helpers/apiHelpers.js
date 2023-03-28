@@ -11,3 +11,18 @@ export function getQueryParams(params) {
         .join('&');
 
 }
+
+export const getWishlistConfigWithAuthHeader = (getState) => {
+    const stateToken = getState().isLogged.isLogged.token;
+    return getConfigWithAuthHeader(stateToken);
+};
+const getConfigWithAuthHeader = (stateToken) => {
+    return {
+        headers: {
+            Authorization: stateToken,
+        },
+    };
+};
+export function getWishlist(getState) {
+    return getState().wishlist.wishlist;
+}

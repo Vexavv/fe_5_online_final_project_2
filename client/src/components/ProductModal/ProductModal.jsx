@@ -6,7 +6,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleModal } from "../../store/productsSlice";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FavoritesContext } from "../../pages/Favorites/FavoritesContext";
 import { addCard } from "../../store/cardSlice";
 
 function ProductModal() {
@@ -23,22 +22,22 @@ function ProductModal() {
     dispatch(toggleModal(false));
   };
 
-  const { favorites, addFavorite, removeFavorite } =
-    useContext(FavoritesContext);
-
-  const isFavorite = favorites.some((el) => selectedProduct === el);
-
-  const handleClick = () => {
-    if (isFavorite) {
-      removeFavorite(selectedProduct);
-    } else {
-      addFavorite(selectedProduct);
-    }
-  };
-
-  if (!selectedProduct) {
-    return null;
-  }
+  // const { favorites, addFavorite, removeFavorite } =
+  //   useContext(FavoritesContext);
+  //
+  // const isFavorite = favorites.some((el) => selectedProduct === el);
+  //
+  // const handleClick = () => {
+  //   if (isFavorite) {
+  //     removeFavorite(selectedProduct);
+  //   } else {
+  //     addFavorite(selectedProduct);
+  //   }
+  // };
+  //
+  // if (!selectedProduct) {
+  //   return null;
+  // }
   // -------------------------addBasket---------------------------
 
   const isInBasket = products.find(
@@ -110,10 +109,10 @@ function ProductModal() {
               onClick={addProductBascet}
             />
           </div>
-          <div onClick={handleClick} className={styles.Favorites}>
-            {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
-            <p>ADD TO WISHLIST</p>
-          </div>
+          {/*<div onClick={handleClick} className={styles.Favorites}>*/}
+          {/*  {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}*/}
+          {/*  <p>ADD TO WISHLIST</p>*/}
+          {/*</div>*/}
           <span className={styles.ModalContentDescriptionValues}>
             Availability: {selectedProduct.quantity}
           </span>

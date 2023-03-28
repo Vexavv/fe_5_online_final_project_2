@@ -1,51 +1,41 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {PAGE_SIZE} from '../../constants/constants'
+// import {PAGE_SIZE} from '../../constants/constants'
 import axios from "axios";
 import {BASE_URL} from "../../constants/api";
+import {getWishlistConfigWithAuthHeader, getWishlist} from "../../helpers/apiHelpers";
 
+
+const url = `${BASE_URL}/wishlist`;
 const initialState = {
     wishlist: {},
-    status: null,
-    error: '',
 }
-//------------------------------------------------додовання
 export const addProductToWishlist = createAsyncThunk(
     'wishlist/addProductToWishlist',
-    async (productId, { rejectWithValue, getState }) => {
-        const stateToken = getState().isLogged.isLogged.token;
-
+    async (productId, {rejectWithValue, getState}) => {
+        const config = getWishlistConfigWithAuthHeader(getState);
         try {
-            const config = {
-                headers: {
-                    Authorization: stateToken,
-                },
-            };
-            const url = `${BASE_URL}/wishlist`;
-            const wishlist = getState().wishlist.wishlist;
-
+            const wishlist = getWishlist(getState);
             if (!wishlist) {
-                // Якщо wishlist не існує, створюємо його з продуктом
+                // if we don't have a wishlist, create it
                 const response = await axios.post(
                     url,
                     {
-                        products: [{ _id: productId }],
+                        products: [{_id: productId}],
                     },
                     config
                 );
                 return response.data;
             }
-
-            // Якщо wishlist існує, перевіряємо, чи є продукт в wishlist
+            // How the wishlist is known, checked, what is the product in the wishlist
             const productIds = wishlist.products.map((product) => product._id);
             if (productIds.includes(productId)) {
                 throw new Error('Product already in wishlist');
             }
-
-            // Якщо продукт не існує, додаємо його до wishlist
+            // If the product is not available, add it to the wishlist
             const response = await axios.put(
                 url,
                 {
-                    products: [...wishlist.products, { _id: productId }],
+                    products: [...wishlist.products, {_id: productId}],
                 },
                 config
             );
@@ -56,21 +46,44 @@ export const addProductToWishlist = createAsyncThunk(
     }
 );
 
-
-
-//------------------------------------------------
-
+export const removeProductFromWishlist = createAsyncThunk(
+    'wishlist/removeProductFromWishlist',
+    async (productId, {rejectWithValue, getState}) => {
+        const config = getWishlistConfigWithAuthHeader(getState);
+        try {
+            const wishlist = getWishlist(getState);
+            if (!wishlist) {
+                throw new Error('Wishlist does not exist');
+            }
+            // Filter the list of products based on productId
+            const filteredProducts = wishlist.products.filter(
+                (product) => product._id !== productId
+            );
+            // Like the list of products is empty, it looks like a wishlist
+            if (filteredProducts.length === 0) {
+                const response = await axios.delete(url, config);
+                return response.data;
+            }
+            // As long as the product list is not empty, the wishlist is updated
+            const response = await axios.put(
+                url,
+                {
+                    products: filteredProducts,
+                },
+                config
+            );
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+//---------------------------------
 export const fetchAsyncWishlist = createAsyncThunk(
     'wishlist/fetchAsyncWishlist',
-    async ({ method, payload }, { rejectWithValue, getState }) => {
-        const stateToken = getState().isLogged.isLogged.token
+    async ({method, payload}, {rejectWithValue, getState}) => {
+        const config = getWishlistConfigWithAuthHeader(getState);
         try {
-            const config = {
-                headers: {
-                    Authorization: stateToken,
-                },
-            };
-            const url = `${BASE_URL}/wishlist`;
             let response;
             switch (method) {
                 case 'GET':
@@ -88,49 +101,6 @@ export const fetchAsyncWishlist = createAsyncThunk(
         }
     }
 );
-
-
-
-// export const fetchAsyncGetWishlist = createAsyncThunk(
-//     'wishlist/fetchAsyncGetWishlist',
-//     async (_, {rejectWithValue,getState }) => {
-//
-//         const stateToken = getState().isLogged.isLogged.token
-//         console.log(stateToken)
-//         try {
-//             const config = {
-//                 headers: {
-//                     Authorization:stateToken,
-//                 },
-//             };
-//             const response = await axios.get(`${BASE_URL}/wishlist`, config)
-//             return response.data;
-//         } catch (error) {
-//             return rejectWithValue(error.response.data)
-//         }
-//
-//     }
-// );
-// export const fetchAsyncDeleteWishlist = createAsyncThunk(
-//     'wishlist/fetchAsyncDeleteWishlist',
-//     async (_, {rejectWithValue,getState }) => {
-//         const stateToken = getState().isLogged.isLogged.token
-//         try {
-//             const config = {
-//                 headers: {
-//                     Authorization:stateToken,
-//                 },
-//             };
-//             const response = await axios.delete(`${BASE_URL}/wishlist`, config)
-//             return response.data;
-//         } catch (error) {
-//             return rejectWithValue(error.response.data)
-//         }
-//
-//     }
-// );
-//
-
 const wishlistSlice = createSlice({
     name: 'products',
     initialState,
@@ -139,23 +109,14 @@ const wishlistSlice = createSlice({
         builder
             .addCase(fetchAsyncWishlist.fulfilled, (state, action) => {
                 state.wishlist = action.payload;
-
             })
             .addCase(addProductToWishlist.fulfilled, (state, action) => {
                 state.wishlist = action.payload;
+            })
+            .addCase(removeProductFromWishlist.fulfilled, (state, action) => {
+                state.wishlist = action.payload;
             });
-            // .addCase(fetchAsyncGetWishlist.fulfilled, (state, action) => {
-            //     state.wishlist = action.payload;
-            //
-            // })
-            // .addCase(fetchAsyncDeleteWishlist.fulfilled, (state, action) => {
-            //     state.wishlist = action.payload;
-            //
-            // })
-
     }
 
 })
-
-export const {} = wishlistSlice.actions
 export default wishlistSlice.reducer;

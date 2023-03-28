@@ -8,9 +8,8 @@ import {
 } from "react-icons/ai";
 import {Navigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {fetchAsyncDeleteWishlist, fetchAsyncGetWishlist, fetchAsyncWishlist} from "../../store/slices/wishlistSlice";
-import Loader from "../../components/Loader/Loader";
-import Error from "../../components/Error/Error";
+import {fetchAsyncWishlist, removeProductFromWishlist} from "../../store/slices/wishlistSlice";
+
 
 
 function Favorites() {
@@ -23,9 +22,14 @@ function Favorites() {
     useEffect(() => {
         dispatch(fetchAsyncWishlist({ method: 'GET' }));
     }, [dispatch]);
-const deleteALLProduct = ()=>{
-    dispatch(fetchAsyncWishlist({ method: 'DELETE' })).then(() => {
+const deleteALLProduct = ()=> {
+    dispatch(fetchAsyncWishlist({method: 'DELETE'})).then(() => {
         window.location.reload();
+    });
+}
+    const deleteOneProduct = (id)=>{
+        dispatch(removeProductFromWishlist(id)).then(() => {
+            window.location.reload();
     });
 }
     let content;
@@ -54,7 +58,7 @@ const deleteALLProduct = ()=>{
                         <p>${product.currentPrice}</p>
                     </div>
                     <div className={styles.flexbox}>
-                        <div className={styles.btn}>
+                        <div className={styles.btn} onClick={()=>{deleteOneProduct(product._id)}} >
                             {wishlist.products ? <AiFillHeart/> : <AiOutlineHeart/>}
                         </div>
                         <AiOutlineShoppingCart className={styles.btn}/>

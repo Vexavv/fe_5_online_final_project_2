@@ -17,7 +17,7 @@ const persistConfig = {
   key: 'root',
   storage,
 
-  whitelist: ['products',"card",'isLogged']
+  whitelist: ['products',"card",'isLogged','wishlist']
 
 }
 const userPersistConfig = {
