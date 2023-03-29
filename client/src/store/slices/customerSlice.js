@@ -41,6 +41,7 @@ const customerSlice = createSlice({
         .addCase(fetchGetCustomer.fulfilled, (state, action) => {       
           state.customer = action.payload        
         })
+
         // .addCase(fetchGetCustomer.rejected, (state, action) => {
         //   state.customer = 'rejected'
         //
