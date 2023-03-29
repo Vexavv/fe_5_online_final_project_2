@@ -34,10 +34,8 @@ function ProductModal() {
   //     addFavorite(selectedProduct);
   //   }
   // };
-  //
-  // if (!selectedProduct) {
-  //   return null;
-  // }
+
+
   // -------------------------addBasket---------------------------
 
   const isInBasket = products.find(
@@ -57,6 +55,9 @@ function ProductModal() {
     }
   };
 
+  if (!selectedProduct) {
+    return null;
+  }
   return (
     <div
       className={
