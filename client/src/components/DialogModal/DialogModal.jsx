@@ -4,7 +4,8 @@ import SearchIcon from '@mui/icons-material/Search'
 
 
 
-const SearchDialog = () => {
+const DialogModal = (props) => {
+  const {search, textButton, textSubmitButton, typeInput, autoComplete, titleText, ariaLabel} = props;
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleClickOpen = () => {
@@ -13,7 +14,7 @@ const SearchDialog = () => {
 
   return (
     <>
-      <IconButton
+    {search && <IconButton
         aria-label="search"
         size="large"
         control="dialog"
@@ -27,30 +28,49 @@ const SearchDialog = () => {
         }}
       >
         <SearchIcon />
-      </IconButton>
+      </IconButton>}
+      {!search && 
+      <Button
+      variant="outlined"
+      size="small"
+      aria-label={ariaLabel}
+      disableElevation
+      onClick={handleClickOpen}>
+        {textButton}
+      </Button>
+      }
       <Dialog open={openDialog} onClose={() => handleClickOpen(false)}
         sx={{
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
-            width: { xs: '70%', sm: '50%', md: 'none' },
+            width: { xs: '70%', sm: '50%', md: '30%' },
             overflow: 'hidden',
             color: "#1A1A1A",
-            '&:active': { color: '#BA933E' }
+            '&:active': { color: '#BA933E',
+          boxSizing:'border-box' }
           }
         }}
       >
-        <DialogTitle>what are you looking for?</DialogTitle>
+        <DialogTitle>{titleText}</DialogTitle>
         <DialogContent sx={{color:'#BA933E' }
-        }>
+        }
+        component = 'form'
+        >
           <DialogContentText>
            
           </DialogContentText>
           <TextField
+          error={false}
             autoFocus
             margin="dense"
             id="name"
-            label="search"
-            type="text"
+            inputProps={{
+              label: textSubmitButton,
+              type: typeInput,
+              autoComplete: autoComplete,
+              
+            }}  
+           
             fullWidth
             variant="standard"
             sx={{color:'#BA933E' }}
@@ -58,7 +78,7 @@ const SearchDialog = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleClickOpen(false)}>Cancel</Button>
-          <Button onClick={() => handleClickOpen(false)}>Good luck</Button>
+          <Button onClick={() => handleClickOpen(false)}>{textSubmitButton}</Button>
         </DialogActions>
       </Dialog>
 
@@ -67,4 +87,4 @@ const SearchDialog = () => {
   )
 }
 
-export default SearchDialog
+export default DialogModal

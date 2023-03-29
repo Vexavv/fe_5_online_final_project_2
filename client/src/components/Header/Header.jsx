@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import Navigation from "./Navigation/Navigation";
 import HeaderBanner from "./HeaderBanner/HeaderBannerr";
 import Logo from "./Logo/Logo";
-import Login from "../LoginHeaderButton/LoginHeaderButton";
-import SearchDialog from "../SearchDialog/SearchDialog";
+import Login from "./LoginHeaderButton/LoginHeaderButton";
+import DialogModal from "../DialogModal/DialogModal";
 
 //import from materialUI
 
@@ -91,7 +91,11 @@ const Header = (props) => {
                 >
                   {!isMobileMenuOpen && <MenuIcon />}
                 </IconButton>
-                <SearchDialog />
+                <DialogModal search
+                titleText='What are you looking for?'
+                textSubmitButton='Good luck'
+                typeInput='search'
+                ariaLabel="search"/>
 
               </ButtonGroup>
             </Box>
@@ -193,7 +197,8 @@ const Header = (props) => {
             >
               <Login />
               <Box sx={{ display: { xs: "none", sm: "flex", md: "flex" } }}>
-                <SearchDialog />
+                <DialogModal search
+                textSubmitButton={'Good luck'}/>
               </Box>
 
               <IconButton

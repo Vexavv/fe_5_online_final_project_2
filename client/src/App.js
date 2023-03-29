@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {fetchGetCustomer} from './store/slices/customerSlice'
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
@@ -18,9 +17,7 @@ import ProductModal from './components/ProductModal/ProductModal';
 import Favorites from './pages/Favorites/Favorites';
 
 function App() {
-
-
-
+  
   return (
     <div className="App">
       <Routes>

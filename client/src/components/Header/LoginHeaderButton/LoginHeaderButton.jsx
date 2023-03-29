@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IconButton, Box, Typography } from '@mui/material';
 import PersonOutline from '@mui/icons-material/PersonOutline';
 import HowToReg from '@mui/icons-material/HowToReg';
-import { loguotCustomer } from '../../store/slices/loginSlice'
+import { loguotCustomer } from '../../../store/slices/loginSlice'
 
 
 const Login = () => {

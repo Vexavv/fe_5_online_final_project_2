@@ -34,17 +34,10 @@ const customerSlice = createSlice({
     state.customer= action.payload.customer;
         }
     }, extraReducers: builder=> {
-        builder
-       // .addCase( fetchGetCustomer.pending, (state, action) => {
-       //    state.customer= null
-       //  })
+        builder      
         .addCase(fetchGetCustomer.fulfilled, (state, action) => {       
           state.customer = action.payload        
-        })
-        // .addCase(fetchGetCustomer.rejected, (state, action) => {
-        //   state.customer = 'rejected'
-        //
-        // })
+        })      
     }
 
 })

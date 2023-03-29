@@ -74,7 +74,7 @@ const Login = () => {
     // local states
     const [isLoginPage, setIsLoginPage] = useState(true)
     const [isShowPassword, setIsShowPassword] = useState(false)
-    const [openAlert, setOpenAlert] = useState(true);
+   
 
     // switch login/account forms
     const HandleToggle = (data) => {
@@ -92,33 +92,12 @@ const Login = () => {
         dispatch(createAccountFetch({ firstName, lastName, email, password }))
     }
 
-    return isLogged ?(<Navigate to="/myaccount" replace/>)
-        // <>
-        //     <Collapse in={openAlert}>
-        //         <Alert
-        //             action={
-        //                 <IconButton
-        //                     aria-label="close"
-        //                     color="inherit"
-        //                     size="small"
-        //                     onClick={() => { setOpenAlert(false) }}
-        //                 >
-        //                     <CloseIcon fontSize="inherit" />
-        //                 </IconButton>
-        //             }
-        //         >You are alredy logged in</Alert>
-        //     </Collapse>
-        //     <div className={styles.customerLinkWrapper}>
-        //         <Link to='/products'>
-        //             <p className={styles.customerLink}>to shopping</p>
-        //         </Link>
-        //
-        //         <Link to='/favorites'>
-        //             <p className={styles.customerLink}>to wishlist</p>
-        //         </Link>
-        //     </div>
-        // </>
-        : (<div className={styles.loginPage}>
+    return (
+        <>
+        {isLogged && <Navigate to="/myaccount" replace/>}
+       
+   
+         <div className={styles.loginPage}>
             <div className={styles.loginPageContentWrapper}>
                 <ul className={styles.loginPageNav}>
 
@@ -209,6 +188,7 @@ const Login = () => {
 
             </div>
         </div>
+        </>
         );
 }
 
