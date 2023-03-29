@@ -207,6 +207,7 @@ export default function OneProduct() {
                                 >
                                     {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
                                 </Button>
+
                                 {/*<IconButton onClick={() => isFavoriteLocal ? removeFromWishlist(product._id) : addToWishlist(product._id)}>
                                     {isLogged && (isFavoriteLocal ?
                                             <FavoriteIcon sx={{fontSize: 35, color: '#ba933e'}}/>

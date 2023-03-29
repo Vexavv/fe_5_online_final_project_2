@@ -77,6 +77,7 @@ export const removeProductFromWishlist = createAsyncThunk(
             return rejectWithValue(error.response.data);
         }
     }
+
 );
 //---------------------------------
 export const fetchAsyncWishlist = createAsyncThunk(
