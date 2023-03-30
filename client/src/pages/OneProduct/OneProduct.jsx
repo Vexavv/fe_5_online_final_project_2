@@ -21,11 +21,7 @@ import { styled } from '@mui/material/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addCard, removeCard } from '../../store/cardSlice';
-
-
 import {useEffect, useState} from 'react';
-
-
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import { BASE_URL } from '../../constants/api';
@@ -61,12 +57,9 @@ export default function OneProduct() {
   useEffect(() => {
     async function getProduct() {
       const res = await fetch(`${BASE_URL}/products/` + id);
-
-
       const data = await res.json();
       setProduct(data);
     }
-
     getProduct();
   }, [id]);
 
@@ -114,7 +107,6 @@ export default function OneProduct() {
   if (!product) {
     return <Loader />;
   }
-
   return (
     <>
       <DialogTitle
