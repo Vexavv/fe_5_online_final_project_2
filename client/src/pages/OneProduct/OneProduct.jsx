@@ -22,8 +22,9 @@ import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCard, removeCard } from '../../store/cardSlice';
 
-import { useEffect, useState, useContext } from 'react';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+
+import {useEffect, useState} from 'react';
+
 
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
@@ -33,7 +34,6 @@ import {
   removeProductFromWishlist,
 } from '../../store/slices/wishlistSlice';
 
-//------------
 
 const theme = createTheme({
   palette: {
@@ -61,6 +61,7 @@ export default function OneProduct() {
   useEffect(() => {
     async function getProduct() {
       const res = await fetch(`${BASE_URL}/products/` + id);
+
 
       const data = await res.json();
       setProduct(data);
@@ -98,25 +99,17 @@ export default function OneProduct() {
     }
   };
 
-  // ---------------------------------wishlist----------------
-  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
-  const { wishlist } = useSelector((state) => state.wishlist);
-  console.log(wishlist);
-
-  // const isFavorite = wishlist.products
-  // const isInWishlist = wishlist.products && product && wishlist.products.find(item => item._id === product._id);
-  //
-  // const [isFavoriteLocal, setIsFavoriteLocal] = useState(isInWishlist);
-  // console.log(isInWishlist)
-
-  const addToWishlist = (id) => {
-    dispatch(addProductToWishlist(id));
-    /* setIsFavoriteLocal(true);*/
-  };
-  const removeFromWishlist = (id) => {
-    dispatch(removeProductFromWishlist(id));
-    /*   setIsFavoriteLocal(false);*/
-  };
+ // --------------------------------- add to wish list----------------
+  const isLogged = useSelector(state => state.isLogged.isLogged.success)
+    const {wishlist} = useSelector(state => state.wishlist);
+    const isFavorite = wishlist && wishlist.products;
+    const isInWishlist = isFavorite && product && isFavorite.find(item => item._id === product._id);
+    const addToWishlist = (id) => {
+        dispatch(addProductToWishlist(id))
+    }
+    const removeFromWishlist = (id) => {
+        dispatch(removeProductFromWishlist(id))
+    }
 
   if (!product) {
     return <Loader />;
@@ -133,6 +126,7 @@ export default function OneProduct() {
           display="flex"
           alignItems="center"
           justifyContent={'space-between'}
+          textTransform="capitalize"
         >
           {product.name}
         </Box>
@@ -173,6 +167,7 @@ export default function OneProduct() {
 
             <Box display="flex" alignItems="center" minHeight="50px">
               {/* <Box
+
                 display="flex"
                 alignItems="center"
                 backgroundColor="#f5f5f5"
@@ -192,86 +187,68 @@ export default function OneProduct() {
                 <IconButton>
                   <AddIcon />
                   {/* <AddIcon onClick={handleAddCard} /> */}
-              {/* </IconButton> */}
-              {/* </Box>  */}
-              <ThemeProvider theme={theme}>
-                <Button
-                  onClick={addProductBascet}
-                  // onClick={handleAddCard}
-                  sx={buttonSX}
-                  variant="contained"
-                  color="secondary"
-                >
-                  {isInBasket ? 'PRODUCT IN BASKET' : 'ADD TO CART'}
-                </Button>
-                {/*<IconButton onClick={() => isFavoriteLocal ? removeFromWishlist(product._id) : addToWishlist(product._id)}>
-                                    {isLogged && (isFavoriteLocal ?
-                                            <FavoriteIcon sx={{fontSize: 35, color: '#ba933e'}}/>
-                                            : <FavoriteBorderIcon sx={{fontSize: 35}}/>
+                            {/* </IconButton> */}
+                            {/* </Box>  */}
+                            <ThemeProvider theme={theme}>
+                                <Button
+                                    onClick={addProductBascet}
+                                    // onClick={handleAddCard}
+                                    sx={buttonSX}
+                                    variant="contained"
+                                    color="secondary"
+                                >
+                                    {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
+                                </Button>
+                                {/*-----------------add to wish list --------------*/}
+                                <IconButton sx={{marginLeft:3}}
+                                    onClick={() => isInWishlist ? removeFromWishlist(product._id) : addToWishlist(product._id)}>
+                                    {isLogged && (isInWishlist ?
+                                            <FavoriteIcon sx={{fontSize: 40, color: '#ba933e'}}/>
+                                            : <FavoriteBorderIcon sx={{fontSize: 40}}/>
                                     )}
-                                </IconButton>*/}
-              </ThemeProvider>
-            </Box>
-            {/*-----------------my fishlist --------------*/}
-            <Box display="flex" alignItems="center" minHeight="50px">
-              <ThemeProvider theme={theme}>
-                <Button
-                  onClick={() => {
-                    addToWishlist(product._id);
-                  }}
-                  sx={buttonSX}
-                  variant="contained"
-                  color="secondary"
-                >
-                  {/*{isInWishlist ? "PRODUCT IN WISHLIST" : "ADD TO WISHLIST"}*/}
-                </Button>
-              </ThemeProvider>
-            </Box>
-            <Box display="flex" flexDirection="column" alignItems="flex-start">
-              {/*<Box m="20px 0 5px 0" display="flex">*/}
-              {/*  /!*------------------------- add to wishlist*!/*/}
-              {/*  <div onClick={()=>{dispatch(addProductToWishlist(product._id))}} className={styles.favorites}>*/}
-              {/*    {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}*/}
-              {/*    <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>*/}
-              {/*  </div>*/}
-              {/*</Box>*/}
-              <Typography m="8px 0 0 0">
-                <span className={span}>Availability: </span> {product.quantity}
-              </Typography>
-              <Typography m="8px 0 0 0">
-                <span className={span}>Product type: </span>
-                Demo Type
-              </Typography>
+                                </IconButton>
+                            </ThemeProvider>
+                        </Box>
 
-              <Typography m="8px 0 0 0">
-                <span className={span}>Brand: </span>
-                {product.brand}
-              </Typography>
-              <Typography m="8px 0 0 0">
-                <span className={span}>SKU: </span> N/A
-              </Typography>
-              <Typography align="left" m="8px 0 0 0">
-                <span className={span}>Categories: </span>
-                {product.categories}
-              </Typography>
-              <Box
-                sx={{
-                  mt: 4,
-                  color: 'gray',
-                }}
-              >
-                <IconButton>
-                  <TwitterIcon className={tw} sx={{ pl: 2 }} />
-                  <FacebookIcon className={fb} sx={{ pl: 2 }} />
-                  <InstagramIcon className={inst} sx={{ pl: 2 }} />
-                </IconButton>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+                        <Box display="flex" flexDirection="column" alignItems="flex-start">
+                            <Typography m="8px 0 0 0">
+                                <span className={span}>Availability: </span> {product.quantity}
+                            </Typography>
+                            <Typography m="8px 0 0 0">
+                                <span className={span}>Product type: </span>
+                                Demo Type
+                            </Typography>
 
-        {/* INFORMATION */}
-        {/* <Box m="20px 0">
+                            <Typography m="8px 0 0 0">
+                                <span className={span}>Brand: </span>
+                                {product.brand}
+                            </Typography>
+                            <Typography m="8px 0 0 0">
+                                <span className={span}>SKU: </span> N/A
+                            </Typography>
+                            <Typography align="left" m="8px 0 0 0">
+                                <span className={span}>Categories: </span>
+                                {product.categories}
+                            </Typography>
+                            <Box
+                                sx={{
+                                    mt: 4,
+                                    color: "gray",
+                                }}
+                            >
+                                <IconButton>
+                                    <TwitterIcon className={tw} sx={{pl: 2}}/>
+                                    <FacebookIcon className={fb} sx={{pl: 2}}/>
+                                    <InstagramIcon className={inst} sx={{pl: 2}}/>
+                                </IconButton>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+
+                {/* INFORMATION */}
+                {/* <Box m="20px 0">
+
           <Tabs value={changeTable} onChange={handleChange} centered>
             <Tab label="Details" value="description" />
             <Tab label="Shipping & Return" value="reviews" />

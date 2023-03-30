@@ -1,9 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-// import {PAGE_SIZE} from '../../constants/constants'
 import axios from "axios";
 import {BASE_URL} from "../../constants/api";
 import {getWishlistConfigWithAuthHeader, getWishlist} from "../../helpers/apiHelpers";
-
 
 const url = `${BASE_URL}/wishlist`;
 const initialState = {
@@ -77,8 +75,8 @@ export const removeProductFromWishlist = createAsyncThunk(
             return rejectWithValue(error.response.data);
         }
     }
+
 );
-//---------------------------------
 export const fetchAsyncWishlist = createAsyncThunk(
     'wishlist/fetchAsyncWishlist',
     async ({method, payload}, {rejectWithValue, getState}) => {

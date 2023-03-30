@@ -13,9 +13,18 @@ import Checkout from './pages/Checkout/Checkout'
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import ProductModal from './components/ProductModal/ProductModal';
 import Favorites from './pages/Favorites/Favorites';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAsyncWishlist} from "./store/slices/wishlistSlice";
 
 function App(props) {
+  const dispatch = useDispatch();
+  const isLogged = useSelector(state => state.isLogged.isLogged.success);
   const location = useLocation();
+
+  useEffect(() => {
+   if(isLogged)
+    dispatch(fetchAsyncWishlist({ method: 'GET' }))
+  }, [dispatch,isLogged ]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
