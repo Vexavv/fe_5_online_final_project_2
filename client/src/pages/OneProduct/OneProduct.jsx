@@ -4,7 +4,6 @@ import {
   Button,
   IconButton,
   Typography,
-
 } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -14,7 +13,6 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import RemoveIcon from '@mui/icons-material/Remove';
 import styles from './OneProduct.module.scss';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,29 +23,19 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { FavoritesContext } from '../Favorites/FavoritesContext';
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
-import {BASE_URL} from "../../constants/api";
+import { BASE_URL } from '../../constants/api';
 
-
-
-const theme = createTheme({
-  palette: {
-    secondary: {
-      main: "#ba933e",
-    },
-  },
-});
-
-const buttonSX = {
-  backgroundColor: "#222222",
-  color: "white",
-  borderRadius: 0,
-  minWidth: "150px",
-  padding: "10px 40px",
-};
+// const buttonSX = {
+//   backgroundColor: "#222222",
+//   color: "white",
+//   borderRadius: 0,
+//   minWidth: "150px",
+//   padding: "10px 40px",
+// };
 
 export default function OneProduct() {
   const dispatch = useDispatch();
- 
+
   //--------------------------------------------отримання продукта для рендерінгу---------------------
   // const selectedProduct = useSelector(
   //   (state) => state.products.selectedProduct
@@ -59,7 +47,6 @@ export default function OneProduct() {
   // added constant from fetch request
   useEffect(() => {
     async function getProduct() {
-
       const res = await fetch(`${BASE_URL}/products/` + id);
 
       const data = await res.json();
@@ -86,7 +73,7 @@ export default function OneProduct() {
 
   const addProductBascet = () => {
     if (isInBasket) {
-      console.log("remove");
+      console.log('remove');
     } else {
       dispatch(
         addCard({
@@ -120,13 +107,13 @@ export default function OneProduct() {
     <>
       <DialogTitle
         sx={{
-          background: "#eaebef",
+          background: '#eaebef',
         }}
       >
         <Box
           display="flex"
           alignItems="center"
-          justifyContent={"space-between"}
+          justifyContent={'space-between'}
         >
           {product.name}
         </Box>
@@ -137,11 +124,11 @@ export default function OneProduct() {
           {/* IMAGES */}
           <Box flex="1 1 40%" mb="40px">
             <img
-              alt={"sss"}
+              alt={'sss'}
               width="100%"
               height="100%"
               src={product.imageUrls[0]}
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: 'contain' }}
             />
           </Box>
 
@@ -152,12 +139,12 @@ export default function OneProduct() {
               <Typography
                 align="left"
                 variant="h4"
-                sx={{ textTransform: "capitalize" }}
+                sx={{ textTransform: 'capitalize' }}
               >
                 {product.name}
               </Typography>
 
-              <Typography align="left" sx={{ mt: "20px" }}>
+              <Typography align="left" sx={{ mt: '20px' }}>
                 {product.description}
               </Typography>
               <Typography variant="h6" color="#ba933e" align="left" m="30px 0">
@@ -177,34 +164,33 @@ export default function OneProduct() {
               >
                 <IconButton>
                   {/* <RemoveIcon onClick={handleRemoveCard} /> */}
-                  {/* <RemoveIcon />
+              {/* <RemoveIcon />
                 </IconButton>
                 <Typography sx={{ p: "0 5px" }}>
                   {/* {oneProd.quantity || 1} */}
-                  {/* {1} */}
-                {/* </Typography>
+              {/* {1} */}
+              {/* </Typography>
                 <IconButton>
                   <AddIcon />
                   {/* <AddIcon onClick={handleAddCard} /> */}
-                {/* </IconButton> */}
-              {/* </Box>  */} 
-              <ThemeProvider theme={theme}>
-                <Button
-                  onClick={addProductBascet}
-                  // onClick={handleAddCard}
-                  sx={buttonSX}
-                  variant="contained"
-                  color="secondary"
-                >
-                  {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
-                </Button>
-              </ThemeProvider>
+              {/* </IconButton> */}
+              {/* </Box>  */}
+              <Button
+                onClick={addProductBascet}
+                // onClick={handleAddCard}
+                // sx={buttonSX}
+                size="large"
+                variant="contained"
+                color="secondary"
+              >
+                {isInBasket ? 'PRODUCT IN BASKET' : 'ADD TO CART'}
+              </Button>
             </Box>
             <Box display="flex" flexDirection="column" alignItems="flex-start">
               <Box m="20px 0 5px 0" display="flex">
                 <div onClick={handleClick} className={styles.favorites}>
                   {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
-                  <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
+                  <Typography sx={{ ml: '5px' }}>ADD TO WISHLIST</Typography>
                 </div>
               </Box>
 
@@ -230,7 +216,7 @@ export default function OneProduct() {
               <Box
                 sx={{
                   mt: 4,
-                  color: "gray",
+                  color: 'gray',
                 }}
               >
                 <IconButton>
@@ -253,20 +239,18 @@ export default function OneProduct() {
         </Box> */}
 
         <Box m="20px 0">
-          <Box sx={{ borderBottom: 2, borderColor: "divider" }}>
-            <ThemeProvider theme={theme}>
-              <Tabs
-                value={tabIndex}
-                onChange={handleTabChange}
-                centered
-                textColor="secondary"
-                indicatorColor="secondary"
-              >
-                <Tab label="Details" />
-                <Tab label="Shipping & Return" />
-                <Tab label="Reviews" />
-              </Tabs>
-            </ThemeProvider>
+          <Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
+            <Tabs
+              value={tabIndex}
+              onChange={handleTabChange}
+              centered
+              textColor="primary"
+              indicatorColor="primary"
+            >
+              <Tab label="Details" />
+              <Tab label="Shipping & Return" />
+              <Tab label="Reviews" />
+            </Tabs>
           </Box>
           <Box sx={{ padding: 2 }}>
             {tabIndex === 0 && (
