@@ -8,11 +8,15 @@ import {
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import AddIcon from '@mui/icons-material/Add';
+
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import RemoveIcon from '@mui/icons-material/Remove';
 import styles from './OneProduct.module.scss';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,26 +24,35 @@ import { addCard, removeCard } from '../../store/cardSlice';
 
 import { useEffect, useState, useContext } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { FavoritesContext } from '../Favorites/FavoritesContext';
+
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import { BASE_URL } from '../../constants/api';
+import {
+  addProductToWishlist,
+  removeProductFromWishlist,
+} from '../../store/slices/wishlistSlice';
 
-// const buttonSX = {
-//   backgroundColor: "#222222",
-//   color: "white",
-//   borderRadius: 0,
-//   minWidth: "150px",
-//   padding: "10px 40px",
-// };
+//------------
+
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: '#ba933e',
+    },
+  },
+});
+
+const buttonSX = {
+  backgroundColor: '#222222',
+  color: 'white',
+  borderRadius: 0,
+  minWidth: '150px',
+  padding: '10px 40px',
+};
 
 export default function OneProduct() {
   const dispatch = useDispatch();
-
-  //--------------------------------------------отримання продукта для рендерінгу---------------------
-  // const selectedProduct = useSelector(
-  //   (state) => state.products.selectedProduct
-  // );
 
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -52,6 +65,7 @@ export default function OneProduct() {
       const data = await res.json();
       setProduct(data);
     }
+
     getProduct();
   }, [id]);
 
@@ -66,7 +80,6 @@ export default function OneProduct() {
 
   // -------------------------------добавка в корзину -------------------
   const products = useSelector((state) => state.card.products);
-
   const isInBasket = products.find(
     (productItem) => productItem._id === product?._id
   );
@@ -84,19 +97,25 @@ export default function OneProduct() {
       );
     }
   };
-  // ---------------------------------
 
-  const { favorites, addFavorite, removeFavorite } =
-    useContext(FavoritesContext);
+  // ---------------------------------wishlist----------------
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
+  const { wishlist } = useSelector((state) => state.wishlist);
+  console.log(wishlist);
 
-  const isFavorite = favorites.some((el) => product === el);
+  // const isFavorite = wishlist.products
+  // const isInWishlist = wishlist.products && product && wishlist.products.find(item => item._id === product._id);
+  //
+  // const [isFavoriteLocal, setIsFavoriteLocal] = useState(isInWishlist);
+  // console.log(isInWishlist)
 
-  const handleClick = () => {
-    if (isFavorite) {
-      removeFavorite(product);
-    } else {
-      addFavorite(product);
-    }
+  const addToWishlist = (id) => {
+    dispatch(addProductToWishlist(id));
+    /* setIsFavoriteLocal(true);*/
+  };
+  const removeFromWishlist = (id) => {
+    dispatch(removeProductFromWishlist(id));
+    /*   setIsFavoriteLocal(false);*/
   };
 
   if (!product) {
@@ -175,25 +194,47 @@ export default function OneProduct() {
                   {/* <AddIcon onClick={handleAddCard} /> */}
               {/* </IconButton> */}
               {/* </Box>  */}
-              <Button
-                onClick={addProductBascet}
-                // onClick={handleAddCard}
-                // sx={buttonSX}
-                size="large"
-                variant="contained"
-                color="secondary"
-              >
-                {isInBasket ? 'PRODUCT IN BASKET' : 'ADD TO CART'}
-              </Button>
+              <ThemeProvider theme={theme}>
+                <Button
+                  onClick={addProductBascet}
+                  // onClick={handleAddCard}
+                  sx={buttonSX}
+                  variant="contained"
+                  color="secondary"
+                >
+                  {isInBasket ? 'PRODUCT IN BASKET' : 'ADD TO CART'}
+                </Button>
+                {/*<IconButton onClick={() => isFavoriteLocal ? removeFromWishlist(product._id) : addToWishlist(product._id)}>
+                                    {isLogged && (isFavoriteLocal ?
+                                            <FavoriteIcon sx={{fontSize: 35, color: '#ba933e'}}/>
+                                            : <FavoriteBorderIcon sx={{fontSize: 35}}/>
+                                    )}
+                                </IconButton>*/}
+              </ThemeProvider>
+            </Box>
+            {/*-----------------my fishlist --------------*/}
+            <Box display="flex" alignItems="center" minHeight="50px">
+              <ThemeProvider theme={theme}>
+                <Button
+                  onClick={() => {
+                    addToWishlist(product._id);
+                  }}
+                  sx={buttonSX}
+                  variant="contained"
+                  color="secondary"
+                >
+                  {/*{isInWishlist ? "PRODUCT IN WISHLIST" : "ADD TO WISHLIST"}*/}
+                </Button>
+              </ThemeProvider>
             </Box>
             <Box display="flex" flexDirection="column" alignItems="flex-start">
-              <Box m="20px 0 5px 0" display="flex">
-                <div onClick={handleClick} className={styles.favorites}>
-                  {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
-                  <Typography sx={{ ml: '5px' }}>ADD TO WISHLIST</Typography>
-                </div>
-              </Box>
-
+              {/*<Box m="20px 0 5px 0" display="flex">*/}
+              {/*  /!*------------------------- add to wishlist*!/*/}
+              {/*  <div onClick={()=>{dispatch(addProductToWishlist(product._id))}} className={styles.favorites}>*/}
+              {/*    {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}*/}
+              {/*    <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>*/}
+              {/*  </div>*/}
+              {/*</Box>*/}
               <Typography m="8px 0 0 0">
                 <span className={span}>Availability: </span> {product.quantity}
               </Typography>
@@ -240,17 +281,19 @@ export default function OneProduct() {
 
         <Box m="20px 0">
           <Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
-            <Tabs
-              value={tabIndex}
-              onChange={handleTabChange}
-              centered
-              textColor="primary"
-              indicatorColor="primary"
-            >
-              <Tab label="Details" />
-              <Tab label="Shipping & Return" />
-              <Tab label="Reviews" />
-            </Tabs>
+            <ThemeProvider theme={theme}>
+              <Tabs
+                value={tabIndex}
+                onChange={handleTabChange}
+                centered
+                textColor="secondary"
+                indicatorColor="secondary"
+              >
+                <Tab label="Details" />
+                <Tab label="Shipping & Return" />
+                <Tab label="Reviews" />
+              </Tabs>
+            </ThemeProvider>
           </Box>
           <Box sx={{ padding: 2 }}>
             {tabIndex === 0 && (
