@@ -1,10 +1,9 @@
 import {
-    DialogTitle,
-    Box,
-    Button,
-    IconButton,
-    Typography,
-
+  DialogTitle,
+  Box,
+  Button,
+  IconButton,
+  Typography,
 } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -17,87 +16,91 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import RemoveIcon from '@mui/icons-material/Remove';
 import styles from './OneProduct.module.scss';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {styled} from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {addCard, removeCard} from '../../store/cardSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCard, removeCard } from '../../store/cardSlice';
+
 
 import {useEffect, useState} from 'react';
 
-import {useParams} from 'react-router-dom';
+
+import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
-import {BASE_URL} from "../../constants/api";
-import {addProductToWishlist, removeProductFromWishlist} from "../../store/slices/wishlistSlice";
+import { BASE_URL } from '../../constants/api';
+import {
+  addProductToWishlist,
+  removeProductFromWishlist,
+} from '../../store/slices/wishlistSlice';
 
 
 const theme = createTheme({
-    palette: {
-        secondary: {
-            main: "#ba933e",
-        },
+  palette: {
+    secondary: {
+      main: '#ba933e',
     },
+  },
 });
 
 const buttonSX = {
-    backgroundColor: "#222222",
-    color: "white",
-    borderRadius: 0,
-    minWidth: "150px",
-    padding: "10px 40px",
+  backgroundColor: '#222222',
+  color: 'white',
+  borderRadius: 0,
+  minWidth: '150px',
+  padding: '10px 40px',
 };
 
 export default function OneProduct() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+
+  // added constant from fetch request
+  useEffect(() => {
+    async function getProduct() {
+      const res = await fetch(`${BASE_URL}/products/` + id);
 
 
-    const {id} = useParams();
-    const [product, setProduct] = useState(null);
+      const data = await res.json();
+      setProduct(data);
+    }
 
-    // added constant from fetch request
-    useEffect(() => {
-        async function getProduct() {
+    getProduct();
+  }, [id]);
 
-            const res = await fetch(`${BASE_URL}/products/` + id);
+  //----------------------------------------------
+  const { tw, fb, inst, span } = styles;
 
-            const data = await res.json();
-            setProduct(data);
-        }
+  const [tabIndex, setTabIndex] = useState(0);
 
-        getProduct();
-    }, [id]);
+  const handleTabChange = (event, newTabIndex) => {
+    setTabIndex(newTabIndex);
+  };
 
-    //----------------------------------------------
-    const {tw, fb, inst, span} = styles;
+  // -------------------------------добавка в корзину -------------------
+  const products = useSelector((state) => state.card.products);
+  const isInBasket = products.find(
+    (productItem) => productItem._id === product?._id
+  );
 
-    const [tabIndex, setTabIndex] = useState(0);
+  const addProductBascet = () => {
+    if (isInBasket) {
+      console.log('remove');
+    } else {
+      dispatch(
+        addCard({
+          ...product,
+          amount: 1,
+          totalPrice: product.currentPrice,
+        })
+      );
+    }
+  };
 
-    const handleTabChange = (event, newTabIndex) => {
-        setTabIndex(newTabIndex);
-    };
-
-    // -------------------------------добавка в корзину -------------------
-    const products = useSelector((state) => state.card.products);
-    const isInBasket = products.find(
-        (productItem) => productItem._id === product?._id
-    );
-
-    const addProductBascet = () => {
-        if (isInBasket) {
-            console.log("remove");
-        } else {
-            dispatch(
-                addCard({
-                    ...product,
-                    amount: 1,
-                    totalPrice: product.currentPrice,
-                })
-            );
-        }
-    };
-
-    // --------------------------------- add to wish list----------------
-    const isLogged = useSelector(state => state.isLogged.isLogged.success)
+ // --------------------------------- add to wish list----------------
+  const isLogged = useSelector(state => state.isLogged.isLogged.success)
     const {wishlist} = useSelector(state => state.wishlist);
     const isFavorite = wishlist && wishlist.products;
     const isInWishlist = isFavorite && product && isFavorite.find(item => item._id === product._id);
@@ -108,61 +111,63 @@ export default function OneProduct() {
         dispatch(removeProductFromWishlist(id))
     }
 
-    if (!product) {
-        return <Loader/>;
-    }
-    return (
-        <>
-            <DialogTitle
-                sx={{
-                    background: "#eaebef",
-                }}
-            >
-                <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent={"space-between"}
-                    textTransform="capitalize"
-                >
-                    {product.name}
-                </Box>
-            </DialogTitle>
+  if (!product) {
+    return <Loader />;
+  }
 
-            <Box width="80%" m="80px auto">
-                <Box display="flex" flexWrap="wrap" columnGap="40px">
-                    {/* IMAGES */}
-                    <Box flex="1 1 40%" mb="40px">
-                        <img
-                            alt={"sss"}
-                            width="100%"
-                            height="100%"
-                            src={product.imageUrls[0]}
-                            style={{objectFit: "contain"}}
-                        />
-                    </Box>
+  return (
+    <>
+      <DialogTitle
+        sx={{
+          background: '#eaebef',
+        }}
+      >
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent={'space-between'}
+          textTransform="capitalize"
+        >
+          {product.name}
+        </Box>
+      </DialogTitle>
 
-                    {/* ACTIONS */}
+      <Box width="80%" m="80px auto">
+        <Box display="flex" flexWrap="wrap" columnGap="40px">
+          {/* IMAGES */}
+          <Box flex="1 1 40%" mb="40px">
+            <img
+              alt={'sss'}
+              width="100%"
+              height="100%"
+              src={product.imageUrls[0]}
+              style={{ objectFit: 'contain' }}
+            />
+          </Box>
 
-                    <Box flex="1 1 50%" mb="40px">
-                        <Box m="5px 0 25px 0">
-                            <Typography
-                                align="left"
-                                variant="h4"
-                                sx={{textTransform: "capitalize"}}
-                            >
-                                {product.name}
-                            </Typography>
+          {/* ACTIONS */}
 
-                            <Typography align="left" sx={{mt: "20px"}}>
-                                {product.description}
-                            </Typography>
-                            <Typography variant="h6" color="#ba933e" align="left" m="30px 0">
-                                ${product.currentPrice}.00
-                            </Typography>
-                        </Box>
+          <Box flex="1 1 50%" mb="40px">
+            <Box m="5px 0 25px 0">
+              <Typography
+                align="left"
+                variant="h4"
+                sx={{ textTransform: 'capitalize' }}
+              >
+                {product.name}
+              </Typography>
 
-                        <Box display="flex" alignItems="center" minHeight="50px">
-                            {/* <Box
+              <Typography align="left" sx={{ mt: '20px' }}>
+                {product.description}
+              </Typography>
+              <Typography variant="h6" color="#ba933e" align="left" m="30px 0">
+                ${product.currentPrice}.00
+              </Typography>
+            </Box>
+
+            <Box display="flex" alignItems="center" minHeight="50px">
+              {/* <Box
+
                 display="flex"
                 alignItems="center"
                 backgroundColor="#f5f5f5"
@@ -173,12 +178,12 @@ export default function OneProduct() {
               >
                 <IconButton>
                   {/* <RemoveIcon onClick={handleRemoveCard} /> */}
-                            {/* <RemoveIcon />
+              {/* <RemoveIcon />
                 </IconButton>
                 <Typography sx={{ p: "0 5px" }}>
                   {/* {oneProd.quantity || 1} */}
-                            {/* {1} */}
-                            {/* </Typography>
+              {/* {1} */}
+              {/* </Typography>
                 <IconButton>
                   <AddIcon />
                   {/* <AddIcon onClick={handleAddCard} /> */}
@@ -243,6 +248,7 @@ export default function OneProduct() {
 
                 {/* INFORMATION */}
                 {/* <Box m="20px 0">
+
           <Tabs value={changeTable} onChange={handleChange} centered>
             <Tab label="Details" value="description" />
             <Tab label="Shipping & Return" value="reviews" />
@@ -250,47 +256,47 @@ export default function OneProduct() {
           </Tabs>
         </Box> */}
 
-                <Box m="20px 0">
-                    <Box sx={{borderBottom: 2, borderColor: "divider"}}>
-                        <ThemeProvider theme={theme}>
-                            <Tabs
-                                value={tabIndex}
-                                onChange={handleTabChange}
-                                centered
-                                textColor="secondary"
-                                indicatorColor="secondary"
-                            >
-                                <Tab label="Details"/>
-                                <Tab label="Shipping & Return"/>
-                                <Tab label="Reviews"/>
-                            </Tabs>
-                        </ThemeProvider>
-                    </Box>
-                    <Box sx={{padding: 2}}>
-                        {tabIndex === 0 && (
-                            <Box>
-                                <Typography>{product.description}</Typography>
-                            </Box>
-                        )}
-                        {tabIndex === 1 && (
-                            <Box>
-                                <Typography>The second tab</Typography>
-                            </Box>
-                        )}
-                        {tabIndex === 2 && (
-                            <Box>
-                                <Typography>The third tab</Typography>
-                            </Box>
-                        )}
-                    </Box>
-                </Box>
+        <Box m="20px 0">
+          <Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
+            <ThemeProvider theme={theme}>
+              <Tabs
+                value={tabIndex}
+                onChange={handleTabChange}
+                centered
+                textColor="secondary"
+                indicatorColor="secondary"
+              >
+                <Tab label="Details" />
+                <Tab label="Shipping & Return" />
+                <Tab label="Reviews" />
+              </Tabs>
+            </ThemeProvider>
+          </Box>
+          <Box sx={{ padding: 2 }}>
+            {tabIndex === 0 && (
+              <Box>
+                <Typography>{product.description}</Typography>
+              </Box>
+            )}
+            {tabIndex === 1 && (
+              <Box>
+                <Typography>The second tab</Typography>
+              </Box>
+            )}
+            {tabIndex === 2 && (
+              <Box>
+                <Typography>The third tab</Typography>
+              </Box>
+            )}
+          </Box>
+        </Box>
 
-                {/* <Box display="flex" flexWrap="wrap" gap="15px">
+        {/* <Box display="flex" flexWrap="wrap" gap="15px">
           <div>reviews</div>
         </Box> */}
 
-                {/* RELATED ITEMS */}
-                {/* <Box mt="50px" width="100%">
+        {/* RELATED ITEMS */}
+        {/* <Box mt="50px" width="100%">
           <Typography variant="h3" fontWeight="bold">
             Related Products
           </Typography>
@@ -302,9 +308,9 @@ export default function OneProduct() {
             justifyContent="space-between"
           ></Box>
         </Box> */}
-            </Box>
-        </>
-    );
+      </Box>
+    </>
+  );
 }
 
 // export default OneProduct;
