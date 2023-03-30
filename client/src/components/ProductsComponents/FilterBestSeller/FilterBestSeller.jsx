@@ -13,7 +13,7 @@ import {changeBestSeller, changeTrending} from '../../../store/productsSlice'
 function FilterBestSeller(props) {
     const dispatch = useDispatch()
     const [visible, setVisible] = useState(JSON.parse(localStorage.getItem("visible")) || false)
-    const [selectedValue, setSelectedValue] = useState(JSON.parse(localStorage.getItem("selectedValue")) ||'');
+    const [selectedValue, setSelectedValue] = useState(JSON.parse(localStorage.getItem("selectedValue")) || '');
     const handleChange = (event) => {
         const {value} = event.target;
         setSelectedValue(value);

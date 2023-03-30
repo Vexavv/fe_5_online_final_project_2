@@ -1,29 +1,31 @@
 import s from './Total.module.scss';
 import { Card, CardContent } from '@mui/material';
 
+import { useSelector } from 'react-redux';
+
+import TotalProduct from './TotalProduct';
+
 const Total = () => {
+  const checkoutProduct = useSelector((state) => state.card.products);
+  console.log('checkoutProduct', checkoutProduct);
+
+  const subTotalPr = checkoutProduct.reduce(
+    (acc, curr) => acc + curr.totalPrice,
+    0
+  );
+
+  const totalPr = subTotalPr + subTotalPr * 0.1;
+
   return (
     <Card
       className={s.cardPrice}
       sx={{ marginTop: 0, bgcolor: 'rgb(241,241,241)' }}
     >
       <CardContent sx={{ paddingY: 10, paddingX: 3 }}>
-        <div className={s.products}>
-          <div className={s.product}>
-            <div className={s.productName}>
-              <div className={s.productImg}>
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0376/9440/6700/products/14_64x64.jpg"
-                  alt="rubix"
-                />
-              </div>
-              <div className={s.productTitle}>
-                <p>Victo pedant lamp</p>
-              </div>
-            </div>
-            <div className={s.productPrice}>$79.00</div>
-          </div>
-        </div>
+        {checkoutProduct.map((product) => (
+          <TotalProduct key={product._id} {...product} />
+        ))}
+
         <hr />
         <div className={s.discaunt}>
           <div className={s.discauntInpt}>
@@ -39,17 +41,19 @@ const Total = () => {
         <div className={s.sub}>
           <div className={s.subtotal}>
             <div className={s.subtotalTitle}>Subtotal</div>
-            <div className={s.subtotalPrice}>$138.00</div>
+            <div className={s.subtotalPrice}>${subTotalPr}.00</div>
           </div>
           <div className={s.shipping}>
-            <div className={s.shippingTitle}>Shipping</div>
-            <div className={s.shippingPrice}>$19.77</div>
+            <div className={s.shippingTitle}>Estimated taxes</div>
+            <div className={s.shippingPrice}>
+              ${(subTotalPr * 0.1).toFixed(2)}
+            </div>
           </div>
         </div>
         <hr />
         <div className={s.total}>
           <div className={s.totalTitle}>Total</div>
-          <div className={s.totalPrice}>$157.77</div>
+          <div className={s.totalPrice}>${totalPr}</div>
         </div>
       </CardContent>
     </Card>

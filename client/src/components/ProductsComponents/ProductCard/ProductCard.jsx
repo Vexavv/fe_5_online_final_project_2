@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import styles from './ProductCard.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../Button/Button';
-import RatingStar from './RatingStar/RatingStar';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
-import { TfiSearch } from 'react-icons/tfi';
-import { getElement } from '../../../store/productsSlice';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import styles from "./ProductCard.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../../Button/Button";
+import RatingStar from "./RatingStar/RatingStar";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import { TfiSearch } from "react-icons/tfi";
+import { getElement } from "../../../store/productsSlice";
+import { Link } from "react-router-dom";
+import { addCard } from "../../../store/cardSlice";
 
 function ProductCard({
   name,
@@ -20,7 +21,25 @@ function ProductCard({
   const dispatch = useDispatch();
   const displayType = useSelector((state) => state.products.displayType);
   const [hovered, setHovered] = useState(null);
+  // -------------------------addBasket---------------------------
+  const products = useSelector((state) => state.card.products);
 
+  const isInBasket = products.find(
+    (productItem) => productItem._id === product?._id
+  );
+  const addProductBascet = () => {
+    if (isInBasket) {
+      console.log("remove");
+    } else {
+      dispatch(
+        addCard({
+          ...product,
+          amount: 1,
+          totalPrice: product.currentPrice,
+        })
+      );
+    }
+  };
   return (
     <>
       {displayType ? (
@@ -39,7 +58,10 @@ function ProductCard({
             />
           </Link>
           <div className={styles.CardButton}>
-            <HiOutlineShoppingBag className={styles.CardButtonIcon} />
+            <HiOutlineShoppingBag
+              className={styles.CardButtonIcon}
+              onClick={addProductBascet}
+            />
             <TfiSearch onClick={onClick} className={styles.CardButtonIcon} />
           </div>
           <div className={styles.CardDescription}>

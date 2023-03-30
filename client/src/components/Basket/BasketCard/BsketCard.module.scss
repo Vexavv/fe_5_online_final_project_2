@@ -11,7 +11,7 @@
     }
 
     &Option {
-        background-color: aqua;
+     
         max-height: 145px;
 
         &Section {
@@ -136,17 +136,22 @@
 }
 
 @media (min-width: 600px) {
+   
     .Card {
+        display: flex;
         &Img {
             width: 121px;
             height: 145px;
         }
 
         &Option {
-
+width: 100%;
             &TotalPrice {
                 display: inherit;
             }
+            // &Section{
+            //     background-color: red;
+            // }
 
 
 

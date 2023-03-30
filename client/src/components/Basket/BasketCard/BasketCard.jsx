@@ -7,9 +7,17 @@ import {
 } from "../../../store/cardSlice";
 import styles from "./BsketCard.module.scss";
 
-function BasketCard({ currentPrice, brand, color, img, name, id, amount,totalPrice }) {
+function BasketCard({
+  currentPrice,
+  brand,
+  color,
+  img,
+  name,
+  id,
+  amount,
+  totalPrice,
+}) {
   const dispatch = useDispatch();
-
 
   const removeItem = (id) => {
     dispatch(removeItemBasket({ id }));
@@ -26,7 +34,7 @@ function BasketCard({ currentPrice, brand, color, img, name, id, amount,totalPri
         <div className="img">
           <img className={styles.CardImg} src={img} alt="cardCatalog" />
         </div>
-        <div className={styles.Option}>
+        <div className={styles.CardOption}>
           <div className={styles.CardOptionSection}>
             <a className={styles.CardOptionName} href=".">
               {name}
@@ -51,6 +59,7 @@ function BasketCard({ currentPrice, brand, color, img, name, id, amount,totalPri
                 type="text"
                 value={amount}
                 className={styles.CardOptionContainerCountValue}
+                readOnly
               ></input>
               <button
                 className={styles.CardOptionContainerCountPlus}

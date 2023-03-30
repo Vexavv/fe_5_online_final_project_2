@@ -17,13 +17,19 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addCard } from "../../store/cardSlice";
+import { addCard, removeCard } from "../../store/cardSlice";
 
 import { useEffect, useState, useContext } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { FavoritesContext } from "../Favorites/FavoritesContext";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+import { BASE_URL } from "../../constants/api";
+import {
+  createWishlist,
+  fetchWishlist,
+  updateWishlist,
+} from "../Favorites/wishlistSlice";
 
 const theme = createTheme({
   palette: {
@@ -43,6 +49,14 @@ const buttonSX = {
 
 export default function OneProduct() {
   const dispatch = useDispatch();
+
+  const wishlist = useSelector((state) => state.products.wishlist);
+  // const loading = useSelector((state) => state.wishlist.loading);
+  // const error = useSelector((state) => state.wishlist.error);
+
+  useEffect(() => {
+    dispatch(updateWishlist());
+  }, []);
   //--------------------------------------------отримання продукта для рендерінгу---------------------
   // const selectedProduct = useSelector(
   //   (state) => state.products.selectedProduct
@@ -51,18 +65,16 @@ export default function OneProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
+  // added constant from fetch request
   useEffect(() => {
     async function getProduct() {
-      const res = await fetch("http://localhost:3001/api/products/" + id);
+      const res = await fetch(`${BASE_URL}/products/` + id);
+
       const data = await res.json();
       setProduct(data);
     }
     getProduct();
   }, [id]);
-
-  const selectedProduct = useSelector(
-    (state) => state.products.selectedProduct
-  );
 
   //----------------------------------------------
   const { tw, fb, inst, span } = styles;
@@ -75,23 +87,22 @@ export default function OneProduct() {
 
   // -------------------------------добавка в корзину -------------------
   const products = useSelector((state) => state.card.products);
-  console.log(products);
 
   const isInBasket = products.find(
-    (product) => product._id === selectedProduct._id
+    (productItem) => productItem._id === product?._id
   );
+
   const addProductBascet = () => {
     if (isInBasket) {
       console.log("remove");
     } else {
       dispatch(
         addCard({
-          ...selectedProduct,
+          ...product,
           amount: 1,
-          totalPrice: selectedProduct.currentPrice,
+          totalPrice: product.currentPrice,
         })
       );
-      // localStorage.setItem("card", JSON.stringify(selectedProduct));
     }
   };
   // ---------------------------------
@@ -141,6 +152,7 @@ export default function OneProduct() {
           </Box>
 
           {/* ACTIONS */}
+
           <Box flex='1 1 50%' mb='40px'>
             <Box m='5px 0 25px 0'>
               <Typography
@@ -159,25 +171,32 @@ export default function OneProduct() {
             </Box>
 
             <Box display='flex' alignItems='center' minHeight='50px'>
-              <Box
-                display='flex'
-                alignItems='center'
-                backgroundColor='#f5f5f5'
-                border='1px solid #f5f5f5'
-                borderRadius='5px'
-                mr='20px'
-                p='2px 5px'>
+              {/* <Box
+                display="flex"
+                alignItems="center"
+                backgroundColor="#f5f5f5"
+                border="1px solid #f5f5f5"
+                borderRadius="5px"
+                mr="20px"
+                p="2px 5px"
+              >
                 <IconButton>
-                  <RemoveIcon />
+                  {/* <RemoveIcon onClick={handleRemoveCard} /> */}
+              {/* <RemoveIcon />
                 </IconButton>
-                <Typography sx={{ p: "0 5px" }}>1</Typography>
+                <Typography sx={{ p: "0 5px" }}>
+                  {/* {oneProd.quantity || 1} */}
+              {/* {1} */}
+              {/* </Typography>
                 <IconButton>
                   <AddIcon />
-                </IconButton>
-              </Box>
+                  {/* <AddIcon onClick={handleAddCard} /> */}
+              {/* </IconButton> */}
+              {/* </Box>  */}
               <ThemeProvider theme={theme}>
                 <Button
                   onClick={addProductBascet}
+                  // onClick={handleAddCard}
                   sx={buttonSX}
                   variant='contained'
                   color='secondary'>
@@ -187,10 +206,16 @@ export default function OneProduct() {
             </Box>
             <Box display='flex' flexDirection='column' alignItems='flex-start'>
               <Box m='20px 0 5px 0' display='flex'>
-                <div onClick={handleClick} className={styles.favorites}>
-                  {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
-                  <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
-                </div>
+                <ThemeProvider theme={theme}>
+                  <Button
+                    sx={buttonSX}
+                    variant='contained'
+                    color='secondary'
+                    onClick={() => dispatch(createWishlist(product._id))}>
+                    {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
+                    <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>
+                  </Button>
+                </ThemeProvider>
               </Box>
 
               <Typography m='8px 0 0 0'>

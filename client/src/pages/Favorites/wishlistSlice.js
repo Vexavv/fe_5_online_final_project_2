@@ -133,52 +133,177 @@ import {BASE_URL} from "../../constants/api";
 // const state = store.getState();
 // console.log(state)
 const initialState = {
-    wishlist: {},
+    wishlist: [],
     status: null,
     error: '',
 }
 
 export const createWishlist = createAsyncThunk(
-    'wishlist/fetchAsyncProducts',
-    async (_, {rejectWithValue,getState }) => {
-
-        const stateToken = getState().isLogged.isLogged.token
-        console.log(stateToken)
-        try {
-            const config = {
-                headers: {
-                    Authorization:stateToken,
-                },
-            };
-            const response = await axios.get(`${BASE_URL}/wishlist`, config)
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(error.response.data)
-        }
-
+  'wishlist/create',
+  async (productId, { rejectWithValue, getState }) => {
+    const stateToken = getState().isLogged.isLogged.token;
+    try {
+      const config = {
+        headers: {
+          Authorization: stateToken,
+        },
+        
+      };
+      const response = await axios.post(`${BASE_URL}/wishlist`,  productId , config);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
+  }
 );
+ 
+// export const createWishlist = createAsyncThunk(
+//     'wishlist/create',
+//     async (productId, {rejectWithValue,getState }) => {
+//         const stateToken = getState().isLogged.isLogged.token
+//         try {
+//             const config = {
+//                 headers: {
+//                     Authorization:stateToken,
+//                 },
+//             };
+//             const response = await axios.post(`${BASE_URL}/wishlist/`, productId).then((response)=>console.log(response.data));
+//             console.log(productId); 
+//             return response.data;
+//         } catch (error) {
+//             return rejectWithValue(error.response.data)
+//         }
+//     }
+// );
 
-const wishlistSlice = createSlice({
-    name: 'products',
-    initialState,
-    reducers: {},
-    extraReducers: builder => {
-        builder
-            .addCase(createWishlist.pending, (state) => {
-                state.status = 'loading';
-            })
-            .addCase(createWishlist.fulfilled, (state, action) => {
-                state.wishlist = action.payload;
-                state.status = 'loaded';
-            })
-            .addCase(createWishlist.rejected, (state, action) => {
-                state.error = action.payload;
-                state.status = 'loaded';
-            })
+export const fetchWishlist = createAsyncThunk('wishlist/fetchWishlist', async () => {
+    try {
+      const response = await axios.get('/api/wishlist');
+      console.log('Wishlist fetched:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching wishlist:', error);
+      throw error;
     }
+  });
+  
+export const updateWishlist =  createAsyncThunk(
+    'wishlist/update',
+    async (productId) => {
+      try {
+        const response = await axios.put('/api/wishlist', updateWishlist);
+        console.log(updateWishlist);
+        return response.data;
+      } catch (error) {
+        throw new Error(error.response.data.error);
+      }
+    }
+  );
 
-})
+  export const wishlistSlice = createSlice({
+    name: 'wishlist',
+    initialState: {
+      loading: false,
+      error: null,
+      wishlist: null
+    },    
+    reducers: {},
+    extraReducers: (builder) => {
+      builder
+        .addCase(createWishlist.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(createWishlist.fulfilled, (state, action) => {
+          state.loading = false;
+          state.error = null;
+        //   state.wishlist = action.payload;
+        state.wishlist.push(action.payload);
+        })
+        .addCase(createWishlist.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+          state.wishlist = null;
+        })
+        .addCase(updateWishlist.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(updateWishlist.fulfilled, (state, action) => {
+            state.loading = false;
+            state.error = null;
+            // state.wishlist = action.payload;
+        state.wishlist.push(action.payload);
+
+          })
+          .addCase(updateWishlist.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.wishlist = null;
+          })
+          .addCase(fetchWishlist.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(fetchWishlist.fulfilled, (state, action) => {
+            state.loading = false;
+            state.error = null;
+            state.wishlist = action.payload;
+          })
+          .addCase(fetchWishlist.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+          });
+    }
+  });
+
+
+
+
+// const pendingAndFulfilledHandler = (state, action) => {
+//     state.status = 'loading';
+//   };
+  
+//   const rejectedHandler = (state, action) => {
+//     state.error = action.payload;
+//     state.status = 'loaded';
+//   };
+  
+// const wishlistSlice = createSlice({
+//     name: 'products',
+//     initialState,
+//     reducers: {},
+      
+//       extraReducers: (builder) => {
+//         builder
+//           .addMatcher(
+//             (action) =>
+//               [createWishlist.pending, updateWishlist.pending].includes(
+//                 action.type
+//               ),
+//             pendingAndFulfilledHandler
+//           )
+//           .addMatcher(
+//             (action) =>
+//               [createWishlist.fulfilled, updateWishlist.fulfilled].includes(
+//                 action.type
+//               ),
+//             (state, action) => {
+//               state.wishlist = action.payload;
+//               state.status = 'loaded';
+//             }
+//           )
+//           .addMatcher(
+//             (action) =>
+//               [createWishlist.rejected, updateWishlist.rejected].includes(
+//                 action.type
+//               ),
+//             rejectedHandler
+//           );
+//       }
+// })
 
 export const {} = wishlistSlice.actions
 export default wishlistSlice.reducer;
+

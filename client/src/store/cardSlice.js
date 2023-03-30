@@ -1,21 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   products: [],
 };
 
 export const cardsSlice = createSlice({
-  name: "card",
+  name: 'card',
   initialState,
   reducers: {
+
+
     addCard(state, action) {
       state.products = [...state.products, action.payload];
     },
+
     removeItemBasket(state, action) {
       state.products = state.products.filter(
         (item) => item._id !== action.payload.id
       );
     },
+
     increaseCard(state, action) {
       console.log(action.payload);
       state.products = state.products.map((item) => {
@@ -26,6 +30,7 @@ export const cardsSlice = createSlice({
         return item;
       });
     },
+
     decreaseCard(state, action) {
       state.products = state.products.map((item) => {
         if (item._id === action.payload.id) {
@@ -42,6 +47,12 @@ export const cardsSlice = createSlice({
     },
   },
 });
-export const { addCard, removeItemBasket, increaseCard, decreaseCard } =
-  cardsSlice.actions;
+export const {
+  addCard,
+  removeCard,
+  clearCard,
+  removeItemBasket,
+  increaseCard,
+  decreaseCard,
+} = cardsSlice.actions;
 export default cardsSlice.reducer;

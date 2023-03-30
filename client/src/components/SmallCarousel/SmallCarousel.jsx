@@ -6,6 +6,9 @@ import SmallCarouselItem from "./SmallCarouselItem";
 import {useDispatch} from "react-redux";
 import {getElement, toggleModal} from "../../store/productsSlice";
 import Loader from "../Loader/Loader";
+import axios from 'axios'
+import {BASE_URL} from "../../constants/api";
+
 
 const responsive = {
     superLargeDesktop: {
@@ -37,11 +40,11 @@ function SmallCarousel(props) {
         dispatch(toggleModal(true))
     }
     const [trending, setTrending] = useState(null)
-    useEffect(()=>{
-        fetch(`http://localhost:3001/api/products/filter?trendingProduct=trueTrending`)
-            .then(response => response.json())
-            .then(json => setTrending(json))
-    },[])
+    useEffect(() => {
+        axios.get(`${BASE_URL}/products/filter?trendingProduct=trueTrending`)
+            .then(response => setTrending(response.data))
+            .catch(error => console.error(error));
+    }, []);
     if (!trending) {
         return <Loader/>
     }

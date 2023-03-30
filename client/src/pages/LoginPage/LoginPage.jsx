@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import {Link, Navigate} from 'react-router-dom';
 import {
-  loginCustomerFetch,
-  createAccountFetch
+    loginCustomerFetch,
+    createAccountFetch
 } from '../../store/slices/loginSlice'
-import { useNavigate } from 'react-router-dom'
-import { Formik, Form, FastField, ErrorMessage } from 'formik';
+import { Collapse, IconButton, Alert } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { fetchGetCustomer } from '../../store/slices/customerSlice'
+import { Formik, Form, FastField, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
 import Button from '../../components/Button/Button'
@@ -15,169 +18,198 @@ import styles from './LoginPage.module.scss'
 
 // initialValues
 const initialValuesLogin = {
-  email: '',
-  password: ''
+    email: '',
+    password: ''
 }
 const initialValuesSignIn = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: ''
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
 }
 
 // validations
 YupPassword(yup)
 const validationSchemaLogin = yup.object().shape({
-  email: yup.string()
-    .email('the email is filled in with an error')
-    .required('this field is required'),
-  password: yup.string()
-    .minSymbols(0)
-    .min(7, 'Password must be between 7 and 30 characters')
-    .max(30, 'Password must be between 7 and 30 characters')
-    .minLowercase(5)
-    .required('Password is required field'),
+    email: yup.string()
+        .email('the email is filled in with an error')
+        .required('this field is required'),
+    password: yup.string()
+        .minSymbols(0)
+        .min(7, 'Password must be between 7 and 30 characters')
+        .max(30, 'Password must be between 7 and 30 characters')
+        .minLowercase(5)
+        .required('Password is required field'),
 })
 const validationSchemaRegister = yup.object().shape({
-  firstName: yup.string()
-    .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for First Name is a-z, A-Z, а-я, А-Я.')
-    .min(2, 'First Name must be between 2 and 25 characters.')
-    .max(25, 'First Name must be between 2 and 25 characters.')
-    .required('First Name is required'),
-  lastName: yup.string()
-    .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for Last Name is a-z, A-Z, а-я, А-Я.')
-    .min(2, 'Last Name must be between 2 and 25 characters.')
-    .max(25, 'Last Name must be between 2 and 25 characters.')
-    .required('Last Name is required.'),
-  email: yup.string()
-    .email('the email is filled in with an error')
-    .required('this field is required'),
-  password: yup.string()
-    .minSymbols(0)
-    .min(7, 'Password must be between 7 and 30 characters')
-    .max(30, 'Password must be between 7 and 30 characters')
-    .minLowercase(5)
-    .required('Password is required field'),
+    firstName: yup.string()
+        .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for First Name is a-z, A-Z, а-я, А-Я.')
+        .min(2, 'First Name must be between 2 and 25 characters.')
+        .max(25, 'First Name must be between 2 and 25 characters.')
+        .required('First Name is required'),
+    lastName: yup.string()
+        .matches(/^[a-zA-Zа-яА-Я]+$/, 'Allowed characters for Last Name is a-z, A-Z, а-я, А-Я.')
+        .min(2, 'Last Name must be between 2 and 25 characters.')
+        .max(25, 'Last Name must be between 2 and 25 characters.')
+        .required('Last Name is required.'),
+    email: yup.string()
+        .email('the email is filled in with an error')
+        .required('this field is required'),
+    password: yup.string()
+        .minSymbols(0)
+        .min(7, 'Password must be between 7 and 30 characters')
+        .max(30, 'Password must be between 7 and 30 characters')
+        .minLowercase(5)
+        .required('Password is required field'),
 })
 
 
 const Login = () => {
 
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const isLogged = useSelector(state => state.isLogged.success)
-
-  const goTo = useNavigate()
-
-  // local states
-  const [isLoginPage, setIsLoginPage] = useState(true) 
-  const [isShowPassword, setIsShowPassword] = useState(false)
-
-  // switch login/account forms
-  const ToggleLoginPage = () => {
-    setIsLoginPage(prev => !prev)
-  }
-
-  // toggle visible password
-  const TolggleShowPassword = () => {
-    setIsShowPassword(prev => !prev)
-  }
+    const isLogged = useSelector(state => state.isLogged.isLogged.success)
 
 
-  // submitting functions 
-  // need add dispatch getUser, wishlist after login
-  const HandleLoginSubmit = ({ email, password }) => {
-    dispatch(loginCustomerFetch({ email, password }))
-    
-  }
+    // local states
+    const [isLoginPage, setIsLoginPage] = useState(true)
+    const [isShowPassword, setIsShowPassword] = useState(false)
+    const [openAlert, setOpenAlert] = useState(true);
 
-  const HandleRegiserSubmit = ({ firstName, lastName, email, password }) => {
-    dispatch(createAccountFetch({ firstName, lastName, email, password }))
-  }
+    // switch login/account forms
+    const HandleToggle = (data) => {
+        data(prev => !prev)
+    }
 
-  return (
+    // submitting functions
+    // need add dispatch getUser, wishlist after login
+    const HandleLoginSubmit = ({ email, password }) => {
+        dispatch(loginCustomerFetch({ email, password }))
+        dispatch(fetchGetCustomer())
+    }
 
-    <div className={styles.loginPage}>
-      <div className={styles.loginPageContentWrapper}>
-        <ul className={styles.loginPageNav} >
+    const HandleRegiserSubmit = ({ firstName, lastName, email, password }) => {
+        dispatch(createAccountFetch({ firstName, lastName, email, password }))
+    }
 
-          <li className={isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive} onClick={ToggleLoginPage}>Login</li>
-          <li className={!isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive} onClick={ToggleLoginPage}>Create Account</li>
+    return isLogged ?(<Navigate to="/myaccount" replace/>)
+        // <>
+        //     <Collapse in={openAlert}>
+        //         <Alert
+        //             action={
+        //                 <IconButton
+        //                     aria-label="close"
+        //                     color="inherit"
+        //                     size="small"
+        //                     onClick={() => { setOpenAlert(false) }}
+        //                 >
+        //                     <CloseIcon fontSize="inherit" />
+        //                 </IconButton>
+        //             }
+        //         >You are alredy logged in</Alert>
+        //     </Collapse>
+        //     <div className={styles.customerLinkWrapper}>
+        //         <Link to='/products'>
+        //             <p className={styles.customerLink}>to shopping</p>
+        //         </Link>
+        //
+        //         <Link to='/favorites'>
+        //             <p className={styles.customerLink}>to wishlist</p>
+        //         </Link>
+        //     </div>
+        // </>
+        : (<div className={styles.loginPage}>
+            <div className={styles.loginPageContentWrapper}>
+                <ul className={styles.loginPageNav}>
 
-        </ul>
+                    <li className={isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive}
+                        onClick={() => { HandleToggle(setIsLoginPage) }}>Login
+                    </li>
+                    <li className={!isLoginPage ? styles.loginPageTitle : styles.loginPageTitleActive}
+                        onClick={() => { HandleToggle(setIsLoginPage) }}>Create Account
+                    </li>
 
-        {/* form for login */}
-        {isLoginPage &&
-          <Formik
-            initialValues={initialValuesLogin}
-            validationSchema={validationSchemaLogin}
-            onSubmit={(loginData, { resetForm }) => {
-              HandleLoginSubmit(loginData)
-              resetForm()
-            }}
-          >
-            {({ isValid }) => (
-              <Form className={styles.loginPageForm}>
-                <FastField className={styles.loginPageFormInput} type="text" name="email" placeholder="Email" />
-                <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
-                <div className={styles.loginPageFieldWrapper}>
-                  <FastField className={styles.loginPageFormInputPass}
-                    name="password"
-                    type={isShowPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                  />
-                  <span className={styles.loginPageSpan}
-                    onClick={TolggleShowPassword}>
-                    {isShowPassword ? <Visibility /> : <VisibilityOff />}
-                  </span>
-                </div>
-                <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
-                <Button type="submit" className={styles.LoginButton} disabled={!isValid} text="Sign in" />
-                <Button type="button" className={styles.RecoveryButton} text='Fogot password?' />
-              </Form>
-            )}
-          </Formik>
-        }
+                </ul>
 
-        {/* form for new customer */}
-        {!isLoginPage &&
-          <Formik
-            initialValues={initialValuesSignIn}
-            validationSchema={validationSchemaRegister}
-            onSubmit={(newCustomer, { resetForm }) => {
-              HandleRegiserSubmit(newCustomer)
-              resetForm()
-            }}
-          >
-            {({ isValid}) => (
-              <Form className={styles.loginPageForm}>
-                <FastField className={styles.loginPageFormInput} type="text" name="firstName" placeholder="First Name" />
-                <ErrorMessage style={{ color: 'red' }} component="span" name="firstName" />
-                <FastField className={styles.loginPageFormInput} type="text" name="lastName" placeholder="Last Name" />
-                <ErrorMessage style={{ color: 'red' }} component="span" name="lastName" />
-                <FastField className={styles.loginPageFormInput} type="text" name="email" placeholder="Email" />
-                <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
-                <div className={styles.loginPageFieldWrapper}>
-                  <FastField className={styles.loginPageFormInputPass}
-                    name="password"
-                    type={isShowPassword ? 'text' : 'password'}
-                    placeholder="Password"
-                  />
-                  <span className={styles.loginPageSpan}
-                    onClick={TolggleShowPassword}>
-                    {isShowPassword ? <Visibility /> : <VisibilityOff />}
-                  </span>
-                </div>
-                <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
-                <Button type="submit" className={styles.LoginButton} disabled={!isValid} text="Create an account" />
-              </Form>
-            )}
-          </Formik>
-        }
+                {/* form for login */}
+                {isLoginPage &&
+                    <Formik
+                        initialValues={initialValuesLogin}
+                        validationSchema={validationSchemaLogin}
+                        onSubmit={(loginData, { resetForm }) => {
+                            HandleLoginSubmit(loginData)
+                            resetForm()
+                        }}
+                    >
+                        {({ isValid }) => (
+                            <Form className={styles.loginPageForm}>
+                                <FastField className={styles.loginPageFormInput} type="text" name="email"
+                                    placeholder="Email" />
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
+                                <div className={styles.loginPageFieldWrapper}>
+                                    <Field className={styles.loginPageFormInputPass}
+                                        name="password"
+                                        type={isShowPassword ? 'text' : 'password'}
+                                        placeholder="Password"
+                                    />
+                                    <span className={styles.loginPageSpan}
+                                        onClick={() => { HandleToggle(setIsShowPassword) }}>
+                                        {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                                    </span>
+                                </div>
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
+                                <Button type="submit" className={styles.LoginButton} disabled={!isValid}
+                                    text="Sign in" />
+                                <Button type="button" className={styles.RecoveryButton} text='Fogot password?' />
+                            </Form>
+                        )}
+                    </Formik>
+                }
 
-      </div>
-    </div>
-  );
+                {/* form for new customer */}
+                {!isLoginPage &&
+                    <Formik
+                        initialValues={initialValuesSignIn}
+                        validationSchema={validationSchemaRegister}
+                        onSubmit={(newCustomer, { resetForm }) => {
+                            HandleRegiserSubmit(newCustomer)
+                            resetForm()
+                        }}
+                    >
+                        {({ isValid }) => (
+                            <Form className={styles.loginPageForm}>
+                                <FastField className={styles.loginPageFormInput} type="text" name="firstName"
+                                    placeholder="First Name" />
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="firstName" />
+                                <FastField className={styles.loginPageFormInput} type="text" name="lastName"
+                                    placeholder="Last Name" />
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="lastName" />
+                                <FastField className={styles.loginPageFormInput} type="text" name="email"
+                                    placeholder="Email" />
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="email" />
+                                <div className={styles.loginPageFieldWrapper}>
+                                    <Field className={styles.loginPageFormInputPass}
+                                        name="password"
+                                        type={isShowPassword ? 'text' : 'password'}
+                                        placeholder="Password"
+                                    />
+                                    <span className={styles.loginPageSpan}
+                                        onClick={() => { HandleToggle(setIsShowPassword) }}>
+                                        {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                                    </span>
+                                </div>
+                                <ErrorMessage style={{ color: 'red' }} component="span" name="password" />
+                                <Button type="submit" className={styles.LoginButton} disabled={!isValid}
+                                    text="Create an account" />
+                            </Form>
+                        )}
+                    </Formik>
+                }
+
+
+            </div>
+        </div>
+        );
 }
 
 export default Login;
