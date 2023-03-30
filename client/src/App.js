@@ -1,9 +1,6 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import {fetchGetCustomer} from './store/slices/customerSlice'
+import React, {useEffect} from 'react';
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home/Home';
 import OneProduct from './pages/OneProduct/OneProduct';
@@ -17,9 +14,12 @@ import PageNotFound from './pages/PageNotFound/PageNotFound';
 import ProductModal from './components/ProductModal/ProductModal';
 import Favorites from './pages/Favorites/Favorites';
 
-function App() {
+function App(props) {
+  const location = useLocation();
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="App">
