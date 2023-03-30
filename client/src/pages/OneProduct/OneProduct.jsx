@@ -60,13 +60,10 @@ export default function OneProduct() {
     // added constant from fetch request
     useEffect(() => {
         async function getProduct() {
-
             const res = await fetch(`${BASE_URL}/products/` + id);
-
             const data = await res.json();
             setProduct(data);
         }
-
         getProduct();
     }, [id]);
 
