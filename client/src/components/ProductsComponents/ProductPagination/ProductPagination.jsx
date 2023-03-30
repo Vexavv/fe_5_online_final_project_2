@@ -6,13 +6,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {setPage} from "../../../store/productsSlice";
 import {PAGE_SIZE} from '../../../constants/constants'
 
-const theme = createTheme({
-    palette: {
-        gold: {
-            main: '#ba933e',
-        },
-    },
-});
+// const theme = createTheme({
+//     palette: {
+//         gold: {
+//             main: '#ba933e',
+//         },
+//     },
+// });
 
 function ProductPagination(props) {
     const dispatch = useDispatch()
@@ -24,12 +24,18 @@ function ProductPagination(props) {
     const count = Math.ceil(data.productsQuantity / PAGE_SIZE)
 
     return (
-        <ThemeProvider theme={theme}>
-            <Stack sx={{padding: "15px 0 50px 0"}} spacing={2}>
-                <Pagination color="gold" count={count} onChange={handlePageChange} page={page} variant="outlined"
-                            shape="rounded"/>
-            </Stack>
-        </ThemeProvider>
+      // <ThemeProvider theme={theme}>
+      <Stack sx={{ padding: '15px 0 50px 0' }} spacing={2}>
+        <Pagination
+          color="primary"
+          count={count}
+          onChange={handlePageChange}
+          page={page}
+          variant="outlined"
+          shape="rounded"
+        />
+      </Stack>
+      // </ThemeProvider>
     );
 }
 
