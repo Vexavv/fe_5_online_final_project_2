@@ -13,8 +13,6 @@ import {Link} from "react-router-dom";
 function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo, product}) {
 
     const dispatch = useDispatch()
-
-
     const [hovered, setHovered] = useState(null);
     return (
         <Card

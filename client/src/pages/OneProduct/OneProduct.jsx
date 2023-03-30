@@ -23,15 +23,12 @@ import {styled} from '@mui/material/styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {addCard, removeCard} from '../../store/cardSlice';
 
-import {useEffect, useState, useContext} from 'react';
-import {AiOutlineHeart, AiFillHeart} from 'react-icons/ai';
+import {useEffect, useState} from 'react';
 
 import {useParams} from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import {BASE_URL} from "../../constants/api";
 import {addProductToWishlist, removeProductFromWishlist} from "../../store/slices/wishlistSlice";
-
-//------------
 
 
 const theme = createTheme({
@@ -99,32 +96,21 @@ export default function OneProduct() {
         }
     };
 
-    // ---------------------------------wishlist----------------
+    // --------------------------------- add to wish list----------------
     const isLogged = useSelector(state => state.isLogged.isLogged.success)
     const {wishlist} = useSelector(state => state.wishlist);
-    console.log(wishlist)
-
-
-    // const isFavorite = wishlist.products
-    // const isInWishlist = wishlist.products && product && wishlist.products.find(item => item._id === product._id);
-    //
-    // const [isFavoriteLocal, setIsFavoriteLocal] = useState(isInWishlist);
-    // console.log(isInWishlist)
-
+    const isFavorite = wishlist && wishlist.products;
+    const isInWishlist = isFavorite && product && isFavorite.find(item => item._id === product._id);
     const addToWishlist = (id) => {
         dispatch(addProductToWishlist(id))
-       /* setIsFavoriteLocal(true);*/
     }
     const removeFromWishlist = (id) => {
         dispatch(removeProductFromWishlist(id))
-     /*   setIsFavoriteLocal(false);*/
     }
-
 
     if (!product) {
         return <Loader/>;
     }
-
     return (
         <>
             <DialogTitle
@@ -136,6 +122,7 @@ export default function OneProduct() {
                     display="flex"
                     alignItems="center"
                     justifyContent={"space-between"}
+                    textTransform="capitalize"
                 >
                     {product.name}
                 </Box>
@@ -207,40 +194,18 @@ export default function OneProduct() {
                                 >
                                     {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
                                 </Button>
-
-                                {/*<IconButton onClick={() => isFavoriteLocal ? removeFromWishlist(product._id) : addToWishlist(product._id)}>
-                                    {isLogged && (isFavoriteLocal ?
-                                            <FavoriteIcon sx={{fontSize: 35, color: '#ba933e'}}/>
-                                            : <FavoriteBorderIcon sx={{fontSize: 35}}/>
+                                {/*-----------------add to wish list --------------*/}
+                                <IconButton sx={{marginLeft:3}}
+                                    onClick={() => isInWishlist ? removeFromWishlist(product._id) : addToWishlist(product._id)}>
+                                    {isLogged && (isInWishlist ?
+                                            <FavoriteIcon sx={{fontSize: 40, color: '#ba933e'}}/>
+                                            : <FavoriteBorderIcon sx={{fontSize: 40}}/>
                                     )}
-                                </IconButton>*/}
-
+                                </IconButton>
                             </ThemeProvider>
                         </Box>
-                        {/*-----------------my fishlist --------------*/}
-                        <Box display="flex" alignItems="center" minHeight="50px">
 
-                            <ThemeProvider theme={theme}>
-                                <Button
-                                    onClick={() => {
-                                        addToWishlist(product._id)
-                                    }}
-                                    sx={buttonSX}
-                                    variant="contained"
-                                    color="secondary"
-                                >
-                                    {/*{isInWishlist ? "PRODUCT IN WISHLIST" : "ADD TO WISHLIST"}*/}
-                                </Button>
-                            </ThemeProvider>
-                        </Box>
                         <Box display="flex" flexDirection="column" alignItems="flex-start">
-                            {/*<Box m="20px 0 5px 0" display="flex">*/}
-                            {/*  /!*------------------------- add to wishlist*!/*/}
-                            {/*  <div onClick={()=>{dispatch(addProductToWishlist(product._id))}} className={styles.favorites}>*/}
-                            {/*    {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}*/}
-                            {/*    <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>*/}
-                            {/*  </div>*/}
-                            {/*</Box>*/}
                             <Typography m="8px 0 0 0">
                                 <span className={span}>Availability: </span> {product.quantity}
                             </Typography>
