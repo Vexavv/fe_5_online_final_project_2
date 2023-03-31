@@ -9,7 +9,7 @@ import Brightness1Icon from '@mui/icons-material/Brightness1';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useDispatch, useSelector} from "react-redux";
-import {changeColor} from "../../../store/productsSlice";
+import {changeColor} from "../../../store/slices/productsSlice";
 
 function RadioButtonColor(props) {
     const dispatch= useDispatch()

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import styles from './SmallCarousel.module.scss'
 import {HiOutlineShoppingBag} from 'react-icons/hi';
 import {TfiSearch} from 'react-icons/tfi';
-import {getElement} from "../../store/productsSlice";
+import {getElement} from "../../store/slices/productsSlice";
 import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
 

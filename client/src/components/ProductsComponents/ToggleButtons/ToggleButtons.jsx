@@ -4,7 +4,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AppsIcon from "@mui/icons-material/Apps";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import styles from './ToggleButton.module.scss'
-import {toggleDisplayType} from "../../../store/productsSlice";
+import {toggleDisplayType} from "../../../store/slices/productsSlice";
 import {useDispatch} from "react-redux";
 
 function ToggleButtons() {

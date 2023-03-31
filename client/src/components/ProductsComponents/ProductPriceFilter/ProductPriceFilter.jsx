@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography';
-import {setMinPrice, setMaxPrice} from "../../../store/productsSlice";
+import {setMinPrice, setMaxPrice} from "../../../store/slices/productsSlice";
 import {useSelector, useDispatch} from "react-redux";
 import {debounce} from "lodash";
 

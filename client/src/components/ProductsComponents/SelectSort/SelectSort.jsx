@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SelectSort.module.scss'
-import {sortingProducts} from "../../../store/productsSlice";
+import {sortingProducts} from "../../../store/slices/productsSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 function SelectSort(props) {

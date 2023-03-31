@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Button from "../Button/Button";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleModal } from "../../store/productsSlice";
+import { toggleModal } from "../../store/slices/productsSlice";
 import { addCard } from "../../store/cardSlice";
 import {addProductToWishlist, removeProductFromWishlist} from "../../store/slices/wishlistSlice";
 import FavoriteIcon from "@mui/icons-material/Favorite";

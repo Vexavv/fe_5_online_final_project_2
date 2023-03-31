@@ -4,7 +4,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import thunk from 'redux-thunk';
 import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer } from "redux-persist";
-import productsReducer from './productsSlice'
+import productsReducer from './slices/productsSlice'
 import isLoginReducer from './slices/loginSlice'
 import messageReducer from './slices/messageSlice'
 

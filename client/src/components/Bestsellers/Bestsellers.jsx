@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
 import styles from "./Bestsellers.module.scss";
 import BestsellerItem from "../BestsellerItem/BestsellerItem";
-import { getElement, toggleModal} from "../../store/productsSlice";
+import { getElement, toggleModal} from "../../store/slices/productsSlice";
 import Loader from "../Loader/Loader";
 import {BASE_URL} from "../../constants/api";
 import axios from 'axios'

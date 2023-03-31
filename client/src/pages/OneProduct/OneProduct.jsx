@@ -102,6 +102,7 @@ export default function OneProduct() {
     }
     const removeFromWishlist = (id) => {
         dispatch(removeProductFromWishlist(id))
+
     }
 
   if (!product) {

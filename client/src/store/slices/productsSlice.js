@@ -1,8 +1,8 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {PAGE_SIZE} from '../constants/constants'
+import {PAGE_SIZE} from '../../constants/constants'
 import axios from "axios";
-import {BASE_URL} from "../constants/api";
-import {getQueryParams} from "../helpers/apiHelpers";
+import {BASE_URL} from "../../constants/api";
+import {getQueryParams} from "../../helpers/apiHelpers";
 
 const initialState = {
     data: [],
