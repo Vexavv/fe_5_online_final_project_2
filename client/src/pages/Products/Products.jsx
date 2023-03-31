@@ -45,7 +45,6 @@ function Products(props) {
                             </div>
                             <div className={styles.ProductWrapperContent}>
                                 <ProductsNav/>
-
                                 <ProductsContent/>
 
                             </div>

@@ -55,7 +55,7 @@
       align-items: center;
       width: 90%;
       margin: 0 auto;
-      padding: 10px 0;
+      padding-top : 10px;
 
       &Item {
         display: flex;
@@ -95,6 +95,7 @@
         }
       }
     }
+
     &Footer {
       background-color: #f5f5f5;
       width: 100%;
@@ -110,7 +111,7 @@
         background-color: #ffffff;
         padding: 10px 10px;
         color: #1A1A1A;
-        border: 1px solid black;
+        border: 1px solid #d1cfcf;
         cursor: pointer;
         border-radius: 4px;
         text-transform: uppercase;
@@ -124,8 +125,10 @@
   .Favorite {
     min-height: 500px;
     padding: 0 24px;
+
     &Header {
       margin-top: 30px;
+
       &Text {
         font-size: 35px;
         margin-bottom: 15px;
@@ -138,11 +141,13 @@
         flex-direction: row;
         flex-wrap: wrap;
       }
+
       &Footer {
         justify-content: flex-end;
 
         &Btn {
-          &:hover{
+          margin-right: 5px;
+          &:hover {
             background-color: #1A1A1A;
             color: #ffffff;
           }
@@ -179,12 +184,13 @@
         text-align: center;
       }
     }
+
     &Content {
 
       &List {
+        border: 1px solid #d1cfcf;
 
         &Item {
-
 
 
           &Button {
@@ -192,6 +198,7 @@
             &Icon {
               font-size: 25px;
               padding: 10px;
+
               &:nth-child(1) {
                 color: #1A1A1A;
               }
@@ -199,9 +206,12 @@
           }
         }
       }
+
       &Footer {
         &Btn {
-          &:hover{
+
+
+          &:hover {
             background-color: #ff1a00;
             color: #ffffff;
             transition: all .5s ease;

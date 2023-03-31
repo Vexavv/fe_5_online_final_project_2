@@ -44,9 +44,9 @@ function ProductCard({
     <>
       {displayType ? (
         <li className={styles.Card}>
-          <Link to={`/products/${product.itemNo}`}>
+          <Link className={styles.CardLink} to={`/products/${product.itemNo}`}>
             <img
-              className={styles.CardImg}
+              className={styles.CardLinkImg}
               src={
                 hovered === _id && imageUrls.length > 1
                   ? imageUrls[1]
