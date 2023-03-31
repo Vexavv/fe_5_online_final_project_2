@@ -19,9 +19,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     &Img {
       width: 80%;
-color: saddlebrown;
+      color: saddlebrown;
     }
   }
 
@@ -30,7 +31,7 @@ color: saddlebrown;
     display: none;
     position: absolute;
     top: 5%;
-    right: 10%;
+    right: 12%;
 
     &Icon {
       color: black;
@@ -40,6 +41,22 @@ color: saddlebrown;
         color: #F5F5F5;
         transition: all .5s ease;
       }
+    }
+  }
+
+  &Sale {
+    background: #ba933e;
+    border-radius: 4px;
+    position: absolute;
+    top: 3%;
+    left: 12%;
+
+    &Text {
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      color: #F5F5F5;
+      padding: 5px;
+      text-transform: capitalize;
     }
   }
 
@@ -73,6 +90,19 @@ color: saddlebrown;
         font-size: 14px;
         color: #666;
         line-height: 20px;
+
+      }
+
+      &SalePrice {
+        text-decoration: line-through;
+      }
+
+      &Price2 {
+        font-family: 'Red Hat Display';
+        font-weight: 400;
+        font-size: 14px;
+        color: #ba933e;
+        line-height: 20px;
       }
 
       &Label {
@@ -102,11 +132,9 @@ color: saddlebrown;
     }
 
     &Button {
-
-
       &Icon {
-        font-size: 30px;
-        padding: 10px;
+        font-size: 25px;
+        padding: 8px;
         border-radius: 5px;
         background-color: #ffffff;
         margin-bottom: 10px;
@@ -136,23 +164,51 @@ color: saddlebrown;
     flex-direction: column;
     padding: 20px 0;
 
-    &Name {
-      font-family: 'Red Hat Display';
-      font-weight: 700;
-      font-size: 24px;
-      line-height: 20px;
-      color: #444444;
-      text-transform: capitalize;
-      margin-bottom: 20px;
+    &Wrapper {
+      display: flex;
+
+      &Name {
+        font-family: 'Red Hat Display';
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 20px;
+        color: #444444;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+      }
+
+      &Sale {
+        background: #ba933e;
+        border-radius: 4px;
+        margin-left: 10px;
+      }
     }
 
-    &Price {
-      font-family: 'Red Hat Display';
-      font-weight: 400;
-      font-size: 20px;
-      color: #666666;
-      line-height: 20px;
+    &All {
+      display: flex;
+
+      &Price {
+        font-family: 'Red Hat Display';
+        font-weight: 400;
+        font-size: 20px;
+        color: #666666;
+        line-height: 20px;
+      }
+
+      &Price2 {
+        text-decoration: line-through;
+      }
+
+      &SalePrice {
+        font-family: 'Red Hat Display';
+        font-weight: 400;
+        font-size: 20px;
+        color: #ba933e;
+        line-height: 20px;
+        margin-left: 10px;
+      }
     }
+
 
     &Label {
       display: flex;

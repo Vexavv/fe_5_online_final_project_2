@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { getElement } from "../../store/slices/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { addCard } from "../../store/slices/cardSlice";
+import classNames from "classnames";
 
 function BestsellerItem({ item, onClick }) {
   const dispatch = useDispatch();
@@ -49,13 +50,25 @@ function BestsellerItem({ item, onClick }) {
           }
           onMouseLeave={() => setHovered(null)}
           onMouseEnter={() => setHovered(item._id)}
-          alt=""
-        />
-        <h3>{item.name}</h3>
-        <p>
-          <s>${item.previousPrice}</s> ${item.currentPrice}
-        </p>
-      </Link>
+          alt={item.name}
+        /></Link>
+        {item.sale && <Link to='/sale'>
+            <div className={styles.btnWrapperSale}>
+                <span className={styles.btnWrapperSaleText}>sale</span>
+            </div>
+        </Link>}
+        <div className={styles.btnWrapperTitle}>
+            <h3 className={styles.btnWrapperTitleName}>{item.name}</h3>
+            <div className={ styles.btnWrapperTitleAllPrice}>
+              <span className={item.sale ? classNames(styles.btnWrapperTitleAllPricePrice, styles.btnWrapperTitleAllPriceSalePrice) : styles.btnWrapperTitleAllPricePrice}>
+              ${item.previousPrice}.00
+            </span>
+                {item.sale && <span className={styles.btnWrapperTitleAllPricePrice2}>
+              ${item.currentPrice}.00
+            </span>}
+            </div>
+        </div>
+
     </div>
   );
 }

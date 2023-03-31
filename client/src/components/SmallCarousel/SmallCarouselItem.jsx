@@ -110,7 +110,6 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo,
                         >
                             ${currentPrice}.00
                         </Typography>
-
                         }
                     </Box>
 

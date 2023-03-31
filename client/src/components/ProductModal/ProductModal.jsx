@@ -10,6 +10,7 @@ import {addProductToWishlist, removeProductFromWishlist} from "../../store/slice
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {IconButton} from "@mui/material";
+import {Link} from "react-router-dom";
 
 function ProductModal() {
   const dispatch = useDispatch();
@@ -102,9 +103,15 @@ function ProductModal() {
           <span className={styles.ModalContentDescriptionColor}>
             Color: {selectedProduct.color}
           </span>
-          <span className={styles.ModalContentDescriptionPrice}>
-            ${selectedProduct.currentPrice}.00
+          <div className={ styles.ModalContentDescriptionAllPrice}>
+            <span className={selectedProduct.sale ? classNames(styles.ModalContentDescriptionAllPricePrice, styles.ModalContentDescriptionAllPriceSalePrice) : styles.ModalContentDescriptionAllPricePrice}>
+            ${selectedProduct.previousPrice}.00
           </span>
+            {selectedProduct.sale && <span className={styles.ModalContentDescriptionAllPricePrice2}>
+            ${selectedProduct.currentPrice}.00
+          </span>}
+          </div>
+
           <div className={styles.ModalContentDescriptionCount}>
             <Button
               className={styles.ModalContentDescriptionCountBtn}
