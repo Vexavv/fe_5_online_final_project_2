@@ -5,7 +5,7 @@ import styles from "./BestsellerItem.module.scss";
 import { Link } from "react-router-dom";
 import { getElement } from "../../store/slices/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { addCard } from "../../store/cardSlice";
+import { addCard } from "../../store/slices/cardSlice";
 
 function BestsellerItem({ item, onClick }) {
   const dispatch = useDispatch();

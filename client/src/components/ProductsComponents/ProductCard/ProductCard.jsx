@@ -7,7 +7,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { TfiSearch } from "react-icons/tfi";
 import { getElement } from "../../../store/slices/productsSlice";
 import { Link } from "react-router-dom";
-import { addCard } from "../../../store/cardSlice";
+import { addCard } from "../../../store/slices/cardSlice";
 
 function ProductCard({
   name,

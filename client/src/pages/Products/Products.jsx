@@ -5,7 +5,7 @@ import ProductsNav from "../../components/ProductsComponents/ProductsNav/Product
 import ProductsContent from "../../components/ProductsComponents/ProductsContent/ProductsContent";
 import ProductFilter from "../../components/ProductsComponents/ProductsFilter/ProductFilter";
 import { useDispatch, useSelector } from 'react-redux';
-import { addCard } from '../../store/cardSlice';
+import { addCard } from '../../store/slices/cardSlice';
 
 
 function Products(props) {

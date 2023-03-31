@@ -20,7 +20,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addCard, removeCard } from '../../store/cardSlice';
+import { addCard, removeCard } from '../../store/slices/cardSlice';
 import {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';

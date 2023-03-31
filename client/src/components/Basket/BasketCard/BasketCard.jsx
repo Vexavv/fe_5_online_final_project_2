@@ -4,7 +4,7 @@ import {
   decreaseCard,
   increaseCard,
   removeItemBasket,
-} from "../../../store/cardSlice";
+} from "../../../store/slices/cardSlice";
 import styles from "./BsketCard.module.scss";
 
 function BasketCard({
