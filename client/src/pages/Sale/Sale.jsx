@@ -2,7 +2,7 @@ import React from 'react';
 
 function Sale(props) {
     return (
-        <div> Hello Sale</div>
+        <div> Hello Sale )</div>
     );
 }
 
