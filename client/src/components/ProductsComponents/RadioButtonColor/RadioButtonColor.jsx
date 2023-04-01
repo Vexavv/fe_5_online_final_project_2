@@ -9,7 +9,7 @@ import Brightness1Icon from '@mui/icons-material/Brightness1';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useDispatch, useSelector} from "react-redux";
-import {changeColor} from "../../../store/productsSlice";
+import {changeColor} from "../../../store/slices/productsSlice";
 
 function RadioButtonColor(props) {
     const dispatch= useDispatch()
@@ -43,8 +43,8 @@ function RadioButtonColor(props) {
                     onChange={handleChange}>
                     <Radio  value="black" icon={<Brightness1Icon sx={{color: 'black'}}/>} checkedIcon={<CheckCircleIcon
                         sx={{color: 'black', alignItems: "center"}}/>}/>
-                    <Radio value="brown" icon={<Brightness1Icon sx={{color: 'brown'}}/>} checkedIcon={<CheckCircleIcon
-                        sx={{color: 'brown'}}/>}/>
+                    <Radio value="brown" icon={<Brightness1Icon sx={{color: 'saddlebrown'}}/>} checkedIcon={<CheckCircleIcon
+                        sx={{color: 'saddlebrown'}}/>}/>
                     <Radio value="grey" icon={<Brightness1Icon sx={{color: 'grey'}}/>} checkedIcon={<CheckCircleIcon
                         sx={{color: 'grey'}}/>}/>
                     <Radio value="white" icon={<RadioButtonUncheckedIcon/>} checkedIcon={<CheckCircleOutlineIcon

@@ -13,6 +13,7 @@ import Checkout from './pages/Checkout/Checkout'
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import ProductModal from './components/ProductModal/ProductModal';
 import Favorites from './pages/Favorites/Favorites';
+import Sale from './pages/Sale/Sale'
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAsyncWishlist} from "./store/slices/wishlistSlice";
 
@@ -37,7 +38,8 @@ function App(props) {
           <Route index element={<Home />} />
           <Route path="/myaccount" element={<MyAccount />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<OneProduct />} />         
+          <Route path="/products/:id" element={<OneProduct />} />
+          <Route path="/sale" element={<Sale />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />

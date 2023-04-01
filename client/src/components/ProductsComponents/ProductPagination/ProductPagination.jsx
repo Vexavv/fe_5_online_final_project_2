@@ -3,7 +3,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {useDispatch, useSelector} from "react-redux";
-import {setPage} from "../../../store/productsSlice";
+import {setPage} from "../../../store/slices/productsSlice";
 import {PAGE_SIZE} from '../../../constants/constants'
 
 // const theme = createTheme({

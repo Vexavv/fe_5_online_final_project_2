@@ -7,6 +7,7 @@ const url = `${BASE_URL}/wishlist`;
 const initialState = {
     wishlist: {},
 }
+
 export const addProductToWishlist = createAsyncThunk(
     'wishlist/addProductToWishlist',
     async (productId, {rejectWithValue, getState}) => {
@@ -108,6 +109,7 @@ const wishlistSlice = createSlice({
             .addCase(fetchAsyncWishlist.fulfilled, (state, action) => {
                 state.wishlist = action.payload;
             })
+
             .addCase(addProductToWishlist.fulfilled, (state, action) => {
                 state.wishlist = action.payload;
             })

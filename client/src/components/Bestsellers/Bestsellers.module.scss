@@ -13,7 +13,7 @@
     }
 
     h3{
-        text-transform: uppercase;
+        text-transform: capitalize;
         cursor: pointer;
         @media (max-width:600px) {
             font-size: 10px;

@@ -1,65 +1,119 @@
-.btnWrapper{
-   display: flex;
-   flex-direction: column;
-   position: absolute;
-   top: 5%;
-   right: 7%;
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 5%;
+  right: 7%;
 
-   &Icon{
-     cursor: pointer;
-     padding:10px;
-     border-radius:5px ;
-     background-color:#ffffff;
-     margin-bottom: 10px;
-     font-size: 20px;
-     z-index: 1;
+  &Sale {
+    background: #ba933e;
+    border-radius: 4px;
+    position: absolute;
+    top: 3%;
+    left: 5%;
 
-     @media (max-width:600px) {
-        font-size: 10px;
-        padding: 5px;
-        margin-bottom: 5px;
+    &Text {
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      color: #F5F5F5;
+      padding: 5px;
+      text-transform: capitalize;
     }
-     
-     &:hover {  
-       background-color: #ba933e; 
-       color: #F5F5F5;
-     }
-   }
+  }
+  &Title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+&Name{
+  text-transform: capitalize;
+  cursor: pointer;
+  @media (max-width:600px) {
+    font-size: 10px;
+  }
+}
+    &AllPrice {
+      display: flex;
+
+      &Price {
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20px;
+        color: #666;
+        padding: 10px 0;
+        margin-bottom: 10px;
+      }
+
+      &SalePrice {
+        text-decoration: line-through;
+      }
+
+      &Price2 {
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20px;
+        color: #ba933e;
+        padding: 10px 0;
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
+    }
+
+  }
+
+
+  &Icon {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    font-size: 20px;
+    z-index: 1;
+
+    @media (max-width: 600px) {
+      font-size: 10px;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+
+    &:hover {
+      background-color: #ba933e;
+      color: #F5F5F5;
+    }
+  }
+
+
 }
 
-.wrapper{    
-        margin: 10px;
-        position: relative;
-        
-        img{
-            cursor: pointer;
-            z-index: 0;
+.wrapper {
+  margin: 10px;
+  position: relative;
 
-            @media (max-width:600px) {
-                width: 150px;
-                height: 190px;
-            }
-            @media (min-width:601px) {
-                width: 250px;
-                height: 300px;
-            }
-            @media (min-width:901px) {
-                width: 322px;
-                height: 400px;
-            }
+  img {
+    cursor: pointer;
+    z-index: 0;
 
-            &:hover{
-                opacity: 0.2;
-                transition: opacity 0.25s ease-in-out;
-            }
-        }
+    @media (max-width: 600px) {
+      width: 150px;
+      height: 190px;
+    }
+    @media (min-width: 601px) {
+      width: 250px;
+      height: 300px;
+    }
+    @media (min-width: 901px) {
+      width: 322px;
+      height: 400px;
+    }
 
-        p{
-            color: #ba933e;
-        }
+    &:hover {
+      opacity: 0.2;
+      transition: opacity 0.25s ease-in-out;
+    }
+  }
 
-        s{
-            color: #666666;
-        }
-    
+
 }

@@ -8,7 +8,7 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useDispatch} from "react-redux";
-import {changeBestSeller, changeTrending} from '../../../store/productsSlice'
+import {changeBestSeller, changeTrending} from '../../../store/slices/productsSlice'
 
 function FilterBestSeller(props) {
     const dispatch = useDispatch()

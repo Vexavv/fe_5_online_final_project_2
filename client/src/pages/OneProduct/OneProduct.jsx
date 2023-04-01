@@ -20,13 +20,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addCard, removeCard } from '../../store/cardSlice';
-
-
-import {useEffect, useState} from 'react';
-
-
-import { useParams } from 'react-router-dom';
+import { addCard, removeCard } from '../../store/slices/cardSlice';
+import React, {useEffect, useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import { BASE_URL } from '../../constants/api';
 import {
@@ -61,12 +57,9 @@ export default function OneProduct() {
   useEffect(() => {
     async function getProduct() {
       const res = await fetch(`${BASE_URL}/products/` + id);
-
-
       const data = await res.json();
       setProduct(data);
     }
-
     getProduct();
   }, [id]);
 
@@ -109,12 +102,12 @@ export default function OneProduct() {
     }
     const removeFromWishlist = (id) => {
         dispatch(removeProductFromWishlist(id))
+
     }
 
   if (!product) {
     return <Loader />;
   }
-
   return (
     <>
       <DialogTitle
@@ -160,9 +153,23 @@ export default function OneProduct() {
               <Typography align="left" sx={{ mt: '20px' }}>
                 {product.description}
               </Typography>
-              <Typography variant="h6" color="#ba933e" align="left" m="30px 0">
-                ${product.currentPrice}.00
-              </Typography>
+                <Box display='flex'>
+                    {product.sale ? <Typography  variant="h6" color="#666666" align="left" m="30px 0"
+                        sx={{
+                            textDecoration: 'line-through'
+                        }}
+                    >
+                        ${product.previousPrice}.00
+                    </Typography> : <Typography variant="h6" color="#666666" align="left" m="30px 0"
+                    >
+                        ${product.previousPrice}.00
+                    </Typography>}
+                    {product.sale && <Typography variant="h6" color="#ba933e" align="left" m="30px 10px"
+                    >
+                        ${product.currentPrice}.00
+                    </Typography>
+                    }
+                </Box>
             </Box>
 
             <Box display="flex" alignItems="center" minHeight="50px">
