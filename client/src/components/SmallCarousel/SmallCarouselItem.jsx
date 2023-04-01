@@ -1,8 +1,4 @@
 import React, {useState} from 'react';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Typography from '@mui/material/Typography';
 import {Box, Typography, CardMedia, CardContent, Card} from '@mui/material'
 import styles from './SmallCarousel.module.scss'
 import {HiOutlineShoppingBag} from 'react-icons/hi';
