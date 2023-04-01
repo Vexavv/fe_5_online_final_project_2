@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {Link, Navigate} from 'react-router-dom';
+import { Navigate} from 'react-router-dom';
 import {
     loginCustomerFetch,
     createAccountFetch
 } from '../../store/slices/loginSlice'
-import { Collapse, IconButton, Alert } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import { fetchGetCustomer } from '../../store/slices/customerSlice'
 import { Formik, Form, FastField, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -82,7 +80,7 @@ const Login = () => {
     }
 
     // submitting functions
-    // need add dispatch getUser, wishlist after login
+  
     const HandleLoginSubmit = ({ email, password }) => {
         dispatch(loginCustomerFetch({ email, password }))
         dispatch(fetchGetCustomer())

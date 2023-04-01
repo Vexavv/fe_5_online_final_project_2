@@ -1,16 +1,38 @@
-import { TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, Dialog, IconButton, Button, } from '@mui/material';
+import { TextField, DialogActions, DialogContent,  DialogTitle, Dialog, IconButton, Button, } from '@mui/material';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import {fetchChangePassword} from '../../store/slices/passwordSlice'
 import SearchIcon from '@mui/icons-material/Search'
+import { Formik, Form, FastField, Field, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import YupPassword from 'yup-password'
 
+const initialValuesPassword = {  
+  password: ''
+}
+YupPassword(yup)
+const validationSchemaPassword = yup.string().password()
+.minSymbols(0)
+.min(7, 'Password must be between 7 and 30 characters')
+.max(30, 'Password must be between 7 and 30 characters')
+.minLowercase(5)
+.required('Password is required field')
 
 
 const DialogModal = (props) => {
   const {search, textButton, textSubmitButton, typeInput, autoComplete, titleText, ariaLabel} = props;
   const [openDialog, setOpenDialog] = useState(false);
+const dispatch = useDispatch()
 
   const handleClickOpen = () => {
     setOpenDialog(value => !value);
   };
+
+  const HandlePasswordSubmit = ( password ) => {
+    console.log(password);
+    dispatch(fetchChangePassword( password ))
+    handleClickOpen ()
+}
 
   return (
     <>
@@ -52,13 +74,20 @@ const DialogModal = (props) => {
         }}
       >
         <DialogTitle>{titleText}</DialogTitle>
+        <Formik
+           initialValues={initialValuesPassword}
+           validationSchema={validationSchemaPassword}
+           onSubmit={(password, { resetForm }) => {
+            HandlePasswordSubmit(password)
+               resetForm()
+           }}>
+             {({ isValid }) => (
+          <Form>
         <DialogContent sx={{color:'#BA933E' }
         }
         component = 'form'
         >
-          <DialogContentText>
-           
-          </DialogContentText>
+         
           <TextField
           error={false}
             autoFocus
@@ -70,16 +99,20 @@ const DialogModal = (props) => {
               autoComplete: autoComplete,
               
             }}  
-           
+          //  onSubmitted
             fullWidth
             variant="standard"
             sx={{color:'#BA933E' }}
           />
+         
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleClickOpen(false)}>Cancel</Button>
-          <Button onClick={() => handleClickOpen(false)}>{textSubmitButton}</Button>
+          <Button type="button" onClick={() => handleClickOpen(false)}>Cancel</Button>
+          <Button type ="submit" disabled={!isValid}>{textSubmitButton}</Button>
         </DialogActions>
+        </Form>
+             )}
+        </Formik>
       </Dialog>
 
     </>

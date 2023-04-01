@@ -7,7 +7,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import productsReducer from './productsSlice'
 import isLoginReducer from './slices/loginSlice'
 import messageReducer from './slices/messageSlice'
-
+import passwordReducer from './slices/passwordSlice'
 import cardReducer from "./cardSlice";
 import customerReducer from "./slices/customerSlice"
 
@@ -32,6 +32,7 @@ const rootReducer = combineReducers({
   card: cardReducer,
   customer: customerReducer,
   message: messageReducer,
+  password: passwordReducer,
 })
 
 
