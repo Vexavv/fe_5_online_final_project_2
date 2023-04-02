@@ -107,7 +107,7 @@ const Login = () => {
 
             {isLogged &&
                 <Typography
-                    component={Link} to='/favorites'
+                    component={Link} to='/myaccount'
                     cursor='pointer'
                     sx={{
                         display: { xs: "none", sm: 'none', md: "flex" },
@@ -118,7 +118,7 @@ const Login = () => {
                         alignItems: 'center',
                         '&:hover': { color: '#BA933E' }
                     }}>
-                    MyWishlist
+                    MyAccount
                 </Typography>
             }
         </Box>

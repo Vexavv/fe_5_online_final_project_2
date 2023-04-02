@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {fetchChangePassword} from '../../store/slices/passwordSlice'
 import SearchIcon from '@mui/icons-material/Search'
-import { Formik, Form, FastField, Field, ErrorMessage } from 'formik';
+import { Formik, Form, useFormikContext} from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
 
@@ -23,6 +23,7 @@ const DialogModal = (props) => {
   const {search, textButton, textSubmitButton, typeInput, autoComplete, titleText, ariaLabel} = props;
   const [openDialog, setOpenDialog] = useState(false);
 const dispatch = useDispatch()
+// const {error} = useFormikContext()
 
   const handleClickOpen = () => {
     setOpenDialog(value => !value);
@@ -53,12 +54,14 @@ const dispatch = useDispatch()
       </IconButton>}
       {!search && 
       <Button
-      variant="outlined"
+      variant="contained"
       size="small"
       aria-label={ariaLabel}
       disableElevation
+     
       onClick={handleClickOpen}>
         {textButton}
+ 
       </Button>
       }
       <Dialog open={openDialog} onClose={() => handleClickOpen(false)}
