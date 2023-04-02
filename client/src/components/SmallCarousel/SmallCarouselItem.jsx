@@ -1,8 +1,4 @@
 import React, {useState} from 'react';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Typography from '@mui/material/Typography';
 import {Box, Typography, CardMedia, CardContent, Card} from '@mui/material'
 import styles from './SmallCarousel.module.scss'
 import {HiOutlineShoppingBag} from 'react-icons/hi';
@@ -18,11 +14,11 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo,
     return (
         <Card
             sx={{
-                width: {xs: '350px', sm: '250px', md: '270px', xl: '335px'},
+                width: {xs: '300px', sm: '250px', md: '270px', xl: '335px'},
                 border: 'none',
                 boxShadow: 0,
                 margin: '0 auto',
-                cursor: 'pointer',
+
             }}
         >
             <CardMedia
@@ -62,7 +58,7 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo,
                     onClick={() => {
                         dispatch(getElement(product));
                     }}
-                    sx={{padding: '20px 0'}}
+                    sx={{padding: '20px 0', cursor: 'pointer',}}
                 >
                     <Typography
                         sx={{

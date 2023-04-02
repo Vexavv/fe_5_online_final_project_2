@@ -20,18 +20,21 @@
       text-transform: capitalize;
     }
   }
+
   &Title {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-&Name{
-  text-transform: capitalize;
-  cursor: pointer;
-  @media (max-width:600px) {
-    font-size: 10px;
-  }
-}
+
+    &Name {
+      text-transform: capitalize;
+      cursor: pointer;
+      @media (max-width: 600px) {
+        font-size: 10px;
+      }
+    }
+
     &AllPrice {
       display: flex;
 
@@ -63,7 +66,6 @@
 
   }
 
-
   &Icon {
     cursor: pointer;
     padding: 10px;
@@ -73,10 +75,16 @@
     font-size: 20px;
     z-index: 1;
 
-    @media (max-width: 600px) {
-      font-size: 10px;
-      padding: 5px;
-      margin-bottom: 5px;
+    &:nth-child(2) {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      font-size: 25px;
+      &:nth-child(2) {
+        display: block;
+
+      }
     }
 
     &:hover {
@@ -85,12 +93,12 @@
     }
   }
 
-
 }
 
 .wrapper {
   margin: 10px;
   position: relative;
+
 
   img {
     cursor: pointer;
@@ -109,10 +117,10 @@
       height: 400px;
     }
 
-    &:hover {
-      opacity: 0.2;
-      transition: opacity 0.25s ease-in-out;
-    }
+    //&:hover {
+    //  opacity: 0.2;
+    //  transition: opacity 0.25s ease-in-out;
+    //}
   }
 
 

@@ -10,10 +10,10 @@
   cursor: pointer;
   position: relative;
 
-  &:hover &Button {
-    display: flex;
-    flex-direction: column;
-  }
+  //&:hover &Button {
+  //  display: flex;
+  //  flex-direction: column;
+  //}
 
   &Link {
     display: flex;
@@ -28,19 +28,29 @@
 
 
   &Button {
-    display: none;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 5%;
     right: 12%;
 
     &Icon {
       color: black;
+      font-size: 25px;
+      padding: 8px;
+      border-radius: 5px;
+      background-color: #ffffff;
+      margin-bottom: 10px;
 
-      &:hover {
-        background-color: #ba933e;
-        color: #F5F5F5;
-        transition: all .5s ease;
+      &:nth-child(2) {
+        display: none;
       }
+
+      //&:hover {
+      //  background-color: #ba933e;
+      //  color: #F5F5F5;
+      //  transition: all .5s ease;
+      //}
     }
   }
 
@@ -141,6 +151,43 @@
       }
 
     }
+  }
+}
+
+@media (min-width: 900px) {
+  .Card {
+    &:hover &Button {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &Button {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 5%;
+      right: 12%;
+
+      &Icon {
+        color: black;
+        font-size: 25px;
+        padding: 8px;
+        border-radius: 5px;
+        background-color: #ffffff;
+        margin-bottom: 10px;
+
+        &:nth-child(2) {
+          display: block;
+        }
+
+        &:hover {
+          background-color: #ba933e;
+          color: #F5F5F5;
+          transition: all .5s ease;
+        }
+      }
+    }
+
   }
 }
 

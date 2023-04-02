@@ -1,8 +1,14 @@
 import React from 'react';
+import SaleBanner from "../../components/SaleComponents/SaleBanner/SaleBanner";
+import SaleContent from "../../components/SaleComponents/SaleContent/SaleContent";
 
 function Sale(props) {
     return (
-        <div> Hello Sale</div>
+        <>
+            <SaleBanner/>
+            <SaleContent/>
+        </>
+
     );
 }
 

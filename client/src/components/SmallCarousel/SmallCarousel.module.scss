@@ -52,9 +52,10 @@
   &:hover &Icon{
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
   &Icon{
-    display: none;
+    display: block;
     position: absolute;
     top: 5%;
     right: 10%;
@@ -65,10 +66,25 @@
       background-color:#ffffff;
       margin-bottom: 10px;
       color:#1a1a1a;
-      &:hover {
-        background-color: #ba933e;
-        color: #F5F5F5;
-        transition: all .5s ease;
+      &:nth-child(2){
+        display: none;
+      }
+    }
+  }
+}
+@media (min-width: 900px) {
+  .Wrapper{
+    &Icon{
+      display: none;
+      &Btn{
+        &:nth-child(2){
+          display: block;
+        }
+        &:hover {
+          background-color: #ba933e;
+          color: #F5F5F5;
+          transition: all .5s ease;
+        }
       }
     }
   }
