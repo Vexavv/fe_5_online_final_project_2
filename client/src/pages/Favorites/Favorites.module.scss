@@ -170,7 +170,6 @@
       position: relative;
 
       &Btn {
-
         margin-bottom: 0;
         position: absolute;
         left: 0;
@@ -189,9 +188,8 @@
 
       &List {
         border: 1px solid #d1cfcf;
-
+        justify-content: space-evenly;
         &Item {
-
 
           &Button {
 
