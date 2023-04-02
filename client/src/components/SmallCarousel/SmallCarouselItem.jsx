@@ -14,11 +14,11 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo,
     return (
         <Card
             sx={{
-                width: {xs: '350px', sm: '250px', md: '270px', xl: '335px'},
+                width: {xs: '300px', sm: '250px', md: '270px', xl: '335px'},
                 border: 'none',
                 boxShadow: 0,
                 margin: '0 auto',
-                cursor: 'pointer',
+
             }}
         >
             <CardMedia
@@ -58,7 +58,7 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo,
                     onClick={() => {
                         dispatch(getElement(product));
                     }}
-                    sx={{padding: '20px 0'}}
+                    sx={{padding: '20px 0', cursor: 'pointer',}}
                 >
                     <Typography
                         sx={{

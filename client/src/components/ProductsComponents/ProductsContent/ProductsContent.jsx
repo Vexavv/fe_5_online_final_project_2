@@ -69,7 +69,7 @@ function ProductsContent() {
                                                onClick={() => handleProductClick(product)}/>
                         })}
                     </ul>
-                    <ProductPagination/>
+                    <ProductPagination data={data.productsQuantity}/>
                 </>
             );
         default:
