@@ -13,7 +13,7 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
         : configs.development.email.mailService,
     auth: {
       user:
-        process.env.NODE_ENV === "production"
+        process.env.NODE_ENV === "production"  
           ? configs.production.email.mailUser
           : configs.development.email.mailUser,
       pass:
