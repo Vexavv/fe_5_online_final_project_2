@@ -4,29 +4,89 @@ import Button from "../Button/Button";
 import axios from "axios";
 import { BASE_URL } from "../../constants/api";
 
+const newConfigs = {
+  customId: "some-global-configs",
+  development: {
+    database: {
+      uri: "mongodb+srv://string",
+    },
+    email: {
+      mailUser: "example@gmail.com",
+      mailPassword: "passwordforemail",
+      mailService: "gmail",
+    },
+    auth: {
+      secretOrKey: "somesecret",
+    },
+    infinitScrollEnabled: true,
+    minOrderValue: 100,
+    someCustomParam: "custom params value",
+  },
+  production: {
+    database: {
+      uri: "mongodb+srv://..............",
+    },
+    email: {
+      mailUser: "example@gmail.com",
+      mailPassword: "passwordforemail",
+      mailService: "gmail",
+    },
+    auth: {
+      secretOrKey: "somesecret",
+    },
+    infinitScrollEnabled: true,
+    minOrderValue: 100,
+    someCustomParam: "custom params value",
+  },
+};
+
+axios
+  .post(`${BASE_URL}/configs`, newConfigs)
+  .then((newConfigs) => {
+    console.log(newConfigs);
+  })
+  .catch((err) => {
+    /*Do something with error, e.g. show error to user*/
+  });
+
 function SubscriptionNews(props) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [error, setError] = useState("");
 
   const newSubscriber = {
-    email: email,
+    customId: "global-configs",
+    subscriberMail: email,
+    enabled: false,
     letterSubject: "Test letter (final project)",
     letterHtml:
-      "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>",
+      "<!DOCTYPE html><html lang='en'><head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>",
   };
+
+  // const getConfigs = async () => {
+  //   await fetch(`${BASE_URL}/configs`)
+  //     .then((response) => response.json())
+  //     .then((config) => {
+  //       // use configuration values here
+  //       console.log(config);
+  //       console.log(config.API_KEY);
+  //     });
+  // };
+  // getConfigs();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
+
+    await axios
       .post(`${BASE_URL}/subscribers`, newSubscriber)
-      .then(() => {
+      .then((response) => {
+        console.log(response);
+        console.log(newSubscriber);
         setSubscribed(true);
-        setError("");
       })
       .catch((error) => {
         setSubscribed(false);

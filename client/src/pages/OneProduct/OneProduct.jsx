@@ -35,18 +35,6 @@ import {
 
 //------------
 
-import { useEffect, useState, useContext } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { FavoritesContext } from "../Favorites/FavoritesContext";
-import { useParams } from "react-router-dom";
-import Loader from "../../components/Loader/Loader";
-import { BASE_URL } from "../../constants/api";
-import {
-  createWishlist,
-  fetchWishlist,
-  updateWishlist,
-} from "../Favorites/wishlistSlice";
-
 const theme = createTheme({
   palette: {
     secondary: {
