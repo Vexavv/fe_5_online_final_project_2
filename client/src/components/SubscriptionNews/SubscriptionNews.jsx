@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import styles from "./SubscriptionNews.module.scss";
 import Button from "../Button/Button";
 import axios from "axios";
-import { BASE_URL } from "../../constants/api";
+import { BASE_URL, MONGO_URI } from "../../constants/api";
 
 const newConfigs = {
   customId: "some-global-configs",
   development: {
     database: {
-      uri: "mongodb+srv://string",
+      mongoURI: MONGO_URI,
     },
     email: {
-      mailUser: "example@gmail.com",
-      mailPassword: "passwordforemail",
+      mailUser: "kovalenkosv60@gmail.com",
+      mailPassword: "qwerty123",
       mailService: "gmail",
     },
     auth: {
-      secretOrKey: "somesecret",
+      secretOrKey: "random very very secret string",
     },
     infinitScrollEnabled: true,
     minOrderValue: 100,
@@ -24,11 +24,11 @@ const newConfigs = {
   },
   production: {
     database: {
-      uri: "mongodb+srv://..............",
+      uri: MONGO_URI,
     },
     email: {
-      mailUser: "example@gmail.com",
-      mailPassword: "passwordforemail",
+      mailUser: "kovalenkosv60@gmail.com",
+      mailPassword: "qwerty123",
       mailService: "gmail",
     },
     auth: {
@@ -42,8 +42,9 @@ const newConfigs = {
 
 axios
   .post(`${BASE_URL}/configs`, newConfigs)
-  .then((newConfigs) => {
+  .then((res) => {
     console.log(newConfigs);
+    return newConfigs;
   })
   .catch((err) => {
     /*Do something with error, e.g. show error to user*/

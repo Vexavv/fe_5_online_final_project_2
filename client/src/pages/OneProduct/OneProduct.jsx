@@ -91,10 +91,13 @@ export default function OneProduct() {
   const { wishlist } = useSelector((state) => state.wishlist);
   console.log(wishlist);
 
-  // const isFavorite = wishlist.products
-  // const isInWishlist = wishlist.products && product && wishlist.products.find(item => item._id === product._id);
+  const isFavorite = wishlist.products;
+  const isInWishlist =
+    wishlist.products &&
+    product &&
+    wishlist.products.find((item) => item._id === product._id);
   //
-  // const [isFavoriteLocal, setIsFavoriteLocal] = useState(isInWishlist);
+  const [isFavoriteLocal, setIsFavoriteLocal] = useState(isInWishlist);
   // console.log(isInWishlist)
 
   const addToWishlist = (id) => {
