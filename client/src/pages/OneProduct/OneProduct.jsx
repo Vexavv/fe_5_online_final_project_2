@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
+
 import Tab from "@mui/material/Tab";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -18,22 +19,16 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./OneProduct.module.scss";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { styled } from "@mui/material/styles";
-
 import { useDispatch, useSelector } from "react-redux";
-import { addCard, removeCard } from "../../store/cardSlice";
-
-import { useEffect, useState, useContext } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-
-import { useParams } from "react-router-dom";
+import { addCard, removeCard } from "../../store/slices/cardSlice";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import { BASE_URL } from "../../constants/api";
 import {
   addProductToWishlist,
   removeProductFromWishlist,
 } from "../../store/slices/wishlistSlice";
-
-//------------
 
 const theme = createTheme({
   palette: {
@@ -42,7 +37,6 @@ const theme = createTheme({
     },
   },
 });
-
 const buttonSX = {
   backgroundColor: "#222222",
   color: "white",
@@ -50,13 +44,10 @@ const buttonSX = {
   minWidth: "150px",
   padding: "10px 40px",
 };
-
 export default function OneProduct() {
   const dispatch = useDispatch();
-
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-
   // added constant from fetch request
   useEffect(() => {
     async function getProduct() {
@@ -65,7 +56,6 @@ export default function OneProduct() {
       const data = await res.json();
       setProduct(data);
     }
-
     getProduct();
   }, [id]);
 
@@ -73,7 +63,6 @@ export default function OneProduct() {
   const { tw, fb, inst, span } = styles;
 
   const [tabIndex, setTabIndex] = useState(0);
-
   const handleTabChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
@@ -83,7 +72,6 @@ export default function OneProduct() {
   const isInBasket = products.find(
     (productItem) => productItem._id === product?._id
   );
-
   const addProductBascet = () => {
     if (isInBasket) {
       console.log("remove");
@@ -121,7 +109,6 @@ export default function OneProduct() {
   if (!product) {
     return <Loader />;
   }
-
   return (
     <>
       <DialogTitle
@@ -131,7 +118,8 @@ export default function OneProduct() {
         <Box
           display='flex'
           alignItems='center'
-          justifyContent={"space-between"}>
+          justifyContent={"space-between"}
+          textTransform='capitalize'>
           {product.name}
         </Box>
       </DialogTitle>
@@ -170,6 +158,7 @@ export default function OneProduct() {
 
             <Box display='flex' alignItems='center' minHeight='50px'>
               {/* <Box
+
                 display="flex"
                 alignItems="center"
                 backgroundColor="#f5f5f5"
@@ -200,36 +189,25 @@ export default function OneProduct() {
                   color='secondary'>
                   {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
                 </Button>
-                {/*<IconButton onClick={() => isFavoriteLocal ? removeFromWishlist(product._id) : addToWishlist(product._id)}>
-                                    {isLogged && (isFavoriteLocal ?
-                                            <FavoriteIcon sx={{fontSize: 35, color: '#ba933e'}}/>
-                                            : <FavoriteBorderIcon sx={{fontSize: 35}}/>
-                                    )}
-                                </IconButton>*/}
+                {/*-----------------add to wish list --------------*/}
+                <IconButton
+                  sx={{ marginLeft: 3 }}
+                  onClick={() =>
+                    isInWishlist
+                      ? removeFromWishlist(product._id)
+                      : addToWishlist(product._id)
+                  }>
+                  {isLogged &&
+                    (isInWishlist ? (
+                      <FavoriteIcon sx={{ fontSize: 40, color: "#ba933e" }} />
+                    ) : (
+                      <FavoriteBorderIcon sx={{ fontSize: 40 }} />
+                    ))}
+                </IconButton>
               </ThemeProvider>
             </Box>
-            {/*-----------------my fishlist --------------*/}
-            <Box display='flex' alignItems='center' minHeight='50px'>
-              <ThemeProvider theme={theme}>
-                <Button
-                  onClick={() => {
-                    addToWishlist(product._id);
-                  }}
-                  sx={buttonSX}
-                  variant='contained'
-                  color='secondary'>
-                  {/*{isInWishlist ? "PRODUCT IN WISHLIST" : "ADD TO WISHLIST"}*/}
-                </Button>
-              </ThemeProvider>
-            </Box>
+
             <Box display='flex' flexDirection='column' alignItems='flex-start'>
-              {/*<Box m="20px 0 5px 0" display="flex">*/}
-              {/*  /!*------------------------- add to wishlist*!/*/}
-              {/*  <div onClick={()=>{dispatch(addProductToWishlist(product._id))}} className={styles.favorites}>*/}
-              {/*    {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}*/}
-              {/*    <Typography sx={{ ml: "5px" }}>ADD TO WISHLIST</Typography>*/}
-              {/*  </div>*/}
-              {/*</Box>*/}
               <Typography m='8px 0 0 0'>
                 <span className={span}>Availability: </span> {product.quantity}
               </Typography>
@@ -266,6 +244,7 @@ export default function OneProduct() {
 
         {/* INFORMATION */}
         {/* <Box m="20px 0">
+
           <Tabs value={changeTable} onChange={handleChange} centered>
             <Tab label="Details" value="description" />
             <Tab label="Shipping & Return" value="reviews" />

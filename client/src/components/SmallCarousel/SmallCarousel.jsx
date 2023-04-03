@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css';
 import SmallCarouselItem from "./SmallCarouselItem";
 import {useDispatch} from "react-redux";
-import {getElement, toggleModal} from "../../store/productsSlice";
+import {getElement, toggleModal} from "../../store/slices/productsSlice";
 import Loader from "../Loader/Loader";
 import axios from 'axios'
 import {BASE_URL} from "../../constants/api";

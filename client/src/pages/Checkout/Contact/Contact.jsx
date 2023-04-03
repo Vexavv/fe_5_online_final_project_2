@@ -1,9 +1,10 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
-import { useFormik } from 'formik';
+import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import s from './Contact.module.scss';
+import ContactLogged from './ContactLogged';
 
 import {
   Card,
@@ -14,7 +15,6 @@ import {
   Checkbox,
   TextField,
 } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('Enter a first name'),
@@ -32,57 +32,58 @@ const validationSchema = Yup.object().shape({
     .required('Required'),
 });
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#141414',
-      darker: '#212121',
-    },
-    secondary: {
-      main: '#212121',
-      contrastText: '#ffcc00',
-    },
-  },
-});
+// interface Values {
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+// }
+
+const TextInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  const errorText = meta.touched && meta.error ? meta.error : '';
+  return (
+    <TextField
+      label={label}
+      {...field}
+      helperText={errorText}
+      error={!!errorText}
+      fullWidth
+    />
+  );
+};
 
 export const Contact = ({ next, data }) => {
-  const formik = useFormik({
-    initialValues: {
-      ...data,
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      next(values);
-    },
-  });
-
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Card className={s.cardForm} sx={{ marginTop: 0, paddingRight: 5 }}>
-          <CardContent sx={{ paddingY: 10, paddingX: 1 }}>
-            <form onSubmit={formik.handleSubmit}>
+    <Card>
+      <CardContent>
+        <Formik
+          initialValues={data}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            next(values);
+            setSubmitting(false);
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <Typography variant="h6" align="left">
-                    Contact information
+                    Contact information {data.email}
                   </Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <Typography variant="subtitle2" align="right">
-                    Already have an account? <Link to={'/login'}>Log in</Link>
-                  </Typography>
+                  <ContactLogged />
                 </Grid>
+
                 <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    id="email"
+                  <TextInput
                     name="email"
                     label="Email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    error={formik.touched.email && Boolean(formik.errors.email)}
-                    helperText={formik.touched.email && formik.errors.email}
+                    type="email"
+                    // defaultValue={data.email}
+                    // placeholder="Email555"
+                    // validate={'99999'}
                   />
                 </Grid>
                 <Grid item xs={1}>
@@ -104,113 +105,40 @@ export const Contact = ({ next, data }) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    id="country"
+                  <TextInput
                     name="country"
                     label="Country/Region"
-                    type="country"
-                    value={formik.values.country}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.country && Boolean(formik.errors.country)
-                    }
-                    helperText={formik.touched.country && formik.errors.country}
+                    type="text"
+                    initialValue={data.email}
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    id="firstName"
+                  <TextInput
                     name="firstName"
                     label="First Name"
-                    value={formik.values.firstName}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.firstName &&
-                      Boolean(formik.errors.firstName)
-                    }
-                    helperText={
-                      formik.touched.firstName && formik.errors.firstName
-                    }
+                    defaultValue={'jjjj'}
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    id="lastName"
-                    name="lastName"
-                    label="Last Name"
-                    value={formik.values.lastName}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.lastName && Boolean(formik.errors.lastName)
-                    }
-                    helperText={
-                      formik.touched.lastName && formik.errors.lastName
-                    }
-                  />
+                  <TextInput name="lastName" label="Last Name" />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextInput name="address" label="Address" type="text" />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    id="address"
-                    name="address"
-                    label="Address"
-                    type="address"
-                    value={formik.values.address}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.address && Boolean(formik.errors.address)
-                    }
-                    helperText={formik.touched.address && formik.errors.address}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    fullWidth
-                    id="apartment"
+                  <TextInput
                     name="apartment"
                     label="Apartment, suite, etc. (optional)"
-                    value={formik.values.apartment}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.apartment &&
-                      Boolean(formik.errors.apartment)
-                    }
-                    helperText={
-                      formik.touched.apartment && formik.errors.apartment
-                    }
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    id="city"
-                    name="city"
-                    label="City"
-                    value={formik.values.city}
-                    onChange={formik.handleChange}
-                    error={formik.touched.city && Boolean(formik.errors.city)}
-                    helperText={formik.touched.city && formik.errors.city}
-                  />
+                  <TextInput name="city" label="City" />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    id="postalCode"
-                    name="postalCode"
-                    label="Postal Code"
-                    value={formik.values.postalCode}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.postalCode &&
-                      Boolean(formik.errors.postalCode)
-                    }
-                    helperText={
-                      formik.touched.postalCode && formik.errors.postalCode
-                    }
-                  />
+                  <TextInput name="postalCode" label="Postal Code" />
                 </Grid>
                 <Grid item xs={1}>
                   <Checkbox />
@@ -231,6 +159,7 @@ export const Contact = ({ next, data }) => {
                     startIcon={<ArrowBackIosIcon />}
                     component={Link}
                     to="/cart"
+                    color="secondary"
                   >
                     Return to cart
                   </Button>
@@ -240,17 +169,18 @@ export const Contact = ({ next, data }) => {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    color="primary"
+                    color="secondary"
                     size="large"
+                    disabled={isSubmitting}
                   >
                     Continue to shipping
                   </Button>
                 </Grid>
               </Grid>
-            </form>
-          </CardContent>
-        </Card>
-      </ThemeProvider>
-    </>
+            </Form>
+          )}
+        </Formik>
+      </CardContent>
+    </Card>
   );
 };

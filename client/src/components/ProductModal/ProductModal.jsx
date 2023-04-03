@@ -1,12 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, {useState} from "react";
 import styles from "./ProductModal.module.scss";
 import classNames from "classnames";
 import Button from "../Button/Button";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleModal } from "../../store/productsSlice";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { addCard } from "../../store/cardSlice";
+import { toggleModal } from "../../store/slices/productsSlice";
+import { addCard } from "../../store/slices/cardSlice";
+import {addProductToWishlist, removeProductFromWishlist} from "../../store/slices/wishlistSlice";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import {IconButton} from "@mui/material";
+import {Link} from "react-router-dom";
 
 function ProductModal() {
   const dispatch = useDispatch();
@@ -21,19 +25,18 @@ function ProductModal() {
     setSelectedImage(null);
     dispatch(toggleModal(false));
   };
+//--------------------------add to wish list-----------------
+  const isLogged = useSelector(state => state.isLogged.isLogged.success)
+  const {wishlist} = useSelector(state => state.wishlist);
+  const isFavorite = wishlist && wishlist.products;
+  const isInWishlist = isFavorite && selectedProduct && isFavorite.find(item => item._id === selectedProduct._id);
 
-  // const { favorites, addFavorite, removeFavorite } =
-  //   useContext(FavoritesContext);
-  //
-  // const isFavorite = favorites.some((el) => selectedProduct === el);
-  //
-  // const handleClick = () => {
-  //   if (isFavorite) {
-  //     removeFavorite(selectedProduct);
-  //   } else {
-  //     addFavorite(selectedProduct);
-  //   }
-  // };
+  const addToWishlist = (id) => {
+    dispatch(addProductToWishlist(id))
+  }
+  const removeFromWishlist = (id) => {
+    dispatch(removeProductFromWishlist(id))
+  }
 
 
   // -------------------------addBasket---------------------------
@@ -100,20 +103,29 @@ function ProductModal() {
           <span className={styles.ModalContentDescriptionColor}>
             Color: {selectedProduct.color}
           </span>
-          <span className={styles.ModalContentDescriptionPrice}>
-            ${selectedProduct.currentPrice}.00
+          <div className={ styles.ModalContentDescriptionAllPrice}>
+            <span className={selectedProduct.sale ? classNames(styles.ModalContentDescriptionAllPricePrice, styles.ModalContentDescriptionAllPriceSalePrice) : styles.ModalContentDescriptionAllPricePrice}>
+            ${selectedProduct.previousPrice}.00
           </span>
+            {selectedProduct.sale && <span className={styles.ModalContentDescriptionAllPricePrice2}>
+            ${selectedProduct.currentPrice}.00
+          </span>}
+          </div>
+
           <div className={styles.ModalContentDescriptionCount}>
             <Button
               className={styles.ModalContentDescriptionCountBtn}
               text={isInBasket ? "PRODUCT IN BASKET" : "Add To Cart"}
               onClick={addProductBascet}
             />
+            <IconButton sx={{marginLeft:3}}
+                        onClick={() => isInWishlist ? removeFromWishlist(selectedProduct._id) : addToWishlist(selectedProduct._id)}>
+              {isLogged && (isInWishlist ?
+                      <FavoriteIcon sx={{fontSize: 40, color: '#ba933e'}}/>
+                      : <FavoriteBorderIcon sx={{fontSize: 40}}/>
+              )}
+            </IconButton>
           </div>
-          {/*<div onClick={handleClick} className={styles.Favorites}>*/}
-          {/*  {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}*/}
-          {/*  <p>ADD TO WISHLIST</p>*/}
-          {/*</div>*/}
           <span className={styles.ModalContentDescriptionValues}>
             Availability: {selectedProduct.quantity}
           </span>

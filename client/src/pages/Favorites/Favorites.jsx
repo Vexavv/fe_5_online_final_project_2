@@ -1,28 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Favorites.module.scss";
-import {
-  AiOutlineHeart,
-  AiFillHeart,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
 import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAsyncWishlist,
   removeProductFromWishlist,
 } from "../../store/slices/wishlistSlice";
+import Button from "../../components/Button/Button";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import { FaHeart } from "react-icons/fa";
 
 function Favorites() {
   const dispatch = useDispatch();
   const { wishlist } = useSelector((state) => state.wishlist);
-  console.log(wishlist);
-  const [hovered, setHovered] = useState(null);
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
-
-  useEffect(() => {
-    dispatch(fetchAsyncWishlist({ method: "GET" }));
-  }, [dispatch]);
+  const [hovered, setHovered] = useState(null);
   const deleteALLProduct = () => {
     dispatch(fetchAsyncWishlist({ method: "DELETE" })).then(() => {
       window.location.reload();
@@ -36,58 +29,71 @@ function Favorites() {
   let content;
   if (!wishlist || !wishlist.products) {
     content = (
-      <span className={styles.empty}>Your wishlist is still empty :(</span>
+      <span className={styles.FavoriteHeaderText}>
+        Your wishlist is still empty :(
+      </span>
     );
   } else {
     content =
       wishlist.products.length > 0 ? (
-        <ul className={styles.favList}>
-          <button onClick={deleteALLProduct}>delete all wishlist</button>
+        <ul className={styles.FavoriteContentList}>
           {wishlist.products.map((product) => (
-            <li className={styles.favItems} key={product._id}>
-              <img
-                width='200'
-                height='250'
-                src={
-                  hovered === product._id && product.imageUrls.length > 1
-                    ? product.imageUrls[1]
-                    : product.imageUrls[0]
-                }
-                onMouseLeave={() => setHovered(null)}
-                onMouseEnter={() => setHovered(product._id)}
-                alt=''
-              />
-              <div className={styles.flexbox}>
-                <h2>{product.name}</h2>
-                <p>${product.currentPrice}</p>
-              </div>
-              <div className={styles.flexbox}>
-                <div
-                  className={styles.btn}
+            <li className={styles.FavoriteContentListItem} key={product._id}>
+              <Link to={`/products/${product.itemNo}`}>
+                <img
+                  width='200'
+                  height='250'
+                  src={
+                    hovered === product._id && product.imageUrls.length > 1
+                      ? product.imageUrls[1]
+                      : product.imageUrls[0]
+                  }
+                  onMouseLeave={() => setHovered(null)}
+                  onMouseEnter={() => setHovered(product._id)}
+                  alt=''
+                />
+              </Link>
+              <h2 className={styles.FavoriteContentListItemText}>
+                {product.name}
+              </h2>
+              <p className={styles.FavoriteContentListItemText}>
+                ${product.currentPrice}
+              </p>
+              <div className={styles.FavoriteContentListItemButton}>
+                <HiOutlineShoppingBag
+                  className={styles.FavoriteContentListItemButtonIcon}
+                />
+                <FaHeart
+                  className={styles.FavoriteContentListItemButtonIcon}
                   onClick={() => {
                     deleteOneProduct(product._id);
-                  }}>
-                  {wishlist.products ? <AiFillHeart /> : <AiOutlineHeart />}
-                </div>
-                <AiOutlineShoppingCart className={styles.btn} />
+                  }}
+                />
               </div>
             </li>
           ))}
+          <div className={styles.FavoriteContentFooter}>
+            <Button
+              className={styles.FavoriteContentFooterBtn}
+              text='delete wishlist'
+              onClick={deleteALLProduct}
+            />
+          </div>
         </ul>
       ) : null;
   }
-
   return isLogged ? (
-    <div className={styles.wrapper}>
-      <Link to='/products'>
-        <h2 className={styles.link}>Go to Products!</h2>
-      </Link>
-      <span>Your wishlist:</span>
-      <div>{content}</div>
+    <div className={styles.Favorite}>
+      <div className={styles.FavoriteHeader}>
+        <Link to='/products'>
+          <Button className={styles.FavoriteHeaderBtn} text='go shopping' />
+        </Link>
+        <span className={styles.FavoriteHeaderText}>Your wishlist:</span>
+      </div>
+      <div className={styles.FavoriteContent}>{content}</div>
     </div>
   ) : (
     <Navigate to='/' replace />
   );
 }
-
 export default Favorites;

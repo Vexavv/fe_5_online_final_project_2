@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import s from './Total.module.scss';
 
 const TotalProduct = ({ name, currentPrice, imageUrls, amount }) => {
@@ -20,4 +20,4 @@ const TotalProduct = ({ name, currentPrice, imageUrls, amount }) => {
   );
 };
 
-export default TotalProduct
+export default TotalProduct;
