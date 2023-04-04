@@ -231,7 +231,15 @@ const Header = (props) => {
                sx={{
                  "&:hover": { color: "#BA933E" },
                }}>
+                  <Badge
+                      badgeContent={cards.length}
+                      sx={{
+                          color: "gray",
+                          "&:hover": { color: "#BA933E" },
+                      }}
+                  >
                 <AiOutlineHeart/>
+                      </Badge>
               </IconButton>
             </Box>
           </Toolbar>
