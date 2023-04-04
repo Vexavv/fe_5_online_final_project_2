@@ -6,8 +6,8 @@ import { loguotCustomer } from '../../store/slices/loginSlice'
 import styles from "./MyAccount.module.scss";
 import { Navigate } from "react-router-dom";
 import { fetchGetCustomer } from "../../store/slices/customerSlice";
-import DialogModal from '../../components/DialogModal/DialogModal'
-import { Collapse, IconButton, Alert, Grid, Typography } from '@mui/material';
+import UpdatePassword from '../../components/DialogModal/UpdatePassword'
+import { Collapse, IconButton, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import classNames from 'classnames';
 //miss order history
@@ -57,31 +57,23 @@ const MyAccount = () => {
                         </Link>
                     </div>
                     <h1 className={styles.accountTitle}>My Account</h1>
-                        <p className={styles.accountSubtitle}>Welcome, {customer.firstName || "Guest"}</p>
+                        <p className={styles.accountSubtitle}>Welcome, {newCustomer.firstName || "Guest"}</p>
                         <ul className={styles.accountContentWrapper}>
                             <li className={styles.accountItem}>
 
                                 <h2 className={styles.accountItemTitle}>Account Details</h2>
                                 <div>
                                 <p className={styles.accountItemText}>Name: {customer.firstName || "Stranger"}</p>
-                                    <p className={styles.accountItemText}>last name: {customer.lastName || "Guest"}</p>
+                                    <p className={styles.accountItemText}>last name: {newCustomer.lastName || "Guest"}</p>
                                     <div>
-                                        <p className={styles.accountItemText}>Email: {customer.email || "fdgsgs@gmail.com"}</p>
+                                        <p className={styles.accountItemText}>Email: {newCustomer.email || "fdgsgs@gmail.com"}</p>
                                     </div>
-                                    <DialogModal textButton='Reset password'
-                                        titleText="Enter new password"
-                                        textSubmitButton='Save changes'
-                                        typeInput='password'
-                                        ariaLabel="password"
-                                        autoComplete={newCustomer.firstName} />
+                                    <UpdatePassword
+                                      password= {newCustomer.password}
+                                         />
                                 </div>
                             </li>
-                            {/* <li className={styles.accountItem}>
-                    <Link to='/favorites'>
-                        <h2 className={styles.link}>Wishlist</h2>
-                    </Link>
-                    <p>Tap to see your wishlist.</p>
-                </li> */}
+                           
 
                             <li className={styles.accountItem}>
                                 <h2 className={styles.accountItemTitle}>Your Address</h2>                              
@@ -89,11 +81,11 @@ const MyAccount = () => {
                                 <span>Address:</span>
                                 <p className={styles.accountItemText}>Country: United States</p>
 
-                                <DialogModal textButton='Change address'
+                                {/* <DialogModal textButton='Change address'
                                     ariaLabel="text"
                                     titleText='Enter new address'
                                     textSubmitButton='Save changes'
-                                    typeInput='text' />
+                                    typeInput='text' /> */}
                             </li>
                             <li className={classNames(styles.accountItem, styles.accountItemOrders)}>
                                 <h2 className={styles.accountItemTitle}>Order History</h2>

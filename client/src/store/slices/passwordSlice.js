@@ -3,7 +3,7 @@ import {BASE_URL } from '../../constants/api'
 
 export const fetchChangePassword = createAsyncThunk(
     'password/fetchChangePassword',
-    async function (newPassword, { rejectWithValue, getState }) {
+    async function ({password, newPassword }, { rejectWithValue, getState }) {
         const stateToken = getState().isLogged.isLogged.token  
       try {
         const response = await fetch(`${BASE_URL}/customers/password`, {
@@ -12,7 +12,7 @@ export const fetchChangePassword = createAsyncThunk(
             'Content-Type': 'application/json',
             Authorization: stateToken
           },
-          body: JSON.stringify(newPassword)
+          body: JSON.stringify({password, newPassword})
         })
         if (!response.ok) {
           throw new Error('Error')
@@ -31,21 +31,22 @@ const passwordSlice = createSlice({
     name: 'password',
   
     initialState: {
-      password: ''
+      password: '', 
+        newPassword: '' 
     },
   
     reducers: {
         savedPassword:(state, action) => { 
-            state.password= action.payload
+            state.newPassword= action.payload
     }    
 },
 extraReducers: builder => {
     builder
       .addCase(fetchChangePassword.pending, (state, action) => {        
-        state.password= 'loading'
+        state.newPassword = 'loading'
       })
       .addCase(fetchChangePassword.fulfilled, (state, action) => {       
-        state.password= action.payload
+        state.newPassword = action.payload
       })
 } 
 })

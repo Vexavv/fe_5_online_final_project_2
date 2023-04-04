@@ -1,43 +1,49 @@
 import { TextField, DialogActions, DialogContent,  DialogTitle, Dialog, IconButton, Button, } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {fetchChangePassword} from '../../store/slices/passwordSlice'
 import SearchIcon from '@mui/icons-material/Search'
-import { Formik, Form, useFormikContext} from 'formik';
+import { Formik, Form, Field} from 'formik';
 import * as yup from 'yup';
 import YupPassword from 'yup-password'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const initialValuesPassword = {  
-  password: ''
-}
-YupPassword(yup)
-const validationSchemaPassword = yup.string().password()
-.minSymbols(0)
-.min(7, 'Password must be between 7 and 30 characters')
-.max(30, 'Password must be between 7 and 30 characters')
-.minLowercase(5)
-.required('Password is required field')
 
 
 const DialogModal = (props) => {
-  const {search, textButton, textSubmitButton, typeInput, autoComplete, titleText, ariaLabel} = props;
+  // const {search, textButton,   titleText, ariaLabel} = props;
   const [openDialog, setOpenDialog] = useState(false);
 const dispatch = useDispatch()
-// const {error} = useFormikContext()
+
 
   const handleClickOpen = () => {
     setOpenDialog(value => !value);
   };
 
-  const HandlePasswordSubmit = ( password ) => {
-    console.log(password);
-    dispatch(fetchChangePassword( password ))
-    handleClickOpen ()
-}
-
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main:'#4444',
+      },
+      secondary: {
+        main: "#ba933e",        
+      },
+    },
+  });
+  
+  const buttonSX = {
+    backgroundColor: '#1a1a1a',
+    color: "white",
+    borderRadius: '6px',  
+    padding: "6px 10px",
+    '&:hover': {
+      backgroundColor: '#BA933E',
+    }
+  };
+  
   return (
     <>
-    {search && <IconButton
+    <ThemeProvider theme={theme}>
+     <IconButton
         aria-label="search"
         size="large"
         control="dialog"
@@ -51,19 +57,8 @@ const dispatch = useDispatch()
         }}
       >
         <SearchIcon />
-      </IconButton>}
-      {!search && 
-      <Button
-      variant="contained"
-      size="small"
-      aria-label={ariaLabel}
-      disableElevation
-     
-      onClick={handleClickOpen}>
-        {textButton}
- 
-      </Button>
-      }
+      </IconButton>
+    
       <Dialog open={openDialog} onClose={() => handleClickOpen(false)}
         sx={{
           '& .MuiDrawer-paper': {
@@ -76,48 +71,41 @@ const dispatch = useDispatch()
           }
         }}
       >
-        <DialogTitle>{titleText}</DialogTitle>
+        <DialogTitle>What are you looking for?</DialogTitle>
         <Formik
-           initialValues={initialValuesPassword}
-           validationSchema={validationSchemaPassword}
-           onSubmit={(password, { resetForm }) => {
-            HandlePasswordSubmit(password)
-               resetForm()
-           }}>
-             {({ isValid }) => (
+           initialValues={{ 
+            password: '',
+            newPassword:''}
+          }
+          //  validationSchema={validationSchemaPassword}
+         >
+             {() => (
           <Form>
         <DialogContent sx={{color:'#BA933E' }
-        }
-        component = 'form'
+        }   
         >
+        <Field name ='search'
+           type='text' 
+           as={TextField} 
+           variant='outlined' 
+           color='primary' 
+           label='search' 
+           fullWidth          
+           autoFocus
+           margin="dense"/>  
          
-          <TextField
-          error={false}
-            autoFocus
-            margin="dense"
-            id="name"
-            inputProps={{
-              label: textSubmitButton,
-              type: typeInput,
-              autoComplete: autoComplete,
-              
-            }}  
-          //  onSubmitted
-            fullWidth
-            variant="standard"
-            sx={{color:'#BA933E' }}
-          />
-         
+     
+        
         </DialogContent>
         <DialogActions>
-          <Button type="button" onClick={() => handleClickOpen(false)}>Cancel</Button>
-          <Button type ="submit" disabled={!isValid}>{textSubmitButton}</Button>
+          <Button type="button" variant='contained' sx={{buttonSX}}onClick={() => handleClickOpen()}>Cancel</Button>
+          <Button type="submit" variant='contained' sx={buttonSX}> Search </Button>
         </DialogActions>
         </Form>
              )}
         </Formik>
       </Dialog>
-
+      </ThemeProvider>
     </>
 
   )

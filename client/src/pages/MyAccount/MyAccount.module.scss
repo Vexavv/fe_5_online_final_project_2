@@ -56,10 +56,12 @@
 
         &Title{
             color: #ba933e;
+            margin-bottom: 5px;
         }
 
         &Text, span{
             color: #666666;
+            margin-bottom: 5px;
         }
         &Orders{
             grid-column-start: 1;
@@ -85,7 +87,5 @@
     }
 
 
-// .link:hover{
-//     color:#1a1a1a;
-// }
+
 

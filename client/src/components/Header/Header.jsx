@@ -93,11 +93,7 @@ const Header = (props) => {
                 >
                   {!isMobileMenuOpen && <MenuIcon />}
                 </IconButton>
-                <DialogModal search
-                titleText='What are you looking for?'
-                textSubmitButton='Good luck'
-                typeInput='search'
-                ariaLabel="search"/>
+                <DialogModal />
 
               </ButtonGroup>
             </Box>
@@ -199,8 +195,7 @@ const Header = (props) => {
             >
               <Login />
               <Box sx={{ display: { xs: "none", sm: "flex", md: "flex" } }}>
-                <DialogModal search
-                textSubmitButton={'Good luck'}/>
+                <DialogModal />
               </Box>
 
               <IconButton

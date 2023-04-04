@@ -27,7 +27,8 @@ export const fetchGetCustomer= createAsyncThunk(
 const customerSlice = createSlice({
     name : 'customer',
     initialState:{
-        customer: {},       
+        customer: {}, 
+              
     },
     reducers:{
         getCustomer: (state, action) =>{
