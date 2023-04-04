@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IconButton, Box, Typography } from '@mui/material';
 import PersonOutline from '@mui/icons-material/PersonOutline';
 import HowToReg from '@mui/icons-material/HowToReg';
-import { loguotCustomer } from '../../store/slices/loginSlice'
+import { loguotCustomer } from '../../../store/slices/loginSlice'
 
 
 const Login = () => {
@@ -53,6 +53,7 @@ const Login = () => {
             {!isLogged &&
                 <Typography
                     component={Link} to='/login'
+                    cursor='pointer'
                     sx={{
                         display: { xs: "none", sm: 'none', md: "flex" },
                         color: "#1A1A1A",
@@ -70,6 +71,7 @@ const Login = () => {
             {isLogged &&
                 <Typography
                     onClick={LogOutAccount}
+                    
                     sx={{
                         display: { xs: "none", sm: 'none', md: "flex" },
                         color: "#1A1A1A",
@@ -78,8 +80,8 @@ const Login = () => {
                         textAlign: 'center',
                         alignItems: 'center',
                         marginRight: '5px',
-                        '&:hover': { color: '#BA933E' }
-
+                        '&:hover': { color: '#BA933E' },
+                        cursor:'pointer'
                     }}>
                     Logout
                 </Typography>
@@ -89,6 +91,7 @@ const Login = () => {
             {!isLogged &&
                 <Typography
                     component={Link} to='/login'
+                    cursor='pointer'
                     sx={{
                         display: { xs: "none", sm: 'none', md: "flex" },
                         color: "#1A1A1A",
@@ -104,7 +107,8 @@ const Login = () => {
 
             {isLogged &&
                 <Typography
-                    component={Link} to='/favorites'
+                    component={Link} to='/myaccount'
+                    cursor='pointer'
                     sx={{
                         display: { xs: "none", sm: 'none', md: "flex" },
                         color: "#1A1A1A",
@@ -114,7 +118,7 @@ const Login = () => {
                         alignItems: 'center',
                         '&:hover': { color: '#BA933E' }
                     }}>
-                    MyWishlist
+                    MyAccount
                 </Typography>
             }
         </Box>

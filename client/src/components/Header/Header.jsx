@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { HiOutlineShoppingBag } from "react-icons/hi";
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
 // import components
 
 import Navigation from "./Navigation/Navigation";
 import HeaderBanner from "./HeaderBanner/HeaderBannerr";
 import Logo from "./Logo/Logo";
-import Login from "../LoginHeaderButton/LoginHeaderButton";
-import SearchDialog from "../SearchDialog/SearchDialog";
+import Login from "./LoginHeaderButton/LoginHeaderButton";
+import DialogModal from "../DialogModal/DialogModal";
 
 //import from materialUI
 
@@ -91,7 +93,7 @@ const Header = (props) => {
                 >
                   {!isMobileMenuOpen && <MenuIcon />}
                 </IconButton>
-                <SearchDialog />
+                <DialogModal />
 
               </ButtonGroup>
             </Box>
@@ -193,7 +195,7 @@ const Header = (props) => {
             >
               <Login />
               <Box sx={{ display: { xs: "none", sm: "flex", md: "flex" } }}>
-                <SearchDialog />
+                <DialogModal />
               </Box>
 
               <IconButton
@@ -215,8 +217,21 @@ const Header = (props) => {
                     "&:hover": { color: "#BA933E" },
                   }}
                 >
-                  <AddShoppingCartIcon />
+                  <HiOutlineShoppingBag />
                 </Badge>
+              </IconButton>
+              <IconButton
+               size="large"
+               aria-label="account of current user"
+               aria-controls="menu-appbar"
+               aria-haspopup="true"
+               component={Link}
+               to="/favorites"
+               color="black"
+               sx={{
+                 "&:hover": { color: "#BA933E" },
+               }}>
+                <AiOutlineHeart/>
               </IconButton>
             </Box>
           </Toolbar>
