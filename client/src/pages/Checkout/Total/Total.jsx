@@ -7,7 +7,6 @@ import TotalProduct from './TotalProduct';
 
 const Total = () => {
   const checkoutProduct = useSelector((state) => state.card.products);
-  console.log('checkoutProduct', checkoutProduct);
 
   const subTotalPr = checkoutProduct.reduce(
     (acc, curr) => acc + curr.totalPrice,
@@ -19,9 +18,9 @@ const Total = () => {
   return (
     <Card
       className={s.cardPrice}
-      sx={{ marginTop: 0, bgcolor: 'rgb(241,241,241)' }}
+      sx={{ marginTop: 0, marginBottom: 2, bgcolor: 'rgb(241,241,241)' }}
     >
-      <CardContent sx={{ paddingY: 10, paddingX: 3 }}>
+      <CardContent sx={{ paddingY: 2, paddingX: 3 }}>
         {checkoutProduct.map((product) => (
           <TotalProduct key={product._id} {...product} />
         ))}

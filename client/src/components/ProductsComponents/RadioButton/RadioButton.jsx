@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { changeCategory} from "../../../store/productsSlice";
+import { changeCategory} from "../../../store/slices/productsSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 function RadioButton(props) {

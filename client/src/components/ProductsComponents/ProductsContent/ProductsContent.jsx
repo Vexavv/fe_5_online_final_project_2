@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import styles from './ProductsContent.module.scss'
 import ProductCard from "../ProductCard/ProductCard";
 import {useSelector, useDispatch} from "react-redux";
-import {getElement, toggleModal} from "../../../store/productsSlice";
-import {fetchAsyncProducts} from "../../../store/productsSlice";
+import {getElement, toggleModal} from "../../../store/slices/productsSlice";
+import {fetchAsyncProducts} from "../../../store/slices/productsSlice";
 import ProductPagination from "../ProductPagination/ProductPagination";
 import Loader from "../../Loader/Loader";
 import Error from "../../Error/Error";
@@ -69,7 +69,7 @@ function ProductsContent() {
                                                onClick={() => handleProductClick(product)}/>
                         })}
                     </ul>
-                    <ProductPagination/>
+                    <ProductPagination data={data.productsQuantity}/>
                 </>
             );
         default:
