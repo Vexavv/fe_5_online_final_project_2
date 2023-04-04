@@ -8,7 +8,7 @@ import productsReducer from './slices/productsSlice'
 import isLoginReducer from './slices/loginSlice'
 import messageReducer from './slices/messageSlice'
 import passwordReducer from './slices/passwordSlice'
-import cardReducer from "./cardSlice";
+import cardReducer from "./slices/cardSlice";
 import customerReducer from "./slices/customerSlice"
 import wishlistReducer from "./slices/wishlistSlice"
 
