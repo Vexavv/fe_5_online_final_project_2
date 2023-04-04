@@ -17,12 +17,11 @@ return(
              mr:4,
              maxHeight: { xs: 20, md: 22 },
              maxWidth: { xs: 110, md: 130 },
-             
            }}>
             <img src="../../img/logo_180x.png"
              alt="Logo_Rubix"
              width="100%"
-              height="100%" 
+              height="100%"
              sx={{ objectFit: 'contain' }}/>
            </Box>
 
