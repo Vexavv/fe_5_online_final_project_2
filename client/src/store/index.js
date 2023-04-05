@@ -7,7 +7,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import productsReducer from './slices/productsSlice'
 import isLoginReducer from './slices/loginSlice'
 import messageReducer from './slices/messageSlice'
-
+import passwordReducer from './slices/passwordSlice'
 import cardReducer from "./slices/cardSlice";
 import customerReducer from "./slices/customerSlice"
 import wishlistReducer from "./slices/wishlistSlice"
@@ -17,7 +17,7 @@ const persistConfig = {
   key: 'root',
   storage,
 
-  whitelist: ['products',"card",'isLogged','wishlist']
+  whitelist: ['products',"card",'wishlist']
 
 }
 const userPersistConfig = {
@@ -33,6 +33,7 @@ const rootReducer = combineReducers({
   customer: customerReducer,
   message: messageReducer,
   wishlist: wishlistReducer,
+  password: passwordReducer,
 })
 
 

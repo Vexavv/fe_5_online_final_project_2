@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import {Link, Navigate} from 'react-router-dom';
+import { Navigate} from 'react-router-dom';
 import {
     loginCustomerFetch,
     createAccountFetch
 } from '../../store/slices/loginSlice'
-import { Collapse, IconButton, Alert } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import { fetchGetCustomer } from '../../store/slices/customerSlice'
 import { Formik, Form, FastField, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -74,7 +72,7 @@ const Login = () => {
     // local states
     const [isLoginPage, setIsLoginPage] = useState(true)
     const [isShowPassword, setIsShowPassword] = useState(false)
-    const [openAlert, setOpenAlert] = useState(true);
+   
 
     // switch login/account forms
     const HandleToggle = (data) => {
@@ -82,7 +80,7 @@ const Login = () => {
     }
 
     // submitting functions
-    // need add dispatch getUser, wishlist after login
+  
     const HandleLoginSubmit = ({ email, password }) => {
         dispatch(loginCustomerFetch({ email, password }))
         dispatch(fetchGetCustomer())
@@ -92,33 +90,12 @@ const Login = () => {
         dispatch(createAccountFetch({ firstName, lastName, email, password }))
     }
 
-    return isLogged ?(<Navigate to="/myaccount" replace/>)
-        // <>
-        //     <Collapse in={openAlert}>
-        //         <Alert
-        //             action={
-        //                 <IconButton
-        //                     aria-label="close"
-        //                     color="inherit"
-        //                     size="small"
-        //                     onClick={() => { setOpenAlert(false) }}
-        //                 >
-        //                     <CloseIcon fontSize="inherit" />
-        //                 </IconButton>
-        //             }
-        //         >You are alredy logged in</Alert>
-        //     </Collapse>
-        //     <div className={styles.customerLinkWrapper}>
-        //         <Link to='/products'>
-        //             <p className={styles.customerLink}>to shopping</p>
-        //         </Link>
-        //
-        //         <Link to='/favorites'>
-        //             <p className={styles.customerLink}>to wishlist</p>
-        //         </Link>
-        //     </div>
-        // </>
-        : (<div className={styles.loginPage}>
+    return (
+        <>
+        {isLogged && <Navigate to="/myaccount" replace/>}
+       
+   
+         <div className={styles.loginPage}>
             <div className={styles.loginPageContentWrapper}>
                 <ul className={styles.loginPageNav}>
 
@@ -209,6 +186,7 @@ const Login = () => {
 
             </div>
         </div>
+        </>
         );
 }
 

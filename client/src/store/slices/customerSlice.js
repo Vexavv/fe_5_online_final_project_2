@@ -16,10 +16,23 @@ export const fetchGetCustomer = createAsyncThunk(
     
       const customer = await response.json();
 
-      return customer;
-    } catch (error) {
-     
-      return rejectWithValue(error.message);
+
+const customerSlice = createSlice({
+    name : 'customer',
+    initialState:{
+        customer: {}, 
+              
+    },
+    reducers:{
+        getCustomer: (state, action) =>{
+    state.customer= action.payload.customer;
+        }
+    }, extraReducers: builder=> {
+        builder      
+        .addCase(fetchGetCustomer.fulfilled, (state, action) => {       
+          state.customer = action.payload        
+        })      
+
     }
   }
 );
