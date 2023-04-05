@@ -10,6 +10,7 @@ import UpdatePassword from '../../components/DialogModal/UpdatePassword'
 import { Collapse, IconButton, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import classNames from 'classnames';
+import {persistor} from '../../store/index';
 //miss order history
 const MyAccount = () => {
     const dispatch = useDispatch();
@@ -19,7 +20,17 @@ const MyAccount = () => {
     const newCustomer = { ...customer }
     console.log(newCustomer);
 
-    const LogOutAccount = () => dispatch(loguotCustomer())
+
+    // added clear localStorage
+    const LogOutAccount = async () => {
+        try {
+            await persistor.purge('root');
+            localStorage.clear();
+            dispatch(loguotCustomer());
+        } catch (error) {
+            console.error(error);
+        }
+    }
     const [openAlert, setOpenAlert] = useState(true);
  
     useEffect(() => {

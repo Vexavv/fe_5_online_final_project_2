@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { HiOutlineShoppingBag } from "react-icons/hi";
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
+import {HiOutlineShoppingBag} from "react-icons/hi";
+import {AiOutlineHeart} from 'react-icons/ai';
 
 // import components
 
@@ -14,9 +14,8 @@ import DialogModal from "../DialogModal/DialogModal";
 //import from materialUI
 
 import {
-  AppBar, Box, Toolbar, ButtonGroup, IconButton, Drawer, Divider, Container, Badge,
+    AppBar, Box, Toolbar, ButtonGroup, IconButton, Drawer, Divider, Container, Badge,
 } from "@mui/material";
-
 
 
 // import icons
@@ -29,29 +28,37 @@ import { useSelector } from "react-redux";
 
 // data Menu
 const navItems = [
-  {
-    title: "Home",
-    path: "/",
-  },
-  {
-    title: "Products",
-    path: "/products",
-  },
+    {
+        title: "Home",
+        path: "/",
+    },
+    {
+        title: "Products",
+        path: "/products",
+    },
 
-  {
-    title: "Sale",
-    path: "/sale",
-  },
-  {
-    title: "Contact",
-    path: "/contacts",
-  },
+    {
+        title: "Sale",
+        path: "/sale",
+    },
+    {
+        title: "Contact",
+        path: "/contacts",
+    },
 ];
 
 const Header = (props) => {
-  const cards = useSelector((state) => state.card.products);
-
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const cards = useSelector((state) => state.card.products);
+    const {wishlist} = useSelector(state => state.wishlist);
+    const isLogged = useSelector(state => state.isLogged.isLogged.success)
+    let wishlistLength = 0;
+    if (wishlist && wishlist.products) {
+        wishlistLength = wishlist.products.length;
+    }
+    if (!isLogged) {
+        wishlistLength = 0;
+    }
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 
   const mobileMenuToggle = () => {
@@ -95,8 +102,8 @@ const Header = (props) => {
                 </IconButton>
                 <DialogModal />
 
-              </ButtonGroup>
-            </Box>
+                            </ButtonGroup>
+                        </Box>
 
             {/*burger for tabs adaptive */}
             <Box
@@ -119,84 +126,84 @@ const Header = (props) => {
               </IconButton>
             </Box>
 
-            {/* drop navigation for mobile */}
-            <Drawer
-              anchor="left"
-              component="div"
-              variant="temporary"
-              open={isMobileMenuOpen}
-              onClose={mobileMenuToggle}
-              ModalProps={{ keepMounted: true }}
-              SlideProps={{ timeout: 400 }}
-              sx={{
-                "& .MuiDrawer-paper": {
-                  boxSizing: "border-box",
-                  width: { xs: "70%", sm: "50%", md: "none" },
-                  overflow: "hidden",
-                  color: "#1A1A1A",
-                  "&:active": { color: "#BA933E" },
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  p: 2,
-                  height: 1,
-                  backgroundColor: "white",
-                }}
-              >
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={mobileMenuToggle}
-                  color="black"
-                  sx={{ mb: 2 }}
-                >
-                  <CloseIcon />
-                </IconButton>
+                        {/* drop navigation for mobile */}
+                        <Drawer
+                            anchor="left"
+                            component="div"
+                            variant="temporary"
+                            open={isMobileMenuOpen}
+                            onClose={mobileMenuToggle}
+                            ModalProps={{keepMounted: true}}
+                            SlideProps={{timeout: 400}}
+                            sx={{
+                                "& .MuiDrawer-paper": {
+                                    boxSizing: "border-box",
+                                    width: {xs: "70%", sm: "50%", md: "none"},
+                                    overflow: "hidden",
+                                    color: "#1A1A1A",
+                                    "&:active": {color: "#BA933E"},
+                                },
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    p: 2,
+                                    height: 1,
+                                    backgroundColor: "white",
+                                }}
+                            >
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={mobileMenuToggle}
+                                    color="black"
+                                    sx={{mb: 2}}
+                                >
+                                    <CloseIcon/>
+                                </IconButton>
 
-                <Divider sx={{ mb: 2 }} />
-                <Navigation
-                  onClick={() => {
-                    mobileMenuToggle();
-                  }}
-                  navItems={navItems}
-                />
-              </Box>
-            </Drawer>
+                                <Divider sx={{mb: 2}}/>
+                                <Navigation
+                                    onClick={() => {
+                                        mobileMenuToggle();
+                                    }}
+                                    navItems={navItems}
+                                />
+                            </Box>
+                        </Drawer>
 
-            {/* main logo */}
-            <Logo />
+                        {/* main logo */}
+                        <Logo/>
 
-            {/* navbar for desktop */}
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", sm: "none", md: "table" },
-                textAlign: "center",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-              }}
-            >
-              <Navigation navItems={navItems} />
-            </Box>
+                        {/* navbar for desktop */}
+                        <Box
+                            sx={{
+                                flexGrow: 1,
+                                display: {xs: "none", sm: "none", md: "table"},
+                                textAlign: "center",
+                                justifyContent: "space-evenly",
+                                alignItems: "center",
+                            }}
+                        >
+                            <Navigation navItems={navItems}/>
+                        </Box>
 
-            {/*icons for tab and desc */}
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: "flex",
-                textAlign: "center",
-                justifyContent: { xs: "right", md: "space-evenly" },
-                alignItems: "center",
-              }}
-            >
-              <Login />
-              <Box sx={{ display: { xs: "none", sm: "flex", md: "flex" } }}>
-                <DialogModal />
-              </Box>
+                        {/*icons for tab and desc */}
+                        <Box
+                            sx={{
+                                flexGrow: 1,
+                                display: "flex",
+                                textAlign: "center",
+                                justifyContent: {xs: "right", md: "space-evenly"},
+                                alignItems: "center",
+                            }}
+                        >
+                            <Login/>
+                            <Box sx={{display: {xs: "none", sm: "flex", md: "flex"}}}>
+                                <DialogModal/>
+                            </Box>
 
               <IconButton
                 

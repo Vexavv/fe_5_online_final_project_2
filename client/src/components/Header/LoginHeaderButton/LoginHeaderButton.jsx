@@ -1,22 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { IconButton, Box, Typography } from '@mui/material';
+import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import {IconButton, Box, Typography} from '@mui/material';
 import PersonOutline from '@mui/icons-material/PersonOutline';
 import HowToReg from '@mui/icons-material/HowToReg';
-import { loguotCustomer } from '../../../store/slices/loginSlice'
-
+import {loguotCustomer} from '../../../store/slices/loginSlice'
+import {persistor} from '../../../store/index';
 
 const Login = () => {
     const isLogged = useSelector(state => state.isLogged.isLogged.success)
     const dispatch = useDispatch()
-
-    const LogOutAccount = () => {
-        dispatch(loguotCustomer())
+// added clear localStorage
+    const LogOutAccount = async () => {
+        try {
+            await persistor.purge('root');
+            localStorage.clear();
+            dispatch(loguotCustomer());
+        } catch (error) {
+            console.error(error);
+        }
     }
-
     return (
-        <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'flex' } }}>
+        <Box sx={{display: {xs: 'flex', sm: 'flex', md: 'flex'}}}>
             {/* button icon */}
             {!isLogged &&
                 <IconButton
@@ -31,7 +36,7 @@ const Login = () => {
                         '&:hover': { color: '#BA933E' },
                     }}
                 >
-                    <PersonOutline />
+                    <PersonOutline/>
                 </IconButton>}
 
             {isLogged &&
@@ -47,7 +52,7 @@ const Login = () => {
                         '&:hover': { color: '#BA933E' },
                     }}
                 >
-                    <HowToReg />
+                    <HowToReg/>
                 </IconButton>
             }
 
@@ -57,14 +62,14 @@ const Login = () => {
                     component={Link} to='/login'
                     cursor='pointer'
                     sx={{
-                        display: { xs: "none", sm: 'none', md: "flex" },
+                        display: {xs: "none", sm: 'none', md: "flex"},
                         color: "#1A1A1A",
                         fontSize: '14px',
                         fontFamily: 'Red Hat Display',
                         textAlign: 'center',
                         alignItems: 'center',
                         marginRight: '5px',
-                        '&:hover': { color: '#BA933E' }
+                        '&:hover': {color: '#BA933E'}
 
                     }}>
                     Login
@@ -73,17 +78,17 @@ const Login = () => {
             {isLogged &&
                 <Typography
                     onClick={LogOutAccount}
-                    
+
                     sx={{
-                        display: { xs: "none", sm: 'none', md: "flex" },
+                        display: {xs: "none", sm: 'none', md: "flex"},
                         color: "#1A1A1A",
                         fontSize: '14px',
                         fontFamily: 'Red Hat Display',
                         textAlign: 'center',
                         alignItems: 'center',
                         marginRight: '5px',
-                        '&:hover': { color: '#BA933E' },
-                        cursor:'pointer'
+                        '&:hover': {color: '#BA933E'},
+                        cursor: 'pointer'
                     }}>
                     Logout
                 </Typography>
@@ -95,13 +100,13 @@ const Login = () => {
                     component={Link} to='/login'
                     cursor='pointer'
                     sx={{
-                        display: { xs: "none", sm: 'none', md: "flex" },
+                        display: {xs: "none", sm: 'none', md: "flex"},
                         color: "#1A1A1A",
                         fontSize: '14px',
                         fontFamily: 'Red Hat Display',
                         textAlign: 'center',
                         alignItems: 'center',
-                        '&:hover': { color: '#BA933E' }
+                        '&:hover': {color: '#BA933E'}
                     }}>
                     Sign In
                 </Typography>
@@ -112,13 +117,13 @@ const Login = () => {
                     component={Link} to='/myaccount'
                     cursor='pointer'
                     sx={{
-                        display: { xs: "none", sm: 'none', md: "flex" },
+                        display: {xs: "none", sm: 'none', md: "flex"},
                         color: "#1A1A1A",
                         fontSize: '14px',
                         fontFamily: 'Red Hat Display',
                         textAlign: 'center',
                         alignItems: 'center',
-                        '&:hover': { color: '#BA933E' }
+                        '&:hover': {color: '#BA933E'}
                     }}>
                     MyAccount
                 </Typography>
