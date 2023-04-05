@@ -209,7 +209,7 @@ const Header = (props) => {
                 }}
               >
                 <Badge
-                  badgeContent={cards.length}
+                  badgeContent={cards?.length}
                   sx={{
                     color: "gray",
                     "&:hover": { color: "#BA933E" },
