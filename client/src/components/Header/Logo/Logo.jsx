@@ -14,7 +14,7 @@ return(
            sx={{
              height: 22,
              width: 130,
-             mr:4,
+             mr:{sm: 2, md: 4},
              maxHeight: { xs: 20, md: 22 },
              maxWidth: { xs: 110, md: 130 },
              

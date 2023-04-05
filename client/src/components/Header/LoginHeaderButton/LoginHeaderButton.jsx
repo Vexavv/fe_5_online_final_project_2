@@ -20,13 +20,14 @@ const Login = () => {
             {/* button icon */}
             {!isLogged &&
                 <IconButton
-                    size="large"
+                   
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     color="black"
                     component={Link} to='/login'
                     sx={{
+                        size:{xs:'small', sm:"large", md:"large"},
                         '&:hover': { color: '#BA933E' },
                     }}
                 >
@@ -35,13 +36,14 @@ const Login = () => {
 
             {isLogged &&
                 <IconButton
-                    size="large"
+                    
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     color="black"
                     component={Link} to='/myaccount'
                     sx={{
+                        size:{xs:'small', sm:"large", md:"large"},
                         '&:hover': { color: '#BA933E' },
                     }}
                 >

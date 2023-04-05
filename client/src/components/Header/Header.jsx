@@ -22,7 +22,7 @@ import {
 // import icons
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+
 
 import { useSelector } from "react-redux";
 
@@ -84,7 +84,7 @@ const Header = (props) => {
             >
               <ButtonGroup variant="text" aria-label="text button group">
                 <IconButton
-                  size="large"
+                  sx={{size:{xs:'small', sm:"large", md:"large"}}}
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
@@ -108,7 +108,7 @@ const Header = (props) => {
               }}
             >
               <IconButton
-                size="large"
+              sx={{size:{xs:'small', sm:"large", md:"large"}}}                
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
@@ -199,7 +199,7 @@ const Header = (props) => {
               </Box>
 
               <IconButton
-                size="large"
+                
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
@@ -207,6 +207,7 @@ const Header = (props) => {
                 to="/cart"
                 color="black"
                 sx={{
+                  size:{xs:'small', sm:"large", md:"large"},
                   "&:hover": { color: "#BA933E" },
                 }}
               >
@@ -221,7 +222,7 @@ const Header = (props) => {
                 </Badge>
               </IconButton>
               <IconButton
-               size="large"
+               
                aria-label="account of current user"
                aria-controls="menu-appbar"
                aria-haspopup="true"
@@ -229,6 +230,7 @@ const Header = (props) => {
                to="/favorites"
                color="black"
                sx={{
+                size:{xs:'small', sm:"large", md:"large"},
                  "&:hover": { color: "#BA933E" },
                }}>
                 <AiOutlineHeart/>
