@@ -72,6 +72,7 @@ const Header = (props) => {
                 mt={3}
                 sx={{backgroundColor: "white", boxShadow: "none"}}
             >
+
                 <Container maxWidth="xl">
                     <Toolbar
                         disableGutters
@@ -253,6 +254,7 @@ const Header = (props) => {
             </AppBar>
         </>
     );
+
 };
 
 export default Header;
