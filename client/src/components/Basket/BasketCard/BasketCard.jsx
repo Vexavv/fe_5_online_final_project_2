@@ -1,10 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  addToCard,
-  decreasCard,
   decreaseCard,
-  deletCard,
   increaseCard,
   removeItemBasket,
 } from "../../../store/slices/cardSlice";
@@ -19,26 +16,17 @@ function BasketCard({
   id,
   amount,
   totalPrice,
-  item,
 }) {
-  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const dispatch = useDispatch();
 
   const removeItem = (id) => {
-    isLogged
-      ? dispatch(deletCard(item.product))
-      : dispatch(removeItemBasket({ id }));
+    dispatch(removeItemBasket({ id }));
   };
-  const handleIncrease = () => {
-    console.log(item.product);
-    isLogged
-      ? dispatch(addToCard(item.product))
-      : dispatch(increaseCard({ id }));
+  const handleIncrease = (id) => {
+    dispatch(increaseCard({ id }));
   };
-  const handleDecrease = () => {
-    isLogged
-      ? dispatch(decreasCard(item.product))
-      : dispatch(decreaseCard({ id }));
+  const handleDecrease = (id) => {
+    dispatch(decreaseCard({ id }));
   };
   return (
     <div className={styles.Container}>
@@ -60,13 +48,14 @@ function BasketCard({
             <div className={styles.CardOptionContainerCount}>
               <button
                 className={styles.CardOptionContainerCountMinus}
-                onClick={handleDecrease}
+                onClick={() => handleDecrease(id)}
               >
                 <span className={styles.CardOptionContainerCountMinusText}>
                   -
                 </span>
               </button>
               <input
+                // onChange={}
                 type="text"
                 value={amount}
                 className={styles.CardOptionContainerCountValue}
@@ -74,7 +63,7 @@ function BasketCard({
               ></input>
               <button
                 className={styles.CardOptionContainerCountPlus}
-                onClick={handleIncrease}
+                onClick={() => handleIncrease(id)}
               >
                 <span className={styles.CardOptionContainerCountMinusText}>
                   +
