@@ -32,9 +32,11 @@ const MyAccount = () => {
         }
     }
     const [openAlert, setOpenAlert] = useState(true);
-
+ 
     useEffect(() => {
+                 
         dispatch(fetchGetCustomer())
+        
     }, [dispatch])
 
     return (
@@ -60,11 +62,11 @@ const MyAccount = () => {
                     <div className={classNames(styles.container, styles.account)}>
                     <div className={styles.accountLinkWrapper}>
                         <Link to='/products'>
-                            <p className={styles.accountLink}>to Shopping</p>
+                            <p className={styles.accountLink}>To Shopping</p>
                         </Link>
                         
                         <Link to='/favorites'>
-                            <p className={styles.accountLink}>to Wishlist</p>
+                            <p className={styles.accountLink}>To Wishlist</p>
                         </Link>
                     </div>
                     <h1 className={styles.accountTitle}>My Account</h1>
@@ -75,7 +77,7 @@ const MyAccount = () => {
                                 <h2 className={styles.accountItemTitle}>Account Details</h2>
                                 <div>
                                 <p className={styles.accountItemText}>Name: {customer.firstName || "Stranger"}</p>
-                                    <p className={styles.accountItemText}>last name: {newCustomer.lastName || "Guest"}</p>
+                                    <p className={styles.accountItemText}>Last name: {newCustomer.lastName || "Guest"}</p>
                                     <div>
                                         <p className={styles.accountItemText}>Email: {newCustomer.email || "fdgsgs@gmail.com"}</p>
                                     </div>

@@ -25,14 +25,15 @@ const Login = () => {
             {/* button icon */}
             {!isLogged &&
                 <IconButton
-                    size="large"
+                   
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     color="black"
                     component={Link} to='/login'
                     sx={{
-                        '&:hover': {color: '#BA933E'},
+                        size:{xs:'small', sm:"large", md:"large"},
+                        '&:hover': { color: '#BA933E' },
                     }}
                 >
                     <PersonOutline/>
@@ -40,14 +41,15 @@ const Login = () => {
 
             {isLogged &&
                 <IconButton
-                    size="large"
+                    
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     color="black"
                     component={Link} to='/myaccount'
                     sx={{
-                        '&:hover': {color: '#BA933E'},
+                        size:{xs:'small', sm:"large", md:"large"},
+                        '&:hover': { color: '#BA933E' },
                     }}
                 >
                     <HowToReg/>

@@ -31,13 +31,16 @@ const dispatch = useDispatch()
   });
   
   const buttonSX = {
+    fontFamily: 'Red Hat Display',  
+    size:{xs:'small', sm:"medium", md:"large"},
     backgroundColor: '#1a1a1a',
     color: "white",
     borderRadius: '6px',  
-    padding: "6px 10px",
+    padding: "6px 10px", 
     '&:hover': {
       backgroundColor: '#BA933E',
     }
+    
   };
   
   return (
@@ -45,12 +48,13 @@ const dispatch = useDispatch()
     <ThemeProvider theme={theme}>
      <IconButton
         aria-label="search"
-        size="large"
+        
         control="dialog"
         aria-haspopup="true"
         onClick={handleClickOpen}
         color="black"
         sx={{
+          size:{xs:'small', sm:"medium", md:"large"},
           '&:hover': {
             color: '#BA933E',
           }
