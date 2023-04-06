@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./SubscriptionNews.module.scss";
 import Button from "../Button/Button";
 import axios from "axios";
-import { BASE_URL, MONGO_URI } from "../../constants/api";
-
-// console.log(process.env);
+import { BASE_URL } from "../../constants/api";
 
 function SubscriptionNews(props) {
   const [email, setEmail] = useState("");
@@ -13,10 +11,11 @@ function SubscriptionNews(props) {
   const [error, setError] = useState("");
 
   const newSubscriber = {
-    subscriberMail: email,
+    email: email,
     enabled: false,
-    letterSubject: "Test letter (final project)",
-    letterHtml: "<p>hi</p>",
+    letterSubject: "Welcome RUBIX letter",
+    letterHtml:
+      "<h1>Welcome to our RUBIX store!</h1></hr><p>Thank you for your interest in our store and products. We are excited to have you as a potential subscriber and we would like to extend a warm welcome to you. As a subscriber, you will receive exclusive access to our newest products, sales, and promotions. You will also be the first to know about our upcoming events and receive personalized recommendations tailored to your preferences.Thank you again for your interest in our store. We look forward to having you as a valued subscriber.</p>",
   };
 
   const handleEmailChange = (event) => {
@@ -28,11 +27,11 @@ function SubscriptionNews(props) {
       .post(`${BASE_URL}/subscribers`, subscriber)
       .then((response) => {
         console.log(response.data);
-        // console.log(newSubscriber);
-        // setSubscribed(true);
+        console.log(newSubscriber);
+        setSubscribed(true);
       })
       .catch((error) => {
-        // setSubscribed(false);
+        setSubscribed(false);
         setError(error.message);
       });
   };
