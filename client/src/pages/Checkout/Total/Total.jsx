@@ -1,15 +1,15 @@
-import s from './Total.module.scss';
-import { Card, CardContent } from '@mui/material';
+import s from "./Total.module.scss";
+import { Card, CardContent } from "@mui/material";
 
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import TotalProduct from './TotalProduct';
+import TotalProduct from "./TotalProduct";
 
 const Total = () => {
   const checkoutProduct = useSelector((state) => state.card.products);
-
+  console.log(checkoutProduct);
   const subTotalPr = checkoutProduct.reduce(
-    (acc, curr) => acc + curr.totalPrice,
+    (acc, curr) => acc + curr.product.totalPrice,
     0
   );
 
@@ -18,11 +18,18 @@ const Total = () => {
   return (
     <Card
       className={s.cardPrice}
-      sx={{ marginTop: 0, marginBottom: 2, bgcolor: 'rgb(241,241,241)' }}
+      sx={{ marginTop: 0, marginBottom: 2, bgcolor: "rgb(241,241,241)" }}
     >
       <CardContent sx={{ paddingY: 2, paddingX: 3 }}>
         {checkoutProduct.map((product) => (
-          <TotalProduct key={product._id} {...product} />
+          <TotalProduct
+            key={product.product._id}
+            product={product}
+            name={product.product.name}
+            currentPrice={product.product.currentPrice}
+            imageUrls={product.product.imageUrls[0]}
+            amount={product.product.amount}
+          />
         ))}
 
         <hr />
