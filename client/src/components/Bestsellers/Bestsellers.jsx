@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import styles from "./Bestsellers.module.scss";
 import BestsellerItem from "../BestsellerItem/BestsellerItem";
-import { getElement, toggleModal} from "../../store/slices/productsSlice";
+import { getElement, toggleModal } from "../../store/slices/productsSlice";
 import Loader from "../Loader/Loader";
-import {BASE_URL} from "../../constants/api";
-import axios from 'axios'
+import { BASE_URL } from "../../constants/api";
+import axios from "axios";
 
 function Bestsellers(props) {
   const dispatch = useDispatch();
@@ -14,15 +14,19 @@ function Bestsellers(props) {
     dispatch(getElement(product));
     dispatch(toggleModal(true));
   }
-  const [bestSellers, setBestSellers] = useState(null)
-    useEffect(() => {
-        axios.get(`${BASE_URL}/products/filter?bestSeller=trueBest`)
-            .then(response => setBestSellers(response.data))
-            .catch(error => console.error(error));
-    }, []);
+  const [bestSellers, setBestSellers] = useState(null);
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/products/filter?bestSeller=trueBest`)
+      .then((response) => {
+    
+        setBestSellers(response.data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
 
-    if (!bestSellers) {
+  if (!bestSellers) {
     return <Loader />;
   }
   return (

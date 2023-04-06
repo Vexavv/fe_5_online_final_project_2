@@ -57,10 +57,6 @@ export const loginCustomerFetch = createAsyncThunk(
         })
 
       const loggedCustomer = await loggedIn.json()
-      if(loggedIn.ok){
-        const savePassword = password
-        console.log(savePassword);
-      }
       
       return loggedCustomer
     }
