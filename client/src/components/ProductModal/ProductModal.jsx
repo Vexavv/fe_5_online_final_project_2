@@ -61,7 +61,7 @@ function ProductModal() {
         : productItem._id === selectedProduct?._id;
     });
   const addProductBascet = (prooduct) => {
-    console.log(prooduct);
+  
     dispatch(addToCard(prooduct));
     if (isInBasket) {
     } else {

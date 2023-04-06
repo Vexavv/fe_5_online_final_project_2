@@ -56,6 +56,7 @@ export const decreasCard = createAsyncThunk(
         },
       });
       const decreasCard = await response.json();
+     
       return decreasCard.products;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -90,7 +91,6 @@ export const cardsSlice = createSlice({
         (item) => item.product._id === action.payload.product._id
       );
 
-      console.log(isAdded, action);
       if (isAdded) {
         return;
       }
@@ -98,15 +98,12 @@ export const cardsSlice = createSlice({
     },
 
     removeItemBasket(state, action) {
-      console.log(state.products);
       state.products = state.products.filter(
         (item) => item.product._id !== action.payload.id
       );
     },
 
     increaseCard(state, action) {
-      // console.log(state);
-      // console.log(action.payload);
       state.products = state.products.map((item) => {
         if (item.product._id === action.payload.id) {
           item.product.amount += 1;
@@ -118,8 +115,6 @@ export const cardsSlice = createSlice({
     },
 
     decreaseCard(state, action) {
-      // console.log(state);
-      // console.log(action.payload);
       state.products = state.products.map((item) => {
         if (item.product._id === action.payload.id) {
           if (item.product.amount === 1) {

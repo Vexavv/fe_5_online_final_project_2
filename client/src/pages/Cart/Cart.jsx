@@ -11,7 +11,7 @@ import { fetchGetBasket } from "../../store/slices/cardSlice";
 
 function Cart() {
   const cards = useSelector((state) => state.card.products);
-  console.log(cards);
+
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
 
   const dispatch = useDispatch();

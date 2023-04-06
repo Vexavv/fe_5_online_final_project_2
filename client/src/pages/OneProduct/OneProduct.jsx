@@ -74,7 +74,7 @@ export default function OneProduct() {
   // -------------------------------добавка в корзину -------------------
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const products = useSelector((state) => state.card.products);
-  console.log(products);
+
   const isInBasket = products.find((productItem) =>
     isLogged
       ? productItem.product._id === product?._id

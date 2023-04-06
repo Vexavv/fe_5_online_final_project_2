@@ -25,19 +25,19 @@ function BasketCard({
   const dispatch = useDispatch();
 
   const removeItem = () => {
-    console.log(id);
+    
     isLogged
       ? dispatch(deletCard(item.product))
       : dispatch(removeItemBasket({ id }));
   };
   const handleIncrease = () => {
-    console.log(item.product);
+  
     isLogged
       ? dispatch(addToCard(item.product))
       : dispatch(increaseCard({ id }));
   };
   const handleDecrease = () => {
-    console.log(item.product);
+
 
     isLogged
       ? dispatch(decreasCard(item.product))
