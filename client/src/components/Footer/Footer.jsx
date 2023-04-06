@@ -51,15 +51,15 @@ function Footer(props) {
                         <a href="/">
                             <img
                                 src="https://cdn.shopify.com/s/files/1/0376/9440/6700/files/footer_logo_180x.png?v=1629543119"
-                                alt=""/>
+                                alt="logo"/>
                         </a>
                         <br/>
                         <div className={styles.social}>
-                            <a href="/"><FaFacebookF/></a>
-                            <a href="/"><FaTwitter/></a>
-                            <a href="/"><FaInstagram/></a>
-                            <a href="/"><FaPinterest/></a>
-                            <a href="/"><FaYoutube/></a>
+                            <a href="https://uk-ua.facebook.com/"><FaFacebookF/></a>
+                            <a href="https://twitter.com/?lang=uk"><FaTwitter/></a>
+                            <a href="https://www.instagram.com/"><FaInstagram/></a>
+                            <a href="https://pinterest.com"><FaPinterest/></a>
+                            <a href="https://www.youtube.com/"><FaYoutube/></a>
                         </div>
                     </div>
                     <div className={styles.column}>
@@ -67,13 +67,13 @@ function Footer(props) {
                             <button className={styles.burger} onClick={toggleMenu1}>&#9660;</button>
                         </h2>
                         {isOpen1 && (<div className={styles.wrapper}>
-                            <a href="/account">My Account</a>
-                            <a href="/order">Track Your Order</a>
-                            <a href="/faqs">FAQs</a>
-                            <a href="/payments">Payment Methods</a>
+                            <a href="/myaccount">My Account</a>
+                            <a href="/checkout">Track Your Order</a>
+                            {/* <a href="/faqs">FAQs</a> */}
+                            {/* <a href="/payments">Payment Methods</a> */}
                             <a href="/shipping">Shipping Guide</a>
-                            <a href="/support">Products Support</a>
-                            <a href="/gift">Gift Card Balance</a>
+                            {/* <a href="/support">Products Support</a> */}
+                            {/* <a href="/gift">Gift Card Balance</a> */}
                         </div>)}
                     </div>
                     <div className={styles.column}>
@@ -81,11 +81,11 @@ function Footer(props) {
                             <button className={styles.burger} onClick={toggleMenu2}>&#9660;</button>
                         </h2>
                         {isOpen2 && (<div className={styles.wrapper}>
-                            <a href="/rubix">About Rubix</a>
-                            <a href="/guarantees">Our Guarantees</a>
-                            <a href="/terms">Terms and Conditions</a>
-                            <a href="/privacy">Privacy Policy</a>
-                            <a href="/return">Return Policy</a>
+                            <a href="/">About Rubix</a>
+                            {/* <a href="/guarantees">Our Guarantees</a> */}
+                            {/* <a href="/terms">Terms and Conditions</a> */}
+                            {/* <a href="/privacy">Privacy Policy</a> */}
+                            {/* <a href="/return">Return Policy</a> */}
                             <a href="/delivery">Delivery & Return</a>
                             <a href="/sitemap"> Sitemap</a>
                         </div>)}
@@ -93,7 +93,7 @@ function Footer(props) {
                     <div className={styles.column}>
                         <h2 className={styles.head}>Let's Talk</h2>
                         <a href="tel:+391 (0)35 2568 4593"><FaHeadphonesAlt/> +391 (0)35 2568 4593</a>
-                        <a href="mailto:hello@domain.com"><FaInbox/> hello@domain.com</a>
+                        <a href="mailto:rubix.dev.project@gmail.com"><FaInbox/> rubix.dev.project@gmail.com</a>
                         <h2 className={styles.head}>Find Us</h2>
                         <p>502 New Design Str <br/><FaMapMarkerAlt/> Melbourne, Australia</p>
                     </div>

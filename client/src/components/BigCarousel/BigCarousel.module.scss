@@ -1,0 +1,117 @@
+
+.bigCarousel {
+    font-family: 'Red Hat Display';
+    color: #1a1a1a;
+   overflow-block:visible;
+}
+.bigCarouselContent {
+        text-align: left;        
+        width: 90%;
+        position: absolute;
+        left: 20px;
+        bottom: 5px;
+        background-color: rgba(0,0,0,0);
+        color:#1a1a1a;     
+        font-family: 'Red Hat Display';
+    };
+
+.bigCarouselPromo{    
+        margin-bottom: 5px;    
+}
+
+.bigCarouselSpan{ 
+    color: #ba933e;
+}
+.bigCarouselText{
+    font-size: 20px;
+    margin-bottom: 5px;
+};
+.bigCarouselLink{
+cursor: pointer;
+color:#ba933e;
+};
+.BigCarouselImage{
+    display: block;
+    height: 100%;
+    margin: auto;
+    width: 100%;
+    overflow: hidden;
+}
+   
+@media screen and (min-width: 464px)  {
+    .bigCarouselContent {
+        bottom: 25px;
+        left: 30px;
+        width: 80%;
+}
+}   
+@media screen and (min-width: 600px)  {
+  
+    .bigCarouselContent{
+        position: absolute;
+        left: 50px;
+        bottom: 50px;
+        background-color: rgba(0,0,0,0);
+        width: 70%;
+        .bigCarouselImage{
+            display: block;
+            height: 100%;
+            margin: auto;
+            width: 100%;
+            
+          }
+    }
+    .bigCarouselPromo{
+    margin-bottom: 10px;
+  }; 
+  .bigCarouselText{
+    font-size: 26px;
+    margin-bottom: 15px;
+  };
+  .bigCarouselLink{
+    color: white;
+    background-color:#1a1a1a;
+    padding:5px 12px;
+    border-radius: 6px;
+}
+.bigCarouselLink:hover{
+    background-color:#ba933e; 
+} 
+    
+};
+@media screen and (min-width: 1024px)  {
+    .bigCarouselContent{
+        left: 100px;
+        width: 50%;
+        
+    }
+    .bigCarouselPromo{
+        margin-bottom: 15px;
+        transition: opacity 3s ease-out;
+    } ;
+    .bigCarouselText{
+        font-size: 40px;
+        line-height: 30px;
+        font-weight: 700px;
+        margin-bottom: 25px;
+        transition: opacity 5s ease-out;
+    };
+    .bigCarouselLink{
+        color: white;
+        background-color:#1a1a1a;
+        padding:5px 12px;
+        border-radius: 6px;
+       
+    }
+    .bigCarouselLink:hover{
+        background-color:#ba933e; 
+    }
+    .bigCarouselImage{
+        display: block;
+        height: 100%;
+        margin: auto;
+        width: 100%;
+        
+      }
+  
+}

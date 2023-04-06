@@ -22,7 +22,7 @@ const HeaderToolbar = () => {
                     color: "#1A1A1A",
                     fontSize: '14px',
                     fontFamily: 'Red Hat Display',
-                    padding:{xs:"20px 5px", sm:"5px 5px"}
+                    padding:{xs:"10px 5px 20px", sm:"5px 5px"}
                 }}>
                     <Box sx={{
                         display: { xs: 'none', sm: 'none', md: 'flex' },
@@ -64,19 +64,22 @@ const HeaderToolbar = () => {
                         fontSize: '14px',
                         fontFamily: 'Red Hat Display',                        
                         gap: '4px'
+                        
                     }}>
-                        <Typography sx={{
+                        <Typography sx={{                           
                             textAlign: 'center',
                             fontSize: '14px',
                             fontFamily: 'Red Hat Display',
                             position: 'relative',
-                            '&:after':{content:'" | "', color: '#BA933E', rotate:"90deg", position: 'absolute',right:"5px", top:"7px" }
+                            '&:after':{content:'" | "', color: '#BA933E', rotate:"90deg", position: 'absolute',right:"5px", top:"7px" },
+                            
                         }} >
                             Free shipping on all orders over <span >$79</span>
                         </Typography>
                         <Typography component={Link}
                             to="/product"
                             sx={{
+                                display:{xs : 'none', sm: 'center'},
                                 backgroundColor: "#BA933E", color: '#FFFFFF', padding: '0 4px',
                                 cursor: 'pointer',
                                 

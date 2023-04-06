@@ -12,7 +12,6 @@ import {
   Typography,
   Grid,
   Button,
-  Checkbox,
   TextField,
 } from '@mui/material';
 
@@ -31,12 +30,6 @@ const validationSchema = Yup.object().shape({
     .typeError('Please enter a valid Postal Code')
     .required('Required'),
 });
-
-// interface Values {
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-// }
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -69,7 +62,7 @@ export const Contact = ({ next, data }) => {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <Typography variant="h6" align="left">
-                    Contact information {data.email}
+                    Contact information
                   </Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -77,26 +70,7 @@ export const Contact = ({ next, data }) => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <TextInput
-                    name="email"
-                    label="Email"
-                    type="email"
-                    // defaultValue={data.email}
-                    // placeholder="Email555"
-                    // validate={'99999'}
-                  />
-                </Grid>
-                <Grid item xs={1}>
-                  <Checkbox />
-                </Grid>
-                <Grid item xs={11}>
-                  <Typography
-                    sx={{ marginTop: 1.2 }}
-                    variant="subtitle2"
-                    align="left"
-                  >
-                    Email me with news and offers
-                  </Typography>
+                  <TextInput name="email" label="Email" type="email" />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -109,16 +83,11 @@ export const Contact = ({ next, data }) => {
                     name="country"
                     label="Country/Region"
                     type="text"
-                    initialValue={data.email}
                   />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <TextInput
-                    name="firstName"
-                    label="First Name"
-                    defaultValue={'jjjj'}
-                  />
+                  <TextInput name="firstName" label="First Name" />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
@@ -139,18 +108,6 @@ export const Contact = ({ next, data }) => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextInput name="postalCode" label="Postal Code" />
-                </Grid>
-                <Grid item xs={1}>
-                  <Checkbox />
-                </Grid>
-                <Grid item xs={11}>
-                  <Typography
-                    sx={{ marginTop: 1.2 }}
-                    variant="subtitle2"
-                    align="left"
-                  >
-                    Save this information for next time
-                  </Typography>
                 </Grid>
               </Grid>
               <Grid container sx={{ marginTop: 3 }} spacing={2}>
