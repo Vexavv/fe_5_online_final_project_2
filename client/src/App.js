@@ -10,6 +10,7 @@ import Products from './pages/Products/Products';
 import Login from './pages/LoginPage/LoginPage';
 import Cart from './pages/Cart/Cart';
 import Checkout from './pages/Checkout/Checkout'
+import Successful from './pages/Checkout/Shipping/Successful'
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import ProductModal from './components/ProductModal/ProductModal';
 import Favorites from './pages/Favorites/Favorites';
@@ -44,6 +45,7 @@ function App(props) {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/successful" element={<Successful />} />
           {/* <Route path="/account" element={<Account/>}/> */}
           <Route path="/favorites" element={<Favorites />} />
           <Route path="*" element={<PageNotFound />} />
