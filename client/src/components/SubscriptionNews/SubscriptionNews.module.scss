@@ -1,0 +1,122 @@
+.Subscription {
+  background-image: url("https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677947823/Final_project/Baners/newsletter-bg_kri206.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  width: 100%;
+  box-sizing: border-box;
+
+  &Container {
+    padding: 1px 30px;
+
+    &Wrapper {
+      max-width: 930px;
+      margin: 80px auto;
+      padding: 80px 15px;
+      background-color: #fff;
+      opacity: .9;
+
+      &Content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &Title {
+          font-family: "Red Hat Display";
+          font-weight: 700;
+          font-size: 30px;
+          line-height: 34px;
+          color: #1a1a1a;
+          padding-bottom: 10px;
+          text-align: center;
+        }
+
+        &Text {
+          font-family: "Red Hat Display";
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 21px;
+          margin-bottom: 10px;
+          color: #444444;
+          text-align: center;
+        }
+
+        &Form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          margin-top: 25px;
+
+          input {
+            border: 2px solid #e1e1e1;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #444444;
+            outline: none;
+            width: 55%;
+          }
+
+          input:focus {
+            box-shadow: 0 -1px 10px 3px #ba933e;
+          }
+
+          &Button {
+            font-family: "Red Hat Display";
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #ffffff;
+            background-color: #1a1a1a;
+            padding: 8px 35px;
+            //margin-left: 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            border:none;
+
+            &:hover {
+              background-color: #ba933e;
+              transition: all .35s ease;
+            }
+          }
+        }
+
+        &Privacy {
+          font-family: "Red Hat Display";
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 24px;
+          color: #444444;
+          margin-top: 30px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 900px) {
+  .Subscription {
+
+    &Container {
+
+      &Wrapper {
+
+        &Content {
+
+          &Form {
+            flex-direction: row;
+            &Button {
+              margin: 0 0 0 20px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+}

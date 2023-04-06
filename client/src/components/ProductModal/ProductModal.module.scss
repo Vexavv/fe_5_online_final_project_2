@@ -1,0 +1,249 @@
+.Modal.Active {
+  display: block;
+}
+
+.Modal {
+  display: none;
+  background-color: rgba(0, 0, 0, .4);
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  &Content {
+    display: flex;
+    width: 60%;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.52);
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 30px;
+    position: relative;
+
+    &Closed {
+      font-size: 25px;
+      padding: 5px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+
+      &:hover {
+        color: #ffffff;
+        background-color: #444444;
+      }
+    }
+
+    &Picture {
+      width: 30%;
+      margin-right: 10px;
+      cursor: pointer;
+      position: relative;
+
+      &Img {
+        max-width: 170px;
+        padding-bottom: 20px;
+        cursor: pointer;
+      }
+
+
+      &Carousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 70px;
+        width: 100%;
+        list-style: none;
+        overflow: scroll;
+
+        img {
+          max-width: 50px;
+          padding: 5px;
+        }
+      }
+    }
+
+    &Description {
+      display: flex;
+      flex-direction: column;
+      padding-left: 10px;
+      text-transform: capitalize;
+      width: 70%;
+
+      &Title {
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 18px;
+        line-height: 15px;
+        margin-bottom: 10px;
+
+        &:hover {
+          color: #ba933e;
+          transition: all .35s ease;
+        }
+      }
+
+      &Text {
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 15px;
+        color: #868686;
+        margin-bottom: 10px;
+      }
+
+      &Color {
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #1A1A1A;
+        padding: 10px 0;
+      }
+
+      &AllPrice {
+        display: flex;
+
+        &Price {
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 20px;
+          color: #666;
+          padding: 10px 0;
+          margin-bottom: 10px;
+        }
+
+        &SalePrice {
+          text-decoration: line-through;
+        }
+
+        &Price2 {
+          font-family: "Red Hat Display", sans-serif;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 20px;
+          color: #ba933e;
+          padding: 10px 0;
+          margin-bottom: 10px;
+          margin-left: 10px;
+        }
+      }
+
+      &Count {
+        display: flex;
+        margin-bottom: 25px;
+
+
+        &Btn {
+          font-family: 'Red Hat Display';
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 15px;
+          background-color: #1A1A1A;
+          padding: 10px 20px;
+          color: #ffffff;
+          border: none;
+          cursor: pointer;
+          border-radius: 4px;
+
+          &:hover {
+            background-color: #ba933e;
+            transition: all .35s ease;
+          }
+        }
+      }
+
+      &Values {
+        font-family: 'Red Hat Display';
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 15px;
+        color: #1A1A1A;
+        padding: 5px 0;
+        margin-right: 10px;
+      }
+    }
+
+
+  }
+}
+
+.Favorites {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+
+  &:hover {
+    background-color: #f0bf57;
+    color: #504b4b;
+    width: 150px;
+    border-radius: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .Modal {
+    &Content {
+
+      &Picture {
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &Img {
+          max-width: 270px;
+        }
+
+        &Carousel {
+          img {
+            max-width: 70px;
+            padding: 10px;
+          }
+        }
+      }
+
+      &Description {
+        padding-left: 20px;
+        width: 65%;
+
+        &Title {
+          font-size: 28px;
+          line-height: 20px;
+          margin-bottom: 20px;
+
+        }
+
+        &Text {
+          font-size: 16px;
+          line-height: 24px;
+          margin-bottom: 25px;
+        }
+
+        &Price {
+          font-size: 20px;
+          margin-bottom: 20px;
+        }
+
+        &Count {
+
+          &Btn {
+            font-family: 'Red Hat Display';
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+            padding: 10px 30px;
+          }
+        }
+
+        &Values {
+          line-height: 20px;
+          padding: 10px 0;
+        }
+      }
+
+    }
+  }
+
+}

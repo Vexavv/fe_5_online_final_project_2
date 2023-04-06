@@ -1,0 +1,127 @@
+.btnWrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 5%;
+  right: 7%;
+
+  &Sale {
+    background: #ba933e;
+    border-radius: 4px;
+    position: absolute;
+    top: 3%;
+    left: 5%;
+
+    &Text {
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      color: #F5F5F5;
+      padding: 5px;
+      text-transform: capitalize;
+    }
+  }
+
+  &Title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &Name {
+      text-transform: capitalize;
+      cursor: pointer;
+      @media (max-width: 600px) {
+        font-size: 10px;
+      }
+    }
+
+    &AllPrice {
+      display: flex;
+
+      &Price {
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20px;
+        color: #666;
+        padding: 10px 0;
+        margin-bottom: 10px;
+      }
+
+      &SalePrice {
+        text-decoration: line-through;
+      }
+
+      &Price2 {
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 20px;
+        color: #ba933e;
+        padding: 10px 0;
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
+    }
+
+  }
+
+  &Icon {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    font-size: 20px;
+    z-index: 1;
+
+    &:nth-child(2) {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      font-size: 25px;
+      &:nth-child(2) {
+        display: block;
+
+      }
+    }
+
+    &:hover {
+      background-color: #ba933e;
+      color: #F5F5F5;
+    }
+  }
+
+}
+
+.wrapper {
+  margin: 10px;
+  position: relative;
+
+
+  img {
+    cursor: pointer;
+    z-index: 0;
+
+    @media (max-width: 600px) {
+      width: 150px;
+      height: 190px;
+    }
+    @media (min-width: 601px) {
+      width: 250px;
+      height: 300px;
+    }
+    @media (min-width: 901px) {
+      width: 322px;
+      height: 400px;
+    }
+
+    //&:hover {
+    //  opacity: 0.2;
+    //  transition: opacity 0.25s ease-in-out;
+    //}
+  }
+
+
+}

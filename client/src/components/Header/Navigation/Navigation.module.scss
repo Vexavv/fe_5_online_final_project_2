@@ -1,0 +1,19 @@
+
+.navLink{
+    color: #1A1A1A ;
+    font-family: "Red Hat Display", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    text-decoration: none;
+
+   
+}
+.activeLink {
+    color: #BA933E;
+    cursor: default;
+    text-decoration: none;
+  }
+  
+  .navLink:hover{
+    color: #BA933E;
+}

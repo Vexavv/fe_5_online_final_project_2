@@ -1,0 +1,32 @@
+.container{
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 3%;
+
+    h2{
+        color: #1a1a1a;
+        font-size: 30px;
+
+        @media (max-width:600px) {
+            font-size: 20px;
+        }
+    }
+
+    h3{
+        text-transform: capitalize;
+        cursor: pointer;
+        @media (max-width:600px) {
+            font-size: 10px;
+        }
+    }
+
+    a,p{
+        color: #666666;
+    }
+}
+
+.flexWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   
+}

@@ -1,0 +1,91 @@
+.Slider{
+  margin:30px 15px ;
+
+
+&Description{
+  text-align: center;
+  margin-bottom: 20px;
+  &Title{
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 700;
+    color:#1a1a1a;
+    padding-bottom: 10px;
+  
+  }
+  &Text{
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 16px;
+    line-height: 21px;
+    font-weight: 400;
+    color:#1a1a1a;
+    margin-bottom: 10px;
+  }
+}
+}
+@media (min-width: 900px) {
+  .Slider{
+    margin:50px 30px ;
+    &Description{
+      &Title{
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 28px;
+        line-height: 34px;
+        font-weight: 700;
+        color:#1a1a1a;
+        padding-bottom: 10px;
+      }
+      &Text{
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 16px;
+        line-height: 21px;
+        font-weight: 400;
+        color:#1a1a1a;
+        margin-bottom: 10px;
+      }
+
+    }
+  }
+}
+.Wrapper{
+  &:hover &Icon{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  &Icon{
+    display: block;
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    &Btn{
+      font-size: 30px;
+      padding:10px;
+      border-radius:5px ;
+      background-color:#ffffff;
+      margin-bottom: 10px;
+      color:#1a1a1a;
+      &:nth-child(2){
+        display: none;
+      }
+    }
+  }
+}
+@media (min-width: 900px) {
+  .Wrapper{
+    &Icon{
+      display: none;
+      &Btn{
+        &:nth-child(2){
+          display: block;
+        }
+        &:hover {
+          background-color: #ba933e;
+          color: #F5F5F5;
+          transition: all .5s ease;
+        }
+      }
+    }
+  }
+}

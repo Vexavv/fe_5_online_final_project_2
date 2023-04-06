@@ -1,0 +1,144 @@
+.loginPage{   
+    width: 100vw;
+    height: 100vh;
+
+    &ContentWrapper{
+        width: 80%;
+        margin: 50px auto;
+        box-sizing: border-box;     
+        border-radius: 2px;
+        border: 1px solid #e1e1e1;
+        box-shadow: 0 0 2px  #e1e1e1;
+    }
+
+    &Nav{
+        display: flex;        
+        list-style: none;
+        line-height: 20px;
+        text-align: center;
+        font-family: 'Red Hat Display';
+        font-weight: bold; 
+        color:#444;
+      
+    }
+
+    &Title{
+        width: 50%;      
+        padding: 15px 10px;
+         
+       
+         &Active{
+            width: 50%;             
+             background-color: #e1e1e1;
+             padding: 15px 10px;
+         }
+     }
+
+    &Form{
+        // width: inherit;             
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 10px;
+        border-radius: 3px;       
+        padding: 4px;
+        font-family: 'Red Hat Display';
+        font-size: 16px;
+       
+       
+        &Input{  
+            width: 100%;     
+            box-sizing: border-box;
+           padding: 9px ;
+           padding-bottom: 9px;
+            border-radius: 5px;
+            border: 2px solid #e1e1e1;            
+            font-family: 'Red Hat Display';
+            font-size: 16px;
+            color: #444444;
+            outline: none;
+            &:focus {
+                box-shadow: 0 -1px 10px 3px #ba933e; 
+                           
+            }
+          
+        }
+        &InputPass{
+            width: 100%;     
+            box-sizing: border-box;
+           padding: 9px;
+           padding-bottom: 9px;
+            border-radius: 5px;
+            border: none;            
+            font-family: 'Red Hat Display';
+            font-size: 16px;
+            color: #444444;
+            outline: none;
+            &:focus {
+                box-shadow: 0 -1px 10px 3px #ba933e; 
+                           
+            }
+        }
+      
+    }
+
+    @media (min-width: 600px){
+        &ContentWrapper{
+            width: 50%;
+        }
+        &Form{
+            padding: 30px;
+        }
+}}
+.LoginButton{
+    color: #fff;
+    background-color: #444;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border: 1px solid #444;
+}
+.LoginButton:active{
+    background-color: #BA933E;
+    box-shadow: 2px #4444;
+    border: 1px solid #BA933E;
+}
+@media (min-width: 900px){
+    .LoginButton:hover{
+        background-color: #BA933E;
+        border: 1px solid #BA933E;
+        
+    }
+}
+
+.alertButton{
+    color: #fff;
+    background-color: #444;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: 1px solid #444;
+    border-radius: 6px;
+}
+.RecoveryButton{
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+.loginPageFieldWrapper{
+    display:flex;
+    justify-content: space-between;
+    gap: 4px;
+    border: 2px solid #e1e1e1; 
+     
+}
+
+.loginPageSpan{
+text-align: center;
+display: inline-block;
+width: fit-content;
+margin-right: 10px;
+color:  #444;
+padding-top: 8px;
+}
+

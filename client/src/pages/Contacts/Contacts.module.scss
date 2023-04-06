@@ -1,0 +1,92 @@
+.sectionContact {
+  margin: 10px;
+  .pageContact {
+    margin: 15px;
+    &Info {
+      display: flex;
+    }
+  }
+}
+
+.pageContactInfo {
+  margin: 70px 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.contactLeft {
+  margin-right: 50px;
+  flex-basis: auto;
+}
+
+.contacTitle {
+  padding: 0 0 30px;
+  margin: 0;
+  position: relative;
+  font-size: 1.3rem;
+  line-height: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.contactDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pageContactRight {
+  margin-right: 20px;
+  margin-top: 30px;
+  flex-basis: auto;
+}
+
+.formControl {
+  width: 100%;
+  border: 1.5px solid #c7c7c7;
+  border-radius: 5px;
+  padding: 0.7rem;
+  margin: 0.6rem 0;
+  font-size: 1rem;
+  outline: 0;
+}
+
+.sendBtn {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  margin: 0.6rem 0;
+  text-transform: uppercase;
+  background: none;
+  border: 1.5px solid #c7c7c7;
+  border-radius: 5px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+@media (min-width: 991px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .contactLeft {
+    margin-right: 50px;
+    flex-basis: 40%;
+  }
+
+  .pageContactRight {
+    margin-right: 20px;
+    flex-basis: 60%;
+  }
+}

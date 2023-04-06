@@ -1,0 +1,52 @@
+.Product {
+  &Wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+
+    &Filter {
+      display: none;
+    }
+
+    &Content {
+      padding: 0 15px;
+      width: 100%;
+    }
+
+    &Pagination {
+      padding: 0 15px;
+
+    }
+  }
+}
+@media (min-width: 600px) {
+  .Product {
+    &Wrapper {
+      &Pagination {
+        margin-left: 25%;
+      }
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .Product {
+    &Wrapper {
+      &Filter {
+        display: block;
+        width: 25%;
+      }
+
+      &Content {
+        width: 75%;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
+

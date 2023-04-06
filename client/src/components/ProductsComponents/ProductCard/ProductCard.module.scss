@@ -1,0 +1,383 @@
+.Card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+
+  //&:hover &Button {
+  //  display: flex;
+  //  flex-direction: column;
+  //}
+
+  &Link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &Img {
+      width: 80%;
+      color: saddlebrown;
+    }
+  }
+
+
+  &Button {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 5%;
+    right: 12%;
+
+    &Icon {
+      color: black;
+      font-size: 25px;
+      padding: 8px;
+      border-radius: 5px;
+      background-color: #ffffff;
+      margin-bottom: 10px;
+
+      &:nth-child(2) {
+        display: none;
+      }
+
+      //&:hover {
+      //  background-color: #ba933e;
+      //  color: #F5F5F5;
+      //  transition: all .5s ease;
+      //}
+    }
+  }
+
+  &Sale {
+    background: #ba933e;
+    border-radius: 4px;
+    position: absolute;
+    top: 3%;
+    left: 12%;
+
+    &Text {
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      color: #F5F5F5;
+      padding: 5px;
+      text-transform: capitalize;
+    }
+  }
+
+  &Description {
+    margin-top: 20px;
+    width: 80%;
+
+    &Name {
+      text-transform: capitalize;
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 20px;
+      color: #444444;
+      margin-bottom: 10px;
+
+      &:hover {
+        color: #ba933e;
+        transition: all .5s ease;
+      }
+    }
+
+    &Container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &Price {
+        font-family: 'Red Hat Display';
+        font-weight: 400;
+        font-size: 14px;
+        color: #666;
+        line-height: 20px;
+
+      }
+
+      &SalePrice {
+        text-decoration: line-through;
+      }
+
+      &Price2 {
+        font-family: 'Red Hat Display';
+        font-weight: 400;
+        font-size: 14px;
+        color: #ba933e;
+        line-height: 20px;
+      }
+
+      &Label {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+
+        li img {
+          width: 20px;
+          border-radius: 45%;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .Card {
+    justify-content: space-evenly;
+    width: 250px;
+    margin-left: 10px;
+
+
+    &Img {
+      width: 100%;
+    }
+
+    &Button {
+      &Icon {
+        font-size: 25px;
+        padding: 8px;
+        border-radius: 5px;
+        background-color: #ffffff;
+        margin-bottom: 10px;
+      }
+
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .Card {
+    &:hover &Button {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &Button {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 5%;
+      right: 12%;
+
+      &Icon {
+        color: black;
+        font-size: 25px;
+        padding: 8px;
+        border-radius: 5px;
+        background-color: #ffffff;
+        margin-bottom: 10px;
+
+        &:nth-child(2) {
+          display: block;
+        }
+
+        &:hover {
+          background-color: #ba933e;
+          color: #F5F5F5;
+          transition: all .5s ease;
+        }
+      }
+    }
+
+  }
+}
+
+.Row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  list-style: none;
+  justify-content: center;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+
+  &Img {
+    width: 100%;
+  }
+
+  &Description {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+
+    &Wrapper {
+      display: flex;
+
+      &Name {
+        font-family: 'Red Hat Display';
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 20px;
+        color: #444444;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+      }
+
+      &Sale {
+        background: #ba933e;
+        border-radius: 4px;
+        margin-left: 10px;
+      }
+    }
+
+    &All {
+      display: flex;
+
+      &Price {
+        font-family: 'Red Hat Display';
+        font-weight: 400;
+        font-size: 20px;
+        color: #666666;
+        line-height: 20px;
+      }
+
+      &Price2 {
+        text-decoration: line-through;
+      }
+
+      &SalePrice {
+        font-family: 'Red Hat Display';
+        font-weight: 400;
+        font-size: 20px;
+        color: #ba933e;
+        line-height: 20px;
+        margin-left: 10px;
+      }
+    }
+
+
+    &Label {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding-top: 15px;
+
+      li img {
+        width: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+
+    }
+
+    &Param {
+      font-family: 'Red Hat Display';
+      font-weight: 400;
+      font-size: 16px;
+      color: #868686;
+      line-height: 24px;
+      padding-top: 20px;
+    }
+  }
+
+  &Nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      width: 100%;
+    }
+
+    &Button {
+      font-family: 'Red Hat Display';
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 20px;
+      background-color: #1A1A1A;
+      padding: 10px 5px;
+      margin: 10px 0;
+      color: #ffffff;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:nth-child(2) {
+        display: none;
+
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .Row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &Img {
+      min-width: 130px;
+      max-height: 170px;
+      width: 20%;
+    }
+
+    &Description {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      margin-left: 20px;
+      width: 72%;
+    }
+
+
+    &Nav {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .Row {
+    flex-wrap: nowrap;
+    list-style: none;
+
+    &Img {
+      max-height: 200px;
+      width: 150px;
+    }
+
+    &Description {
+      &Name {
+        &:hover {
+          color: #ba933e;
+          transition: all .5s ease;
+        }
+      }
+    }
+
+    &Nav {
+      width: 25%;
+
+      a {
+        width: 150px;
+      }
+
+      &Button {
+        width: 150px;
+
+        &:hover {
+          background-color: #ba933e;
+          transition: all .5s ease;
+        }
+
+        &:nth-child(2) {
+          display: block;
+        }
+      }
+    }
+  }
+}

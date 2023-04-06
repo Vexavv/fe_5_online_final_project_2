@@ -1,0 +1,31 @@
+.tw:hover {
+  color: #00acee;
+}
+
+.fb:hover {
+  color: #3b5998;
+}
+
+.inst:hover {
+  color: red;
+}
+
+.btn:hover {
+  background-color: #ba933e;
+  color: aqua;
+}
+
+.span {
+  font-weight: bold;
+}
+
+.favorites{
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  &:hover{
+    background-color: #f0bf57;
+    color: #504b4b;
+    border-radius: 10px;
+  }
+}

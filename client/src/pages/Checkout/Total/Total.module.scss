@@ -1,0 +1,115 @@
+.cardPrice {
+  flex: 40%;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productImg {
+  width: 64px;
+  position: relative;
+  border: 1px solid rgb(148, 148, 148);
+  border-radius: 5px;
+  img {
+    display: block;
+    width: 64px;
+  }
+  div {
+    position: absolute;
+    top: -10px;
+    left: 50px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 50%;
+    color: white;
+    background-color: rgb(115, 115, 115);
+  }
+}
+.productTitle {
+  width: 100%;
+  margin-left: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+}
+
+.discaunt {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.discauntInpt {
+  input {
+    padding: 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+}
+
+.discauntBtn {
+  button {
+    padding: 18px;
+    color: white;
+    font-size: 16px;
+    background-color: gray;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+.sub {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0;
+}
+
+.subtotal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.shipping {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+@media (min-width: 991px) {
+  .containerForm {
+    display: flex;
+    flex-direction: row;
+  }
+}

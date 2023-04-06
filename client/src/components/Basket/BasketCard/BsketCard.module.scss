@@ -1,0 +1,160 @@
+.Container {
+    color: red;
+}
+
+.Card {
+    padding: 15px 0;
+
+    &Img {
+        width: 26%;
+        padding-right: 20px;
+    }
+
+    &Option {
+     
+        max-height: 145px;
+
+        &Section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &Name {
+            font-weight: 500;
+            font-size: 18px;
+            color: #1a1a1a;
+        }
+
+        &TotalPrice {
+            color: #666666;
+            font-size: 20px;
+            font-weight: 600;
+            display: none;
+        }
+
+        &Color {
+            color: #444444;
+            font-size: 14px;
+            margin: 0;
+
+            line-height: 24px;
+            font-weight: 400;
+        }
+
+        &Desription {
+            color: #444444;
+            font-size: 16px;
+            margin: 0px 0px 11.5px;
+            line-height: 24px;
+            font-weight: 400;
+        }
+
+        &Price {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+            line-height: 14px;
+            margin: 0;
+            padding-bottom: 11.5px;
+        }
+
+        &Container {
+            display: flex;
+            justify-content: space-between;
+
+            &Remove {
+                color: #1a1a1a;
+                background-color: #fff;
+                border: 2px solid #e1e1e1;
+                font-weight: 700;
+                font-size: 18;
+                margin-right: 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                padding: 9px 20px;
+                transition: all .35s ease;
+
+                &:hover {
+                    color: #fff;
+                    background-color: #ba933e;
+                    border: 2px solid #ba933e;
+                }
+
+            }
+
+            &Count {
+                width: 100px;
+                height: 50px;
+                display: flex;
+
+                &Minus {
+                    width: 35px;
+                    height: 100%;
+                    background-color: #f5f5f5;
+                    border: #f5f5f5;
+                    cursor: pointer;
+
+                    &text {
+                        color: #1a1a1a;
+                    }
+                }
+
+                &Plus {
+                    width: 35px;
+                    height: 100%;
+                    background-color: #f5f5f5;
+                    border: #f5f5f5;
+                    cursor: pointer;
+
+                    &text {
+                        color: #1a1a1a;
+                        display: block;
+                        font-weight: 700;
+                        font-size: 24px;
+                        line-height: 14px;
+                    }
+                }
+
+                &Value {
+                    height: 100%;
+                    width: 100%;
+                    font-size: 20px;
+                    font-weight: 700;
+                    border: #f5f5f5;
+                    background-color: #f5f5f5;
+                    color: #1a1a1a;
+                    text-align: center;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}
+
+.Line {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+@media (min-width: 600px) {
+   
+    .Card {
+        display: flex;
+        &Img {
+            width: 121px;
+            height: 145px;
+        }
+
+        &Option {
+width: 100%;
+            &TotalPrice {
+                display: inherit;
+            }
+            // &Section{
+            //     background-color: red;
+            // }
+
+
+
+        }
+    }
+}

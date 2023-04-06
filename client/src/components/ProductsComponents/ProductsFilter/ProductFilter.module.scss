@@ -1,0 +1,29 @@
+.Filter {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+
+  &Radio {
+    border-bottom: 1px solid #c2c0c0;
+    padding-bottom: 30px;
+
+  }
+  &Color{
+    list-style: none;
+    border-bottom: 1px solid #c2c0c0 ;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  &Slider{
+    display: flex;
+    flex-direction: column;
+  }
+  &Best{
+    border-bottom: 1px solid #c2c0c0 ;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+
+
+  }
+}

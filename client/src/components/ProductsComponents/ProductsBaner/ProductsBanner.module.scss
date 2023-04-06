@@ -1,0 +1,120 @@
+.Banner {
+  background-image: url("https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677948332/Final_project/Baners/bg-breacumb_wyuxdw.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  margin-bottom: 30px;
+
+  &Container {
+    margin: 0 auto;
+    padding: 0 15px;
+
+    &Nav {
+      padding: 15px 0;
+
+      &Title {
+        font-family: 'Red Hat Display';
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 38px;
+        margin-bottom: 10px;
+        color: #1a1a1a;
+        text-transform: capitalize;
+      }
+
+      &Link {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+
+        &Item {
+          font-family: 'Red Hat Display';
+          font-size: 14px;
+          line-height: 24px;
+          font-weight: 500;
+
+          a {
+            cursor: pointer;
+            color: #444444;
+            margin: 0;
+          }
+
+          span {
+            color: #999999;
+text-transform: capitalize;
+            &::before {
+              content: '>';
+              width: 14px;
+              padding: 0 5px;
+              margin-left: 2px;
+              color: #444444;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .Banner {
+    &Container {
+      margin: 0 20px;
+
+      &Nav {
+        padding: 30px 0;
+
+        &Title {
+          font-size: 35px;
+        }
+
+        &Link {
+          &Item {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .Banner {
+    &Container {
+      margin: 0 70px;
+
+      &Nav {
+        padding: 100px 0;
+
+        &Title {
+          font-size: 48px;
+          line-height: 56px;
+          margin-bottom: 15px;
+        }
+
+        &Link {
+          &Item {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .Banner {
+    &Container {
+      margin: 0 70px;
+
+      &Nav {
+        padding: 120px 0;
+
+        &Title {
+          font-size: 50px;
+        }
+      }
+    }
+  }
+}
