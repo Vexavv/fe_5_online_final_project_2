@@ -6,10 +6,10 @@ import Total from './Total/Total';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchGetCustomer } from '../../store/slices/customerSlice';
 
-
 const Checkout = () => {
   const dispatch = useDispatch();
   const customer = useSelector((state) => state.customer.customer);
+  const checkoutProduct = useSelector((state) => state.card.products);
 
   const INITIAL_FORM_STATE = {
     firstName: customer.firstName || '',
@@ -34,8 +34,6 @@ const Checkout = () => {
     setCurentStep((prev) => prev - 1);
   };
 
-  console.log('customer', customer);
-
   useEffect(() => {
     dispatch(fetchGetCustomer());
   }, [dispatch]);
@@ -48,13 +46,6 @@ const Checkout = () => {
       email: customer?.email || '',
     }));
   }, [customer]);
-
-  console.log('data', data);
-
-  const step = [
-    <Contact value={0} next={handleNextStep} data={data} />,
-    <Shipping value={curentStep} prev={handlePrevStep} data={data} />,
-  ];
 
   const orderData = {
     customer: {
@@ -69,8 +60,19 @@ const Checkout = () => {
       zipCode: data.postalCode,
       country: data.country,
     },
+    products: checkoutProduct,
   };
-  console.log('orderData', orderData);
+
+  const step = [
+    <Contact value={0} next={handleNextStep} data={data} />,
+    <Shipping
+      value={curentStep}
+      prev={handlePrevStep}
+      data={data}
+      orderData={orderData}
+    />,
+  ];
+
   return (
     <>
       <Container sx={{ bgcolor: '#white', marginTop: 4 }}>
