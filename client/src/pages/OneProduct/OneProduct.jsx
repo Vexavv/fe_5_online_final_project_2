@@ -4,39 +4,46 @@ import {
   Button,
   IconButton,
   Typography,
-} from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+} from "@mui/material";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import AddIcon from "@mui/icons-material/Add";
 
-import AddIcon from '@mui/icons-material/Add';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import RemoveIcon from "@mui/icons-material/Remove";
+import styles from "./OneProduct.module.scss";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import RemoveIcon from '@mui/icons-material/Remove';
-import styles from './OneProduct.module.scss';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { styled } from '@mui/material/styles';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { addCard, removeCard } from '../../store/slices/cardSlice';
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Loader from '../../components/Loader/Loader';
-import { BASE_URL } from '../../constants/api';
+import { useDispatch, useSelector } from "react-redux";
+import { addCard, addToCard, removeCard } from "../../store/slices/cardSlice";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
+import { BASE_URL } from "../../constants/api";
 import {
   addProductToWishlist,
   removeProductFromWishlist,
-} from '../../store/slices/wishlistSlice';
+} from "../../store/slices/wishlistSlice";
+
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: "#ba933e",
+    },
+  },
+});
 
 const buttonSX = {
-  backgroundColor: '#222222',
-  color: 'white',
+  backgroundColor: "#222222",
+  color: "white",
   borderRadius: 0,
-  minWidth: '150px',
-  padding: '10px 40px',
+  minWidth: "150px",
+  padding: "10px 40px",
 };
 
 export default function OneProduct() {
@@ -65,27 +72,33 @@ export default function OneProduct() {
   };
 
   // -------------------------------добавка в корзину -------------------
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const products = useSelector((state) => state.card.products);
-  const isInBasket = products.find(
-    (productItem) => productItem._id === product?._id
+  console.log(products);
+  const isInBasket = products.find((productItem) =>
+    isLogged
+      ? productItem.product._id === product?._id
+      : productItem._id === product?._id
   );
 
   const addProductBascet = () => {
     if (isInBasket) {
-      console.log('remove');
     } else {
-      dispatch(
-        addCard({
-          ...product,
-          amount: 1,
-          totalPrice: product.currentPrice,
-        })
-      );
+      isLogged
+        ? dispatch(addToCard(product))
+        : dispatch(
+            addCard({
+              product: {
+                ...product,
+                amount: 1,
+                totalPrice: product.currentPrice,
+              },
+            })
+          );
     }
   };
 
   // --------------------------------- add to wish list----------------
-  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const { wishlist } = useSelector((state) => state.wishlist);
   const isFavorite = wishlist && wishlist.products;
   const isInWishlist =
@@ -106,13 +119,13 @@ export default function OneProduct() {
     <>
       <DialogTitle
         sx={{
-          background: '#eaebef',
+          background: "#eaebef",
         }}
       >
         <Box
           display="flex"
           alignItems="center"
-          justifyContent={'space-between'}
+          justifyContent={"space-between"}
           textTransform="capitalize"
         >
           {product.name}
@@ -124,11 +137,11 @@ export default function OneProduct() {
           {/* IMAGES */}
           <Box flex="1 1 40%" mb="40px">
             <img
-              alt={'sss'}
+              alt={"sss"}
               width="100%"
               height="100%"
               src={product.imageUrls[0]}
-              style={{ objectFit: 'contain' }}
+              style={{ objectFit: "contain" }}
             />
           </Box>
 
@@ -139,12 +152,12 @@ export default function OneProduct() {
               <Typography
                 align="left"
                 variant="h4"
-                sx={{ textTransform: 'capitalize' }}
+                sx={{ textTransform: "capitalize" }}
               >
                 {product.name}
               </Typography>
 
-              <Typography align="left" sx={{ mt: '20px' }}>
+              <Typography align="left" sx={{ mt: "20px" }}>
                 {product.description}
               </Typography>
               <Box display="flex">
@@ -155,7 +168,7 @@ export default function OneProduct() {
                     align="left"
                     m="30px 0"
                     sx={{
-                      textDecoration: 'line-through',
+                      textDecoration: "line-through",
                     }}
                   >
                     ${product.previousPrice}.00
@@ -184,31 +197,56 @@ export default function OneProduct() {
             </Box>
 
             <Box display="flex" alignItems="center" minHeight="50px">
-              <Button
-                onClick={addProductBascet}
-                // onClick={handleAddCard}
-                sx={buttonSX}
-                variant="contained"
-                color="primary"
+              {/* <Box
+
+                display="flex"
+                alignItems="center"
+                backgroundColor="#f5f5f5"
+                border="1px solid #f5f5f5"
+                borderRadius="5px"
+                mr="20px"
+                p="2px 5px"
               >
-                {isInBasket ? 'PRODUCT IN BASKET' : 'ADD TO CART'}
-              </Button>
-              {/*-----------------add to wish list --------------*/}
-              <IconButton
-                sx={{ marginLeft: 3 }}
-                onClick={() =>
-                  isInWishlist
-                    ? removeFromWishlist(product._id)
-                    : addToWishlist(product._id)
-                }
-              >
-                {isLogged &&
-                  (isInWishlist ? (
-                    <FavoriteIcon sx={{ fontSize: 40, color: '#ba933e' }} />
-                  ) : (
-                    <FavoriteBorderIcon sx={{ fontSize: 40 }} />
-                  ))}
-              </IconButton>
+                <IconButton>
+                  {/* <RemoveIcon onClick={handleRemoveCard} /> */}
+              {/* <RemoveIcon />
+                </IconButton>
+                <Typography sx={{ p: "0 5px" }}>
+                  {/* {oneProd.quantity || 1} */}
+              {/* {1} */}
+              {/* </Typography>
+                <IconButton>
+                  <AddIcon />
+                  {/* <AddIcon onClick={handleAddCard} /> */}
+              {/* </IconButton> */}
+              {/* </Box>  */}
+              <ThemeProvider theme={theme}>
+                <Button
+                  onClick={addProductBascet}
+                  // onClick={handleAddCard}
+                  sx={buttonSX}
+                  variant="contained"
+                  color="secondary"
+                >
+                  {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
+                </Button>
+                {/*-----------------add to wish list --------------*/}
+                <IconButton
+                  sx={{ marginLeft: 3 }}
+                  onClick={() =>
+                    isInWishlist
+                      ? removeFromWishlist(product._id)
+                      : addToWishlist(product._id)
+                  }
+                >
+                  {isLogged &&
+                    (isInWishlist ? (
+                      <FavoriteIcon sx={{ fontSize: 40, color: "#ba933e" }} />
+                    ) : (
+                      <FavoriteBorderIcon sx={{ fontSize: 40 }} />
+                    ))}
+                </IconButton>
+              </ThemeProvider>
             </Box>
 
             <Box display="flex" flexDirection="column" alignItems="flex-start">
@@ -234,7 +272,7 @@ export default function OneProduct() {
               <Box
                 sx={{
                   mt: 4,
-                  color: 'gray',
+                  color: "gray",
                 }}
               >
                 <IconButton>
@@ -247,24 +285,31 @@ export default function OneProduct() {
           </Box>
         </Box>
 
+        {/* INFORMATION */}
+        {/* <Box m="20px 0">
+
+          <Tabs value={changeTable} onChange={handleChange} centered>
+            <Tab label="Details" value="description" />
+            <Tab label="Shipping & Return" value="reviews" />
+            <Tab label="Reviews" value="reviews" />
+          </Tabs>
+        </Box> */}
+
         <Box m="20px 0">
-          <Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
-            <Tabs
-              value={tabIndex}
-              onChange={handleTabChange}
-              centered
-              textColor="primary"
-              indicatorColor="primary"
-              sx={{
-                '& button:hover': { backgroundColor: '#ffffff' },
-                '& button:focus': { backgroundColor: '#ffffff' },
-                '& button:active': { backgroundColor: '#ffffff' },
-              }}
-            >
-              <Tab label="Details" />
-              <Tab label="Shipping & Return" />
-              <Tab label="Reviews" />
-            </Tabs>
+          <Box sx={{ borderBottom: 2, borderColor: "divider" }}>
+            <ThemeProvider theme={theme}>
+              <Tabs
+                value={tabIndex}
+                onChange={handleTabChange}
+                centered
+                textColor="secondary"
+                indicatorColor="secondary"
+              >
+                <Tab label="Details" />
+                <Tab label="Shipping & Return" />
+                <Tab label="Reviews" />
+              </Tabs>
+            </ThemeProvider>
           </Box>
           <Box sx={{ padding: 2 }}>
             {tabIndex === 0 && (
@@ -284,6 +329,24 @@ export default function OneProduct() {
             )}
           </Box>
         </Box>
+
+        {/* <Box display="flex" flexWrap="wrap" gap="15px">
+          <div>reviews</div>
+        </Box> */}
+
+        {/* RELATED ITEMS */}
+        {/* <Box mt="50px" width="100%">
+          <Typography variant="h3" fontWeight="bold">
+            Related Products
+          </Typography>
+          <Box
+            mt="20px"
+            display="flex"
+            flexWrap="wrap"
+            columnGap="1.33%"
+            justifyContent="space-between"
+          ></Box>
+        </Box> */}
       </Box>
     </>
   );

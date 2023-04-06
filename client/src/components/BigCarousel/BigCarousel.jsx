@@ -1,142 +1,128 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import styles from './BigCarousel.module.scss'
+
 
 
 const images = [
-  {
-    id: 1,
-    src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide12_z3dd1h.webp',
-    alt: "chair",
-    text: 'Wood Minimal Office Chair Extra 40% off now.',
-    link: '/sale'
-  },
-  {
-    id: 2,
-    src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide13_bvocpv.webp',
-    alt: "Second Slide",
-    text: 'Everyone’s Talking About Sweeper and funnel.',
-    link: '/products/217261'
-  },
-  {
-    id: 3,
-    src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide11_xc8vox.webp',
-    alt: "Third Slide",
-    text: 'Normann Copenhagen - Craft salt and pepper grinder',
-    link:'/products'
-  }, 
-]
-
-const responsive = [{
-  desktop: {
-    breakpoint: {
-      max: '3000px',
-      min: '1200px'
+    {
+      id: 1,
+      src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide12_z3dd1h.webp',
+      alt: "First Slide"
     },
-    items: 1
-  },
-  mobile: {
-    breakpoint: {
-      max: '599px',
-      min: '0px'
+    {
+      id: 2,
+      src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide13_bvocpv.webp',
+      alt: "Second Slide"
     },
-    items: 1
-  },
-  tablet: {
-    breakpoint: {
-      max: '1199px',
-      min: '600px'
+    {
+      id: 3,
+      src: 'https://res.cloudinary.com/dj9e1wjcg/image/upload/v1677945781/Final_project/Slider/slide11_xc8vox.webp',
+      alt: "Third Slide"
     },
-    items: 1
-  }
-}]
+  //   {
+  //   id: 4,
+  //   src: './production ID_3770033.mp4',
+  //   alt: "Fourth Slide"
+  // }
+  ]
 
-
-const BigCarousel = () => {
-
-  return (
-    <Carousel
-      additionalTransfrom={0}
-      arrows
-      autoPlaySpeed={3000}
-      centerMode={false}
-      className="bigCarousel"
-      containerClass="container"
-      dotListClass
-      draggable={false}
-      focusOnSelect={false}
-      infinite
-      itemClass="bigCarouselItem"
-      keyBoardControl
-      minimumTouchDrag={80}
-      pauseOnHover
-      renderArrowsWhenDisabled={true}
-      removeArrowOnDeviceType={['mobile', 'tablet']}
-      renderButtonGroupOutside={false}
-      renderDotsOutside={false}
-      responsive={{
+ const responsive = [{
         desktop: {
-          breakpoint: {
-            max: 3000,
-            min: 1024
+            breakpoint: {
+              max: '3000px',
+              min: '1200px'
+            },
+            items: 1
           },
-          items: 1
+          mobile: {
+            breakpoint: {
+                max: '599px',
+                min: '0px'
+              },
+              items: 1
+            },
+            tablet: {
+              breakpoint: {
+                max: '1199px',
+                min: '600px'
+              },
+              items: 1
+            }
+    }]
+
+
+const BigCarousel =()=>{ 
+
+return (
+    <Carousel
+    additionalTransfrom={0}
+    arrows
+    autoPlaySpeed={3000}
+    centerMode={false}
+    className="bigCarousel"
+    containerClass="container"
+    dotListClass="bigCarouselDot"
+    draggable
+    focusOnSelect={false}
+    infinite
+    itemClass="bigCarouselItem"
+    keyBoardControl
+    minimumTouchDrag={80}
+    pauseOnHover
+    renderArrowsWhenDisabled={false}
+    renderButtonGroupOutside={false}
+    renderDotsOutside={false}
+    responsive={{
+      desktop: {
+        breakpoint: {
+          max: 3000,
+          min: 1024
         },
-        mobile: {
-          breakpoint: {
-            max: 600,
-            min: 0
-          },
-          items: 1
+        items: 1
+      },
+      mobile: {
+        breakpoint: {
+          max: 464,
+          min: 0
         },
-        tablet: {
-          breakpoint: {
-            max: 1024,
-            min: 464
-          },
-          items: 1
-        }
+        items: 1
+      },
+      tablet: {
+        breakpoint: {
+          max: 1024,
+          min: 464
+        },
+        items: 1
+      }
+    }}
+    rewind={false}
+    rewindWithAnimation={false}
+    rtl={false}
+    shouldResetAutoplay
+    showDots
+    sliderClass="bigCarouselSlider"
+    slidesToSlide={1}
+    swipeable
+  >
+   { images.map(image => (
+    <img key={image.id} src= {image.src} alt={image.alt}
+    style={{
+        display: 'block',
+        height: '100%',
+        margin: 'auto',
+        width: '100%'
       }}
-      rewind={false}
-      rewindWithAnimation={false}
-      rtl={false}
-      shouldResetAutoplay
-      showDots
-      sliderClass
-      slidesToSlide={1}
-      swipeable
-    >
-      {images.map(image => (
-        <div key={image.id}>
-        
-          <div  className={styles.bigCarouselContent} >
-            <p className={styles.bigCarouselPromo}
-            >
-              Quick parcel delivery, <span className={styles.bigCarouselSpan}>from $25</span>
-            </p>
-            <h2 className={styles.bigCarouselText}>
-              {image.text}
-            </h2>
-            <Link  className={styles.bigCarouselLink} to={image.link}>
-              Start Shopping
-            </Link>
-
-          </div>
-          <img  src={image.src} alt={image.alt} className={styles.BigCarouselImage}
-         
-          />
-        </div>
-      ))}
-
-    </Carousel>
-  )
-};
-
-
-
+      />
+     
+   ))}
+  
+  </Carousel>
+    )};
+    
+    
+   
 
 
 
