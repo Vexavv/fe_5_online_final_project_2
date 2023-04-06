@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import s from './Shipping.module.scss';
 
@@ -6,6 +7,11 @@ import { Card, CardContent, Typography, Grid, Button } from '@mui/material';
 
 const Contact = ({ prev, data }) => {
   const { email, address, apartment, city, country, postalCode } = data;
+
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <>
@@ -88,8 +94,10 @@ const Contact = ({ prev, data }) => {
                 variant="contained"
                 color="secondary"
                 size="large"
+                component={Link}
+                to="/successful"
               >
-                Continue to payment
+                Complete order
               </Button>
             </Grid>
           </Grid>
