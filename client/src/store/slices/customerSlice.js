@@ -10,7 +10,7 @@ export const fetchGetCustomer= createAsyncThunk(
       try {
         const response = await fetch(`${BASE_URL}/customers/customer`, {
           method: 'GET',
-          headers: {
+          headers: {  
             Authorization : stateToken
           }
         })       
@@ -18,7 +18,7 @@ export const fetchGetCustomer= createAsyncThunk(
          
           return customer
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           return rejectWithValue(error.message)
         }
       }

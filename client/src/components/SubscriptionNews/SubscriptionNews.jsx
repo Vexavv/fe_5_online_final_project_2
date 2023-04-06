@@ -1,54 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./SubscriptionNews.module.scss";
 import Button from "../Button/Button";
 import axios from "axios";
 import { BASE_URL, MONGO_URI } from "../../constants/api";
 
-const newConfigs = {
-  customId: "some-global-configs",
-  development: {
-    database: {
-      mongoURI: MONGO_URI,
-    },
-    email: {
-      mailUser: "kovalenkosv60@gmail.com",
-      mailPassword: "qwerty123",
-      mailService: "gmail",
-    },
-    auth: {
-      secretOrKey: "random very very secret string",
-    },
-    infinitScrollEnabled: true,
-    minOrderValue: 100,
-    someCustomParam: "custom params value",
-  },
-  production: {
-    database: {
-      uri: MONGO_URI,
-    },
-    email: {
-      mailUser: "kovalenkosv60@gmail.com",
-      mailPassword: "qwerty123",
-      mailService: "gmail",
-    },
-    auth: {
-      secretOrKey: "somesecret",
-    },
-    infinitScrollEnabled: true,
-    minOrderValue: 100,
-    someCustomParam: "custom params value",
-  },
-};
-
-axios
-  .post(`${BASE_URL}/configs`, newConfigs)
-  .then((res) => {
-    console.log(newConfigs);
-    return newConfigs;
-  })
-  .catch((err) => {
-    /*Do something with error, e.g. show error to user*/
-  });
+// console.log(process.env);
 
 function SubscriptionNews(props) {
   const [email, setEmail] = useState("");
@@ -56,43 +13,32 @@ function SubscriptionNews(props) {
   const [error, setError] = useState("");
 
   const newSubscriber = {
-    customId: "global-configs",
     subscriberMail: email,
     enabled: false,
     letterSubject: "Test letter (final project)",
-    letterHtml:
-      "<!DOCTYPE html><html lang='en'><head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>",
+    letterHtml: "<p>hi</p>",
   };
-
-  // const getConfigs = async () => {
-  //   await fetch(`${BASE_URL}/configs`)
-  //     .then((response) => response.json())
-  //     .then((config) => {
-  //       // use configuration values here
-  //       console.log(config);
-  //       console.log(config.API_KEY);
-  //     });
-  // };
-  // getConfigs();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const sendMail = async (subscriber) => {
     await axios
-      .post(`${BASE_URL}/subscribers`, newSubscriber)
+      .post(`${BASE_URL}/subscribers`, subscriber)
       .then((response) => {
-        console.log(response);
-        console.log(newSubscriber);
-        setSubscribed(true);
+        console.log(response.data);
+        // console.log(newSubscriber);
+        // setSubscribed(true);
       })
       .catch((error) => {
-        setSubscribed(false);
+        // setSubscribed(false);
         setError(error.message);
       });
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    sendMail(newSubscriber);
   };
 
   return (
