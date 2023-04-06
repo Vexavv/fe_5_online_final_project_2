@@ -1,30 +1,25 @@
-
-
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import thunk from 'redux-thunk';
-import storage from 'redux-persist/lib/storage'
+import thunk from "redux-thunk";
+import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
-import productsReducer from './slices/productsSlice'
-import isLoginReducer from './slices/loginSlice'
-import messageReducer from './slices/messageSlice'
+import productsReducer from "./slices/productsSlice";
+import isLoginReducer from "./slices/loginSlice";
+import messageReducer from "./slices/messageSlice";
 
 import cardReducer from "./slices/cardSlice";
-import customerReducer from "./slices/customerSlice"
-import wishlistReducer from "./slices/wishlistSlice"
+import customerReducer from "./slices/customerSlice";
+import wishlistReducer from "./slices/wishlistSlice";
 
 const persistConfig = {
-
-  key: 'root',
+  key: "root",
   storage,
 
-  whitelist: ['products',"card",'isLogged','wishlist']
-
-}
+  whitelist: ["products", "card", "isLogged", "wishlist"],
+};
 const userPersistConfig = {
-  key: 'isLogged',
+  key: "isLogged",
   storage,
-}
-
+};
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -33,8 +28,7 @@ const rootReducer = combineReducers({
   customer: customerReducer,
   message: messageReducer,
   wishlist: wishlistReducer,
-})
-
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

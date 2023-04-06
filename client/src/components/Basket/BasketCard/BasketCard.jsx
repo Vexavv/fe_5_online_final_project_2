@@ -24,7 +24,8 @@ function BasketCard({
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const dispatch = useDispatch();
 
-  const removeItem = (id) => {
+  const removeItem = () => {
+    console.log(id);
     isLogged
       ? dispatch(deletCard(item.product))
       : dispatch(removeItemBasket({ id }));
@@ -36,6 +37,8 @@ function BasketCard({
       : dispatch(increaseCard({ id }));
   };
   const handleDecrease = () => {
+    console.log(item.product);
+
     isLogged
       ? dispatch(decreasCard(item.product))
       : dispatch(decreaseCard({ id }));
@@ -83,7 +86,7 @@ function BasketCard({
             </div>
             <button
               className={styles.CardOptionContainerRemove}
-              onClick={() => removeItem(id)}
+              onClick={removeItem}
             >
               Remove
             </button>

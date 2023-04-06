@@ -86,38 +86,56 @@ export const cardsSlice = createSlice({
   initialState,
   reducers: {
     addCard(state, action) {
+      const isAdded = state.products.find(
+        (item) => item.product._id === action.payload.product._id
+      );
+
+      console.log(isAdded, action);
+      if (isAdded) {
+        return;
+      }
       state.products = [...state.products, action.payload];
     },
 
     removeItemBasket(state, action) {
+      console.log(state.products);
       state.products = state.products.filter(
-        (item) => item._id !== action.payload.id
+        (item) => item.product._id !== action.payload.id
       );
     },
 
     increaseCard(state, action) {
+      // console.log(state);
+      // console.log(action.payload);
       state.products = state.products.map((item) => {
-        if (item._id === action.payload.id) {
-          item.amount += 1;
-          item.totalPrice = item.amount * item.currentPrice;
+        if (item.product._id === action.payload.id) {
+          item.product.amount += 1;
+          item.product.totalPrice =
+            item.product.amount * item.product.currentPrice;
         }
         return item;
       });
     },
 
     decreaseCard(state, action) {
+      // console.log(state);
+      // console.log(action.payload);
       state.products = state.products.map((item) => {
-        if (item._id === action.payload.id) {
-          if (item.amount === 1) {
-            item.amount = 1;
-            item.totalPrice = item.currentPrice;
+        if (item.product._id === action.payload.id) {
+          if (item.product.amount === 1) {
+            item.product.amount = 1;
+            item.product.totalPrice = item.product.currentPrice;
           } else {
-            item.amount -= 1;
-            item.totalPrice = item.amount * item.currentPrice;
+            item.product.amount -= 1;
+            item.product.totalPrice =
+              item.product.amount * item.product.currentPrice;
           }
         }
         return item;
       });
+    },
+    resetCard(state) {
+      state.products = [];
     },
   },
 
@@ -139,6 +157,7 @@ export const cardsSlice = createSlice({
 });
 export const {
   addCard,
+  resetCard,
   removeCard,
   clearCard,
   removeItemBasket,

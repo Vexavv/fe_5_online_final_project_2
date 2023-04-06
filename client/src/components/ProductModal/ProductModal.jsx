@@ -38,6 +38,7 @@ function ProductModal() {
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const { wishlist } = useSelector((state) => state.wishlist);
   const isFavorite = wishlist && wishlist.products;
+
   const isInWishlist =
     isFavorite &&
     selectedProduct &&
@@ -52,11 +53,13 @@ function ProductModal() {
 
   // -------------------------addBasket---------------------------
 
-  const isInBasket = products.find((productItem) =>
-    isLogged
-      ? productItem.product._id === selectedProduct?._id
-      : productItem._id === selectedProduct?._id
-  );
+  const isInBasket =
+    selectedProduct &&
+    products.find((productItem) => {
+      return isLogged
+        ? productItem.product._id === selectedProduct?._id
+        : productItem._id === selectedProduct?._id;
+    });
   const addProductBascet = (prooduct) => {
     console.log(prooduct);
     dispatch(addToCard(prooduct));

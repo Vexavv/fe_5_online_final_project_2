@@ -35,9 +35,12 @@ function SmallCarouselItem({
         ? dispatch(addToCard(product))
         : dispatch(
             addCard({
-              ...product,
-              amount: 1,
-              totalPrice: product.currentPrice,
+              product: {
+                ...product,
+                amount: 1,
+                totalPrice: product.currentPrice,
+              },
+          
             })
           );
     }

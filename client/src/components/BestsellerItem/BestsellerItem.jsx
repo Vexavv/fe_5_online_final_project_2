@@ -15,22 +15,26 @@ function BestsellerItem({ item, onClick }) {
 
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
 
-  const isInBasket = products.find((productItem) =>
-  isLogged
-    ? productItem.product._id === item._id
-    : productItem._id === item._id
-);
+  const isInBasket =
+    item &&
+    products.find((productItem) =>
+      isLogged
+        ? productItem.product._id === item._id
+        : productItem._id === item._id
+    );
   const addProductBascet = () => {
     if (isInBasket) {
-      console.log("remove");
+
     } else {
       isLogged
         ? dispatch(addToCard(item))
         : dispatch(
             addCard({
-              ...item,
-              amount: 1,
-              totalPrice: item.currentPrice,
+              product: {
+                ...item,
+                amount: 1,
+                totalPrice: item.currentPrice,
+              },
             })
           );
     }

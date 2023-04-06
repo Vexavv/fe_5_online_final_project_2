@@ -12,7 +12,7 @@ function BasketFooterPrice() {
         return prev + curr.product.currentPrice * curr.cartQuantity;
       }, 0)
     : cards.reduce((prev, curr) => {
-        return prev + curr.totalPrice;
+        return prev + curr.product.totalPrice;
       }, 0);
 
   return (

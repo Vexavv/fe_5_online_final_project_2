@@ -33,24 +33,24 @@ function ProductCard({
   const products = useSelector((state) => state.card.products);
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
 
-
-  
   const isInBasket = products.find((productItem) =>
-  isLogged
-    ? productItem.product._id === product?._id
-    : productItem._id === product?._id
-);
+    isLogged
+      ? productItem.product._id === product?._id
+      : productItem._id === product?._id
+  );
   const addProductBascet = () => {
     if (isInBasket) {
-      console.log("remove");
+
     } else {
       isLogged
         ? dispatch(addToCard(product))
         : dispatch(
             addCard({
-              ...product,
-              amount: 1,
-              totalPrice: product.currentPrice,
+              product: {
+                ...product,
+                amount: 1,
+                totalPrice: product.currentPrice,
+              },
             })
           );
     }
