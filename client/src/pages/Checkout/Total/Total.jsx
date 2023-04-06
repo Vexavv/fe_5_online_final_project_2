@@ -7,7 +7,6 @@ import TotalProduct from './TotalProduct';
 
 const Total = () => {
   const checkoutProduct = useSelector((state) => state.card.products);
-  console.log('checkoutProduct', checkoutProduct);
 
   const subTotalPr = checkoutProduct.reduce(
     (acc, curr) => acc + curr.totalPrice,
@@ -61,5 +60,3 @@ const Total = () => {
 };
 
 export default Total;
-
-
