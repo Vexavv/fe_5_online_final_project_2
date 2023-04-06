@@ -17,7 +17,7 @@ export const getWishlistConfigWithAuthHeader = (getState) => {
     return getConfigWithAuthHeader(stateToken);
 };
 
-const getConfigWithAuthHeader = (stateToken) => {
+export const getConfigWithAuthHeader = (stateToken) => {
     return {
         headers: {
             Authorization: stateToken,
