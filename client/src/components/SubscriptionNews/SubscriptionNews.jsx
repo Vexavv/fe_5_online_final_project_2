@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./SubscriptionNews.module.scss";
 import Button from "../Button/Button";
 import axios from "axios";
@@ -6,8 +6,6 @@ import { BASE_URL } from "../../constants/api";
 
 function SubscriptionNews(props) {
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-  const [error, setError] = useState("");
 
   const newSubscriber = {
     email: email,
@@ -27,11 +25,9 @@ function SubscriptionNews(props) {
       .then((response) => {
         console.log(response.data);
         console.log(newSubscriber);
-        setSubscribed(true);
       })
       .catch((error) => {
-        setSubscribed(false);
-        setError(error.message);
+        return error.message;
       });
   };
   const handleSubmit = async (event) => {
@@ -66,8 +62,6 @@ function SubscriptionNews(props) {
                 type='submit'
                 text='Subscribe'
               />
-              {error && <div>{error}</div>}
-              {subscribed && <div>Thank you for subscribing!</div>}
             </form>
             <span className={styles.SubscriptionContainerWrapperContentPrivacy}>
               We respect your privacy, so we never share your info.
