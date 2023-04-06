@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import styles from "./SubscriptionNews.module.scss";
 import Button from "../Button/Button";
 import axios from "axios";
