@@ -14,12 +14,17 @@ function Bestsellers(props) {
     dispatch(getElement(product));
     dispatch(toggleModal(true));
   }
-  const [bestSellers, setBestSellers] = useState(null)
-    useEffect(() => {
-        axios.get(`${BASE_URL}/products/filter?bestSeller=trueBest`)
-            .then(response => setBestSellers(response.data))
-            .catch(error => console.error(error));
-    }, []);
+  const [bestSellers, setBestSellers] = useState(null);
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/products/filter?bestSeller=trueBest`)
+      .then((response) => {
+    
+        setBestSellers(response.data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
 
 
     if (!bestSellers) {

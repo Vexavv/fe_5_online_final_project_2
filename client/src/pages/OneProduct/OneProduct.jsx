@@ -16,7 +16,7 @@ import styles from "./OneProduct.module.scss";
 
 
 import { useDispatch, useSelector } from "react-redux";
-import { addCard, removeCard } from "../../store/slices/cardSlice";
+import { addCard, addToCard, removeCard } from "../../store/slices/cardSlice";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
@@ -34,6 +34,7 @@ const buttonSX = {
   padding: "10px 40px",
 };
 export default function OneProduct() {
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -57,26 +58,33 @@ export default function OneProduct() {
   };
 
   // -------------------------------добавка в корзину -------------------
+
   const products = useSelector((state) => state.card.products);
-  const isInBasket = products.find(
-    (productItem) => productItem._id === product?._id
+  console.log(products);
+  const isInBasket = products.find((productItem) =>
+    isLogged
+      ? productItem.product._id === product?._id
+      : productItem._id === product?._id
   );
+
   const addProductBascet = () => {
     if (isInBasket) {
-      console.log("remove");
     } else {
-      dispatch(
-        addCard({
-          ...product,
-          amount: 1,
-          totalPrice: product.currentPrice,
-        })
-      );
+      isLogged
+        ? dispatch(addToCard(product))
+        : dispatch(
+            addCard({
+              product: {
+                ...product,
+                amount: 1,
+                totalPrice: product.currentPrice,
+              },
+            })
+          );
     }
   };
 
   // --------------------------------- add to wish list----------------
-  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const { wishlist } = useSelector((state) => state.wishlist);
   const isFavorite = wishlist && wishlist.products;
   const isInWishlist =
@@ -98,24 +106,26 @@ export default function OneProduct() {
       <DialogTitle
         sx={{
           background: "#eaebef",
-        }}>
+        }}
+      >
         <Box
-          display='flex'
-          alignItems='center'
+          display="flex"
+          alignItems="center"
           justifyContent={"space-between"}
-          textTransform='capitalize'>
+          textTransform="capitalize"
+        >
           {product.name}
         </Box>
       </DialogTitle>
 
-      <Box width='80%' m='80px auto'>
-        <Box display='flex' flexWrap='wrap' columnGap='40px'>
+      <Box width="80%" m="80px auto">
+        <Box display="flex" flexWrap="wrap" columnGap="40px">
           {/* IMAGES */}
-          <Box flex='1 1 40%' mb='40px'>
+          <Box flex="1 1 40%" mb="40px">
             <img
               alt={"sss"}
-              width='100%'
-              height='100%'
+              width="100%"
+              height="100%"
               src={product.imageUrls[0]}
               style={{ objectFit: "contain" }}
             />
@@ -123,56 +133,60 @@ export default function OneProduct() {
 
           {/* ACTIONS */}
 
-          <Box flex='1 1 50%' mb='40px'>
-            <Box m='5px 0 25px 0'>
+          <Box flex="1 1 50%" mb="40px">
+            <Box m="5px 0 25px 0">
               <Typography
-                align='left'
-                variant='h4'
-                sx={{ textTransform: "capitalize" }}>
+                align="left"
+                variant="h4"
+                sx={{ textTransform: "capitalize" }}
+              >
                 {product.name}
               </Typography>
-              <Typography align='left' sx={{ mt: "20px" }}>
+              <Typography align="left" sx={{ mt: "20px" }}>
                 {product.description}
               </Typography>
-              <Box display='flex'>
+              <Box display="flex">
                 {product.sale ? (
                   <Typography
-                    variant='h6'
-                    color='#666666'
-                    align='left'
-                    m='30px 0'
+                    variant="h6"
+                    color="#666666"
+                    align="left"
+                    m="30px 0"
                     sx={{
                       textDecoration: "line-through",
-                    }}>
+                    }}
+                  >
                     ${product.previousPrice}.00
                   </Typography>
                 ) : (
                   <Typography
-                    variant='h6'
-                    color='#666666'
-                    align='left'
-                    m='30px 0'>
+                    variant="h6"
+                    color="#666666"
+                    align="left"
+                    m="30px 0"
+                  >
                     ${product.previousPrice}.00
                   </Typography>
                 )}
                 {product.sale && (
                   <Typography
-                    variant='h6'
-                    color='#ba933e'
-                    align='left'
-                    m='30px 10px'>
+                    variant="h6"
+                    color="#ba933e"
+                    align="left"
+                    m="30px 10px"
+                  >
                     ${product.currentPrice}.00
                   </Typography>
                 )}
               </Box>
             </Box>
-            <Box display='flex' alignItems='center' minHeight='50px'>
+            <Box display="flex" alignItems="center" minHeight="50px">
               <Button
                 onClick={addProductBascet}
-                // onClick={handleAddCard}
                 sx={buttonSX}
-                variant='contained'
-                color='primary'>
+                variant="contained"
+                color="primary"
+              >
                 {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
               </Button>
               {/*-----------------add to wish list --------------*/}
@@ -182,7 +196,8 @@ export default function OneProduct() {
                   isInWishlist
                     ? removeFromWishlist(product._id)
                     : addToWishlist(product._id)
-                }>
+                }
+              >
                 {isLogged &&
                   (isInWishlist ? (
                     <FavoriteIcon sx={{ fontSize: 40, color: "#ba933e" }} />
@@ -191,22 +206,22 @@ export default function OneProduct() {
                   ))}
               </IconButton>
             </Box>
-            <Box display='flex' flexDirection='column' alignItems='flex-start'>
-              <Typography m='8px 0 0 0'>
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <Typography m="8px 0 0 0">
                 <span className={span}>Availability: </span> {product.quantity}
               </Typography>
-              <Typography m='8px 0 0 0'>
+              <Typography m="8px 0 0 0">
                 <span className={span}>Product type: </span>
                 Demo Type
               </Typography>
-              <Typography m='8px 0 0 0'>
+              <Typography m="8px 0 0 0">
                 <span className={span}>Brand: </span>
                 {product.brand}
               </Typography>
-              <Typography m='8px 0 0 0'>
+              <Typography m="8px 0 0 0">
                 <span className={span}>SKU: </span> N/A
               </Typography>
-              <Typography align='left' m='8px 0 0 0'>
+              <Typography align="left" m="8px 0 0 0">
                 <span className={span}>Categories: </span>
                 {product.categories}
               </Typography>
@@ -214,7 +229,8 @@ export default function OneProduct() {
                 sx={{
                   mt: 4,
                   color: "gray",
-                }}>
+                }}
+              >
                 <IconButton>
                   <TwitterIcon className={tw} sx={{ pl: 2 }} />
                   <FacebookIcon className={fb} sx={{ pl: 2 }} />
@@ -224,22 +240,23 @@ export default function OneProduct() {
             </Box>
           </Box>
         </Box>
-        <Box m='20px 0'>
+        <Box m="20px 0">
           <Box sx={{ borderBottom: 2, borderColor: "divider" }}>
             <Tabs
               value={tabIndex}
               onChange={handleTabChange}
               centered
-              textColor='primary'
-              indicatorColor='primary'
+              textColor="primary"
+              indicatorColor="primary"
               sx={{
                 "& button:hover": { backgroundColor: "#ffffff" },
                 "& button:focus": { backgroundColor: "#ffffff" },
                 "& button:active": { backgroundColor: "#ffffff" },
-              }}>
-              <Tab label='Details' />
-              <Tab label='Shipping & Return' />
-              <Tab label='Reviews' />
+              }}
+            >
+              <Tab label="Details" />
+              <Tab label="Shipping & Return" />
+              <Tab label="Reviews" />
             </Tabs>
           </Box>
           <Box sx={{ padding: 2 }}>

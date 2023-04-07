@@ -34,6 +34,7 @@ const Checkout = () => {
     setCurentStep((prev) => prev - 1);
   };
 
+
   useEffect(() => {
     dispatch(fetchGetCustomer());
   }, [dispatch]);
@@ -46,6 +47,7 @@ const Checkout = () => {
       email: customer?.email || '',
     }));
   }, [customer]);
+
 
   const orderData = {
     customer: {
@@ -62,6 +64,7 @@ const Checkout = () => {
     },
     products: checkoutProduct,
   };
+
 
   const step = [
     <Contact value={0} next={handleNextStep} data={data} />,
