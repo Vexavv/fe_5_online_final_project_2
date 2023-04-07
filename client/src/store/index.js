@@ -10,6 +10,7 @@ import passwordReducer from './slices/passwordSlice'
 import cardReducer from "./slices/cardSlice";
 import customerReducer from "./slices/customerSlice"
 import wishlistReducer from "./slices/wishlistSlice"
+import searchReducer from "./slices/searchSlice"
 
 const persistConfig = {
 
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   customer: customerReducer, 
   wishlist: wishlistReducer,
   password: passwordReducer,
+  search: searchReducer,
 })
 
 

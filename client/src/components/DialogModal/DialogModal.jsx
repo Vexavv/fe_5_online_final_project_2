@@ -1,19 +1,67 @@
-import { TextField, DialogActions, DialogContent,  DialogTitle, Dialog, IconButton, Button, } from '@mui/material';
-import React, { useState } from 'react';
+import {InputBase, DialogActions, DialogContent,  DialogTitle, Dialog, IconButton, Button, InputAdornment} from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import Fuse from 'fuse.js'
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search'
-import { Formik, Form, Field} from 'formik';
-import * as yup from 'yup';
-import YupPassword from 'yup-password'
+import CloseIcon from '@mui/icons-material/Close'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-
+import { addSearch, resetSearch, setSearch, setResult } from '../../store/slices/searchSlice'
 
 const DialogModal = (props) => {
-  // const {search, textButton,   titleText, ariaLabel} = props;
+ 
   const [openDialog, setOpenDialog] = useState(false);
-const dispatch = useDispatch()
+  
+  const { data } = useSelector(state => state.products)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const search = useSelector(state => state.search.search)
 
+  useEffect(() => {
+    const result = data
+    dispatch(setSearch(result))   
+  }, [data, dispatch])
+
+  useEffect(() => {
+    if (location.pathname !== '/products' && search !== '') {
+      window.scrollTo({ top: 0 })
+      navigate('/products')    }  
+     searchData(search)
+     console.log(search);
+  }, [search])
+
+  const searchData = pattern => {
+    const options = {
+      threshold: 0.3,
+      keys: ['name', 'categories', 'description']
+    }
+    if (!pattern) {
+      dispatch(setResult(data))
+      return
+    }
+    const fuse = new Fuse(data, options)
+    const result = fuse.search(pattern)
+    const matches = []
+    if (!result.length) {
+      dispatch(setResult([]))
+    } else {
+      result.forEach(({ item }) => {
+        matches.push(item)
+      })
+      dispatch(setResult(matches))
+    }
+  }
+  const handleChange = event => {
+    dispatch(addSearch(event.target.value))
+  }
+  const handleClickResetSearch = () => {
+    dispatch(resetSearch())
+  }
+
+  const handleMouseDownReset = event => {
+    event.preventDefault()
+  }
 
   const handleClickOpen = () => {
     setOpenDialog(value => !value);
@@ -76,40 +124,45 @@ const dispatch = useDispatch()
         }}
       >
         <DialogTitle>What are you looking for?</DialogTitle>
-        <Formik
-           initialValues={{ 
-            password: '',
-            newPassword:''}
-          }
-          //  validationSchema={validationSchemaPassword}
-         >
-             {() => (
-          <Form>
+       
         <DialogContent sx={{color:'#BA933E' }
         }   
         >
-        <Field name ='search'
-           type='text' 
-           as={TextField} 
-           variant='outlined' 
-           color='primary' 
-           label='search' 
-           fullWidth          
-           autoFocus
-           margin="dense"/>  
-         
-     
-        
+         <InputBase
+        placeholder="Search…"
+        inputProps={{ 'aria-label': 'search' }}
+        onChange={handleChange}
+        value={search}
+        endAdornment={
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="reset search"
+              onClick={handleClickResetSearch}
+              onMouseDown={handleMouseDownReset}
+              edge="end"
+              size="small"
+              sx={{ marginRight: '5px' }}
+            >
+              {search && <CloseIcon />}
+            </IconButton>
+          </InputAdornment>
+        }
+      />
         </DialogContent>
         <DialogActions>
-          <Button type="button" variant='contained' sx={{buttonSX}}onClick={() => handleClickOpen()}>Cancel</Button>
-          <Button type="submit" variant='contained' sx={buttonSX}> Search </Button>
-        </DialogActions>
-        </Form>
-             )}
-        </Formik>
+      
+        <Button type="button" variant='contained' sx={{buttonSX}} onClick={() => handleClickOpen()}>Cancel</Button>
+          <Button type="submit" variant='contained' sx={buttonSX} onClick={()=>{
+         
+           handleClickResetSearch()
+           handleClickOpen()
+          }}> Search </Button>
+     
+        </DialogActions>       
+       
       </Dialog>
       </ThemeProvider>
+    
     </>
 
   )

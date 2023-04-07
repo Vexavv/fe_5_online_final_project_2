@@ -31,7 +31,7 @@ function BasketCard({
   return (
     <div className={styles.Container}>
       <div className={styles.Card} key={id}>
-        <div className="img">
+        <div className={styles.CardImgWrapper}>
           <img className={styles.CardImg} src={img} alt="cardCatalog" />
         </div>
         <div className={styles.CardOption}>
@@ -47,27 +47,20 @@ function BasketCard({
           <div className={styles.CardOptionContainer}>
             <div className={styles.CardOptionContainerCount}>
               <button
-                className={styles.CardOptionContainerCountMinus}
+                className={styles.CardOptionContainerCountSign}
                 onClick={() => handleDecrease(id)}
-              >
-                <span className={styles.CardOptionContainerCountMinusText}>
+              >               
                   -
-                </span>
-              </button>
-              <input
-                // onChange={}
-                type="text"
-                value={amount}
-                className={styles.CardOptionContainerCountValue}
-                readOnly
-              ></input>
+               </button>
+             
+              <span className={styles.CardOptionContainerCountValue}>
+              {amount}
+              </span>
               <button
-                className={styles.CardOptionContainerCountPlus}
+                className={styles.CardOptionContainerCountSign}
                 onClick={() => handleIncrease(id)}
-              >
-                <span className={styles.CardOptionContainerCountMinusText}>
-                  +
-                </span>
+              >                
+                  +               
               </button>
             </div>
             <button

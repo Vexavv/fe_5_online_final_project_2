@@ -1,57 +1,25 @@
-import { createSlice, createAsyncThunk  } from '@reduxjs/toolkit'
-import {BASE_URL } from '../../constants/api'
+import { createSlice } from '@reduxjs/toolkit'
 
-const fetchForSearch = createAsyncThunk(
-    'search/fetchForSearch',
-    async function (query, { rejectWithValue }) {
-        try {
-          const response = await fetch(`${BASE_URL}/products/search`, {
-            method: 'POST',
-            body: JSON.stringify({
-              query: query
-            }),
-            headers: {
-              Connection: 'keep-alive',
-              'Accept-Encoding': 'gzip, deflate, br',
-              Accept: '*/*',
-              'Content-Type': 'application/json'
-            }
-          })
-          if (!response.ok) {
-            throw new Error('Server Error!')
-          }
-          const result = await response.json()
-          return result
-        } catch (error) {
-          return rejectWithValue(error.message)
-        }
-      }
-    )
-
-const initialState = {
-    searchValues: [],
-    isSearch: false,
-    searchError: ''
-  }
-
-  export const SearchSlice = createSlice({
-    name: 'search',
-    initialState,
-    extraReducers: builder => {
-      builder
-        .addCase(fetchForSearch.fulfilled, (state, action) => {
-          state.isSearching = false
-          state.searchError = ''
-          state.searchValues = action.payload
-        })
-        .addCase(fetchForSearch.pending, state => {
-          state.isSearching = true
-        })
-        .addCase(fetchForSearch.rejected, (state, action) => {
-          state.isSearching = false
-          state.searchError = action.payload
-        })
+const searchSlice = createSlice({
+  name: 'search',
+  initialState: {
+    search: '',
+    result: []
+  },
+  reducers: {
+    setSearch(state, action) {
+      state.result = action.payload
+    },
+    addSearch(state, action) {
+      state.search = action.payload
+    },
+    setResult(state, action) {
+      state.result = action.payload
+    },
+    resetSearch(state, action) {
+      state.search = ''
     }
-  })
-
-  export default SearchSlice.reducer
+  }
+})
+export const { addSearch, resetSearch, setSearch, setResult } = searchSlice.actions
+export default searchSlice.reducer

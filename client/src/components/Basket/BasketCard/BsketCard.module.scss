@@ -5,14 +5,21 @@
 .Card {
     padding: 15px 0;
 
+    &ImgWrapper {
+        width: 25%;
+        margin-right: 20px;
+
+    }
+
     &Img {
-        width: 26%;
-        padding-right: 20px;
+
+        object-fit: fill;
+
     }
 
     &Option {
-     
-        max-height: 145px;
+
+        // max-height: 145px;
 
         &Section {
             display: flex;
@@ -50,12 +57,12 @@
         }
 
         &Price {
-            font-size: 14px;
+            font-size: 18px;
             color: #666;
             font-weight: 400;
             line-height: 14px;
-            margin: 0;
-            padding-bottom: 11.5px;
+            // margin: 0;
+            margin-bottom: 11.5px;
         }
 
         &Container {
@@ -83,48 +90,34 @@
             }
 
             &Count {
-                width: 100px;
-                height: 50px;
+
                 display: flex;
+                justify-content: space-between;
 
-                &Minus {
-                    width: 35px;
-                    height: 100%;
-                    background-color: #f5f5f5;
-                    border: #f5f5f5;
+
+                // &Minus {
+                //      background-color: #f5f5f5;                   
+                //     cursor: pointer;
+                //     color: #1a1a1a;                    
+                // }
+
+                &Sign {
+                    background-color: #f1f1f1;
                     cursor: pointer;
-
-                    &text {
-                        color: #1a1a1a;
-                    }
-                }
-
-                &Plus {
-                    width: 35px;
-                    height: 100%;
-                    background-color: #f5f5f5;
-                    border: #f5f5f5;
-                    cursor: pointer;
-
-                    &text {
-                        color: #1a1a1a;
-                        display: block;
-                        font-weight: 700;
-                        font-size: 24px;
-                        line-height: 14px;
-                    }
+                    color: #1a1a1a;
+                    font-size: 24px;
+                    padding: 4px 10px;
+                    margin: 0;
                 }
 
                 &Value {
-                    height: 100%;
-                    width: 100%;
-                    font-size: 20px;
-                    font-weight: 700;
-                    border: #f5f5f5;
+
                     background-color: #f5f5f5;
                     color: #1a1a1a;
                     text-align: center;
-                    padding: 0;
+                    font-size: 24px;
+                    padding-right: 15px;
+                    padding-left: 15px;
                 }
             }
         }
@@ -136,19 +129,22 @@
 }
 
 @media (min-width: 600px) {
-   
+
     .Card {
         display: flex;
+
         &Img {
             width: 121px;
             height: 145px;
         }
 
         &Option {
-width: 100%;
+            width: 100%;
+
             &TotalPrice {
                 display: inherit;
             }
+
             // &Section{
             //     background-color: red;
             // }
