@@ -14,7 +14,6 @@ import { persistor } from "../../store/index";
 
 const MyAccount = () => {
   const dispatch = useDispatch();
-
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const customer = useSelector((state) => state.customer.customer);
   const newCustomer = { ...customer };
@@ -25,10 +24,12 @@ const MyAccount = () => {
       await persistor.purge("root");
       localStorage.clear();
       dispatch(loguotCustomer());
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
   };
+
   const [openAlert, setOpenAlert] = useState(true);
 
   useEffect(() => {
