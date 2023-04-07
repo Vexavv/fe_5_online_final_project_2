@@ -18,6 +18,7 @@ export const fetchGetCustomer= createAsyncThunk(
          
           return customer
         } catch (error) {
+          // console.log(error);
           return rejectWithValue(error.message)
         }
       }

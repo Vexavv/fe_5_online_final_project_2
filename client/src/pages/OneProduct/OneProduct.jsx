@@ -14,6 +14,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import styles from "./OneProduct.module.scss";
 
+
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, removeCard } from "../../store/slices/cardSlice";
 import React, { useEffect, useState } from "react";
@@ -55,14 +56,14 @@ export default function OneProduct() {
     setTabIndex(newTabIndex);
   };
 
-  // -------------------------------add to cart -------------------
+  // -------------------------------добавка в корзину -------------------
   const products = useSelector((state) => state.card.products);
   const isInBasket = products.find(
     (productItem) => productItem._id === product?._id
   );
   const addProductBascet = () => {
     if (isInBasket) {
-      return "remove";
+      console.log("remove");
     } else {
       dispatch(
         addCard({
@@ -168,11 +169,13 @@ export default function OneProduct() {
             <Box display='flex' alignItems='center' minHeight='50px'>
               <Button
                 onClick={addProductBascet}
+                // onClick={handleAddCard}
                 sx={buttonSX}
                 variant='contained'
                 color='primary'>
                 {isInBasket ? "PRODUCT IN BASKET" : "ADD TO CART"}
               </Button>
+              {/*-----------------add to wish list --------------*/}
               <IconButton
                 sx={{ marginLeft: 3 }}
                 onClick={() =>
@@ -261,3 +264,4 @@ export default function OneProduct() {
     </>
   );
 }
+
