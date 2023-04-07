@@ -1,47 +1,29 @@
-import s from "./Total.module.scss";
-import { Card, CardContent } from "@mui/material";
+import s from './Total.module.scss';
+import { Card, CardContent } from '@mui/material';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import TotalProduct from "./TotalProduct";
+import TotalProduct from './TotalProduct';
 
 const Total = () => {
-  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
-
   const checkoutProduct = useSelector((state) => state.card.products);
-  console.log(checkoutProduct);
+
   const subTotalPr = checkoutProduct.reduce(
-    (acc, curr) => acc + curr.product.currentPrice * curr.cartQuantity,
-    0
-  );
-  const subTotalPriceUSer = checkoutProduct.reduce(
-    (acc, curr) => acc + curr.product.totalPrice * curr.product.amount,
+    (acc, curr) => acc + curr.totalPrice,
     0
   );
 
-  const totalPr = isLogged
-    ? subTotalPr + subTotalPr * 0.1
-    : subTotalPriceUSer + subTotalPriceUSer * 0.1;
+  const totalPr = subTotalPr + subTotalPr * 0.1;
 
   return (
     <Card
       className={s.cardPrice}
-      sx={{ marginTop: 0, marginBottom: 2, bgcolor: "rgb(241,241,241)" }}
+      sx={{ marginTop: 0, marginBottom: 2, bgcolor: 'rgb(241,241,241)' }}
     >
       <CardContent sx={{ paddingY: 2, paddingX: 3 }}>
-        {checkoutProduct.map((product) =>
-          isLogged ? (
-            <TotalProduct
-              key={product.product._id}
-              name={product.product.name}
-              currentPrice={product.product.currentPrice}
-              imageUrls={product.product.imageUrls}
-              amount={product.cartQuantity}
-            />
-          ) : (
-            <TotalProduct key={product._id} {...product.product} />
-          )
-        )}
+        {checkoutProduct.map((product) => (
+          <TotalProduct key={product._id} {...product} />
+        ))}
 
         <hr />
         {/* <div className={s.discaunt}>
@@ -58,14 +40,12 @@ const Total = () => {
         <div className={s.sub}>
           <div className={s.subtotal}>
             <div className={s.subtotalTitle}>Subtotal</div>
-            <div className={s.subtotalPrice}>
-              ${isLogged ? subTotalPr : subTotalPriceUSer}.00
-            </div>
+            <div className={s.subtotalPrice}>${subTotalPr}.00</div>
           </div>
           <div className={s.shipping}>
             <div className={s.shippingTitle}>Estimated taxes</div>
             <div className={s.shippingPrice}>
-              ${((isLogged ? subTotalPr : subTotalPriceUSer) * 0.1).toFixed(2)}
+              ${(subTotalPr * 0.1).toFixed(2)}
             </div>
           </div>
         </div>
