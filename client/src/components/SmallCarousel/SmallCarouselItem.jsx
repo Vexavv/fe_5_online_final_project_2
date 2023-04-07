@@ -4,13 +4,35 @@ import styles from './SmallCarousel.module.scss'
 import {HiOutlineShoppingBag} from 'react-icons/hi';
 import {TfiSearch} from 'react-icons/tfi';
 import {getElement} from "../../store/slices/productsSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import {addCard} from "../../store/slices/cardSlice";
 
 function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo, product, sale, previousPrice}) {
 
     const dispatch = useDispatch()
     const [hovered, setHovered] = useState(null);
+
+    const products = useSelector((state) => state.card.products);
+
+    const isInBasket = products.find(
+        (productItem) => productItem._id === product?._id
+    );
+    const addProductBascet = () => {
+        if (isInBasket) {
+            console.log("remove");
+        } else {
+            dispatch(
+                addCard({
+                    ...product,
+                    amount: 1,
+                    totalPrice: product.currentPrice,
+                })
+            );
+        }
+    };
+
+
     return (
         <Card
             sx={{
@@ -38,7 +60,7 @@ function SmallCarouselItem({imageUrls, name, currentPrice, onClick, _id, itemNo,
                 title={name}
             >
                 <div className={styles.WrapperIcon}>
-                    <HiOutlineShoppingBag className={styles.WrapperIconBtn}/>
+                    <HiOutlineShoppingBag className={styles.WrapperIconBtn} onClick={addProductBascet}/>
                     <TfiSearch className={styles.WrapperIconBtn} onClick={onClick}/>
                 </div>
                 {sale && <Link to='/sale'><Box component="div" sx={{borderRadius:'4px', background: '#ba933e', width: 37, height: 27}}>
