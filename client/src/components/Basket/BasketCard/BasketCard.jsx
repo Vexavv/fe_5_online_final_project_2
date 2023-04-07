@@ -31,12 +31,12 @@ function BasketCard({
   return (
     <div className={styles.Container}>
       <div className={styles.Card} key={id}>
-        <div className='img'>
-          <img className={styles.CardImg} src={img} alt='cardCatalog' />
+        <div className="img">
+          <img className={styles.CardImg} src={img} alt="cardCatalog" />
         </div>
         <div className={styles.CardOption}>
           <div className={styles.CardOptionSection}>
-            <a className={styles.CardOptionName} href='.'>
+            <a className={styles.CardOptionName} href=".">
               {name}
             </a>
             <p className={styles.CardOptionTotalPrice}>${totalPrice}</p>
@@ -48,19 +48,23 @@ function BasketCard({
             <div className={styles.CardOptionContainerCount}>
               <button
                 className={styles.CardOptionContainerCountMinus}
-                onClick={() => handleDecrease(id)}>
+                onClick={() => handleDecrease(id)}
+              >
                 <span className={styles.CardOptionContainerCountMinusText}>
                   -
                 </span>
               </button>
               <input
-                type='text'
+                // onChange={}
+                type="text"
                 value={amount}
                 className={styles.CardOptionContainerCountValue}
-                readOnly></input>
+                readOnly
+              ></input>
               <button
                 className={styles.CardOptionContainerCountPlus}
-                onClick={() => handleIncrease(id)}>
+                onClick={() => handleIncrease(id)}
+              >
                 <span className={styles.CardOptionContainerCountMinusText}>
                   +
                 </span>
@@ -68,7 +72,8 @@ function BasketCard({
             </div>
             <button
               className={styles.CardOptionContainerRemove}
-              onClick={() => removeItem(id)}>
+              onClick={() => removeItem(id)}
+            >
               Remove
             </button>
           </div>

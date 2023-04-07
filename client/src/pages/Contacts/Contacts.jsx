@@ -1,8 +1,9 @@
-import React from "react";
-import styles from "./Contacts.module.scss";
-import GoogleMap from "./GoogleMap";
+import React from 'react';
+import styles from './Contacts.module.scss';
+import GoogleMap from './GoogleMap';
 
 function Contacts(props) {
+
   const {
     sectionContact,
     pageContact,
@@ -52,23 +53,29 @@ function Contacts(props) {
               <form onClick={handleClick}>
                 <input
                   className={formControl}
-                  type='text'
-                  name='name'
-                  placeholder='Name'
+                  type="text"
+                  name="name"
+                  placeholder="Name"
                   required
                 />
                 <input
                   className={formControl}
-                  type='email'
-                  name='email'
-                  placeholder='Email'
+                  type="email"
+                  name="email"
+                  placeholder="Email"
                   required
                 />
                 <textarea
                   className={formControl}
-                  placeholder='Message'
-                  name='body'></textarea>
-                <input className={sendBtn} type='submit' value='Send Message' />
+                  placeholder="Message"
+                  name="body"
+                ></textarea>
+                <input
+                  //   onSubmit={(e) => message55(e)}
+                  className={sendBtn}
+                  type="submit"
+                  value="Send Message"
+                />
               </form>
             </div>
           </div>
