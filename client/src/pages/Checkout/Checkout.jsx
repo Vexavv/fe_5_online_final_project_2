@@ -9,12 +9,13 @@ import { fetchGetCustomer } from '../../store/slices/customerSlice';
 const Checkout = () => {
   const dispatch = useDispatch();
   const customer = useSelector((state) => state.customer.customer);
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const checkoutProduct = useSelector((state) => state.card.products);
 
   const INITIAL_FORM_STATE = {
-    firstName: customer.firstName || '',
-    lastName: customer.lastName || '',
-    email: customer.email || '',
+    firstName: customer?.firstName || '',
+    lastName: customer?.lastName || '',
+    email: customer?.email || '',
     address: '',
     apartment: '',
     city: '',
@@ -35,7 +36,9 @@ const Checkout = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchGetCustomer());
+    if (isLogged) {
+      dispatch(fetchGetCustomer());
+    }
   }, [dispatch]);
 
   useEffect(() => {
