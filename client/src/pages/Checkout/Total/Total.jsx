@@ -44,7 +44,7 @@ const Total = () => {
         )}
 
         <hr />
-        <div className={s.discaunt}>
+        {/* <div className={s.discaunt}>
           <div className={s.discauntInpt}>
             <input type="text" name="Discaunt" placeholder="Discaunt code" />
           </div>
@@ -54,7 +54,7 @@ const Total = () => {
             </button>
           </div>
         </div>
-        <hr />
+        <hr /> */}
         <div className={s.sub}>
           <div className={s.subtotal}>
             <div className={s.subtotalTitle}>Subtotal</div>

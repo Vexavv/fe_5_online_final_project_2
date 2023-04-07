@@ -4,10 +4,9 @@
 
 .Card {
     padding: 15px 0;
-    display: flex;
-    align-items: flex-end;
+
     &Img {
-        width: 86%;
+        width: 26%;
         padding-right: 20px;
     }
 
@@ -24,7 +23,6 @@
             font-weight: 500;
             font-size: 18px;
             color: #1a1a1a;
-            text-transform: capitalize;
         }
 
         &TotalPrice {

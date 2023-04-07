@@ -57,6 +57,10 @@ export const loginCustomerFetch = createAsyncThunk(
         })
 
       const loggedCustomer = await loggedIn.json()
+      if(loggedIn.ok){
+        const savePassword = password
+        console.log(savePassword);
+      }
       
       return loggedCustomer
     }
@@ -88,10 +92,10 @@ const loginSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(createAccountFetch.pending, (state, action) => {        
-        state.isLogged.token = null
-        state.isLogged.success = false
-      })
+      // .addCase(createAccountFetch.pending, (state, action) => {        
+      //   state.isLogged.token = null
+      //   state.isLogged.success = false
+      // })
       .addCase(createAccountFetch.fulfilled, (state, action) => {       
         state.isLogged.token = null
         state.isLogged.success = false
