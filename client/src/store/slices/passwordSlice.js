@@ -18,8 +18,7 @@ export const fetchChangePassword = createAsyncThunk(
           throw new Error('Error')
         }
         const changedPassword = await response.json()
-        console.log(changedPassword);
-        return changedPassword
+        return changedPassword;
       } catch (error) {
         return rejectWithValue(error.message)
       }

@@ -12,13 +12,13 @@ function BestsellerItem({ item, onClick }) {
   const dispatch = useDispatch();
   const [hovered, setHovered] = useState(null);
   const products = useSelector((state) => state.card.products);
- 
+
   const isInBasket = products.find(
     (productItem) => productItem._id === item?._id
   );
   const addProductBascet = () => {
     if (isInBasket) {
-      console.log("remove");
+      return "remove";
     } else {
       dispatch(
         addCard({
@@ -52,24 +52,36 @@ function BestsellerItem({ item, onClick }) {
           onMouseLeave={() => setHovered(null)}
           onMouseEnter={() => setHovered(item._id)}
           alt={item.name}
-        /></Link>
-        {item.sale && <Link to='/sale'>
-            <div className={styles.btnWrapperSale}>
-                <span className={styles.btnWrapperSaleText}>sale</span>
-            </div>
-        </Link>}
-        <div className={styles.btnWrapperTitle}>
-            <h3 className={styles.btnWrapperTitleName}>{item.name}</h3>
-            <div className={ styles.btnWrapperTitleAllPrice}>
-              <span className={item.sale ? classNames(styles.btnWrapperTitleAllPricePrice, styles.btnWrapperTitleAllPriceSalePrice) : styles.btnWrapperTitleAllPricePrice}>
-              ${item.previousPrice}.00
-            </span>
-                {item.sale && <span className={styles.btnWrapperTitleAllPricePrice2}>
+        />
+      </Link>
+      {item.sale && (
+        <Link to='/sale'>
+          <div className={styles.btnWrapperSale}>
+            <span className={styles.btnWrapperSaleText}>sale</span>
+          </div>
+        </Link>
+      )}
+      <div className={styles.btnWrapperTitle}>
+        <h3 className={styles.btnWrapperTitleName}>{item.name}</h3>
+        <div className={styles.btnWrapperTitleAllPrice}>
+          <span
+            className={
+              item.sale
+                ? classNames(
+                    styles.btnWrapperTitleAllPricePrice,
+                    styles.btnWrapperTitleAllPriceSalePrice
+                  )
+                : styles.btnWrapperTitleAllPricePrice
+            }>
+            ${item.previousPrice}.00
+          </span>
+          {item.sale && (
+            <span className={styles.btnWrapperTitleAllPricePrice2}>
               ${item.currentPrice}.00
-            </span>}
-            </div>
+            </span>
+          )}
         </div>
-
+      </div>
     </div>
   );
 }
