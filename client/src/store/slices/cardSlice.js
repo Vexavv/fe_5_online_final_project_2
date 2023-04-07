@@ -21,6 +21,7 @@ export const cardsSlice = createSlice({
     },
 
     increaseCard(state, action) {
+      console.log(action.payload);
       state.products = state.products.map((item) => {
         if (item._id === action.payload.id) {
           item.amount += 1;

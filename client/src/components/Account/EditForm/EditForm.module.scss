@@ -12,7 +12,11 @@
         background-color: #ffffff;
         box-shadow: 0 2px 2px #00000024, 0 1px 5px #0000001f, 0 3px 1px -2px #0003;
         padding: 15px 15px 15px;
+
         max-width: 405px;
+
+        // margin-right: auto;
+        // margin-left: auto;
         padding-left: 15px;
         padding-right: 15px;
         margin-top: 20px;
@@ -48,6 +52,8 @@
                 &:hover {
                     color: #ba933e;
                     border: 1px solid #ba933e;
+
+                    // background-color: #ba933e;
                 }
             }
 
@@ -67,6 +73,8 @@
                 &:hover {
                     color: #ba933e;
                     border: 1px solid #ba933e;
+
+                    // background-color: #ba933e;
                 }
             }
 
@@ -118,6 +126,10 @@
             color: #1a1a1a;
             padding: 10px 0;
             font-weight: 600;
+        }
+
+        &__section {
+            // display: flex;
         }
 
         &__input {

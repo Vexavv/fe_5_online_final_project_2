@@ -23,7 +23,8 @@ function SubscriptionNews(props) {
     await axios
       .post(`${BASE_URL}/subscribers`, subscriber)
       .then((response) => {
-        return response.data;
+        console.log(response.data);
+        console.log(newSubscriber);
       })
       .catch((error) => {
         return error.message;
