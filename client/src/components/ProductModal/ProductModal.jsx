@@ -1,16 +1,24 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./ProductModal.module.scss";
 import classNames from "classnames";
 import Button from "../Button/Button";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleModal } from "../../store/slices/productsSlice";
-import { addCard } from "../../store/slices/cardSlice";
-import {addProductToWishlist, removeProductFromWishlist} from "../../store/slices/wishlistSlice";
+import {
+  addBasket,
+  addCard,
+  addToCard,
+  fetchGetBasket,
+} from "../../store/slices/cardSlice";
+import {
+  addProductToWishlist,
+  removeProductFromWishlist,
+} from "../../store/slices/wishlistSlice";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import {IconButton} from "@mui/material";
-import {Link} from "react-router-dom";
+import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function ProductModal() {
   const dispatch = useDispatch();
@@ -25,34 +33,43 @@ function ProductModal() {
     setSelectedImage(null);
     dispatch(toggleModal(false));
   };
-//--------------------------add to wish list-----------------
-  const isLogged = useSelector(state => state.isLogged.isLogged.success)
-  const {wishlist} = useSelector(state => state.wishlist);
+  //--------------------------add to wish list-----------------
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
+  const { wishlist } = useSelector((state) => state.wishlist);
   const isFavorite = wishlist && wishlist.products;
-  const isInWishlist = isFavorite && selectedProduct && isFavorite.find(item => item._id === selectedProduct._id);
+  const isInWishlist =
+    isFavorite &&
+    selectedProduct &&
+    isFavorite.find((item) => item._id === selectedProduct._id);
 
   const addToWishlist = (id) => {
-    dispatch(addProductToWishlist(id))
-  }
+    dispatch(addProductToWishlist(id));
+  };
   const removeFromWishlist = (id) => {
-    dispatch(removeProductFromWishlist(id))
-  }
-
+    dispatch(removeProductFromWishlist(id));
+  };
 
   // -------------------------addBasket---------------------------
 
-  const isInBasket = products.find(
-    (productItem) => productItem._id === selectedProduct?._id
-  );
-  const addProductBascet = () => {
+  const isInBasket =
+    selectedProduct &&
+    products.find((productItem) => {
+      return isLogged
+        ? productItem.product._id === selectedProduct._id
+        : productItem._id === selectedProduct._id;
+    });
+  const addProductBascet = (prooduct) => {
+    console.log(prooduct);
+    dispatch(addToCard(prooduct));
     if (isInBasket) {
-      console.log("remove");
     } else {
       dispatch(
         addCard({
-          ...selectedProduct,
-          amount: 1,
-          totalPrice: selectedProduct.currentPrice,
+          product: {
+            ...selectedProduct,
+            amount: 1,
+            totalPrice: selectedProduct.currentPrice,
+          },
         })
       );
     }
@@ -103,13 +120,24 @@ function ProductModal() {
           <span className={styles.ModalContentDescriptionColor}>
             Color: {selectedProduct.color}
           </span>
-          <div className={ styles.ModalContentDescriptionAllPrice}>
-            <span className={selectedProduct.sale ? classNames(styles.ModalContentDescriptionAllPricePrice, styles.ModalContentDescriptionAllPriceSalePrice) : styles.ModalContentDescriptionAllPricePrice}>
-            ${selectedProduct.previousPrice}.00
-          </span>
-            {selectedProduct.sale && <span className={styles.ModalContentDescriptionAllPricePrice2}>
-            ${selectedProduct.currentPrice}.00
-          </span>}
+          <div className={styles.ModalContentDescriptionAllPrice}>
+            <span
+              className={
+                selectedProduct.sale
+                  ? classNames(
+                      styles.ModalContentDescriptionAllPricePrice,
+                      styles.ModalContentDescriptionAllPriceSalePrice
+                    )
+                  : styles.ModalContentDescriptionAllPricePrice
+              }
+            >
+              ${selectedProduct.previousPrice}.00
+            </span>
+            {selectedProduct.sale && (
+              <span className={styles.ModalContentDescriptionAllPricePrice2}>
+                ${selectedProduct.currentPrice}.00
+              </span>
+            )}
           </div>
 
           <div className={styles.ModalContentDescriptionCount}>
@@ -118,12 +146,20 @@ function ProductModal() {
               text={isInBasket ? "PRODUCT IN BASKET" : "Add To Cart"}
               onClick={addProductBascet}
             />
-            <IconButton sx={{marginLeft:3}}
-                        onClick={() => isInWishlist ? removeFromWishlist(selectedProduct._id) : addToWishlist(selectedProduct._id)}>
-              {isLogged && (isInWishlist ?
-                      <FavoriteIcon sx={{fontSize: 40, color: '#ba933e'}}/>
-                      : <FavoriteBorderIcon sx={{fontSize: 40}}/>
-              )}
+            <IconButton
+              sx={{ marginLeft: 3 }}
+              onClick={() =>
+                isInWishlist
+                  ? removeFromWishlist(selectedProduct._id)
+                  : addToWishlist(selectedProduct._id)
+              }
+            >
+              {isLogged &&
+                (isInWishlist ? (
+                  <FavoriteIcon sx={{ fontSize: 40, color: "#ba933e" }} />
+                ) : (
+                  <FavoriteBorderIcon sx={{ fontSize: 40 }} />
+                ))}
             </IconButton>
           </div>
           <span className={styles.ModalContentDescriptionValues}>
