@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Box, Typography, CardMedia, CardContent, Card } from "@mui/material";
 import styles from "./SmallCarousel.module.scss";
@@ -8,7 +7,6 @@ import { getElement } from "../../store/slices/productsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addCard, addToCard } from "../../store/slices/cardSlice";
-
 
 function SmallCarouselItem({
   imageUrls,
@@ -21,46 +19,14 @@ function SmallCarouselItem({
   sale,
   previousPrice,
 }) {
-    const isLogged = useSelector((state) => state.isLogged.isLogged.success);
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const products = useSelector((state) => state.card.products);
-
 
   const isInBasket = products.find((productItem) =>
   isLogged
     ? productItem.product._id === product?._id
     : productItem._id === product?._id
 )
-
-    const dispatch = useDispatch()
-    const [hovered, setHovered] = useState(null);
-
-    const products = useSelector((state) => state.card.products);
-
-    const isInBasket = products.find(
-        (productItem) => productItem._id === product?._id
-    );
-    const addProductBascet = () => {
-        if (isInBasket) {
-            console.log("remove");
-        } else {
-            dispatch(
-                addCard({
-                    ...product,
-                    amount: 1,
-                    totalPrice: product.currentPrice,
-                })
-            );
-        }
-    };
-
-
-    return (
-        <Card
-            sx={{
-                width: {xs: '300px', sm: '250px', md: '270px', xl: '335px'},
-                border: 'none',
-                boxShadow: 0,
-
 
   const addProductBascet = () => {
     if (isInBasket) {
@@ -107,8 +73,8 @@ function SmallCarouselItem({
       >
         <div className={styles.WrapperIcon}>
           <HiOutlineShoppingBag
-            onClick={addProductBascet}
             className={styles.WrapperIconBtn}
+            onClick={addProductBascet}
           />
           <TfiSearch className={styles.WrapperIconBtn} onClick={onClick} />
         </div>
@@ -132,7 +98,6 @@ function SmallCarouselItem({
                   textTransform: "capitalize",
                   padding: "3px",
                 }}
-
               >
                 sale
               </Typography>
@@ -140,32 +105,6 @@ function SmallCarouselItem({
           </Link>
         )}
       </CardMedia>
-
-                image={
-                    hovered === _id && imageUrls.length > 1
-                        ? imageUrls[1]
-                        : imageUrls[0]
-                }
-                onMouseLeave={() => setHovered(null)}
-                onMouseEnter={() => setHovered(_id)}
-                title={name}
-            >
-                <div className={styles.WrapperIcon}>
-                    <HiOutlineShoppingBag className={styles.WrapperIconBtn} onClick={addProductBascet}/>
-                    <TfiSearch className={styles.WrapperIconBtn} onClick={onClick}/>
-                </div>
-                {sale && <Link to='/sale'><Box component="div" sx={{borderRadius:'4px', background: '#ba933e', width: 37, height: 27}}>
-                    <Typography sx={{
-                        color: 'rgba(255,255,255,0.95)',
-                        fontFamily: 'Red Hat Display',
-                        fontSize: '14px',
-                        fontWeight: 700,
-                        textTransform: 'capitalize',
-                        padding: '3px'
-                    }}>sale</Typography>
-                </Box></Link>}
-            </CardMedia>
-
 
       <Link to={`/products/${itemNo}`}>
         <CardContent
