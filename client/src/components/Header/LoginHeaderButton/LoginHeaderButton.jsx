@@ -16,6 +16,7 @@ const Login = () => {
             await persistor.purge('root');
             localStorage.clear();
             dispatch(loguotCustomer());
+            window.location.reload()
         } catch (error) {
             console.error(error);
         }

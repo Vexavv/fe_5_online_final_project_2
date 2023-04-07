@@ -38,6 +38,7 @@ function BestsellerItem({ item, onClick }) {
           );
     }
   };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.btnWrapper}>

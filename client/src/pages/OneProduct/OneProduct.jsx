@@ -7,17 +7,13 @@ import {
 } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import AddIcon from "@mui/icons-material/Add";
-
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./OneProduct.module.scss";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { styled } from "@mui/material/styles";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { addCard, addToCard, removeCard } from "../../store/slices/cardSlice";
@@ -286,4 +282,3 @@ export default function OneProduct() {
   );
 }
 
-// export default OneProduct;
