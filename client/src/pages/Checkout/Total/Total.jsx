@@ -9,6 +9,7 @@ const Total = () => {
   const isLogged = useSelector((state) => state.isLogged.isLogged.success);
 
   const checkoutProduct = useSelector((state) => state.card.products);
+  console.log(checkoutProduct);
   const subTotalPr = checkoutProduct.reduce(
     (acc, curr) => acc + curr.product.currentPrice * curr.cartQuantity,
     0
@@ -31,7 +32,7 @@ const Total = () => {
         {checkoutProduct.map((product) =>
           isLogged ? (
             <TotalProduct
-              key={product._id}
+              key={product.product._id}
               name={product.product.name}
               currentPrice={product.product.currentPrice}
               imageUrls={product.product.imageUrls}
@@ -64,7 +65,7 @@ const Total = () => {
           <div className={s.shipping}>
             <div className={s.shippingTitle}>Estimated taxes</div>
             <div className={s.shippingPrice}>
-              ${(isLogged ? subTotalPr : subTotalPriceUSer * 0.1).toFixed(2)}
+              ${((isLogged ? subTotalPr : subTotalPriceUSer) * 0.1).toFixed(2)}
             </div>
           </div>
         </div>
