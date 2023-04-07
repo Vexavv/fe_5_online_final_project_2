@@ -1,54 +1,47 @@
-import { TextField, DialogActions, DialogContent,  DialogTitle, Dialog, IconButton, Button, } from '@mui/material';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import SearchIcon from '@mui/icons-material/Search'
-import { Formik, Form, Field} from 'formik';
-import * as yup from 'yup';
-import YupPassword from 'yup-password'
-
-
-
+import {
+  TextField,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Dialog,
+  IconButton,
+  Button,
+} from "@mui/material";
+import React, { useState } from "react";
+import SearchIcon from "@mui/icons-material/Search";
+import { Formik, Form, Field } from "formik";
 
 const DialogModal = (props) => {
-  // const {search, textButton,   titleText, ariaLabel} = props;
   const [openDialog, setOpenDialog] = useState(false);
-const dispatch = useDispatch()
-
-
   const handleClickOpen = () => {
-    setOpenDialog(value => !value);
+    setOpenDialog((value) => !value);
   };
-
-
-
   const buttonSX = {
-    fontFamily: 'Red Hat Display',
-    size:{xs:'small', sm:"medium", md:"large"},
-    backgroundColor: '#1a1a1a',
+    fontFamily: "Red Hat Display",
+    size: { xs: "small", sm: "medium", md: "large" },
+    backgroundColor: "#1a1a1a",
     color: "white",
-    borderRadius: '6px',
+    borderRadius: "6px",
     padding: "6px 10px",
-    '&:hover': {
-      backgroundColor: '#BA933E',
-    }
-
+    "&:hover": {
+      backgroundColor: "#BA933E",
+    },
   };
 
   return (
     <>
       <IconButton
-        aria-label="search"
-        control="dialog"
-        aria-haspopup="true"
+        aria-label='search'
+        control='dialog'
+        aria-haspopup='true'
         onClick={handleClickOpen}
-        color="black"
+        color='black'
         sx={{
-          size: { xs: 'small', sm: 'medium', md: 'large' },
-          '&:hover': {
-            color: '#BA933E',
+          size: { xs: "small", sm: "medium", md: "large" },
+          "&:hover": {
+            color: "#BA933E",
           },
-        }}
-      >
+        }}>
         <SearchIcon />
       </IconButton>
 
@@ -56,50 +49,46 @@ const dispatch = useDispatch()
         open={openDialog}
         onClose={() => handleClickOpen(false)}
         sx={{
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: { xs: '70%', sm: '50%', md: '30%' },
-            overflow: 'hidden',
-            color: '#1A1A1A',
-            '&:active': { color: '#BA933E', boxSizing: 'border-box' },
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: { xs: "70%", sm: "50%", md: "30%" },
+            overflow: "hidden",
+            color: "#1A1A1A",
+            "&:active": { color: "#BA933E", boxSizing: "border-box" },
           },
-        }}
-      >
+        }}>
         <DialogTitle>What are you looking for?</DialogTitle>
         <Formik
           initialValues={{
-            password: '',
-            newPassword: '',
-          }}
-          //  validationSchema={validationSchemaPassword}
-        >
+            password: "",
+            newPassword: "",
+          }}>
           {() => (
             <Form>
-              <DialogContent sx={{ color: '#BA933E' }}>
+              <DialogContent sx={{ color: "#BA933E" }}>
                 <Field
-                  name="search"
-                  type="text"
+                  name='search'
+                  type='text'
                   as={TextField}
-                  variant="outlined"
-                  color="primary"
-                  label="search"
+                  variant='outlined'
+                  color='primary'
+                  label='search'
                   fullWidth
                   autoFocus
-                  margin="dense"
+                  margin='dense'
                 />
               </DialogContent>
               <DialogActions>
                 <Button
-                  type="button"
-                  variant="contained"
+                  type='button'
+                  variant='contained'
                   sx={{ buttonSX }}
-                  onClick={() => handleClickOpen()}
-                >
+                  onClick={() => handleClickOpen()}>
                   Cancel
                 </Button>
-                <Button type="submit" variant="contained" sx={buttonSX}>
-                  {' '}
-                  Search{' '}
+                <Button type='submit' variant='contained' sx={buttonSX}>
+                  {" "}
+                  Search{" "}
                 </Button>
               </DialogActions>
             </Form>
@@ -108,6 +97,6 @@ const dispatch = useDispatch()
       </Dialog>
     </>
   );
-}
+};
 
-export default DialogModal
+export default DialogModal;
