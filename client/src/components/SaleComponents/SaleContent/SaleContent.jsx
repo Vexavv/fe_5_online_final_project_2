@@ -21,7 +21,7 @@ function SaleContent(props) {
         axios.get(`${BASE_URL}/products/filter?sale=sale&startPage=${page}&perPage=${PAGE_SIZE}`)
             .then(response => setInSale(response.data))
             .catch(error => console.error(error));
-    }, []);
+    }, [page]);
 
     if (!inSale) {
         return <Loader/>
