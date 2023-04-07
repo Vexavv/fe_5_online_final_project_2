@@ -7,7 +7,7 @@ import {HiOutlineShoppingBag} from "react-icons/hi";
 import {TfiSearch} from "react-icons/tfi";
 import classNames from "classnames";
 import {Link} from "react-router-dom";
-import {addCard} from "../../../store/slices/cardSlice";
+import {addCard, addToCard} from "../../../store/slices/cardSlice";
 
 function ProductCard({
                          name,
@@ -31,23 +31,32 @@ function ProductCard({
 
     // -------------------------addBasket---------------------------
     const products = useSelector((state) => state.card.products);
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
 
-    const isInBasket = products.find(
-        (productItem) => productItem._id === product?._id
-    );
-    const addProductBascet = () => {
-        if (isInBasket) {
-            console.log("remove");
-        } else {
-            dispatch(
-                addCard({
-                    ...product,
-                    amount: 1,
-                    totalPrice: product.currentPrice,
-                })
-            );
-        }
-    };
+ 
+
+    const isInBasket = products.find((productItem) =>
+    isLogged
+      ? productItem.product._id === product?._id
+      : productItem._id === product?._id
+  );
+  const addProductBascet = () => {
+    if (isInBasket) {
+
+    } else {
+      isLogged
+        ? dispatch(addToCard(product))
+        : dispatch(
+            addCard({
+              product: {
+                ...product,
+                amount: 1,
+                totalPrice: product.currentPrice,
+              },
+            })
+          );
+    }
+  };
 
 
     return (

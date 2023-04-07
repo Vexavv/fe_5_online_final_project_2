@@ -9,12 +9,13 @@ import { fetchGetCustomer } from '../../store/slices/customerSlice';
 const Checkout = () => {
   const dispatch = useDispatch();
   const customer = useSelector((state) => state.customer.customer);
+  const isLogged = useSelector((state) => state.isLogged.isLogged.success);
   const checkoutProduct = useSelector((state) => state.card.products);
 
   const INITIAL_FORM_STATE = {
-    firstName: customer.firstName || '',
-    lastName: customer.lastName || '',
-    email: customer.email || '',
+    firstName: customer?.firstName || '',
+    lastName: customer?.lastName || '',
+    email: customer?.email || '',
     address: '',
     apartment: '',
     city: '',
@@ -34,8 +35,11 @@ const Checkout = () => {
     setCurentStep((prev) => prev - 1);
   };
 
+
   useEffect(() => {
-    dispatch(fetchGetCustomer());
+    if (isLogged) {
+      dispatch(fetchGetCustomer());
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -46,6 +50,7 @@ const Checkout = () => {
       email: customer?.email || '',
     }));
   }, [customer]);
+
 
   const orderData = {
     customer: {
@@ -62,6 +67,7 @@ const Checkout = () => {
     },
     products: checkoutProduct,
   };
+
 
   const step = [
     <Contact value={0} next={handleNextStep} data={data} />,
